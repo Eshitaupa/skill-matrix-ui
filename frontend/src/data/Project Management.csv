@@ -1,0 +1,540 @@
+Level,Skill,Subskill,Value,LevelKey,Discipline,Role
+7,Personal Effectiveness & Leadership,"Personal drive, initiative & results orientation",1,L7,Project Management,Engineer
+7,Personal Effectiveness & Leadership,"Self-awareness, integrity & professional maturity",1,L7,Project Management,Engineer
+7,Personal Effectiveness & Leadership,"Analytical, critical & systems thinking",1,L7,Project Management,Engineer
+7,Personal Effectiveness & Leadership,"Strategic thinking, vision & foresight",1,L7,Project Management,Engineer
+7,Personal Effectiveness & Leadership,"Planning, anticipation & foresight",1,L7,Project Management,Engineer
+7,Personal Effectiveness & Leadership,"Leadership presence, courage & decisiveness",1,L7,Project Management,Engineer
+7,Personal Effectiveness & Leadership,Influence & impact without authority,1,L7,Project Management,Engineer
+7,Personal Effectiveness & Leadership,Innovation & continuous improvement mindset,1,L7,Project Management,Engineer
+7,Communication & Collaboration,Effective oral & written communication,1,L7,Project Management,Engineer
+7,Communication & Collaboration,Information & document management,1,L7,Project Management,Engineer
+7,Communication & Collaboration,Team collaboration & trust building,1,L7,Project Management,Engineer
+7,Communication & Collaboration,Stakeholder engagement & alignment,1,L7,Project Management,Engineer
+7,Communication & Collaboration,Client relationship management,1,L7,Project Management,Engineer
+7,Communication & Collaboration,Organizational navigation & awareness,1,L7,Project Management,Engineer
+7,Communication & Collaboration,Cultural & diversity awareness,1,L7,Project Management,Engineer
+7,Communication & Collaboration,Conflict resolution & issue escalation,1,L7,Project Management,Engineer
+7,Engineering Management,Engineering discipline deliverables,1,L7,Project Management,Engineer
+7,Engineering Management,Inter-discipline dependencies & workflows,1,L7,Project Management,Engineer
+7,Engineering Management,"Engineering scope definition, WBS/DOR ownership",1,L7,Project Management,Engineer
+7,Engineering Management,Multi-discipline technical leadership,1,L7,Project Management,Engineer
+7,Engineering Management,Cross-discipline technical issue resolution,1,L7,Project Management,Engineer
+7,Engineering Management,Design basis ownership & QA/QC governance,1,L7,Project Management,Engineer
+7,Engineering Management,Engineering tools & S3D suite understanding,1,L7,Project Management,Engineer
+7,Engineering Management,Engineering–Procurement–Construction–Commissioning interface,1,L7,Project Management,Engineer
+7,Engineering Management,"Constructability, modularization & AWP",1,L7,Project Management,Engineer
+7,Project Planning & Control,Project Execution Planning (PEP),1,L7,Project Management,Engineer
+7,Project Planning & Control,Schedule development & Primavera interpretation,1,L7,Project Management,Engineer
+7,Project Planning & Control,Progress measurement & EPMS/DDS,1,L7,Project Management,Engineer
+7,Project Planning & Control,Project status & progress reporting,1,L7,Project Management,Engineer
+7,Project Planning & Control,Earned Value & productivity management,1,L7,Project Management,Engineer
+7,Project Planning & Control,Integrated change management & baseline control,1,L7,Project Management,Engineer
+7,Project Planning & Control,Project close-out & handover,1,L7,Project Management,Engineer
+7,Commercial & Cost,Project financial terms & concepts,1,L7,Project Management,Engineer
+7,Commercial & Cost,Engineering estimation & budgeting,1,L7,Project Management,Engineer
+7,Commercial & Cost,"Forecasting, cost control & variance analysis",1,L7,Project Management,Engineer
+7,Commercial & Cost,Resource planning & capacity management,1,L7,Project Management,Engineer
+7,Commercial & Cost,Contracting strategies,1,L7,Project Management,Engineer
+7,Commercial & Cost,Procurement processes & vendor management,1,L7,Project Management,Engineer
+7,Commercial & Cost,Contract language & commercial risk,1,L7,Project Management,Engineer
+7,Commercial & Cost,INCOTERMS & logistics,1,L7,Project Management,Engineer
+7,Risk & Construction,Project risk management,1,L7,Project Management,Engineer
+7,Risk & Construction,Site / construction exposure,1,L7,Project Management,Engineer
+7,Risk & Construction,Commissioning & system handover,1,L7,Project Management,Engineer
+7,Business & Knowledge,Proposal development exposure,1,L7,Project Management,Engineer
+7,Business & Knowledge,Business development & client advisory,1,L7,Project Management,Engineer
+7,Business & Knowledge,Knowledge capture & lessons learned,1,L7,Project Management,Engineer
+7,Value engineering & cost optimization,,1,L7,Project Management,Engineer
+7,Business & KnowledgeDocument & information management systems,,1,L7,Project Management,Engineer
+7,"Business & KnowledgeEthics, compliance & professional conduct",,1,L7,Project Management,Engineer
+8,Personal Effectiveness & Leadership,"Personal drive, initiative & results orientation",1,L8,Project Management,Engineer
+8,Personal Effectiveness & Leadership,"Self-awareness, integrity & professional maturity",1,L8,Project Management,Engineer
+8,Personal Effectiveness & Leadership,"Analytical, critical & systems thinking",1,L8,Project Management,Engineer
+8,Personal Effectiveness & Leadership,"Strategic thinking, vision & foresight",1,L8,Project Management,Engineer
+8,Personal Effectiveness & Leadership,"Planning, anticipation & foresight",1,L8,Project Management,Engineer
+8,Personal Effectiveness & Leadership,"Leadership presence, courage & decisiveness",1,L8,Project Management,Engineer
+8,Personal Effectiveness & Leadership,Influence & impact without authority,1,L8,Project Management,Engineer
+8,Personal Effectiveness & Leadership,Innovation & continuous improvement mindset,1,L8,Project Management,Engineer
+8,Communication & Collaboration,Effective oral & written communication,1,L8,Project Management,Engineer
+8,Communication & Collaboration,Information & document management,1,L8,Project Management,Engineer
+8,Communication & Collaboration,Team collaboration & trust building,1,L8,Project Management,Engineer
+8,Communication & Collaboration,Stakeholder engagement & alignment,1,L8,Project Management,Engineer
+8,Communication & Collaboration,Client relationship management,1,L8,Project Management,Engineer
+8,Communication & Collaboration,Organizational navigation & awareness,1,L8,Project Management,Engineer
+8,Communication & Collaboration,Cultural & diversity awareness,1,L8,Project Management,Engineer
+8,Communication & Collaboration,Conflict resolution & issue escalation,1,L8,Project Management,Engineer
+8,Engineering Management,Engineering discipline deliverables,1,L8,Project Management,Engineer
+8,Engineering Management,Inter-discipline dependencies & workflows,1,L8,Project Management,Engineer
+8,Engineering Management,"Engineering scope definition, WBS/DOR ownership",1,L8,Project Management,Engineer
+8,Engineering Management,Multi-discipline technical leadership,1,L8,Project Management,Engineer
+8,Engineering Management,Cross-discipline technical issue resolution,1,L8,Project Management,Engineer
+8,Engineering Management,Design basis ownership & QA/QC governance,1,L8,Project Management,Engineer
+8,Engineering Management,Engineering tools & S3D suite understanding,1,L8,Project Management,Engineer
+8,Engineering Management,Engineering–Procurement–Construction–Commissioning interface,1,L8,Project Management,Engineer
+8,Engineering Management,"Constructability, modularization & AWP",1,L8,Project Management,Engineer
+8,Project Planning & Control,Project Execution Planning (PEP),1,L8,Project Management,Engineer
+8,Project Planning & Control,Schedule development & Primavera interpretation,1,L8,Project Management,Engineer
+8,Project Planning & Control,Progress measurement & EPMS/DDS,1,L8,Project Management,Engineer
+8,Project Planning & Control,Project status & progress reporting,1,L8,Project Management,Engineer
+8,Project Planning & Control,Earned Value & productivity management,1,L8,Project Management,Engineer
+8,Project Planning & Control,Integrated change management & baseline control,1,L8,Project Management,Engineer
+8,Project Planning & Control,Project close-out & handover,1,L8,Project Management,Engineer
+8,Commercial & Cost,Project financial terms & concepts,1,L8,Project Management,Engineer
+8,Commercial & Cost,Engineering estimation & budgeting,1,L8,Project Management,Engineer
+8,Commercial & Cost,"Forecasting, cost control & variance analysis",1,L8,Project Management,Engineer
+8,Commercial & Cost,Resource planning & capacity management,1,L8,Project Management,Engineer
+8,Commercial & Cost,Contracting strategies,1,L8,Project Management,Engineer
+8,Commercial & Cost,Procurement processes & vendor management,1,L8,Project Management,Engineer
+8,Commercial & Cost,Contract language & commercial risk,1,L8,Project Management,Engineer
+8,Commercial & Cost,INCOTERMS & logistics,1,L8,Project Management,Engineer
+8,Risk & Construction,Project risk management,1,L8,Project Management,Engineer
+8,Risk & Construction,Site / construction exposure,1,L8,Project Management,Engineer
+8,Risk & Construction,Commissioning & system handover,1,L8,Project Management,Engineer
+8,Business & Knowledge,Proposal development exposure,1,L8,Project Management,Engineer
+8,Business & Knowledge,Business development & client advisory,1,L8,Project Management,Engineer
+8,Business & Knowledge,Knowledge capture & lessons learned,1,L8,Project Management,Engineer
+8,Value engineering & cost optimization,,1,L8,Project Management,Engineer
+8,Business & KnowledgeDocument & information management systems,,1,L8,Project Management,Engineer
+8,"Business & KnowledgeEthics, compliance & professional conduct",,1,L8,Project Management,Engineer
+9,Personal Effectiveness & Leadership,"Personal drive, initiative & results orientation",2,L9,Project Management,Engineer
+9,Personal Effectiveness & Leadership,"Self-awareness, integrity & professional maturity",2,L9,Project Management,Engineer
+9,Personal Effectiveness & Leadership,"Analytical, critical & systems thinking",2,L9,Project Management,Engineer
+9,Personal Effectiveness & Leadership,"Strategic thinking, vision & foresight",2,L9,Project Management,Engineer
+9,Personal Effectiveness & Leadership,"Planning, anticipation & foresight",2,L9,Project Management,Engineer
+9,Personal Effectiveness & Leadership,"Leadership presence, courage & decisiveness",2,L9,Project Management,Engineer
+9,Personal Effectiveness & Leadership,Influence & impact without authority,2,L9,Project Management,Engineer
+9,Personal Effectiveness & Leadership,Innovation & continuous improvement mindset,2,L9,Project Management,Engineer
+9,Communication & Collaboration,Effective oral & written communication,2,L9,Project Management,Engineer
+9,Communication & Collaboration,Information & document management,2,L9,Project Management,Engineer
+9,Communication & Collaboration,Team collaboration & trust building,2,L9,Project Management,Engineer
+9,Communication & Collaboration,Stakeholder engagement & alignment,2,L9,Project Management,Engineer
+9,Communication & Collaboration,Client relationship management,2,L9,Project Management,Engineer
+9,Communication & Collaboration,Organizational navigation & awareness,2,L9,Project Management,Engineer
+9,Communication & Collaboration,Cultural & diversity awareness,2,L9,Project Management,Engineer
+9,Communication & Collaboration,Conflict resolution & issue escalation,2,L9,Project Management,Engineer
+9,Engineering Management,Engineering discipline deliverables,2,L9,Project Management,Engineer
+9,Engineering Management,Inter-discipline dependencies & workflows,2,L9,Project Management,Engineer
+9,Engineering Management,"Engineering scope definition, WBS/DOR ownership",2,L9,Project Management,Engineer
+9,Engineering Management,Multi-discipline technical leadership,2,L9,Project Management,Engineer
+9,Engineering Management,Cross-discipline technical issue resolution,2,L9,Project Management,Engineer
+9,Engineering Management,Design basis ownership & QA/QC governance,2,L9,Project Management,Engineer
+9,Engineering Management,Engineering tools & S3D suite understanding,2,L9,Project Management,Engineer
+9,Engineering Management,Engineering–Procurement–Construction–Commissioning interface,2,L9,Project Management,Engineer
+9,Engineering Management,"Constructability, modularization & AWP",2,L9,Project Management,Engineer
+9,Project Planning & Control,Project Execution Planning (PEP),2,L9,Project Management,Engineer
+9,Project Planning & Control,Schedule development & Primavera interpretation,2,L9,Project Management,Engineer
+9,Project Planning & Control,Progress measurement & EPMS/DDS,2,L9,Project Management,Engineer
+9,Project Planning & Control,Project status & progress reporting,2,L9,Project Management,Engineer
+9,Project Planning & Control,Earned Value & productivity management,2,L9,Project Management,Engineer
+9,Project Planning & Control,Integrated change management & baseline control,2,L9,Project Management,Engineer
+9,Project Planning & Control,Project close-out & handover,2,L9,Project Management,Engineer
+9,Commercial & Cost,Project financial terms & concepts,2,L9,Project Management,Engineer
+9,Commercial & Cost,Engineering estimation & budgeting,2,L9,Project Management,Engineer
+9,Commercial & Cost,"Forecasting, cost control & variance analysis",2,L9,Project Management,Engineer
+9,Commercial & Cost,Resource planning & capacity management,2,L9,Project Management,Engineer
+9,Commercial & Cost,Contracting strategies,2,L9,Project Management,Engineer
+9,Commercial & Cost,Procurement processes & vendor management,2,L9,Project Management,Engineer
+9,Commercial & Cost,Contract language & commercial risk,2,L9,Project Management,Engineer
+9,Commercial & Cost,INCOTERMS & logistics,2,L9,Project Management,Engineer
+9,Risk & Construction,Project risk management,2,L9,Project Management,Engineer
+9,Risk & Construction,Site / construction exposure,2,L9,Project Management,Engineer
+9,Risk & Construction,Commissioning & system handover,2,L9,Project Management,Engineer
+9,Business & Knowledge,Proposal development exposure,2,L9,Project Management,Engineer
+9,Business & Knowledge,Business development & client advisory,2,L9,Project Management,Engineer
+9,Business & Knowledge,Knowledge capture & lessons learned,2,L9,Project Management,Engineer
+9,Value engineering & cost optimization,,2,L9,Project Management,Engineer
+9,Business & KnowledgeDocument & information management systems,,2,L9,Project Management,Engineer
+9,"Business & KnowledgeEthics, compliance & professional conduct",,2,L9,Project Management,Engineer
+10,Personal Effectiveness & Leadership,"Personal drive, initiative & results orientation",2,L10,Project Management,Engineer
+10,Personal Effectiveness & Leadership,"Self-awareness, integrity & professional maturity",2,L10,Project Management,Engineer
+10,Personal Effectiveness & Leadership,"Analytical, critical & systems thinking",2,L10,Project Management,Engineer
+10,Personal Effectiveness & Leadership,"Strategic thinking, vision & foresight",2,L10,Project Management,Engineer
+10,Personal Effectiveness & Leadership,"Planning, anticipation & foresight",2,L10,Project Management,Engineer
+10,Personal Effectiveness & Leadership,"Leadership presence, courage & decisiveness",2,L10,Project Management,Engineer
+10,Personal Effectiveness & Leadership,Influence & impact without authority,2,L10,Project Management,Engineer
+10,Personal Effectiveness & Leadership,Innovation & continuous improvement mindset,2,L10,Project Management,Engineer
+10,Communication & Collaboration,Effective oral & written communication,2,L10,Project Management,Engineer
+10,Communication & Collaboration,Information & document management,2,L10,Project Management,Engineer
+10,Communication & Collaboration,Team collaboration & trust building,2,L10,Project Management,Engineer
+10,Communication & Collaboration,Stakeholder engagement & alignment,2,L10,Project Management,Engineer
+10,Communication & Collaboration,Client relationship management,2,L10,Project Management,Engineer
+10,Communication & Collaboration,Organizational navigation & awareness,2,L10,Project Management,Engineer
+10,Communication & Collaboration,Cultural & diversity awareness,2,L10,Project Management,Engineer
+10,Communication & Collaboration,Conflict resolution & issue escalation,2,L10,Project Management,Engineer
+10,Engineering Management,Engineering discipline deliverables,2,L10,Project Management,Engineer
+10,Engineering Management,Inter-discipline dependencies & workflows,2,L10,Project Management,Engineer
+10,Engineering Management,"Engineering scope definition, WBS/DOR ownership",2,L10,Project Management,Engineer
+10,Engineering Management,Multi-discipline technical leadership,2,L10,Project Management,Engineer
+10,Engineering Management,Cross-discipline technical issue resolution,2,L10,Project Management,Engineer
+10,Engineering Management,Design basis ownership & QA/QC governance,2,L10,Project Management,Engineer
+10,Engineering Management,Engineering tools & S3D suite understanding,2,L10,Project Management,Engineer
+10,Engineering Management,Engineering–Procurement–Construction–Commissioning interface,2,L10,Project Management,Engineer
+10,Engineering Management,"Constructability, modularization & AWP",2,L10,Project Management,Engineer
+10,Project Planning & Control,Project Execution Planning (PEP),2,L10,Project Management,Engineer
+10,Project Planning & Control,Schedule development & Primavera interpretation,2,L10,Project Management,Engineer
+10,Project Planning & Control,Progress measurement & EPMS/DDS,2,L10,Project Management,Engineer
+10,Project Planning & Control,Project status & progress reporting,2,L10,Project Management,Engineer
+10,Project Planning & Control,Earned Value & productivity management,2,L10,Project Management,Engineer
+10,Project Planning & Control,Integrated change management & baseline control,2,L10,Project Management,Engineer
+10,Project Planning & Control,Project close-out & handover,2,L10,Project Management,Engineer
+10,Commercial & Cost,Project financial terms & concepts,2,L10,Project Management,Engineer
+10,Commercial & Cost,Engineering estimation & budgeting,2,L10,Project Management,Engineer
+10,Commercial & Cost,"Forecasting, cost control & variance analysis",2,L10,Project Management,Engineer
+10,Commercial & Cost,Resource planning & capacity management,2,L10,Project Management,Engineer
+10,Commercial & Cost,Contracting strategies,2,L10,Project Management,Engineer
+10,Commercial & Cost,Procurement processes & vendor management,2,L10,Project Management,Engineer
+10,Commercial & Cost,Contract language & commercial risk,2,L10,Project Management,Engineer
+10,Commercial & Cost,INCOTERMS & logistics,2,L10,Project Management,Engineer
+10,Risk & Construction,Project risk management,2,L10,Project Management,Engineer
+10,Risk & Construction,Site / construction exposure,2,L10,Project Management,Engineer
+10,Risk & Construction,Commissioning & system handover,2,L10,Project Management,Engineer
+10,Business & Knowledge,Proposal development exposure,2,L10,Project Management,Engineer
+10,Business & Knowledge,Business development & client advisory,2,L10,Project Management,Engineer
+10,Business & Knowledge,Knowledge capture & lessons learned,2,L10,Project Management,Engineer
+10,Value engineering & cost optimization,,2,L10,Project Management,Engineer
+10,Business & KnowledgeDocument & information management systems,,2,L10,Project Management,Engineer
+10,"Business & KnowledgeEthics, compliance & professional conduct",,2,L10,Project Management,Engineer
+11,Personal Effectiveness & Leadership,"Personal drive, initiative & results orientation",2,L11,Project Management,Engineer
+11,Personal Effectiveness & Leadership,"Self-awareness, integrity & professional maturity",2,L11,Project Management,Engineer
+11,Personal Effectiveness & Leadership,"Analytical, critical & systems thinking",2,L11,Project Management,Engineer
+11,Personal Effectiveness & Leadership,"Strategic thinking, vision & foresight",2,L11,Project Management,Engineer
+11,Personal Effectiveness & Leadership,"Planning, anticipation & foresight",2,L11,Project Management,Engineer
+11,Personal Effectiveness & Leadership,"Leadership presence, courage & decisiveness",2,L11,Project Management,Engineer
+11,Personal Effectiveness & Leadership,Influence & impact without authority,2,L11,Project Management,Engineer
+11,Personal Effectiveness & Leadership,Innovation & continuous improvement mindset,2,L11,Project Management,Engineer
+11,Communication & Collaboration,Effective oral & written communication,2,L11,Project Management,Engineer
+11,Communication & Collaboration,Information & document management,2,L11,Project Management,Engineer
+11,Communication & Collaboration,Team collaboration & trust building,2,L11,Project Management,Engineer
+11,Communication & Collaboration,Stakeholder engagement & alignment,2,L11,Project Management,Engineer
+11,Communication & Collaboration,Client relationship management,2,L11,Project Management,Engineer
+11,Communication & Collaboration,Organizational navigation & awareness,2,L11,Project Management,Engineer
+11,Communication & Collaboration,Cultural & diversity awareness,2,L11,Project Management,Engineer
+11,Communication & Collaboration,Conflict resolution & issue escalation,2,L11,Project Management,Engineer
+11,Engineering Management,Engineering discipline deliverables,2,L11,Project Management,Engineer
+11,Engineering Management,Inter-discipline dependencies & workflows,2,L11,Project Management,Engineer
+11,Engineering Management,"Engineering scope definition, WBS/DOR ownership",2,L11,Project Management,Engineer
+11,Engineering Management,Multi-discipline technical leadership,2,L11,Project Management,Engineer
+11,Engineering Management,Cross-discipline technical issue resolution,2,L11,Project Management,Engineer
+11,Engineering Management,Design basis ownership & QA/QC governance,2,L11,Project Management,Engineer
+11,Engineering Management,Engineering tools & S3D suite understanding,2,L11,Project Management,Engineer
+11,Engineering Management,Engineering–Procurement–Construction–Commissioning interface,2,L11,Project Management,Engineer
+11,Engineering Management,"Constructability, modularization & AWP",2,L11,Project Management,Engineer
+11,Project Planning & Control,Project Execution Planning (PEP),2,L11,Project Management,Engineer
+11,Project Planning & Control,Schedule development & Primavera interpretation,2,L11,Project Management,Engineer
+11,Project Planning & Control,Progress measurement & EPMS/DDS,2,L11,Project Management,Engineer
+11,Project Planning & Control,Project status & progress reporting,2,L11,Project Management,Engineer
+11,Project Planning & Control,Earned Value & productivity management,2,L11,Project Management,Engineer
+11,Project Planning & Control,Integrated change management & baseline control,2,L11,Project Management,Engineer
+11,Project Planning & Control,Project close-out & handover,2,L11,Project Management,Engineer
+11,Commercial & Cost,Project financial terms & concepts,2,L11,Project Management,Engineer
+11,Commercial & Cost,Engineering estimation & budgeting,2,L11,Project Management,Engineer
+11,Commercial & Cost,"Forecasting, cost control & variance analysis",2,L11,Project Management,Engineer
+11,Commercial & Cost,Resource planning & capacity management,2,L11,Project Management,Engineer
+11,Commercial & Cost,Contracting strategies,2,L11,Project Management,Engineer
+11,Commercial & Cost,Procurement processes & vendor management,2,L11,Project Management,Engineer
+11,Commercial & Cost,Contract language & commercial risk,2,L11,Project Management,Engineer
+11,Commercial & Cost,INCOTERMS & logistics,2,L11,Project Management,Engineer
+11,Risk & Construction,Project risk management,2,L11,Project Management,Engineer
+11,Risk & Construction,Site / construction exposure,2,L11,Project Management,Engineer
+11,Risk & Construction,Commissioning & system handover,2,L11,Project Management,Engineer
+11,Business & Knowledge,Proposal development exposure,2,L11,Project Management,Engineer
+11,Business & Knowledge,Business development & client advisory,2,L11,Project Management,Engineer
+11,Business & Knowledge,Knowledge capture & lessons learned,2,L11,Project Management,Engineer
+11,Value engineering & cost optimization,,2,L11,Project Management,Engineer
+11,Business & KnowledgeDocument & information management systems,,2,L11,Project Management,Engineer
+11,"Business & KnowledgeEthics, compliance & professional conduct",,2,L11,Project Management,Engineer
+12,Personal Effectiveness & Leadership,"Personal drive, initiative & results orientation",3,L12,Project Management,Engineer
+12,Personal Effectiveness & Leadership,"Self-awareness, integrity & professional maturity",3,L12,Project Management,Engineer
+12,Personal Effectiveness & Leadership,"Analytical, critical & systems thinking",3,L12,Project Management,Engineer
+12,Personal Effectiveness & Leadership,"Strategic thinking, vision & foresight",3,L12,Project Management,Engineer
+12,Personal Effectiveness & Leadership,"Planning, anticipation & foresight",3,L12,Project Management,Engineer
+12,Personal Effectiveness & Leadership,"Leadership presence, courage & decisiveness",3,L12,Project Management,Engineer
+12,Personal Effectiveness & Leadership,Influence & impact without authority,3,L12,Project Management,Engineer
+12,Personal Effectiveness & Leadership,Innovation & continuous improvement mindset,3,L12,Project Management,Engineer
+12,Communication & Collaboration,Effective oral & written communication,3,L12,Project Management,Engineer
+12,Communication & Collaboration,Information & document management,3,L12,Project Management,Engineer
+12,Communication & Collaboration,Team collaboration & trust building,3,L12,Project Management,Engineer
+12,Communication & Collaboration,Stakeholder engagement & alignment,3,L12,Project Management,Engineer
+12,Communication & Collaboration,Client relationship management,3,L12,Project Management,Engineer
+12,Communication & Collaboration,Organizational navigation & awareness,3,L12,Project Management,Engineer
+12,Communication & Collaboration,Cultural & diversity awareness,3,L12,Project Management,Engineer
+12,Communication & Collaboration,Conflict resolution & issue escalation,3,L12,Project Management,Engineer
+12,Engineering Management,Engineering discipline deliverables,3,L12,Project Management,Engineer
+12,Engineering Management,Inter-discipline dependencies & workflows,3,L12,Project Management,Engineer
+12,Engineering Management,"Engineering scope definition, WBS/DOR ownership",3,L12,Project Management,Engineer
+12,Engineering Management,Multi-discipline technical leadership,3,L12,Project Management,Engineer
+12,Engineering Management,Cross-discipline technical issue resolution,3,L12,Project Management,Engineer
+12,Engineering Management,Design basis ownership & QA/QC governance,3,L12,Project Management,Engineer
+12,Engineering Management,Engineering tools & S3D suite understanding,3,L12,Project Management,Engineer
+12,Engineering Management,Engineering–Procurement–Construction–Commissioning interface,3,L12,Project Management,Engineer
+12,Engineering Management,"Constructability, modularization & AWP",3,L12,Project Management,Engineer
+12,Project Planning & Control,Project Execution Planning (PEP),3,L12,Project Management,Engineer
+12,Project Planning & Control,Schedule development & Primavera interpretation,3,L12,Project Management,Engineer
+12,Project Planning & Control,Progress measurement & EPMS/DDS,3,L12,Project Management,Engineer
+12,Project Planning & Control,Project status & progress reporting,3,L12,Project Management,Engineer
+12,Project Planning & Control,Earned Value & productivity management,3,L12,Project Management,Engineer
+12,Project Planning & Control,Integrated change management & baseline control,3,L12,Project Management,Engineer
+12,Project Planning & Control,Project close-out & handover,3,L12,Project Management,Engineer
+12,Commercial & Cost,Project financial terms & concepts,3,L12,Project Management,Engineer
+12,Commercial & Cost,Engineering estimation & budgeting,3,L12,Project Management,Engineer
+12,Commercial & Cost,"Forecasting, cost control & variance analysis",3,L12,Project Management,Engineer
+12,Commercial & Cost,Resource planning & capacity management,3,L12,Project Management,Engineer
+12,Commercial & Cost,Contracting strategies,3,L12,Project Management,Engineer
+12,Commercial & Cost,Procurement processes & vendor management,3,L12,Project Management,Engineer
+12,Commercial & Cost,Contract language & commercial risk,3,L12,Project Management,Engineer
+12,Commercial & Cost,INCOTERMS & logistics,3,L12,Project Management,Engineer
+12,Risk & Construction,Project risk management,3,L12,Project Management,Engineer
+12,Risk & Construction,Site / construction exposure,3,L12,Project Management,Engineer
+12,Risk & Construction,Commissioning & system handover,3,L12,Project Management,Engineer
+12,Business & Knowledge,Proposal development exposure,3,L12,Project Management,Engineer
+12,Business & Knowledge,Business development & client advisory,3,L12,Project Management,Engineer
+12,Business & Knowledge,Knowledge capture & lessons learned,3,L12,Project Management,Engineer
+12,Value engineering & cost optimization,,3,L12,Project Management,Engineer
+12,Business & KnowledgeDocument & information management systems,,3,L12,Project Management,Engineer
+12,"Business & KnowledgeEthics, compliance & professional conduct",,3,L12,Project Management,Engineer
+13,Personal Effectiveness & Leadership,"Personal drive, initiative & results orientation",3,L13,Project Management,Engineer
+13,Personal Effectiveness & Leadership,"Self-awareness, integrity & professional maturity",3,L13,Project Management,Engineer
+13,Personal Effectiveness & Leadership,"Analytical, critical & systems thinking",3,L13,Project Management,Engineer
+13,Personal Effectiveness & Leadership,"Strategic thinking, vision & foresight",3,L13,Project Management,Engineer
+13,Personal Effectiveness & Leadership,"Planning, anticipation & foresight",3,L13,Project Management,Engineer
+13,Personal Effectiveness & Leadership,"Leadership presence, courage & decisiveness",3,L13,Project Management,Engineer
+13,Personal Effectiveness & Leadership,Influence & impact without authority,3,L13,Project Management,Engineer
+13,Personal Effectiveness & Leadership,Innovation & continuous improvement mindset,3,L13,Project Management,Engineer
+13,Communication & Collaboration,Effective oral & written communication,3,L13,Project Management,Engineer
+13,Communication & Collaboration,Information & document management,3,L13,Project Management,Engineer
+13,Communication & Collaboration,Team collaboration & trust building,3,L13,Project Management,Engineer
+13,Communication & Collaboration,Stakeholder engagement & alignment,3,L13,Project Management,Engineer
+13,Communication & Collaboration,Client relationship management,3,L13,Project Management,Engineer
+13,Communication & Collaboration,Organizational navigation & awareness,3,L13,Project Management,Engineer
+13,Communication & Collaboration,Cultural & diversity awareness,3,L13,Project Management,Engineer
+13,Communication & Collaboration,Conflict resolution & issue escalation,3,L13,Project Management,Engineer
+13,Engineering Management,Engineering discipline deliverables,3,L13,Project Management,Engineer
+13,Engineering Management,Inter-discipline dependencies & workflows,3,L13,Project Management,Engineer
+13,Engineering Management,"Engineering scope definition, WBS/DOR ownership",3,L13,Project Management,Engineer
+13,Engineering Management,Multi-discipline technical leadership,3,L13,Project Management,Engineer
+13,Engineering Management,Cross-discipline technical issue resolution,3,L13,Project Management,Engineer
+13,Engineering Management,Design basis ownership & QA/QC governance,3,L13,Project Management,Engineer
+13,Engineering Management,Engineering tools & S3D suite understanding,3,L13,Project Management,Engineer
+13,Engineering Management,Engineering–Procurement–Construction–Commissioning interface,3,L13,Project Management,Engineer
+13,Engineering Management,"Constructability, modularization & AWP",3,L13,Project Management,Engineer
+13,Project Planning & Control,Project Execution Planning (PEP),3,L13,Project Management,Engineer
+13,Project Planning & Control,Schedule development & Primavera interpretation,3,L13,Project Management,Engineer
+13,Project Planning & Control,Progress measurement & EPMS/DDS,3,L13,Project Management,Engineer
+13,Project Planning & Control,Project status & progress reporting,3,L13,Project Management,Engineer
+13,Project Planning & Control,Earned Value & productivity management,3,L13,Project Management,Engineer
+13,Project Planning & Control,Integrated change management & baseline control,3,L13,Project Management,Engineer
+13,Project Planning & Control,Project close-out & handover,3,L13,Project Management,Engineer
+13,Commercial & Cost,Project financial terms & concepts,3,L13,Project Management,Engineer
+13,Commercial & Cost,Engineering estimation & budgeting,3,L13,Project Management,Engineer
+13,Commercial & Cost,"Forecasting, cost control & variance analysis",3,L13,Project Management,Engineer
+13,Commercial & Cost,Resource planning & capacity management,3,L13,Project Management,Engineer
+13,Commercial & Cost,Contracting strategies,3,L13,Project Management,Engineer
+13,Commercial & Cost,Procurement processes & vendor management,3,L13,Project Management,Engineer
+13,Commercial & Cost,Contract language & commercial risk,3,L13,Project Management,Engineer
+13,Commercial & Cost,INCOTERMS & logistics,3,L13,Project Management,Engineer
+13,Risk & Construction,Project risk management,3,L13,Project Management,Engineer
+13,Risk & Construction,Site / construction exposure,3,L13,Project Management,Engineer
+13,Risk & Construction,Commissioning & system handover,3,L13,Project Management,Engineer
+13,Business & Knowledge,Proposal development exposure,3,L13,Project Management,Engineer
+13,Business & Knowledge,Business development & client advisory,3,L13,Project Management,Engineer
+13,Business & Knowledge,Knowledge capture & lessons learned,3,L13,Project Management,Engineer
+13,Value engineering & cost optimization,,3,L13,Project Management,Engineer
+13,Business & KnowledgeDocument & information management systems,,3,L13,Project Management,Engineer
+13,"Business & KnowledgeEthics, compliance & professional conduct",,3,L13,Project Management,Engineer
+14,Personal Effectiveness & Leadership,"Personal drive, initiative & results orientation",3,L14,Project Management,Engineer
+14,Personal Effectiveness & Leadership,"Self-awareness, integrity & professional maturity",3,L14,Project Management,Engineer
+14,Personal Effectiveness & Leadership,"Analytical, critical & systems thinking",3,L14,Project Management,Engineer
+14,Personal Effectiveness & Leadership,"Strategic thinking, vision & foresight",3,L14,Project Management,Engineer
+14,Personal Effectiveness & Leadership,"Planning, anticipation & foresight",3,L14,Project Management,Engineer
+14,Personal Effectiveness & Leadership,"Leadership presence, courage & decisiveness",3,L14,Project Management,Engineer
+14,Personal Effectiveness & Leadership,Influence & impact without authority,3,L14,Project Management,Engineer
+14,Personal Effectiveness & Leadership,Innovation & continuous improvement mindset,3,L14,Project Management,Engineer
+14,Communication & Collaboration,Effective oral & written communication,3,L14,Project Management,Engineer
+14,Communication & Collaboration,Information & document management,3,L14,Project Management,Engineer
+14,Communication & Collaboration,Team collaboration & trust building,3,L14,Project Management,Engineer
+14,Communication & Collaboration,Stakeholder engagement & alignment,3,L14,Project Management,Engineer
+14,Communication & Collaboration,Client relationship management,3,L14,Project Management,Engineer
+14,Communication & Collaboration,Organizational navigation & awareness,3,L14,Project Management,Engineer
+14,Communication & Collaboration,Cultural & diversity awareness,3,L14,Project Management,Engineer
+14,Communication & Collaboration,Conflict resolution & issue escalation,3,L14,Project Management,Engineer
+14,Engineering Management,Engineering discipline deliverables,3,L14,Project Management,Engineer
+14,Engineering Management,Inter-discipline dependencies & workflows,3,L14,Project Management,Engineer
+14,Engineering Management,"Engineering scope definition, WBS/DOR ownership",3,L14,Project Management,Engineer
+14,Engineering Management,Multi-discipline technical leadership,3,L14,Project Management,Engineer
+14,Engineering Management,Cross-discipline technical issue resolution,3,L14,Project Management,Engineer
+14,Engineering Management,Design basis ownership & QA/QC governance,3,L14,Project Management,Engineer
+14,Engineering Management,Engineering tools & S3D suite understanding,3,L14,Project Management,Engineer
+14,Engineering Management,Engineering–Procurement–Construction–Commissioning interface,3,L14,Project Management,Engineer
+14,Engineering Management,"Constructability, modularization & AWP",3,L14,Project Management,Engineer
+14,Project Planning & Control,Project Execution Planning (PEP),3,L14,Project Management,Engineer
+14,Project Planning & Control,Schedule development & Primavera interpretation,3,L14,Project Management,Engineer
+14,Project Planning & Control,Progress measurement & EPMS/DDS,3,L14,Project Management,Engineer
+14,Project Planning & Control,Project status & progress reporting,3,L14,Project Management,Engineer
+14,Project Planning & Control,Earned Value & productivity management,3,L14,Project Management,Engineer
+14,Project Planning & Control,Integrated change management & baseline control,3,L14,Project Management,Engineer
+14,Project Planning & Control,Project close-out & handover,3,L14,Project Management,Engineer
+14,Commercial & Cost,Project financial terms & concepts,3,L14,Project Management,Engineer
+14,Commercial & Cost,Engineering estimation & budgeting,3,L14,Project Management,Engineer
+14,Commercial & Cost,"Forecasting, cost control & variance analysis",3,L14,Project Management,Engineer
+14,Commercial & Cost,Resource planning & capacity management,3,L14,Project Management,Engineer
+14,Commercial & Cost,Contracting strategies,3,L14,Project Management,Engineer
+14,Commercial & Cost,Procurement processes & vendor management,3,L14,Project Management,Engineer
+14,Commercial & Cost,Contract language & commercial risk,3,L14,Project Management,Engineer
+14,Commercial & Cost,INCOTERMS & logistics,3,L14,Project Management,Engineer
+14,Risk & Construction,Project risk management,3,L14,Project Management,Engineer
+14,Risk & Construction,Site / construction exposure,3,L14,Project Management,Engineer
+14,Risk & Construction,Commissioning & system handover,3,L14,Project Management,Engineer
+14,Business & Knowledge,Proposal development exposure,3,L14,Project Management,Engineer
+14,Business & Knowledge,Business development & client advisory,3,L14,Project Management,Engineer
+14,Business & Knowledge,Knowledge capture & lessons learned,3,L14,Project Management,Engineer
+14,Value engineering & cost optimization,,3,L14,Project Management,Engineer
+14,Business & KnowledgeDocument & information management systems,,3,L14,Project Management,Engineer
+14,"Business & KnowledgeEthics, compliance & professional conduct",,3,L14,Project Management,Engineer
+15,Personal Effectiveness & Leadership,"Personal drive, initiative & results orientation",4,L15,Project Management,Engineer
+15,Personal Effectiveness & Leadership,"Self-awareness, integrity & professional maturity",4,L15,Project Management,Engineer
+15,Personal Effectiveness & Leadership,"Analytical, critical & systems thinking",4,L15,Project Management,Engineer
+15,Personal Effectiveness & Leadership,"Strategic thinking, vision & foresight",4,L15,Project Management,Engineer
+15,Personal Effectiveness & Leadership,"Planning, anticipation & foresight",4,L15,Project Management,Engineer
+15,Personal Effectiveness & Leadership,"Leadership presence, courage & decisiveness",4,L15,Project Management,Engineer
+15,Personal Effectiveness & Leadership,Influence & impact without authority,4,L15,Project Management,Engineer
+15,Personal Effectiveness & Leadership,Innovation & continuous improvement mindset,4,L15,Project Management,Engineer
+15,Communication & Collaboration,Effective oral & written communication,4,L15,Project Management,Engineer
+15,Communication & Collaboration,Information & document management,4,L15,Project Management,Engineer
+15,Communication & Collaboration,Team collaboration & trust building,4,L15,Project Management,Engineer
+15,Communication & Collaboration,Stakeholder engagement & alignment,4,L15,Project Management,Engineer
+15,Communication & Collaboration,Client relationship management,4,L15,Project Management,Engineer
+15,Communication & Collaboration,Organizational navigation & awareness,4,L15,Project Management,Engineer
+15,Communication & Collaboration,Cultural & diversity awareness,4,L15,Project Management,Engineer
+15,Communication & Collaboration,Conflict resolution & issue escalation,4,L15,Project Management,Engineer
+15,Engineering Management,Engineering discipline deliverables,4,L15,Project Management,Engineer
+15,Engineering Management,Inter-discipline dependencies & workflows,4,L15,Project Management,Engineer
+15,Engineering Management,"Engineering scope definition, WBS/DOR ownership",4,L15,Project Management,Engineer
+15,Engineering Management,Multi-discipline technical leadership,4,L15,Project Management,Engineer
+15,Engineering Management,Cross-discipline technical issue resolution,4,L15,Project Management,Engineer
+15,Engineering Management,Design basis ownership & QA/QC governance,4,L15,Project Management,Engineer
+15,Engineering Management,Engineering tools & S3D suite understanding,4,L15,Project Management,Engineer
+15,Engineering Management,Engineering–Procurement–Construction–Commissioning interface,4,L15,Project Management,Engineer
+15,Engineering Management,"Constructability, modularization & AWP",4,L15,Project Management,Engineer
+15,Project Planning & Control,Project Execution Planning (PEP),4,L15,Project Management,Engineer
+15,Project Planning & Control,Schedule development & Primavera interpretation,4,L15,Project Management,Engineer
+15,Project Planning & Control,Progress measurement & EPMS/DDS,4,L15,Project Management,Engineer
+15,Project Planning & Control,Project status & progress reporting,4,L15,Project Management,Engineer
+15,Project Planning & Control,Earned Value & productivity management,4,L15,Project Management,Engineer
+15,Project Planning & Control,Integrated change management & baseline control,4,L15,Project Management,Engineer
+15,Project Planning & Control,Project close-out & handover,4,L15,Project Management,Engineer
+15,Commercial & Cost,Project financial terms & concepts,4,L15,Project Management,Engineer
+15,Commercial & Cost,Engineering estimation & budgeting,4,L15,Project Management,Engineer
+15,Commercial & Cost,"Forecasting, cost control & variance analysis",4,L15,Project Management,Engineer
+15,Commercial & Cost,Resource planning & capacity management,4,L15,Project Management,Engineer
+15,Commercial & Cost,Contracting strategies,4,L15,Project Management,Engineer
+15,Commercial & Cost,Procurement processes & vendor management,4,L15,Project Management,Engineer
+15,Commercial & Cost,Contract language & commercial risk,4,L15,Project Management,Engineer
+15,Commercial & Cost,INCOTERMS & logistics,4,L15,Project Management,Engineer
+15,Risk & Construction,Project risk management,4,L15,Project Management,Engineer
+15,Risk & Construction,Site / construction exposure,4,L15,Project Management,Engineer
+15,Risk & Construction,Commissioning & system handover,4,L15,Project Management,Engineer
+15,Business & Knowledge,Proposal development exposure,4,L15,Project Management,Engineer
+15,Business & Knowledge,Business development & client advisory,4,L15,Project Management,Engineer
+15,Business & Knowledge,Knowledge capture & lessons learned,4,L15,Project Management,Engineer
+15,Value engineering & cost optimization,,4,L15,Project Management,Engineer
+15,Business & KnowledgeDocument & information management systems,,4,L15,Project Management,Engineer
+15,"Business & KnowledgeEthics, compliance & professional conduct",,4,L15,Project Management,Engineer
+16,Personal Effectiveness & Leadership,"Personal drive, initiative & results orientation",4,L16,Project Management,Engineer
+16,Personal Effectiveness & Leadership,"Self-awareness, integrity & professional maturity",4,L16,Project Management,Engineer
+16,Personal Effectiveness & Leadership,"Analytical, critical & systems thinking",4,L16,Project Management,Engineer
+16,Personal Effectiveness & Leadership,"Strategic thinking, vision & foresight",4,L16,Project Management,Engineer
+16,Personal Effectiveness & Leadership,"Planning, anticipation & foresight",4,L16,Project Management,Engineer
+16,Personal Effectiveness & Leadership,"Leadership presence, courage & decisiveness",4,L16,Project Management,Engineer
+16,Personal Effectiveness & Leadership,Influence & impact without authority,4,L16,Project Management,Engineer
+16,Personal Effectiveness & Leadership,Innovation & continuous improvement mindset,4,L16,Project Management,Engineer
+16,Communication & Collaboration,Effective oral & written communication,4,L16,Project Management,Engineer
+16,Communication & Collaboration,Information & document management,4,L16,Project Management,Engineer
+16,Communication & Collaboration,Team collaboration & trust building,4,L16,Project Management,Engineer
+16,Communication & Collaboration,Stakeholder engagement & alignment,4,L16,Project Management,Engineer
+16,Communication & Collaboration,Client relationship management,4,L16,Project Management,Engineer
+16,Communication & Collaboration,Organizational navigation & awareness,4,L16,Project Management,Engineer
+16,Communication & Collaboration,Cultural & diversity awareness,4,L16,Project Management,Engineer
+16,Communication & Collaboration,Conflict resolution & issue escalation,4,L16,Project Management,Engineer
+16,Engineering Management,Engineering discipline deliverables,4,L16,Project Management,Engineer
+16,Engineering Management,Inter-discipline dependencies & workflows,4,L16,Project Management,Engineer
+16,Engineering Management,"Engineering scope definition, WBS/DOR ownership",4,L16,Project Management,Engineer
+16,Engineering Management,Multi-discipline technical leadership,4,L16,Project Management,Engineer
+16,Engineering Management,Cross-discipline technical issue resolution,4,L16,Project Management,Engineer
+16,Engineering Management,Design basis ownership & QA/QC governance,4,L16,Project Management,Engineer
+16,Engineering Management,Engineering tools & S3D suite understanding,4,L16,Project Management,Engineer
+16,Engineering Management,Engineering–Procurement–Construction–Commissioning interface,4,L16,Project Management,Engineer
+16,Engineering Management,"Constructability, modularization & AWP",4,L16,Project Management,Engineer
+16,Project Planning & Control,Project Execution Planning (PEP),4,L16,Project Management,Engineer
+16,Project Planning & Control,Schedule development & Primavera interpretation,4,L16,Project Management,Engineer
+16,Project Planning & Control,Progress measurement & EPMS/DDS,4,L16,Project Management,Engineer
+16,Project Planning & Control,Project status & progress reporting,4,L16,Project Management,Engineer
+16,Project Planning & Control,Earned Value & productivity management,4,L16,Project Management,Engineer
+16,Project Planning & Control,Integrated change management & baseline control,4,L16,Project Management,Engineer
+16,Project Planning & Control,Project close-out & handover,4,L16,Project Management,Engineer
+16,Commercial & Cost,Project financial terms & concepts,4,L16,Project Management,Engineer
+16,Commercial & Cost,Engineering estimation & budgeting,4,L16,Project Management,Engineer
+16,Commercial & Cost,"Forecasting, cost control & variance analysis",4,L16,Project Management,Engineer
+16,Commercial & Cost,Resource planning & capacity management,4,L16,Project Management,Engineer
+16,Commercial & Cost,Contracting strategies,4,L16,Project Management,Engineer
+16,Commercial & Cost,Procurement processes & vendor management,4,L16,Project Management,Engineer
+16,Commercial & Cost,Contract language & commercial risk,4,L16,Project Management,Engineer
+16,Commercial & Cost,INCOTERMS & logistics,4,L16,Project Management,Engineer
+16,Risk & Construction,Project risk management,4,L16,Project Management,Engineer
+16,Risk & Construction,Site / construction exposure,4,L16,Project Management,Engineer
+16,Risk & Construction,Commissioning & system handover,4,L16,Project Management,Engineer
+16,Business & Knowledge,Proposal development exposure,4,L16,Project Management,Engineer
+16,Business & Knowledge,Business development & client advisory,4,L16,Project Management,Engineer
+16,Business & Knowledge,Knowledge capture & lessons learned,4,L16,Project Management,Engineer
+16,Value engineering & cost optimization,,4,L16,Project Management,Engineer
+16,Business & KnowledgeDocument & information management systems,,4,L16,Project Management,Engineer
+16,"Business & KnowledgeEthics, compliance & professional conduct",,4,L16,Project Management,Engineer
+17,Personal Effectiveness & Leadership,"Personal drive, initiative & results orientation",4,L17,Project Management,Engineer
+17,Personal Effectiveness & Leadership,"Self-awareness, integrity & professional maturity",4,L17,Project Management,Engineer
+17,Personal Effectiveness & Leadership,"Analytical, critical & systems thinking",4,L17,Project Management,Engineer
+17,Personal Effectiveness & Leadership,"Strategic thinking, vision & foresight",4,L17,Project Management,Engineer
+17,Personal Effectiveness & Leadership,"Planning, anticipation & foresight",4,L17,Project Management,Engineer
+17,Personal Effectiveness & Leadership,"Leadership presence, courage & decisiveness",4,L17,Project Management,Engineer
+17,Personal Effectiveness & Leadership,Influence & impact without authority,4,L17,Project Management,Engineer
+17,Personal Effectiveness & Leadership,Innovation & continuous improvement mindset,4,L17,Project Management,Engineer
+17,Communication & Collaboration,Effective oral & written communication,4,L17,Project Management,Engineer
+17,Communication & Collaboration,Information & document management,4,L17,Project Management,Engineer
+17,Communication & Collaboration,Team collaboration & trust building,4,L17,Project Management,Engineer
+17,Communication & Collaboration,Stakeholder engagement & alignment,4,L17,Project Management,Engineer
+17,Communication & Collaboration,Client relationship management,4,L17,Project Management,Engineer
+17,Communication & Collaboration,Organizational navigation & awareness,4,L17,Project Management,Engineer
+17,Communication & Collaboration,Cultural & diversity awareness,4,L17,Project Management,Engineer
+17,Communication & Collaboration,Conflict resolution & issue escalation,4,L17,Project Management,Engineer
+17,Engineering Management,Engineering discipline deliverables,4,L17,Project Management,Engineer
+17,Engineering Management,Inter-discipline dependencies & workflows,4,L17,Project Management,Engineer
+17,Engineering Management,"Engineering scope definition, WBS/DOR ownership",4,L17,Project Management,Engineer
+17,Engineering Management,Multi-discipline technical leadership,4,L17,Project Management,Engineer
+17,Engineering Management,Cross-discipline technical issue resolution,4,L17,Project Management,Engineer
+17,Engineering Management,Design basis ownership & QA/QC governance,4,L17,Project Management,Engineer
+17,Engineering Management,Engineering tools & S3D suite understanding,4,L17,Project Management,Engineer
+17,Engineering Management,Engineering–Procurement–Construction–Commissioning interface,4,L17,Project Management,Engineer
+17,Engineering Management,"Constructability, modularization & AWP",4,L17,Project Management,Engineer
+17,Project Planning & Control,Project Execution Planning (PEP),4,L17,Project Management,Engineer
+17,Project Planning & Control,Schedule development & Primavera interpretation,4,L17,Project Management,Engineer
+17,Project Planning & Control,Progress measurement & EPMS/DDS,4,L17,Project Management,Engineer
+17,Project Planning & Control,Project status & progress reporting,4,L17,Project Management,Engineer
+17,Project Planning & Control,Earned Value & productivity management,4,L17,Project Management,Engineer
+17,Project Planning & Control,Integrated change management & baseline control,4,L17,Project Management,Engineer
+17,Project Planning & Control,Project close-out & handover,4,L17,Project Management,Engineer
+17,Commercial & Cost,Project financial terms & concepts,4,L17,Project Management,Engineer
+17,Commercial & Cost,Engineering estimation & budgeting,4,L17,Project Management,Engineer
+17,Commercial & Cost,"Forecasting, cost control & variance analysis",4,L17,Project Management,Engineer
+17,Commercial & Cost,Resource planning & capacity management,4,L17,Project Management,Engineer
+17,Commercial & Cost,Contracting strategies,4,L17,Project Management,Engineer
+17,Commercial & Cost,Procurement processes & vendor management,4,L17,Project Management,Engineer
+17,Commercial & Cost,Contract language & commercial risk,4,L17,Project Management,Engineer
+17,Commercial & Cost,INCOTERMS & logistics,4,L17,Project Management,Engineer
+17,Risk & Construction,Project risk management,4,L17,Project Management,Engineer
+17,Risk & Construction,Site / construction exposure,4,L17,Project Management,Engineer
+17,Risk & Construction,Commissioning & system handover,4,L17,Project Management,Engineer
+17,Business & Knowledge,Proposal development exposure,4,L17,Project Management,Engineer
+17,Business & Knowledge,Business development & client advisory,4,L17,Project Management,Engineer
+17,Business & Knowledge,Knowledge capture & lessons learned,4,L17,Project Management,Engineer
+17,Value engineering & cost optimization,,4,L17,Project Management,Engineer
+17,Business & KnowledgeDocument & information management systems,,4,L17,Project Management,Engineer
+17,"Business & KnowledgeEthics, compliance & professional conduct",,4,L17,Project Management,Engineer

@@ -1,0 +1,650 @@
+Level,Skill,Subskill,Value,LevelKey,Discipline,Role
+7,Analysis,FRP Piping,NA,L7,Piping Engineering,Engineer
+7,Analysis,GRE Piping ,NA,L7,Piping Engineering,Engineer
+7,Analysis,Jacketed Piping Analysis,NA,L7,Piping Engineering,Engineer
+7,Analysis,Slug Analysis,NA,L7,Piping Engineering,Engineer
+7,Analysis,Surge Analysis,NA,L7,Piping Engineering,Engineer
+7,Analysis,Under ground piping analysis,NA,L7,Piping Engineering,Engineer
+7,Analysis,AIV/FIV & Vibration Analysis,NA,L7,Piping Engineering,Engineer
+7,Fixed Equipments,Air Coolers,NA,L7,Piping Engineering,Engineer
+7,Fixed Equipments,Boilers,NA,L7,Piping Engineering,Engineer
+7,Fixed Equipments,Desuperheaters,NA,L7,Piping Engineering,Engineer
+7,Fixed Equipments,Drums,1,L7,Piping Engineering,Engineer
+7,Fixed Equipments,Flares,NA,L7,Piping Engineering,Engineer
+7,Fixed Equipments,Reactors,NA,L7,Piping Engineering,Engineer
+7,Fixed Equipments,S & T Exchangers,1,L7,Piping Engineering,Engineer
+7,Fixed Equipments,Spherical Storage Tanks,NA,L7,Piping Engineering,Engineer
+7,Fixed Equipments,Towers / Columns,1,L7,Piping Engineering,Engineer
+7,Materials,Carbon Steel,NA,L7,Piping Engineering,Engineer
+7,Materials,Stainless Steel,NA,L7,Piping Engineering,Engineer
+7,Materials,Alloy Steel,NA,L7,Piping Engineering,Engineer
+7,Materials,Non-Metallic - Thermoplastics,NA,L7,Piping Engineering,Engineer
+7,Materials,Non-Metallic - Thermosetting,NA,L7,Piping Engineering,Engineer
+7,Piping Materials,Line List,NA,L7,Piping Engineering,Engineer
+7,Piping Materials,Manual Valve List,NA,L7,Piping Engineering,Engineer
+7,Piping Materials,Piping Specialty Item List,NA,L7,Piping Engineering,Engineer
+7,Piping Materials,Protective Coatings Specifications,NA,L7,Piping Engineering,Engineer
+7,Piping Materials,Insulation Specification,NA,L7,Piping Engineering,Engineer
+7,Piping Materials,Steam Tracing Specification,NA,L7,Piping Engineering,Engineer
+7,Piping Materials,Pipe Spec Service Index,NA,L7,Piping Engineering,Engineer
+7,Piping Materials,Piping Specials Data Sheets,NA,L7,Piping Engineering,Engineer
+7,Piping Materials,Specialty Item Specification,NA,L7,Piping Engineering,Engineer
+7,Piping Materials,Shop Fab Pipe Specification,NA,L7,Piping Engineering,Engineer
+7,Piping Materials,Valve Material Specification,NA,L7,Piping Engineering,Engineer
+7,Piping Materials,Fabrication & Welding Specification (PWDS),NA,L7,Piping Engineering,Engineer
+7,Piping Materials,Engineered Supports Package,NA,L7,Piping Engineering,Engineer
+7,Piping Materials,Piping Eng. Technical Reviews,NA,L7,Piping Engineering,Engineer
+7,Piping Materials,Pipe Wall thk / Branch Reinforcement calculation,NA,L7,Piping Engineering,Engineer
+7,Piping Materials,Piping Material Specification,NA,L7,Piping Engineering,Engineer
+7,Rotating Equipments,Air Compressors,NA,L7,Piping Engineering,Engineer
+7,Rotating Equipments,ANSI Pumps,NA,L7,Piping Engineering,Engineer
+7,Rotating Equipments,API Centrifugal Pumps,NA,L7,Piping Engineering,Engineer
+7,Rotating Equipments,Centrifugal / Reciprocating Compressors,NA,L7,Piping Engineering,Engineer
+7,Rotating Equipments,Mixers,NA,L7,Piping Engineering,Engineer
+7,Rotating Equipments,Positive Displacement Pumps,NA,L7,Piping Engineering,Engineer
+7,Rotating Equipments,Steam Turbines,NA,L7,Piping Engineering,Engineer
+7,Softwares,BIM 360,NA,L7,Piping Engineering,Engineer
+7,Softwares,AutoCad,NA,L7,Piping Engineering,Engineer
+7,Softwares,Auto Cad Plant 3D,NA,L7,Piping Engineering,Engineer
+7,Softwares,Micro Station 2D,NA,L7,Piping Engineering,Engineer
+7,Softwares,AutoPipe,NA,L7,Piping Engineering,Engineer
+7,Softwares,CAESAR II,1,L7,Piping Engineering,Engineer
+7,Softwares,FE Bend,NA,L7,Piping Engineering,Engineer
+7,Softwares,FEA Nozzle PRO,NA,L7,Piping Engineering,Engineer
+7,Softwares,LFM,NA,L7,Piping Engineering,Engineer
+7,Softwares,NAVISWORKS,1,L7,Piping Engineering,Engineer
+7,Softwares,REVIT,NA,L7,Piping Engineering,Engineer
+7,Softwares,S3D,NA,L7,Piping Engineering,Engineer
+7,Softwares,SPPID,NA,L7,Piping Engineering,Engineer
+7,Softwares,SMART PLANT SKETCH (2D),NA,L7,Piping Engineering,Engineer
+7,Softwares,SPR- Smart Plant Review,NA,L7,Piping Engineering,Engineer
+8,Analysis,FRP Piping,NA,L8,Piping Engineering,Engineer
+8,Analysis,GRE Piping ,NA,L8,Piping Engineering,Engineer
+8,Analysis,Jacketed Piping Analysis,NA,L8,Piping Engineering,Engineer
+8,Analysis,Slug Analysis,NA,L8,Piping Engineering,Engineer
+8,Analysis,Surge Analysis,NA,L8,Piping Engineering,Engineer
+8,Analysis,Under ground piping analysis,NA,L8,Piping Engineering,Engineer
+8,Analysis,AIV/FIV & Vibration Analysis,1,L8,Piping Engineering,Engineer
+8,Fixed Equipments,Air Coolers,1,L8,Piping Engineering,Engineer
+8,Fixed Equipments,Boilers,1,L8,Piping Engineering,Engineer
+8,Fixed Equipments,Desuperheaters,1,L8,Piping Engineering,Engineer
+8,Fixed Equipments,Drums,1,L8,Piping Engineering,Engineer
+8,Fixed Equipments,Flares,1,L8,Piping Engineering,Engineer
+8,Fixed Equipments,Reactors,1,L8,Piping Engineering,Engineer
+8,Fixed Equipments,S & T Exchangers,1,L8,Piping Engineering,Engineer
+8,Fixed Equipments,Spherical Storage Tanks,1,L8,Piping Engineering,Engineer
+8,Fixed Equipments,Towers / Columns,1,L8,Piping Engineering,Engineer
+8,Materials,Carbon Steel,1,L8,Piping Engineering,Engineer
+8,Materials,Stainless Steel,1,L8,Piping Engineering,Engineer
+8,Materials,Alloy Steel,1,L8,Piping Engineering,Engineer
+8,Materials,Non-Metallic - Thermoplastics,1,L8,Piping Engineering,Engineer
+8,Materials,Non-Metallic - Thermosetting,1,L8,Piping Engineering,Engineer
+8,Piping Materials,Line List,1,L8,Piping Engineering,Engineer
+8,Piping Materials,Manual Valve List,1,L8,Piping Engineering,Engineer
+8,Piping Materials,Piping Specialty Item List,1,L8,Piping Engineering,Engineer
+8,Piping Materials,Protective Coatings Specifications,1,L8,Piping Engineering,Engineer
+8,Piping Materials,Insulation Specification,1,L8,Piping Engineering,Engineer
+8,Piping Materials,Steam Tracing Specification,1,L8,Piping Engineering,Engineer
+8,Piping Materials,Pipe Spec Service Index,1,L8,Piping Engineering,Engineer
+8,Piping Materials,Piping Specials Data Sheets,1,L8,Piping Engineering,Engineer
+8,Piping Materials,Specialty Item Specification,1,L8,Piping Engineering,Engineer
+8,Piping Materials,Shop Fab Pipe Specification,1,L8,Piping Engineering,Engineer
+8,Piping Materials,Valve Material Specification,1,L8,Piping Engineering,Engineer
+8,Piping Materials,Fabrication & Welding Specification (PWDS),1,L8,Piping Engineering,Engineer
+8,Piping Materials,Engineered Supports Package,1,L8,Piping Engineering,Engineer
+8,Piping Materials,Piping Eng. Technical Reviews,1,L8,Piping Engineering,Engineer
+8,Piping Materials,Pipe Wall thk / Branch Reinforcement calculation,1,L8,Piping Engineering,Engineer
+8,Piping Materials,Piping Material Specification,1,L8,Piping Engineering,Engineer
+8,Rotating Equipments,Air Compressors,1,L8,Piping Engineering,Engineer
+8,Rotating Equipments,ANSI Pumps,1,L8,Piping Engineering,Engineer
+8,Rotating Equipments,API Centrifugal Pumps,1,L8,Piping Engineering,Engineer
+8,Rotating Equipments,Centrifugal / Reciprocating Compressors,1,L8,Piping Engineering,Engineer
+8,Rotating Equipments,Mixers,1,L8,Piping Engineering,Engineer
+8,Rotating Equipments,Positive Displacement Pumps,1,L8,Piping Engineering,Engineer
+8,Rotating Equipments,Steam Turbines,1,L8,Piping Engineering,Engineer
+8,Softwares,BIM 360,1,L8,Piping Engineering,Engineer
+8,Softwares,AutoCad,1,L8,Piping Engineering,Engineer
+8,Softwares,Auto Cad Plant 3D,NA,L8,Piping Engineering,Engineer
+8,Softwares,Micro Station 2D,NA,L8,Piping Engineering,Engineer
+8,Softwares,AutoPipe,NA,L8,Piping Engineering,Engineer
+8,Softwares,CAESAR II,1,L8,Piping Engineering,Engineer
+8,Softwares,FE Bend,1,L8,Piping Engineering,Engineer
+8,Softwares,FEA Nozzle PRO,1,L8,Piping Engineering,Engineer
+8,Softwares,LFM,1,L8,Piping Engineering,Engineer
+8,Softwares,NAVISWORKS,1,L8,Piping Engineering,Engineer
+8,Softwares,REVIT,NA,L8,Piping Engineering,Engineer
+8,Softwares,S3D,NA,L8,Piping Engineering,Engineer
+8,Softwares,SPPID,NA,L8,Piping Engineering,Engineer
+8,Softwares,SMART PLANT SKETCH (2D),NA,L8,Piping Engineering,Engineer
+8,Softwares,SPR- Smart Plant Review,NA,L8,Piping Engineering,Engineer
+9,Analysis,FRP Piping,1,L9,Piping Engineering,Engineer
+9,Analysis,GRE Piping ,1,L9,Piping Engineering,Engineer
+9,Analysis,Jacketed Piping Analysis,1,L9,Piping Engineering,Engineer
+9,Analysis,Slug Analysis,1,L9,Piping Engineering,Engineer
+9,Analysis,Surge Analysis,1,L9,Piping Engineering,Engineer
+9,Analysis,Under ground piping analysis,1,L9,Piping Engineering,Engineer
+9,Analysis,AIV/FIV & Vibration Analysis,1,L9,Piping Engineering,Engineer
+9,Fixed Equipments,Air Coolers,2,L9,Piping Engineering,Engineer
+9,Fixed Equipments,Boilers,1,L9,Piping Engineering,Engineer
+9,Fixed Equipments,Desuperheaters,1,L9,Piping Engineering,Engineer
+9,Fixed Equipments,Drums,2,L9,Piping Engineering,Engineer
+9,Fixed Equipments,Flares,2,L9,Piping Engineering,Engineer
+9,Fixed Equipments,Reactors,2,L9,Piping Engineering,Engineer
+9,Fixed Equipments,S & T Exchangers,2,L9,Piping Engineering,Engineer
+9,Fixed Equipments,Spherical Storage Tanks,2,L9,Piping Engineering,Engineer
+9,Fixed Equipments,Towers / Columns,2,L9,Piping Engineering,Engineer
+9,Materials,Carbon Steel,2,L9,Piping Engineering,Engineer
+9,Materials,Stainless Steel,2,L9,Piping Engineering,Engineer
+9,Materials,Alloy Steel,2,L9,Piping Engineering,Engineer
+9,Materials,Non-Metallic - Thermoplastics,1,L9,Piping Engineering,Engineer
+9,Materials,Non-Metallic - Thermosetting,1,L9,Piping Engineering,Engineer
+9,Piping Materials,Line List,2,L9,Piping Engineering,Engineer
+9,Piping Materials,Manual Valve List,2,L9,Piping Engineering,Engineer
+9,Piping Materials,Piping Specialty Item List,2,L9,Piping Engineering,Engineer
+9,Piping Materials,Protective Coatings Specifications,2,L9,Piping Engineering,Engineer
+9,Piping Materials,Insulation Specification,2,L9,Piping Engineering,Engineer
+9,Piping Materials,Steam Tracing Specification,2,L9,Piping Engineering,Engineer
+9,Piping Materials,Pipe Spec Service Index,2,L9,Piping Engineering,Engineer
+9,Piping Materials,Piping Specials Data Sheets,2,L9,Piping Engineering,Engineer
+9,Piping Materials,Specialty Item Specification,2,L9,Piping Engineering,Engineer
+9,Piping Materials,Shop Fab Pipe Specification,2,L9,Piping Engineering,Engineer
+9,Piping Materials,Valve Material Specification,2,L9,Piping Engineering,Engineer
+9,Piping Materials,Fabrication & Welding Specification (PWDS),2,L9,Piping Engineering,Engineer
+9,Piping Materials,Engineered Supports Package,2,L9,Piping Engineering,Engineer
+9,Piping Materials,Piping Eng. Technical Reviews,2,L9,Piping Engineering,Engineer
+9,Piping Materials,Pipe Wall thk / Branch Reinforcement calculation,2,L9,Piping Engineering,Engineer
+9,Piping Materials,Piping Material Specification,2,L9,Piping Engineering,Engineer
+9,Rotating Equipments,Air Compressors,2,L9,Piping Engineering,Engineer
+9,Rotating Equipments,ANSI Pumps,2,L9,Piping Engineering,Engineer
+9,Rotating Equipments,API Centrifugal Pumps,2,L9,Piping Engineering,Engineer
+9,Rotating Equipments,Centrifugal / Reciprocating Compressors,2,L9,Piping Engineering,Engineer
+9,Rotating Equipments,Mixers,2,L9,Piping Engineering,Engineer
+9,Rotating Equipments,Positive Displacement Pumps,2,L9,Piping Engineering,Engineer
+9,Rotating Equipments,Steam Turbines,2,L9,Piping Engineering,Engineer
+9,Softwares,BIM 360,1,L9,Piping Engineering,Engineer
+9,Softwares,AutoCad,1,L9,Piping Engineering,Engineer
+9,Softwares,Auto Cad Plant 3D,NA,L9,Piping Engineering,Engineer
+9,Softwares,Micro Station 2D,NA,L9,Piping Engineering,Engineer
+9,Softwares,AutoPipe,1,L9,Piping Engineering,Engineer
+9,Softwares,CAESAR II,2,L9,Piping Engineering,Engineer
+9,Softwares,FE Bend,2,L9,Piping Engineering,Engineer
+9,Softwares,FEA Nozzle PRO,2,L9,Piping Engineering,Engineer
+9,Softwares,LFM,2,L9,Piping Engineering,Engineer
+9,Softwares,NAVISWORKS,2,L9,Piping Engineering,Engineer
+9,Softwares,REVIT,1,L9,Piping Engineering,Engineer
+9,Softwares,S3D,NA,L9,Piping Engineering,Engineer
+9,Softwares,SPPID,NA,L9,Piping Engineering,Engineer
+9,Softwares,SMART PLANT SKETCH (2D),NA,L9,Piping Engineering,Engineer
+9,Softwares,SPR- Smart Plant Review,1,L9,Piping Engineering,Engineer
+10,Analysis,FRP Piping,2,L10,Piping Engineering,Engineer
+10,Analysis,GRE Piping ,2,L10,Piping Engineering,Engineer
+10,Analysis,Jacketed Piping Analysis,1,L10,Piping Engineering,Engineer
+10,Analysis,Slug Analysis,2,L10,Piping Engineering,Engineer
+10,Analysis,Surge Analysis,1,L10,Piping Engineering,Engineer
+10,Analysis,Under ground piping analysis,2,L10,Piping Engineering,Engineer
+10,Analysis,AIV/FIV & Vibration Analysis,1,L10,Piping Engineering,Engineer
+10,Fixed Equipments,Air Coolers,2,L10,Piping Engineering,Engineer
+10,Fixed Equipments,Boilers,2,L10,Piping Engineering,Engineer
+10,Fixed Equipments,Desuperheaters,2,L10,Piping Engineering,Engineer
+10,Fixed Equipments,Drums,2,L10,Piping Engineering,Engineer
+10,Fixed Equipments,Flares,2,L10,Piping Engineering,Engineer
+10,Fixed Equipments,Reactors,2,L10,Piping Engineering,Engineer
+10,Fixed Equipments,S & T Exchangers,2,L10,Piping Engineering,Engineer
+10,Fixed Equipments,Spherical Storage Tanks,2,L10,Piping Engineering,Engineer
+10,Fixed Equipments,Towers / Columns,2,L10,Piping Engineering,Engineer
+10,Materials,Carbon Steel,2,L10,Piping Engineering,Engineer
+10,Materials,Stainless Steel,2,L10,Piping Engineering,Engineer
+10,Materials,Alloy Steel,2,L10,Piping Engineering,Engineer
+10,Materials,Non-Metallic - Thermoplastics,1,L10,Piping Engineering,Engineer
+10,Materials,Non-Metallic - Thermosetting,1,L10,Piping Engineering,Engineer
+10,Piping Materials,Line List,2,L10,Piping Engineering,Engineer
+10,Piping Materials,Manual Valve List,2,L10,Piping Engineering,Engineer
+10,Piping Materials,Piping Specialty Item List,2,L10,Piping Engineering,Engineer
+10,Piping Materials,Protective Coatings Specifications,2,L10,Piping Engineering,Engineer
+10,Piping Materials,Insulation Specification,2,L10,Piping Engineering,Engineer
+10,Piping Materials,Steam Tracing Specification,2,L10,Piping Engineering,Engineer
+10,Piping Materials,Pipe Spec Service Index,2,L10,Piping Engineering,Engineer
+10,Piping Materials,Piping Specials Data Sheets,2,L10,Piping Engineering,Engineer
+10,Piping Materials,Specialty Item Specification,2,L10,Piping Engineering,Engineer
+10,Piping Materials,Shop Fab Pipe Specification,2,L10,Piping Engineering,Engineer
+10,Piping Materials,Valve Material Specification,2,L10,Piping Engineering,Engineer
+10,Piping Materials,Fabrication & Welding Specification (PWDS),2,L10,Piping Engineering,Engineer
+10,Piping Materials,Engineered Supports Package,2,L10,Piping Engineering,Engineer
+10,Piping Materials,Piping Eng. Technical Reviews,2,L10,Piping Engineering,Engineer
+10,Piping Materials,Pipe Wall thk / Branch Reinforcement calculation,3,L10,Piping Engineering,Engineer
+10,Piping Materials,Piping Material Specification,2,L10,Piping Engineering,Engineer
+10,Rotating Equipments,Air Compressors,2,L10,Piping Engineering,Engineer
+10,Rotating Equipments,ANSI Pumps,2,L10,Piping Engineering,Engineer
+10,Rotating Equipments,API Centrifugal Pumps,2,L10,Piping Engineering,Engineer
+10,Rotating Equipments,Centrifugal / Reciprocating Compressors,2,L10,Piping Engineering,Engineer
+10,Rotating Equipments,Mixers,2,L10,Piping Engineering,Engineer
+10,Rotating Equipments,Positive Displacement Pumps,2,L10,Piping Engineering,Engineer
+10,Rotating Equipments,Steam Turbines,2,L10,Piping Engineering,Engineer
+10,Softwares,BIM 360,1,L10,Piping Engineering,Engineer
+10,Softwares,AutoCad,1,L10,Piping Engineering,Engineer
+10,Softwares,Auto Cad Plant 3D,NA,L10,Piping Engineering,Engineer
+10,Softwares,Micro Station 2D,NA,L10,Piping Engineering,Engineer
+10,Softwares,AutoPipe,1,L10,Piping Engineering,Engineer
+10,Softwares,CAESAR II,2,L10,Piping Engineering,Engineer
+10,Softwares,FE Bend,2,L10,Piping Engineering,Engineer
+10,Softwares,FEA Nozzle PRO,2,L10,Piping Engineering,Engineer
+10,Softwares,LFM,2,L10,Piping Engineering,Engineer
+10,Softwares,NAVISWORKS,2,L10,Piping Engineering,Engineer
+10,Softwares,REVIT,1,L10,Piping Engineering,Engineer
+10,Softwares,S3D,NA,L10,Piping Engineering,Engineer
+10,Softwares,SPPID,NA,L10,Piping Engineering,Engineer
+10,Softwares,SMART PLANT SKETCH (2D),NA,L10,Piping Engineering,Engineer
+10,Softwares,SPR- Smart Plant Review,1,L10,Piping Engineering,Engineer
+11,Analysis,FRP Piping,2,L11,Piping Engineering,Engineer
+11,Analysis,GRE Piping ,2,L11,Piping Engineering,Engineer
+11,Analysis,Jacketed Piping Analysis,2,L11,Piping Engineering,Engineer
+11,Analysis,Slug Analysis,2,L11,Piping Engineering,Engineer
+11,Analysis,Surge Analysis,1,L11,Piping Engineering,Engineer
+11,Analysis,Under ground piping analysis,2,L11,Piping Engineering,Engineer
+11,Analysis,AIV/FIV & Vibration Analysis,2,L11,Piping Engineering,Engineer
+11,Fixed Equipments,Air Coolers,2,L11,Piping Engineering,Engineer
+11,Fixed Equipments,Boilers,2,L11,Piping Engineering,Engineer
+11,Fixed Equipments,Desuperheaters,2,L11,Piping Engineering,Engineer
+11,Fixed Equipments,Drums,2,L11,Piping Engineering,Engineer
+11,Fixed Equipments,Flares,2,L11,Piping Engineering,Engineer
+11,Fixed Equipments,Reactors,2,L11,Piping Engineering,Engineer
+11,Fixed Equipments,S & T Exchangers,2,L11,Piping Engineering,Engineer
+11,Fixed Equipments,Spherical Storage Tanks,2,L11,Piping Engineering,Engineer
+11,Fixed Equipments,Towers / Columns,2,L11,Piping Engineering,Engineer
+11,Materials,Carbon Steel,3,L11,Piping Engineering,Engineer
+11,Materials,Stainless Steel,3,L11,Piping Engineering,Engineer
+11,Materials,Alloy Steel,3,L11,Piping Engineering,Engineer
+11,Materials,Non-Metallic - Thermoplastics,2,L11,Piping Engineering,Engineer
+11,Materials,Non-Metallic - Thermosetting,2,L11,Piping Engineering,Engineer
+11,Piping Materials,Line List,3,L11,Piping Engineering,Engineer
+11,Piping Materials,Manual Valve List,3,L11,Piping Engineering,Engineer
+11,Piping Materials,Piping Specialty Item List,3,L11,Piping Engineering,Engineer
+11,Piping Materials,Protective Coatings Specifications,2,L11,Piping Engineering,Engineer
+11,Piping Materials,Insulation Specification,2,L11,Piping Engineering,Engineer
+11,Piping Materials,Steam Tracing Specification,2,L11,Piping Engineering,Engineer
+11,Piping Materials,Pipe Spec Service Index,3,L11,Piping Engineering,Engineer
+11,Piping Materials,Piping Specials Data Sheets,3,L11,Piping Engineering,Engineer
+11,Piping Materials,Specialty Item Specification,3,L11,Piping Engineering,Engineer
+11,Piping Materials,Shop Fab Pipe Specification,3,L11,Piping Engineering,Engineer
+11,Piping Materials,Valve Material Specification,3,L11,Piping Engineering,Engineer
+11,Piping Materials,Fabrication & Welding Specification (PWDS),2,L11,Piping Engineering,Engineer
+11,Piping Materials,Engineered Supports Package,3,L11,Piping Engineering,Engineer
+11,Piping Materials,Piping Eng. Technical Reviews,3,L11,Piping Engineering,Engineer
+11,Piping Materials,Pipe Wall thk / Branch Reinforcement calculation,3,L11,Piping Engineering,Engineer
+11,Piping Materials,Piping Material Specification,3,L11,Piping Engineering,Engineer
+11,Rotating Equipments,Air Compressors,2,L11,Piping Engineering,Engineer
+11,Rotating Equipments,ANSI Pumps,2,L11,Piping Engineering,Engineer
+11,Rotating Equipments,API Centrifugal Pumps,2,L11,Piping Engineering,Engineer
+11,Rotating Equipments,Centrifugal / Reciprocating Compressors,2,L11,Piping Engineering,Engineer
+11,Rotating Equipments,Mixers,2,L11,Piping Engineering,Engineer
+11,Rotating Equipments,Positive Displacement Pumps,2,L11,Piping Engineering,Engineer
+11,Rotating Equipments,Steam Turbines,2,L11,Piping Engineering,Engineer
+11,Softwares,BIM 360,1,L11,Piping Engineering,Engineer
+11,Softwares,AutoCad,1,L11,Piping Engineering,Engineer
+11,Softwares,Auto Cad Plant 3D,NA,L11,Piping Engineering,Engineer
+11,Softwares,Micro Station 2D,1,L11,Piping Engineering,Engineer
+11,Softwares,AutoPipe,1,L11,Piping Engineering,Engineer
+11,Softwares,CAESAR II,2,L11,Piping Engineering,Engineer
+11,Softwares,FE Bend,2,L11,Piping Engineering,Engineer
+11,Softwares,FEA Nozzle PRO,2,L11,Piping Engineering,Engineer
+11,Softwares,LFM,2,L11,Piping Engineering,Engineer
+11,Softwares,NAVISWORKS,2,L11,Piping Engineering,Engineer
+11,Softwares,REVIT,1,L11,Piping Engineering,Engineer
+11,Softwares,S3D,1,L11,Piping Engineering,Engineer
+11,Softwares,SPPID,1,L11,Piping Engineering,Engineer
+11,Softwares,SMART PLANT SKETCH (2D),NA,L11,Piping Engineering,Engineer
+11,Softwares,SPR- Smart Plant Review,1,L11,Piping Engineering,Engineer
+12,Analysis,FRP Piping,2,L12,Piping Engineering,Engineer
+12,Analysis,GRE Piping ,2,L12,Piping Engineering,Engineer
+12,Analysis,Jacketed Piping Analysis,2,L12,Piping Engineering,Engineer
+12,Analysis,Slug Analysis,2,L12,Piping Engineering,Engineer
+12,Analysis,Surge Analysis,1,L12,Piping Engineering,Engineer
+12,Analysis,Under ground piping analysis,2,L12,Piping Engineering,Engineer
+12,Analysis,AIV/FIV & Vibration Analysis,2,L12,Piping Engineering,Engineer
+12,Fixed Equipments,Air Coolers,3,L12,Piping Engineering,Engineer
+12,Fixed Equipments,Boilers,3,L12,Piping Engineering,Engineer
+12,Fixed Equipments,Desuperheaters,2,L12,Piping Engineering,Engineer
+12,Fixed Equipments,Drums,3,L12,Piping Engineering,Engineer
+12,Fixed Equipments,Flares,3,L12,Piping Engineering,Engineer
+12,Fixed Equipments,Reactors,3,L12,Piping Engineering,Engineer
+12,Fixed Equipments,S & T Exchangers,3,L12,Piping Engineering,Engineer
+12,Fixed Equipments,Spherical Storage Tanks,3,L12,Piping Engineering,Engineer
+12,Fixed Equipments,Towers / Columns,3,L12,Piping Engineering,Engineer
+12,Materials,Carbon Steel,3,L12,Piping Engineering,Engineer
+12,Materials,Stainless Steel,3,L12,Piping Engineering,Engineer
+12,Materials,Alloy Steel,3,L12,Piping Engineering,Engineer
+12,Materials,Non-Metallic - Thermoplastics,2,L12,Piping Engineering,Engineer
+12,Materials,Non-Metallic - Thermosetting,2,L12,Piping Engineering,Engineer
+12,Piping Materials,Line List,3,L12,Piping Engineering,Engineer
+12,Piping Materials,Manual Valve List,3,L12,Piping Engineering,Engineer
+12,Piping Materials,Piping Specialty Item List,3,L12,Piping Engineering,Engineer
+12,Piping Materials,Protective Coatings Specifications,2,L12,Piping Engineering,Engineer
+12,Piping Materials,Insulation Specification,2,L12,Piping Engineering,Engineer
+12,Piping Materials,Steam Tracing Specification,2,L12,Piping Engineering,Engineer
+12,Piping Materials,Pipe Spec Service Index,3,L12,Piping Engineering,Engineer
+12,Piping Materials,Piping Specials Data Sheets,3,L12,Piping Engineering,Engineer
+12,Piping Materials,Specialty Item Specification,3,L12,Piping Engineering,Engineer
+12,Piping Materials,Shop Fab Pipe Specification,3,L12,Piping Engineering,Engineer
+12,Piping Materials,Valve Material Specification,3,L12,Piping Engineering,Engineer
+12,Piping Materials,Fabrication & Welding Specification (PWDS),2,L12,Piping Engineering,Engineer
+12,Piping Materials,Engineered Supports Package,3,L12,Piping Engineering,Engineer
+12,Piping Materials,Piping Eng. Technical Reviews,3,L12,Piping Engineering,Engineer
+12,Piping Materials,Pipe Wall thk / Branch Reinforcement calculation,4,L12,Piping Engineering,Engineer
+12,Piping Materials,Piping Material Specification,3,L12,Piping Engineering,Engineer
+12,Rotating Equipments,Air Compressors,2,L12,Piping Engineering,Engineer
+12,Rotating Equipments,ANSI Pumps,3,L12,Piping Engineering,Engineer
+12,Rotating Equipments,API Centrifugal Pumps,3,L12,Piping Engineering,Engineer
+12,Rotating Equipments,Centrifugal / Reciprocating Compressors,2,L12,Piping Engineering,Engineer
+12,Rotating Equipments,Mixers,2,L12,Piping Engineering,Engineer
+12,Rotating Equipments,Positive Displacement Pumps,2,L12,Piping Engineering,Engineer
+12,Rotating Equipments,Steam Turbines,2,L12,Piping Engineering,Engineer
+12,Softwares,BIM 360,2,L12,Piping Engineering,Engineer
+12,Softwares,AutoCad,2,L12,Piping Engineering,Engineer
+12,Softwares,Auto Cad Plant 3D,NA,L12,Piping Engineering,Engineer
+12,Softwares,Micro Station 2D,1,L12,Piping Engineering,Engineer
+12,Softwares,AutoPipe,1,L12,Piping Engineering,Engineer
+12,Softwares,CAESAR II,3,L12,Piping Engineering,Engineer
+12,Softwares,FE Bend,3,L12,Piping Engineering,Engineer
+12,Softwares,FEA Nozzle PRO,3,L12,Piping Engineering,Engineer
+12,Softwares,LFM,3,L12,Piping Engineering,Engineer
+12,Softwares,NAVISWORKS,3,L12,Piping Engineering,Engineer
+12,Softwares,REVIT,2,L12,Piping Engineering,Engineer
+12,Softwares,S3D,1,L12,Piping Engineering,Engineer
+12,Softwares,SPPID,1,L12,Piping Engineering,Engineer
+12,Softwares,SMART PLANT SKETCH (2D),1,L12,Piping Engineering,Engineer
+12,Softwares,SPR- Smart Plant Review,2,L12,Piping Engineering,Engineer
+13,Analysis,FRP Piping,3,L13,Piping Engineering,Engineer
+13,Analysis,GRE Piping ,3,L13,Piping Engineering,Engineer
+13,Analysis,Jacketed Piping Analysis,3,L13,Piping Engineering,Engineer
+13,Analysis,Slug Analysis,3,L13,Piping Engineering,Engineer
+13,Analysis,Surge Analysis,2,L13,Piping Engineering,Engineer
+13,Analysis,Under ground piping analysis,2,L13,Piping Engineering,Engineer
+13,Analysis,AIV/FIV & Vibration Analysis,2,L13,Piping Engineering,Engineer
+13,Fixed Equipments,Air Coolers,3,L13,Piping Engineering,Engineer
+13,Fixed Equipments,Boilers,3,L13,Piping Engineering,Engineer
+13,Fixed Equipments,Desuperheaters,3,L13,Piping Engineering,Engineer
+13,Fixed Equipments,Drums,3,L13,Piping Engineering,Engineer
+13,Fixed Equipments,Flares,3,L13,Piping Engineering,Engineer
+13,Fixed Equipments,Reactors,3,L13,Piping Engineering,Engineer
+13,Fixed Equipments,S & T Exchangers,3,L13,Piping Engineering,Engineer
+13,Fixed Equipments,Spherical Storage Tanks,3,L13,Piping Engineering,Engineer
+13,Fixed Equipments,Towers / Columns,3,L13,Piping Engineering,Engineer
+13,Materials,Carbon Steel,4,L13,Piping Engineering,Engineer
+13,Materials,Stainless Steel,4,L13,Piping Engineering,Engineer
+13,Materials,Alloy Steel,4,L13,Piping Engineering,Engineer
+13,Materials,Non-Metallic - Thermoplastics,2,L13,Piping Engineering,Engineer
+13,Materials,Non-Metallic - Thermosetting,2,L13,Piping Engineering,Engineer
+13,Piping Materials,Line List,3,L13,Piping Engineering,Engineer
+13,Piping Materials,Manual Valve List,3,L13,Piping Engineering,Engineer
+13,Piping Materials,Piping Specialty Item List,3,L13,Piping Engineering,Engineer
+13,Piping Materials,Protective Coatings Specifications,2,L13,Piping Engineering,Engineer
+13,Piping Materials,Insulation Specification,2,L13,Piping Engineering,Engineer
+13,Piping Materials,Steam Tracing Specification,2,L13,Piping Engineering,Engineer
+13,Piping Materials,Pipe Spec Service Index,3,L13,Piping Engineering,Engineer
+13,Piping Materials,Piping Specials Data Sheets,3,L13,Piping Engineering,Engineer
+13,Piping Materials,Specialty Item Specification,3,L13,Piping Engineering,Engineer
+13,Piping Materials,Shop Fab Pipe Specification,3,L13,Piping Engineering,Engineer
+13,Piping Materials,Valve Material Specification,3,L13,Piping Engineering,Engineer
+13,Piping Materials,Fabrication & Welding Specification (PWDS),3,L13,Piping Engineering,Engineer
+13,Piping Materials,Engineered Supports Package,3,L13,Piping Engineering,Engineer
+13,Piping Materials,Piping Eng. Technical Reviews,3,L13,Piping Engineering,Engineer
+13,Piping Materials,Pipe Wall thk / Branch Reinforcement calculation,4,L13,Piping Engineering,Engineer
+13,Piping Materials,Piping Material Specification,3,L13,Piping Engineering,Engineer
+13,Rotating Equipments,Air Compressors,3,L13,Piping Engineering,Engineer
+13,Rotating Equipments,ANSI Pumps,3,L13,Piping Engineering,Engineer
+13,Rotating Equipments,API Centrifugal Pumps,3,L13,Piping Engineering,Engineer
+13,Rotating Equipments,Centrifugal / Reciprocating Compressors,3,L13,Piping Engineering,Engineer
+13,Rotating Equipments,Mixers,3,L13,Piping Engineering,Engineer
+13,Rotating Equipments,Positive Displacement Pumps,3,L13,Piping Engineering,Engineer
+13,Rotating Equipments,Steam Turbines,3,L13,Piping Engineering,Engineer
+13,Softwares,BIM 360,2,L13,Piping Engineering,Engineer
+13,Softwares,AutoCad,2,L13,Piping Engineering,Engineer
+13,Softwares,Auto Cad Plant 3D,NA,L13,Piping Engineering,Engineer
+13,Softwares,Micro Station 2D,1,L13,Piping Engineering,Engineer
+13,Softwares,AutoPipe,1,L13,Piping Engineering,Engineer
+13,Softwares,CAESAR II,3,L13,Piping Engineering,Engineer
+13,Softwares,FE Bend,3,L13,Piping Engineering,Engineer
+13,Softwares,FEA Nozzle PRO,3,L13,Piping Engineering,Engineer
+13,Softwares,LFM,3,L13,Piping Engineering,Engineer
+13,Softwares,NAVISWORKS,3,L13,Piping Engineering,Engineer
+13,Softwares,REVIT,2,L13,Piping Engineering,Engineer
+13,Softwares,S3D,1,L13,Piping Engineering,Engineer
+13,Softwares,SPPID,1,L13,Piping Engineering,Engineer
+13,Softwares,SMART PLANT SKETCH (2D),1,L13,Piping Engineering,Engineer
+13,Softwares,SPR- Smart Plant Review,2,L13,Piping Engineering,Engineer
+14,Analysis,FRP Piping,3,L14,Piping Engineering,Engineer
+14,Analysis,GRE Piping ,3,L14,Piping Engineering,Engineer
+14,Analysis,Jacketed Piping Analysis,3,L14,Piping Engineering,Engineer
+14,Analysis,Slug Analysis,3,L14,Piping Engineering,Engineer
+14,Analysis,Surge Analysis,3,L14,Piping Engineering,Engineer
+14,Analysis,Under ground piping analysis,3,L14,Piping Engineering,Engineer
+14,Analysis,AIV/FIV & Vibration Analysis,3,L14,Piping Engineering,Engineer
+14,Fixed Equipments,Air Coolers,3,L14,Piping Engineering,Engineer
+14,Fixed Equipments,Boilers,3,L14,Piping Engineering,Engineer
+14,Fixed Equipments,Desuperheaters,3,L14,Piping Engineering,Engineer
+14,Fixed Equipments,Drums,3,L14,Piping Engineering,Engineer
+14,Fixed Equipments,Flares,3,L14,Piping Engineering,Engineer
+14,Fixed Equipments,Reactors,3,L14,Piping Engineering,Engineer
+14,Fixed Equipments,S & T Exchangers,3,L14,Piping Engineering,Engineer
+14,Fixed Equipments,Spherical Storage Tanks,3,L14,Piping Engineering,Engineer
+14,Fixed Equipments,Towers / Columns,3,L14,Piping Engineering,Engineer
+14,Materials,Carbon Steel,4,L14,Piping Engineering,Engineer
+14,Materials,Stainless Steel,4,L14,Piping Engineering,Engineer
+14,Materials,Alloy Steel,4,L14,Piping Engineering,Engineer
+14,Materials,Non-Metallic - Thermoplastics,2,L14,Piping Engineering,Engineer
+14,Materials,Non-Metallic - Thermosetting,2,L14,Piping Engineering,Engineer
+14,Piping Materials,Line List,4,L14,Piping Engineering,Engineer
+14,Piping Materials,Manual Valve List,4,L14,Piping Engineering,Engineer
+14,Piping Materials,Piping Specialty Item List,4,L14,Piping Engineering,Engineer
+14,Piping Materials,Protective Coatings Specifications,3,L14,Piping Engineering,Engineer
+14,Piping Materials,Insulation Specification,3,L14,Piping Engineering,Engineer
+14,Piping Materials,Steam Tracing Specification,3,L14,Piping Engineering,Engineer
+14,Piping Materials,Pipe Spec Service Index,4,L14,Piping Engineering,Engineer
+14,Piping Materials,Piping Specials Data Sheets,4,L14,Piping Engineering,Engineer
+14,Piping Materials,Specialty Item Specification,4,L14,Piping Engineering,Engineer
+14,Piping Materials,Shop Fab Pipe Specification,4,L14,Piping Engineering,Engineer
+14,Piping Materials,Valve Material Specification,3,L14,Piping Engineering,Engineer
+14,Piping Materials,Fabrication & Welding Specification (PWDS),3,L14,Piping Engineering,Engineer
+14,Piping Materials,Engineered Supports Package,4,L14,Piping Engineering,Engineer
+14,Piping Materials,Piping Eng. Technical Reviews,4,L14,Piping Engineering,Engineer
+14,Piping Materials,Pipe Wall thk / Branch Reinforcement calculation,4,L14,Piping Engineering,Engineer
+14,Piping Materials,Piping Material Specification,3,L14,Piping Engineering,Engineer
+14,Rotating Equipments,Air Compressors,3,L14,Piping Engineering,Engineer
+14,Rotating Equipments,ANSI Pumps,3,L14,Piping Engineering,Engineer
+14,Rotating Equipments,API Centrifugal Pumps,3,L14,Piping Engineering,Engineer
+14,Rotating Equipments,Centrifugal / Reciprocating Compressors,3,L14,Piping Engineering,Engineer
+14,Rotating Equipments,Mixers,3,L14,Piping Engineering,Engineer
+14,Rotating Equipments,Positive Displacement Pumps,3,L14,Piping Engineering,Engineer
+14,Rotating Equipments,Steam Turbines,3,L14,Piping Engineering,Engineer
+14,Softwares,BIM 360,2,L14,Piping Engineering,Engineer
+14,Softwares,AutoCad,2,L14,Piping Engineering,Engineer
+14,Softwares,Auto Cad Plant 3D,NA,L14,Piping Engineering,Engineer
+14,Softwares,Micro Station 2D,1,L14,Piping Engineering,Engineer
+14,Softwares,AutoPipe,2,L14,Piping Engineering,Engineer
+14,Softwares,CAESAR II,4,L14,Piping Engineering,Engineer
+14,Softwares,FE Bend,4,L14,Piping Engineering,Engineer
+14,Softwares,FEA Nozzle PRO,4,L14,Piping Engineering,Engineer
+14,Softwares,LFM,3,L14,Piping Engineering,Engineer
+14,Softwares,NAVISWORKS,4,L14,Piping Engineering,Engineer
+14,Softwares,REVIT,2,L14,Piping Engineering,Engineer
+14,Softwares,S3D,1,L14,Piping Engineering,Engineer
+14,Softwares,SPPID,1,L14,Piping Engineering,Engineer
+14,Softwares,SMART PLANT SKETCH (2D),1,L14,Piping Engineering,Engineer
+14,Softwares,SPR- Smart Plant Review,4,L14,Piping Engineering,Engineer
+15,Analysis,FRP Piping,3,L15,Piping Engineering,Engineer
+15,Analysis,GRE Piping ,3,L15,Piping Engineering,Engineer
+15,Analysis,Jacketed Piping Analysis,4,L15,Piping Engineering,Engineer
+15,Analysis,Slug Analysis,4,L15,Piping Engineering,Engineer
+15,Analysis,Surge Analysis,3,L15,Piping Engineering,Engineer
+15,Analysis,Under ground piping analysis,3,L15,Piping Engineering,Engineer
+15,Analysis,AIV/FIV & Vibration Analysis,3,L15,Piping Engineering,Engineer
+15,Fixed Equipments,Air Coolers,4,L15,Piping Engineering,Engineer
+15,Fixed Equipments,Boilers,4,L15,Piping Engineering,Engineer
+15,Fixed Equipments,Desuperheaters,3,L15,Piping Engineering,Engineer
+15,Fixed Equipments,Drums,4,L15,Piping Engineering,Engineer
+15,Fixed Equipments,Flares,3,L15,Piping Engineering,Engineer
+15,Fixed Equipments,Reactors,4,L15,Piping Engineering,Engineer
+15,Fixed Equipments,S & T Exchangers,4,L15,Piping Engineering,Engineer
+15,Fixed Equipments,Spherical Storage Tanks,4,L15,Piping Engineering,Engineer
+15,Fixed Equipments,Towers / Columns,3,L15,Piping Engineering,Engineer
+15,Materials,Carbon Steel,4,L15,Piping Engineering,Engineer
+15,Materials,Stainless Steel,4,L15,Piping Engineering,Engineer
+15,Materials,Alloy Steel,4,L15,Piping Engineering,Engineer
+15,Materials,Non-Metallic - Thermoplastics,3,L15,Piping Engineering,Engineer
+15,Materials,Non-Metallic - Thermosetting,3,L15,Piping Engineering,Engineer
+15,Piping Materials,Line List,4,L15,Piping Engineering,Engineer
+15,Piping Materials,Manual Valve List,4,L15,Piping Engineering,Engineer
+15,Piping Materials,Piping Specialty Item List,4,L15,Piping Engineering,Engineer
+15,Piping Materials,Protective Coatings Specifications,3,L15,Piping Engineering,Engineer
+15,Piping Materials,Insulation Specification,3,L15,Piping Engineering,Engineer
+15,Piping Materials,Steam Tracing Specification,3,L15,Piping Engineering,Engineer
+15,Piping Materials,Pipe Spec Service Index,4,L15,Piping Engineering,Engineer
+15,Piping Materials,Piping Specials Data Sheets,4,L15,Piping Engineering,Engineer
+15,Piping Materials,Specialty Item Specification,4,L15,Piping Engineering,Engineer
+15,Piping Materials,Shop Fab Pipe Specification,4,L15,Piping Engineering,Engineer
+15,Piping Materials,Valve Material Specification,4,L15,Piping Engineering,Engineer
+15,Piping Materials,Fabrication & Welding Specification (PWDS),3,L15,Piping Engineering,Engineer
+15,Piping Materials,Engineered Supports Package,4,L15,Piping Engineering,Engineer
+15,Piping Materials,Piping Eng. Technical Reviews,4,L15,Piping Engineering,Engineer
+15,Piping Materials,Pipe Wall thk / Branch Reinforcement calculation,4,L15,Piping Engineering,Engineer
+15,Piping Materials,Piping Material Specification,4,L15,Piping Engineering,Engineer
+15,Rotating Equipments,Air Compressors,3,L15,Piping Engineering,Engineer
+15,Rotating Equipments,ANSI Pumps,3,L15,Piping Engineering,Engineer
+15,Rotating Equipments,API Centrifugal Pumps,3,L15,Piping Engineering,Engineer
+15,Rotating Equipments,Centrifugal / Reciprocating Compressors,3,L15,Piping Engineering,Engineer
+15,Rotating Equipments,Mixers,3,L15,Piping Engineering,Engineer
+15,Rotating Equipments,Positive Displacement Pumps,3,L15,Piping Engineering,Engineer
+15,Rotating Equipments,Steam Turbines,4,L15,Piping Engineering,Engineer
+15,Softwares,BIM 360,3,L15,Piping Engineering,Engineer
+15,Softwares,AutoCad,3,L15,Piping Engineering,Engineer
+15,Softwares,Auto Cad Plant 3D,NA,L15,Piping Engineering,Engineer
+15,Softwares,Micro Station 2D,2,L15,Piping Engineering,Engineer
+15,Softwares,AutoPipe,2,L15,Piping Engineering,Engineer
+15,Softwares,CAESAR II,4,L15,Piping Engineering,Engineer
+15,Softwares,FE Bend,4,L15,Piping Engineering,Engineer
+15,Softwares,FEA Nozzle PRO,4,L15,Piping Engineering,Engineer
+15,Softwares,LFM,3,L15,Piping Engineering,Engineer
+15,Softwares,NAVISWORKS,4,L15,Piping Engineering,Engineer
+15,Softwares,REVIT,3,L15,Piping Engineering,Engineer
+15,Softwares,S3D,1,L15,Piping Engineering,Engineer
+15,Softwares,SPPID,1,L15,Piping Engineering,Engineer
+15,Softwares,SMART PLANT SKETCH (2D),1,L15,Piping Engineering,Engineer
+15,Softwares,SPR- Smart Plant Review,4,L15,Piping Engineering,Engineer
+16,Analysis,FRP Piping,4,L16,Piping Engineering,Engineer
+16,Analysis,GRE Piping ,4,L16,Piping Engineering,Engineer
+16,Analysis,Jacketed Piping Analysis,4,L16,Piping Engineering,Engineer
+16,Analysis,Slug Analysis,4,L16,Piping Engineering,Engineer
+16,Analysis,Surge Analysis,4,L16,Piping Engineering,Engineer
+16,Analysis,Under ground piping analysis,4,L16,Piping Engineering,Engineer
+16,Analysis,AIV/FIV & Vibration Analysis,3,L16,Piping Engineering,Engineer
+16,Fixed Equipments,Air Coolers,4,L16,Piping Engineering,Engineer
+16,Fixed Equipments,Boilers,4,L16,Piping Engineering,Engineer
+16,Fixed Equipments,Desuperheaters,3,L16,Piping Engineering,Engineer
+16,Fixed Equipments,Drums,4,L16,Piping Engineering,Engineer
+16,Fixed Equipments,Flares,4,L16,Piping Engineering,Engineer
+16,Fixed Equipments,Reactors,4,L16,Piping Engineering,Engineer
+16,Fixed Equipments,S & T Exchangers,4,L16,Piping Engineering,Engineer
+16,Fixed Equipments,Spherical Storage Tanks,4,L16,Piping Engineering,Engineer
+16,Fixed Equipments,Towers / Columns,3,L16,Piping Engineering,Engineer
+16,Materials,Carbon Steel,4,L16,Piping Engineering,Engineer
+16,Materials,Stainless Steel,4,L16,Piping Engineering,Engineer
+16,Materials,Alloy Steel,4,L16,Piping Engineering,Engineer
+16,Materials,Non-Metallic - Thermoplastics,3,L16,Piping Engineering,Engineer
+16,Materials,Non-Metallic - Thermosetting,3,L16,Piping Engineering,Engineer
+16,Piping Materials,Line List,4,L16,Piping Engineering,Engineer
+16,Piping Materials,Manual Valve List,4,L16,Piping Engineering,Engineer
+16,Piping Materials,Piping Specialty Item List,4,L16,Piping Engineering,Engineer
+16,Piping Materials,Protective Coatings Specifications,3,L16,Piping Engineering,Engineer
+16,Piping Materials,Insulation Specification,3,L16,Piping Engineering,Engineer
+16,Piping Materials,Steam Tracing Specification,3,L16,Piping Engineering,Engineer
+16,Piping Materials,Pipe Spec Service Index,4,L16,Piping Engineering,Engineer
+16,Piping Materials,Piping Specials Data Sheets,4,L16,Piping Engineering,Engineer
+16,Piping Materials,Specialty Item Specification,4,L16,Piping Engineering,Engineer
+16,Piping Materials,Shop Fab Pipe Specification,4,L16,Piping Engineering,Engineer
+16,Piping Materials,Valve Material Specification,4,L16,Piping Engineering,Engineer
+16,Piping Materials,Fabrication & Welding Specification (PWDS),3,L16,Piping Engineering,Engineer
+16,Piping Materials,Engineered Supports Package,4,L16,Piping Engineering,Engineer
+16,Piping Materials,Piping Eng. Technical Reviews,4,L16,Piping Engineering,Engineer
+16,Piping Materials,Pipe Wall thk / Branch Reinforcement calculation,4,L16,Piping Engineering,Engineer
+16,Piping Materials,Piping Material Specification,4,L16,Piping Engineering,Engineer
+16,Rotating Equipments,Air Compressors,3,L16,Piping Engineering,Engineer
+16,Rotating Equipments,ANSI Pumps,4,L16,Piping Engineering,Engineer
+16,Rotating Equipments,API Centrifugal Pumps,4,L16,Piping Engineering,Engineer
+16,Rotating Equipments,Centrifugal / Reciprocating Compressors,4,L16,Piping Engineering,Engineer
+16,Rotating Equipments,Mixers,3,L16,Piping Engineering,Engineer
+16,Rotating Equipments,Positive Displacement Pumps,4,L16,Piping Engineering,Engineer
+16,Rotating Equipments,Steam Turbines,4,L16,Piping Engineering,Engineer
+16,Softwares,BIM 360,3,L16,Piping Engineering,Engineer
+16,Softwares,AutoCad,3,L16,Piping Engineering,Engineer
+16,Softwares,Auto Cad Plant 3D,NA,L16,Piping Engineering,Engineer
+16,Softwares,Micro Station 2D,2,L16,Piping Engineering,Engineer
+16,Softwares,AutoPipe,2,L16,Piping Engineering,Engineer
+16,Softwares,CAESAR II,4,L16,Piping Engineering,Engineer
+16,Softwares,FE Bend,4,L16,Piping Engineering,Engineer
+16,Softwares,FEA Nozzle PRO,4,L16,Piping Engineering,Engineer
+16,Softwares,LFM,3,L16,Piping Engineering,Engineer
+16,Softwares,NAVISWORKS,4,L16,Piping Engineering,Engineer
+16,Softwares,REVIT,3,L16,Piping Engineering,Engineer
+16,Softwares,S3D,1,L16,Piping Engineering,Engineer
+16,Softwares,SPPID,1,L16,Piping Engineering,Engineer
+16,Softwares,SMART PLANT SKETCH (2D),1,L16,Piping Engineering,Engineer
+16,Softwares,SPR- Smart Plant Review,4,L16,Piping Engineering,Engineer
+17,Analysis,FRP Piping,4,L17,Piping Engineering,Engineer
+17,Analysis,GRE Piping ,4,L17,Piping Engineering,Engineer
+17,Analysis,Jacketed Piping Analysis,4,L17,Piping Engineering,Engineer
+17,Analysis,Slug Analysis,4,L17,Piping Engineering,Engineer
+17,Analysis,Surge Analysis,4,L17,Piping Engineering,Engineer
+17,Analysis,Under ground piping analysis,4,L17,Piping Engineering,Engineer
+17,Analysis,AIV/FIV & Vibration Analysis,4,L17,Piping Engineering,Engineer
+17,Fixed Equipments,Air Coolers,4,L17,Piping Engineering,Engineer
+17,Fixed Equipments,Boilers,4,L17,Piping Engineering,Engineer
+17,Fixed Equipments,Desuperheaters,4,L17,Piping Engineering,Engineer
+17,Fixed Equipments,Drums,4,L17,Piping Engineering,Engineer
+17,Fixed Equipments,Flares,4,L17,Piping Engineering,Engineer
+17,Fixed Equipments,Reactors,4,L17,Piping Engineering,Engineer
+17,Fixed Equipments,S & T Exchangers,4,L17,Piping Engineering,Engineer
+17,Fixed Equipments,Spherical Storage Tanks,4,L17,Piping Engineering,Engineer
+17,Fixed Equipments,Towers / Columns,4,L17,Piping Engineering,Engineer
+17,Materials,Carbon Steel,4,L17,Piping Engineering,Engineer
+17,Materials,Stainless Steel,4,L17,Piping Engineering,Engineer
+17,Materials,Alloy Steel,4,L17,Piping Engineering,Engineer
+17,Materials,Non-Metallic - Thermoplastics,4,L17,Piping Engineering,Engineer
+17,Materials,Non-Metallic - Thermosetting,4,L17,Piping Engineering,Engineer
+17,Piping Materials,Line List,4,L17,Piping Engineering,Engineer
+17,Piping Materials,Manual Valve List,4,L17,Piping Engineering,Engineer
+17,Piping Materials,Piping Specialty Item List,4,L17,Piping Engineering,Engineer
+17,Piping Materials,Protective Coatings Specifications,4,L17,Piping Engineering,Engineer
+17,Piping Materials,Insulation Specification,4,L17,Piping Engineering,Engineer
+17,Piping Materials,Steam Tracing Specification,4,L17,Piping Engineering,Engineer
+17,Piping Materials,Pipe Spec Service Index,4,L17,Piping Engineering,Engineer
+17,Piping Materials,Piping Specials Data Sheets,4,L17,Piping Engineering,Engineer
+17,Piping Materials,Specialty Item Specification,4,L17,Piping Engineering,Engineer
+17,Piping Materials,Shop Fab Pipe Specification,4,L17,Piping Engineering,Engineer
+17,Piping Materials,Valve Material Specification,4,L17,Piping Engineering,Engineer
+17,Piping Materials,Fabrication & Welding Specification (PWDS),4,L17,Piping Engineering,Engineer
+17,Piping Materials,Engineered Supports Package,4,L17,Piping Engineering,Engineer
+17,Piping Materials,Piping Eng. Technical Reviews,4,L17,Piping Engineering,Engineer
+17,Piping Materials,Pipe Wall thk / Branch Reinforcement calculation,4,L17,Piping Engineering,Engineer
+17,Piping Materials,Piping Material Specification,4,L17,Piping Engineering,Engineer
+17,Rotating Equipments,Air Compressors,4,L17,Piping Engineering,Engineer
+17,Rotating Equipments,ANSI Pumps,4,L17,Piping Engineering,Engineer
+17,Rotating Equipments,API Centrifugal Pumps,4,L17,Piping Engineering,Engineer
+17,Rotating Equipments,Centrifugal / Reciprocating Compressors,4,L17,Piping Engineering,Engineer
+17,Rotating Equipments,Mixers,4,L17,Piping Engineering,Engineer
+17,Rotating Equipments,Positive Displacement Pumps,4,L17,Piping Engineering,Engineer
+17,Rotating Equipments,Steam Turbines,4,L17,Piping Engineering,Engineer
+17,Softwares,BIM 360,4,L17,Piping Engineering,Engineer
+17,Softwares,AutoCad,4,L17,Piping Engineering,Engineer
+17,Softwares,Auto Cad Plant 3D,NA,L17,Piping Engineering,Engineer
+17,Softwares,Micro Station 2D,3,L17,Piping Engineering,Engineer
+17,Softwares,AutoPipe,2,L17,Piping Engineering,Engineer
+17,Softwares,CAESAR II,4,L17,Piping Engineering,Engineer
+17,Softwares,FE Bend,4,L17,Piping Engineering,Engineer
+17,Softwares,FEA Nozzle PRO,4,L17,Piping Engineering,Engineer
+17,Softwares,LFM,3,L17,Piping Engineering,Engineer
+17,Softwares,NAVISWORKS,4,L17,Piping Engineering,Engineer
+17,Softwares,REVIT,3,L17,Piping Engineering,Engineer
+17,Softwares,S3D,1,L17,Piping Engineering,Engineer
+17,Softwares,SPPID,1,L17,Piping Engineering,Engineer
+17,Softwares,SMART PLANT SKETCH (2D),1,L17,Piping Engineering,Engineer
+17,Softwares,SPR- Smart Plant Review,4,L17,Piping Engineering,Engineer

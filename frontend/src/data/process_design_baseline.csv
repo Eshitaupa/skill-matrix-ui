@@ -1,0 +1,408 @@
+﻿Level,Skill,Subskill,Value,LevelKey,Discipline,Role
+5,Deliverables , PFD / HMB / Process Description,NA,L5,Process,Designer
+5,Deliverables , Process Design Basis,NA,L5,Process,Designer
+5,Deliverables , Hazardous Source List,NA,L5,Process,Designer
+5,Deliverables , Cause &  Effect / Control Narrative,NA,L5,Process,Designer
+5,Deliverables , Equipment List,NA,L5,Process,Designer
+5,Deliverables , Utility Summary,NA,L5,Process,Designer
+5,Deliverables , Emission Summary,NA,L5,Process,Designer
+5,Deliverables , Line list / DPDT,NA,L5,Process,Designer
+5,Deliverables , Slug Flow Analysis,NA,L5,Process,Designer
+5,Deliverables , P&ID Preparation,NA,L5,Process,Designer
+5,Deliverables , Hydraulics Pumps,NA,L5,Process,Designer
+5,Deliverables , Vessel Sizing,NA,L5,Process,Designer
+5,Deliverables , Line sizing,NA,L5,Process,Designer
+5,Deliverables , PDS Inst. - IPDS,NA,L5,Process,Designer
+5,Deliverables , Proces Datasheets,NA,L5,Process,Designer
+5,Deliverables , PSV Calculation,NA,L5,Process,Designer
+5,Deliverables , Op. Manual,NA,L5,Process,Designer
+5,Deliverables , Thermal datasheet Heat Exchanger ,NA,L5,Process,Designer
+5,Activities , Vendor document review,NA,L5,Process,Designer
+5,Activities , Model review,NA,L5,Process,Designer
+5,Activities , Hazop Particpation,NA,L5,Process,Designer
+5,Column3,,NA,L5,Process,Designer
+5,Software Skills , simulation - Petrosim,NA,L5,Process,Designer
+5,Column4,,NA,L5,Process,Designer
+5,Software Skills , Simulation - Pro-II,NA,L5,Process,Designer
+5,Software Skills , Simulation - Promax,NA,L5,Process,Designer
+5,Software Skills , Navisworks,NA,L5,Process,Designer
+5,Software Skills , Flarenet,NA,L5,Process,Designer
+5,Software Skills , Autocad,NA,L5,Process,Designer
+5,Software Skills , Autocad5,NA,L5,Process,Designer
+5,Software Skills , Drafting Microstation,NA,L5,Process,Designer
+5,Software Skills , PDS-2D,NA,L5,Process,Designer
+5,Software Skills , PDS-2D6,NA,L5,Process,Designer
+5,Software Skills , SMARTPLANT,NA,L5,Process,Designer
+5,Software Skills , SMARTPLANT7,NA,L5,Process,Designer
+5,Software Skills , Aveva Drafting ,NA,L5,Process,Designer
+5,Software Skills , Aveva Database,NA,L5,Process,Designer
+6,Deliverables , PFD / HMB / Process Description,NA,L6,Process,Designer
+6,Deliverables , Process Design Basis,NA,L6,Process,Designer
+6,Deliverables , Hazardous Source List,NA,L6,Process,Designer
+6,Deliverables , Cause &  Effect / Control Narrative,NA,L6,Process,Designer
+6,Deliverables , Equipment List,NA,L6,Process,Designer
+6,Deliverables , Utility Summary,NA,L6,Process,Designer
+6,Deliverables , Emission Summary,NA,L6,Process,Designer
+6,Deliverables , Line list / DPDT,NA,L6,Process,Designer
+6,Deliverables , Slug Flow Analysis,NA,L6,Process,Designer
+6,Deliverables , P&ID Preparation,NA,L6,Process,Designer
+6,Deliverables , Hydraulics Pumps,NA,L6,Process,Designer
+6,Deliverables , Vessel Sizing,NA,L6,Process,Designer
+6,Deliverables , Line sizing,NA,L6,Process,Designer
+6,Deliverables , PDS Inst. - IPDS,NA,L6,Process,Designer
+6,Deliverables , Proces Datasheets,NA,L6,Process,Designer
+6,Deliverables , PSV Calculation,NA,L6,Process,Designer
+6,Deliverables , Op. Manual,NA,L6,Process,Designer
+6,Deliverables , Thermal datasheet Heat Exchanger ,NA,L6,Process,Designer
+6,Activities , Vendor document review,NA,L6,Process,Designer
+6,Activities , Model review,NA,L6,Process,Designer
+6,Activities , Hazop Particpation,NA,L6,Process,Designer
+6,Column3,,NA,L6,Process,Designer
+6,Software Skills , simulation - Petrosim,NA,L6,Process,Designer
+6,Column4,,NA,L6,Process,Designer
+6,Software Skills , Simulation - Pro-II,NA,L6,Process,Designer
+6,Software Skills , Simulation - Promax,NA,L6,Process,Designer
+6,Software Skills , Navisworks,NA,L6,Process,Designer
+6,Software Skills , Flarenet,NA,L6,Process,Designer
+6,Software Skills , Autocad,NA,L6,Process,Designer
+6,Software Skills , Autocad5,NA,L6,Process,Designer
+6,Software Skills , Drafting Microstation,NA,L6,Process,Designer
+6,Software Skills , PDS-2D,NA,L6,Process,Designer
+6,Software Skills , PDS-2D6,NA,L6,Process,Designer
+6,Software Skills , SMARTPLANT,NA,L6,Process,Designer
+6,Software Skills , SMARTPLANT7,NA,L6,Process,Designer
+6,Software Skills , Aveva Drafting ,NA,L6,Process,Designer
+6,Software Skills , Aveva Database,NA,L6,Process,Designer
+7,Deliverables , PFD / HMB / Process Description,NA,L7,Process,Designer
+7,Deliverables , Process Design Basis,NA,L7,Process,Designer
+7,Deliverables , Hazardous Source List,NA,L7,Process,Designer
+7,Deliverables , Cause &  Effect / Control Narrative,NA,L7,Process,Designer
+7,Deliverables , Equipment List,NA,L7,Process,Designer
+7,Deliverables , Utility Summary,NA,L7,Process,Designer
+7,Deliverables , Emission Summary,NA,L7,Process,Designer
+7,Deliverables , Line list / DPDT,NA,L7,Process,Designer
+7,Deliverables , Slug Flow Analysis,NA,L7,Process,Designer
+7,Deliverables , P&ID Preparation,NA,L7,Process,Designer
+7,Deliverables , Hydraulics Pumps,NA,L7,Process,Designer
+7,Deliverables , Vessel Sizing,NA,L7,Process,Designer
+7,Deliverables , Line sizing,NA,L7,Process,Designer
+7,Deliverables , PDS Inst. - IPDS,NA,L7,Process,Designer
+7,Deliverables , Proces Datasheets,NA,L7,Process,Designer
+7,Deliverables , PSV Calculation,NA,L7,Process,Designer
+7,Deliverables , Op. Manual,NA,L7,Process,Designer
+7,Deliverables , Thermal datasheet Heat Exchanger ,NA,L7,Process,Designer
+7,Activities , Vendor document review,NA,L7,Process,Designer
+7,Activities , Model review,NA,L7,Process,Designer
+7,Activities , Hazop Particpation,NA,L7,Process,Designer
+7,Column3,,NA,L7,Process,Designer
+7,Software Skills , simulation - Petrosim,NA,L7,Process,Designer
+7,Column4,,NA,L7,Process,Designer
+7,Software Skills , Simulation - Pro-II,NA,L7,Process,Designer
+7,Software Skills , Simulation - Promax,NA,L7,Process,Designer
+7,Software Skills , Navisworks,NA,L7,Process,Designer
+7,Software Skills , Flarenet,NA,L7,Process,Designer
+7,Software Skills , Autocad,NA,L7,Process,Designer
+7,Software Skills , Autocad5,NA,L7,Process,Designer
+7,Software Skills , Drafting Microstation,NA,L7,Process,Designer
+7,Software Skills , PDS-2D,NA,L7,Process,Designer
+7,Software Skills , PDS-2D6,NA,L7,Process,Designer
+7,Software Skills , SMARTPLANT,NA,L7,Process,Designer
+7,Software Skills , SMARTPLANT7,NA,L7,Process,Designer
+7,Software Skills , Aveva Drafting ,NA,L7,Process,Designer
+7,Software Skills , Aveva Database,NA,L7,Process,Designer
+8,Deliverables , PFD / HMB / Process Description,NA,L8,Process,Designer
+8,Deliverables , Process Design Basis,NA,L8,Process,Designer
+8,Deliverables , Hazardous Source List,NA,L8,Process,Designer
+8,Deliverables , Cause &  Effect / Control Narrative,NA,L8,Process,Designer
+8,Deliverables , Equipment List,NA,L8,Process,Designer
+8,Deliverables , Utility Summary,NA,L8,Process,Designer
+8,Deliverables , Emission Summary,NA,L8,Process,Designer
+8,Deliverables , Line list / DPDT,NA,L8,Process,Designer
+8,Deliverables , Slug Flow Analysis,NA,L8,Process,Designer
+8,Deliverables , P&ID Preparation,NA,L8,Process,Designer
+8,Deliverables , Hydraulics Pumps,NA,L8,Process,Designer
+8,Deliverables , Vessel Sizing,NA,L8,Process,Designer
+8,Deliverables , Line sizing,NA,L8,Process,Designer
+8,Deliverables , PDS Inst. - IPDS,NA,L8,Process,Designer
+8,Deliverables , Proces Datasheets,NA,L8,Process,Designer
+8,Deliverables , PSV Calculation,NA,L8,Process,Designer
+8,Deliverables , Op. Manual,NA,L8,Process,Designer
+8,Deliverables , Thermal datasheet Heat Exchanger ,NA,L8,Process,Designer
+8,Activities , Vendor document review,NA,L8,Process,Designer
+8,Activities , Model review,NA,L8,Process,Designer
+8,Activities , Hazop Particpation,NA,L8,Process,Designer
+8,Column3,,NA,L8,Process,Designer
+8,Software Skills , simulation - Petrosim,NA,L8,Process,Designer
+8,Column4,,NA,L8,Process,Designer
+8,Software Skills , Simulation - Pro-II,NA,L8,Process,Designer
+8,Software Skills , Simulation - Promax,NA,L8,Process,Designer
+8,Software Skills , Navisworks,NA,L8,Process,Designer
+8,Software Skills , Flarenet,NA,L8,Process,Designer
+8,Software Skills , Autocad,1,L8,Process,Designer
+8,Software Skills , Autocad5,1,L8,Process,Designer
+8,Software Skills , Drafting Microstation,1,L8,Process,Designer
+8,Software Skills , PDS-2D,1,L8,Process,Designer
+8,Software Skills , PDS-2D6,1,L8,Process,Designer
+8,Software Skills , SMARTPLANT,1,L8,Process,Designer
+8,Software Skills , SMARTPLANT7,1,L8,Process,Designer
+8,Software Skills , Aveva Drafting ,1,L8,Process,Designer
+8,Software Skills , Aveva Database,1,L8,Process,Designer
+9,Deliverables , PFD / HMB / Process Description,NA,L9,Process,Designer
+9,Deliverables , Process Design Basis,NA,L9,Process,Designer
+9,Deliverables , Hazardous Source List,NA,L9,Process,Designer
+9,Deliverables , Cause &  Effect / Control Narrative,NA,L9,Process,Designer
+9,Deliverables , Equipment List,NA,L9,Process,Designer
+9,Deliverables , Utility Summary,NA,L9,Process,Designer
+9,Deliverables , Emission Summary,NA,L9,Process,Designer
+9,Deliverables , Line list / DPDT,NA,L9,Process,Designer
+9,Deliverables , Slug Flow Analysis,NA,L9,Process,Designer
+9,Deliverables , P&ID Preparation,NA,L9,Process,Designer
+9,Deliverables , Hydraulics Pumps,NA,L9,Process,Designer
+9,Deliverables , Vessel Sizing,NA,L9,Process,Designer
+9,Deliverables , Line sizing,NA,L9,Process,Designer
+9,Deliverables , PDS Inst. - IPDS,NA,L9,Process,Designer
+9,Deliverables , Proces Datasheets,NA,L9,Process,Designer
+9,Deliverables , PSV Calculation,NA,L9,Process,Designer
+9,Deliverables , Op. Manual,NA,L9,Process,Designer
+9,Deliverables , Thermal datasheet Heat Exchanger ,NA,L9,Process,Designer
+9,Activities , Vendor document review,NA,L9,Process,Designer
+9,Activities , Model review,NA,L9,Process,Designer
+9,Activities , Hazop Particpation,NA,L9,Process,Designer
+9,Column3,,NA,L9,Process,Designer
+9,Software Skills , simulation - Petrosim,NA,L9,Process,Designer
+9,Column4,,NA,L9,Process,Designer
+9,Software Skills , Simulation - Pro-II,NA,L9,Process,Designer
+9,Software Skills , Simulation - Promax,NA,L9,Process,Designer
+9,Software Skills , Navisworks,NA,L9,Process,Designer
+9,Software Skills , Flarenet,NA,L9,Process,Designer
+9,Software Skills , Autocad,1,L9,Process,Designer
+9,Software Skills , Autocad5,1,L9,Process,Designer
+9,Software Skills , Drafting Microstation,1,L9,Process,Designer
+9,Software Skills , PDS-2D,1,L9,Process,Designer
+9,Software Skills , PDS-2D6,1,L9,Process,Designer
+9,Software Skills , SMARTPLANT,1,L9,Process,Designer
+9,Software Skills , SMARTPLANT7,1,L9,Process,Designer
+9,Software Skills , Aveva Drafting ,1,L9,Process,Designer
+9,Software Skills , Aveva Database,1,L9,Process,Designer
+10,Deliverables , PFD / HMB / Process Description,NA,L10,Process,Designer
+10,Deliverables , Process Design Basis,NA,L10,Process,Designer
+10,Deliverables , Hazardous Source List,NA,L10,Process,Designer
+10,Deliverables , Cause &  Effect / Control Narrative,NA,L10,Process,Designer
+10,Deliverables , Equipment List,NA,L10,Process,Designer
+10,Deliverables , Utility Summary,NA,L10,Process,Designer
+10,Deliverables , Emission Summary,NA,L10,Process,Designer
+10,Deliverables , Line list / DPDT,NA,L10,Process,Designer
+10,Deliverables , Slug Flow Analysis,NA,L10,Process,Designer
+10,Deliverables , P&ID Preparation,NA,L10,Process,Designer
+10,Deliverables , Hydraulics Pumps,NA,L10,Process,Designer
+10,Deliverables , Vessel Sizing,NA,L10,Process,Designer
+10,Deliverables , Line sizing,NA,L10,Process,Designer
+10,Deliverables , PDS Inst. - IPDS,NA,L10,Process,Designer
+10,Deliverables , Proces Datasheets,NA,L10,Process,Designer
+10,Deliverables , PSV Calculation,NA,L10,Process,Designer
+10,Deliverables , Op. Manual,NA,L10,Process,Designer
+10,Deliverables , Thermal datasheet Heat Exchanger ,NA,L10,Process,Designer
+10,Activities , Vendor document review,NA,L10,Process,Designer
+10,Activities , Model review,NA,L10,Process,Designer
+10,Activities , Hazop Particpation,NA,L10,Process,Designer
+10,Column3,,NA,L10,Process,Designer
+10,Software Skills , simulation - Petrosim,NA,L10,Process,Designer
+10,Column4,,NA,L10,Process,Designer
+10,Software Skills , Simulation - Pro-II,NA,L10,Process,Designer
+10,Software Skills , Simulation - Promax,NA,L10,Process,Designer
+10,Software Skills , Navisworks,NA,L10,Process,Designer
+10,Software Skills , Flarenet,NA,L10,Process,Designer
+10,Software Skills , Autocad,2,L10,Process,Designer
+10,Software Skills , Autocad5,2,L10,Process,Designer
+10,Software Skills , Drafting Microstation,2,L10,Process,Designer
+10,Software Skills , PDS-2D,2,L10,Process,Designer
+10,Software Skills , PDS-2D6,2,L10,Process,Designer
+10,Software Skills , SMARTPLANT,2,L10,Process,Designer
+10,Software Skills , SMARTPLANT7,2,L10,Process,Designer
+10,Software Skills , Aveva Drafting ,2,L10,Process,Designer
+10,Software Skills , Aveva Database,2,L10,Process,Designer
+11,Deliverables , PFD / HMB / Process Description,NA,L11,Process,Designer
+11,Deliverables , Process Design Basis,NA,L11,Process,Designer
+11,Deliverables , Hazardous Source List,NA,L11,Process,Designer
+11,Deliverables , Cause &  Effect / Control Narrative,NA,L11,Process,Designer
+11,Deliverables , Equipment List,NA,L11,Process,Designer
+11,Deliverables , Utility Summary,NA,L11,Process,Designer
+11,Deliverables , Emission Summary,NA,L11,Process,Designer
+11,Deliverables , Line list / DPDT,NA,L11,Process,Designer
+11,Deliverables , Slug Flow Analysis,NA,L11,Process,Designer
+11,Deliverables , P&ID Preparation,NA,L11,Process,Designer
+11,Deliverables , Hydraulics Pumps,NA,L11,Process,Designer
+11,Deliverables , Vessel Sizing,NA,L11,Process,Designer
+11,Deliverables , Line sizing,NA,L11,Process,Designer
+11,Deliverables , PDS Inst. - IPDS,NA,L11,Process,Designer
+11,Deliverables , Proces Datasheets,NA,L11,Process,Designer
+11,Deliverables , PSV Calculation,NA,L11,Process,Designer
+11,Deliverables , Op. Manual,NA,L11,Process,Designer
+11,Deliverables , Thermal datasheet Heat Exchanger ,NA,L11,Process,Designer
+11,Activities , Vendor document review,NA,L11,Process,Designer
+11,Activities , Model review,NA,L11,Process,Designer
+11,Activities , Hazop Particpation,NA,L11,Process,Designer
+11,Column3,,NA,L11,Process,Designer
+11,Software Skills , simulation - Petrosim,NA,L11,Process,Designer
+11,Column4,,NA,L11,Process,Designer
+11,Software Skills , Simulation - Pro-II,NA,L11,Process,Designer
+11,Software Skills , Simulation - Promax,NA,L11,Process,Designer
+11,Software Skills , Navisworks,NA,L11,Process,Designer
+11,Software Skills , Flarenet,NA,L11,Process,Designer
+11,Software Skills , Autocad,2,L11,Process,Designer
+11,Software Skills , Autocad5,2,L11,Process,Designer
+11,Software Skills , Drafting Microstation,2,L11,Process,Designer
+11,Software Skills , PDS-2D,2,L11,Process,Designer
+11,Software Skills , PDS-2D6,2,L11,Process,Designer
+11,Software Skills , SMARTPLANT,2,L11,Process,Designer
+11,Software Skills , SMARTPLANT7,2,L11,Process,Designer
+11,Software Skills , Aveva Drafting ,2,L11,Process,Designer
+11,Software Skills , Aveva Database,2,L11,Process,Designer
+12,Deliverables , PFD / HMB / Process Description,NA,L12,Process,Designer
+12,Deliverables , Process Design Basis,NA,L12,Process,Designer
+12,Deliverables , Hazardous Source List,NA,L12,Process,Designer
+12,Deliverables , Cause &  Effect / Control Narrative,NA,L12,Process,Designer
+12,Deliverables , Equipment List,NA,L12,Process,Designer
+12,Deliverables , Utility Summary,NA,L12,Process,Designer
+12,Deliverables , Emission Summary,NA,L12,Process,Designer
+12,Deliverables , Line list / DPDT,NA,L12,Process,Designer
+12,Deliverables , Slug Flow Analysis,NA,L12,Process,Designer
+12,Deliverables , P&ID Preparation,NA,L12,Process,Designer
+12,Deliverables , Hydraulics Pumps,NA,L12,Process,Designer
+12,Deliverables , Vessel Sizing,NA,L12,Process,Designer
+12,Deliverables , Line sizing,NA,L12,Process,Designer
+12,Deliverables , PDS Inst. - IPDS,NA,L12,Process,Designer
+12,Deliverables , Proces Datasheets,NA,L12,Process,Designer
+12,Deliverables , PSV Calculation,NA,L12,Process,Designer
+12,Deliverables , Op. Manual,NA,L12,Process,Designer
+12,Deliverables , Thermal datasheet Heat Exchanger ,NA,L12,Process,Designer
+12,Activities , Vendor document review,NA,L12,Process,Designer
+12,Activities , Model review,NA,L12,Process,Designer
+12,Activities , Hazop Particpation,NA,L12,Process,Designer
+12,Column3,,NA,L12,Process,Designer
+12,Software Skills , simulation - Petrosim,NA,L12,Process,Designer
+12,Column4,,NA,L12,Process,Designer
+12,Software Skills , Simulation - Pro-II,NA,L12,Process,Designer
+12,Software Skills , Simulation - Promax,NA,L12,Process,Designer
+12,Software Skills , Navisworks,NA,L12,Process,Designer
+12,Software Skills , Flarenet,NA,L12,Process,Designer
+12,Software Skills , Autocad,3,L12,Process,Designer
+12,Software Skills , Autocad5,3,L12,Process,Designer
+12,Software Skills , Drafting Microstation,3,L12,Process,Designer
+12,Software Skills , PDS-2D,3,L12,Process,Designer
+12,Software Skills , PDS-2D6,3,L12,Process,Designer
+12,Software Skills , SMARTPLANT,3,L12,Process,Designer
+12,Software Skills , SMARTPLANT7,3,L12,Process,Designer
+12,Software Skills , Aveva Drafting ,3,L12,Process,Designer
+12,Software Skills , Aveva Database,3,L12,Process,Designer
+13,Deliverables , PFD / HMB / Process Description,NA,L13,Process,Designer
+13,Deliverables , Process Design Basis,NA,L13,Process,Designer
+13,Deliverables , Hazardous Source List,NA,L13,Process,Designer
+13,Deliverables , Cause &  Effect / Control Narrative,NA,L13,Process,Designer
+13,Deliverables , Equipment List,NA,L13,Process,Designer
+13,Deliverables , Utility Summary,NA,L13,Process,Designer
+13,Deliverables , Emission Summary,NA,L13,Process,Designer
+13,Deliverables , Line list / DPDT,NA,L13,Process,Designer
+13,Deliverables , Slug Flow Analysis,NA,L13,Process,Designer
+13,Deliverables , P&ID Preparation,NA,L13,Process,Designer
+13,Deliverables , Hydraulics Pumps,NA,L13,Process,Designer
+13,Deliverables , Vessel Sizing,NA,L13,Process,Designer
+13,Deliverables , Line sizing,NA,L13,Process,Designer
+13,Deliverables , PDS Inst. - IPDS,NA,L13,Process,Designer
+13,Deliverables , Proces Datasheets,NA,L13,Process,Designer
+13,Deliverables , PSV Calculation,NA,L13,Process,Designer
+13,Deliverables , Op. Manual,NA,L13,Process,Designer
+13,Deliverables , Thermal datasheet Heat Exchanger ,NA,L13,Process,Designer
+13,Activities , Vendor document review,NA,L13,Process,Designer
+13,Activities , Model review,NA,L13,Process,Designer
+13,Activities , Hazop Particpation,NA,L13,Process,Designer
+13,Column3,,NA,L13,Process,Designer
+13,Software Skills , simulation - Petrosim,NA,L13,Process,Designer
+13,Column4,,NA,L13,Process,Designer
+13,Software Skills , Simulation - Pro-II,NA,L13,Process,Designer
+13,Software Skills , Simulation - Promax,NA,L13,Process,Designer
+13,Software Skills , Navisworks,NA,L13,Process,Designer
+13,Software Skills , Flarenet,NA,L13,Process,Designer
+13,Software Skills , Autocad,3,L13,Process,Designer
+13,Software Skills , Autocad5,3,L13,Process,Designer
+13,Software Skills , Drafting Microstation,3,L13,Process,Designer
+13,Software Skills , PDS-2D,3,L13,Process,Designer
+13,Software Skills , PDS-2D6,3,L13,Process,Designer
+13,Software Skills , SMARTPLANT,3,L13,Process,Designer
+13,Software Skills , SMARTPLANT7,3,L13,Process,Designer
+13,Software Skills , Aveva Drafting ,3,L13,Process,Designer
+13,Software Skills , Aveva Database,3,L13,Process,Designer
+14,Deliverables , PFD / HMB / Process Description,NA,L14,Process,Designer
+14,Deliverables , Process Design Basis,NA,L14,Process,Designer
+14,Deliverables , Hazardous Source List,NA,L14,Process,Designer
+14,Deliverables , Cause &  Effect / Control Narrative,NA,L14,Process,Designer
+14,Deliverables , Equipment List,NA,L14,Process,Designer
+14,Deliverables , Utility Summary,NA,L14,Process,Designer
+14,Deliverables , Emission Summary,NA,L14,Process,Designer
+14,Deliverables , Line list / DPDT,NA,L14,Process,Designer
+14,Deliverables , Slug Flow Analysis,NA,L14,Process,Designer
+14,Deliverables , P&ID Preparation,NA,L14,Process,Designer
+14,Deliverables , Hydraulics Pumps,NA,L14,Process,Designer
+14,Deliverables , Vessel Sizing,NA,L14,Process,Designer
+14,Deliverables , Line sizing,NA,L14,Process,Designer
+14,Deliverables , PDS Inst. - IPDS,NA,L14,Process,Designer
+14,Deliverables , Proces Datasheets,NA,L14,Process,Designer
+14,Deliverables , PSV Calculation,NA,L14,Process,Designer
+14,Deliverables , Op. Manual,NA,L14,Process,Designer
+14,Deliverables , Thermal datasheet Heat Exchanger ,NA,L14,Process,Designer
+14,Activities , Vendor document review,NA,L14,Process,Designer
+14,Activities , Model review,NA,L14,Process,Designer
+14,Activities , Hazop Particpation,NA,L14,Process,Designer
+14,Column3,,NA,L14,Process,Designer
+14,Software Skills , simulation - Petrosim,NA,L14,Process,Designer
+14,Column4,,NA,L14,Process,Designer
+14,Software Skills , Simulation - Pro-II,NA,L14,Process,Designer
+14,Software Skills , Simulation - Promax,NA,L14,Process,Designer
+14,Software Skills , Navisworks,NA,L14,Process,Designer
+14,Software Skills , Flarenet,NA,L14,Process,Designer
+14,Software Skills , Autocad,3,L14,Process,Designer
+14,Software Skills , Autocad5,3,L14,Process,Designer
+14,Software Skills , Drafting Microstation,3,L14,Process,Designer
+14,Software Skills , PDS-2D,3,L14,Process,Designer
+14,Software Skills , PDS-2D6,3,L14,Process,Designer
+14,Software Skills , SMARTPLANT,3,L14,Process,Designer
+14,Software Skills , SMARTPLANT7,3,L14,Process,Designer
+14,Software Skills , Aveva Drafting ,3,L14,Process,Designer
+14,Software Skills , Aveva Database,3,L14,Process,Designer
+15,Deliverables , PFD / HMB / Process Description,NA,L15,Process,Designer
+15,Deliverables , Process Design Basis,NA,L15,Process,Designer
+15,Deliverables , Hazardous Source List,NA,L15,Process,Designer
+15,Deliverables , Cause &  Effect / Control Narrative,NA,L15,Process,Designer
+15,Deliverables , Equipment List,NA,L15,Process,Designer
+15,Deliverables , Utility Summary,NA,L15,Process,Designer
+15,Deliverables , Emission Summary,NA,L15,Process,Designer
+15,Deliverables , Line list / DPDT,NA,L15,Process,Designer
+15,Deliverables , Slug Flow Analysis,NA,L15,Process,Designer
+15,Deliverables , P&ID Preparation,NA,L15,Process,Designer
+15,Deliverables , Hydraulics Pumps,NA,L15,Process,Designer
+15,Deliverables , Vessel Sizing,NA,L15,Process,Designer
+15,Deliverables , Line sizing,NA,L15,Process,Designer
+15,Deliverables , PDS Inst. - IPDS,NA,L15,Process,Designer
+15,Deliverables , Proces Datasheets,NA,L15,Process,Designer
+15,Deliverables , PSV Calculation,NA,L15,Process,Designer
+15,Deliverables , Op. Manual,NA,L15,Process,Designer
+15,Deliverables , Thermal datasheet Heat Exchanger ,NA,L15,Process,Designer
+15,Activities , Vendor document review,NA,L15,Process,Designer
+15,Activities , Model review,NA,L15,Process,Designer
+15,Activities , Hazop Particpation,NA,L15,Process,Designer
+15,Column3,,NA,L15,Process,Designer
+15,Software Skills , simulation - Petrosim,NA,L15,Process,Designer
+15,Column4,,NA,L15,Process,Designer
+15,Software Skills , Simulation - Pro-II,NA,L15,Process,Designer
+15,Software Skills , Simulation - Promax,NA,L15,Process,Designer
+15,Software Skills , Navisworks,NA,L15,Process,Designer
+15,Software Skills , Flarenet,NA,L15,Process,Designer
+15,Software Skills , Autocad,4,L15,Process,Designer
+15,Software Skills , Autocad5,4,L15,Process,Designer
+15,Software Skills , Drafting Microstation,4,L15,Process,Designer
+15,Software Skills , PDS-2D,4,L15,Process,Designer
+15,Software Skills , PDS-2D6,4,L15,Process,Designer
+15,Software Skills , SMARTPLANT,4,L15,Process,Designer
+15,Software Skills , SMARTPLANT7,4,L15,Process,Designer
+15,Software Skills , Aveva Drafting ,4,L15,Process,Designer
+15,Software Skills , Aveva Database,4,L15,Process,Designer
