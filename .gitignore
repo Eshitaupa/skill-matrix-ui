@@ -1,0 +1,18 @@
+# ===== Backend =====
+backend/node_modules/
+backend/.env
+backend/.env.*
+
+# ===== Frontend =====
+frontend/node_modules/
+frontend/build/
+frontend/dist/
+
+# ===== Databricks =====
+.databricks/
+databricks.env
+
+# ===== General =====
+.env
+.env.*
+.DS_Store
