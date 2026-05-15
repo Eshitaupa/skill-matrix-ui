@@ -1061,7 +1061,12 @@ const ROLE_LEVELS = {
   Engineer: ["L7","L8","L9","L10","L11","L12","L13","L14","L15","L16","L17"],
   Designer: ["L5","L6","L7","L8","L9","L10","L11","L12","L13","L14","L15"],
 };
-
+const DISCIPLINE_ROLE_MAP = {
+  "Piping Engineering": "Engineer",
+  "Project Management": "Engineer",
+  "Piping Design": "Designer",
+  "Instrumentation": "Designer",
+};
 const API_BASE =
   (typeof import.meta !== "undefined" && import.meta.env && import.meta.env.VITE_API_BASE) ||
   (typeof process !== "undefined" && process.env && process.env.REACT_APP_API_BASE) ||
@@ -1166,12 +1171,27 @@ const [refreshKey, setRefreshKey] = useState(0)
       });
     })();
   }, []);
+// useEffect(() => {
+//   if (!filters.discipline) {
+//     setFilters((prev) => ({ ...prev, role: "" }));
+//     setMatrixData([]); 
+//     return;
+//   }
+// }, [filters.discipline]);
 useEffect(() => {
   if (!filters.discipline) {
-    setFilters((prev) => ({ ...prev, role: "" }));
-    setMatrixData([]); 
+    setFilters({ discipline: "", role: "", level: "" });
+    setMatrixData([]);
     return;
   }
+
+  const autoRole = DISCIPLINE_ROLE_MAP[filters.discipline] || "";
+
+  setFilters((prev) => ({
+    ...prev,
+    role: autoRole,
+  }));
+
 }, [filters.discipline]);
   // GET MATRIX
   // const fetchMatrix = useCallback(async () => {

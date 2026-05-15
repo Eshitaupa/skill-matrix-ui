@@ -1,0 +1,683 @@
+﻿Level,Skill,Subskill,Value,LevelKey,Discipline,Role
+5,Lists,Instrument Index,NA,L5,Instrumentation,Designer
+5,Lists,IO List/ Loading,NA,L5,Instrumentation,Designer
+5,Lists,Cable schedule,NA,L5,Instrumentation,Designer
+5,Lists,Tubing Schedule,NA,L5,Instrumentation,Designer
+5,Miscellaneous,Project Definition / I&C Design Basis,NA,L5,Instrumentation,Designer
+5,Control & Automation,DCS Assembly Drawings,NA,L5,Instrumentation,Designer
+5,Control & Automation,PLC Assembly Drawings,NA,L5,Instrumentation,Designer
+5,Control & Automation,SIS/ BMS Assembly Drawings,NA,L5,Instrumentation,Designer
+5,Control & Automation,Machinery Protection Assembly Drawings,NA,L5,Instrumentation,Designer
+5,Control & Automation,Marshalling Panel Assembly Drawings,NA,L5,Instrumentation,Designer
+5,Control & Automation,Junction Box Assembly Drawings,NA,L5,Instrumentation,Designer
+5,Control & Automation,Control Panel Assembly Drawings,NA,L5,Instrumentation,Designer
+5,Control & Automation,Annunciator Assembly Drawings,NA,L5,Instrumentation,Designer
+5,Modelling,Installation Details,NA,L5,Instrumentation,Designer
+5,Modelling,Instrument Location Key Plan,NA,L5,Instrumentation,Designer
+5,Modelling,Instrument Location Plans,NA,L5,Instrumentation,Designer
+5,Modelling,Instrument Cable Tray routing study and Backcheck,NA,L5,Instrumentation,Designer
+5,Modelling,"Building Floor Plans (RIE, control room, etc.)",NA,L5,Instrumentation,Designer
+5,Modelling,"3D Model Work (JBs, instruments, valves, etc.) ",NA,L5,Instrumentation,Designer
+5,Modelling,Model Reviews,NA,L5,Instrumentation,Designer
+5,Modelling,Control System Architecture Drawings,NA,L5,Instrumentation,Designer
+5,Modelling,Fiber Optic Drawings (patching & routing),NA,L5,Instrumentation,Designer
+5,Modelling,"Misc. Design (fieldbus, wireless, etc.)",NA,L5,Instrumentation,Designer
+5,Modelling,Material Takeoffs,NA,L5,Instrumentation,Designer
+5,Modelling,SP3D-Modeling,NA,L5,Instrumentation,Designer
+5,Modelling,SP3D-Smartsketch,NA,L5,Instrumentation,Designer
+5,Modelling,SP3D-Cable Autorouting,NA,L5,Instrumentation,Designer
+5,Modelling,SP3D-Tray Modeling,NA,L5,Instrumentation,Designer
+5,Modelling,SP3D-Conduit Modeling,NA,L5,Instrumentation,Designer
+5,Modelling,SP3D-Admin,NA,L5,Instrumentation,Designer
+5,Modelling,AutoCAD,NA,L5,Instrumentation,Designer
+5,Modelling,Infomaker,NA,L5,Instrumentation,Designer
+5,Modelling,Microsoft Visio,NA,L5,Instrumentation,Designer
+5,Modelling,Micorstation Connect Edition,NA,L5,Instrumentation,Designer
+5,Modelling,AutoCAD Plant 3D,NA,L5,Instrumentation,Designer
+5,Modelling,Navisworks,NA,L5,Instrumentation,Designer
+5,Modelling,DWG Trueview 2022,NA,L5,Instrumentation,Designer
+5,Modelling,REVIT,NA,L5,Instrumentation,Designer
+5,Modelling,AVEVA E3D,NA,L5,Instrumentation,Designer
+5,Modelling,Iconstruct,NA,L5,Instrumentation,Designer
+5,Wiring / Loops,Junction Box Wiring,NA,L5,Instrumentation,Designer
+5,Wiring / Loops,Panel Wiring,NA,L5,Instrumentation,Designer
+5,Wiring / Loops,Marshalling Wiring,NA,L5,Instrumentation,Designer
+5,Wiring / Loops,I/O Module Wiring,NA,L5,Instrumentation,Designer
+5,Wiring / Loops,Loop Drawings,NA,L5,Instrumentation,Designer
+5,Wiring / Loops,Loop Folders,NA,L5,Instrumentation,Designer
+5,General,P&ID Markup and Backchecking,NA,L5,Instrumentation,Designer
+5,General,Motor Schematics Markup and Backchecking,NA,L5,Instrumentation,Designer
+5,General,Mechanical Skid Drawings Markup and Backchecking,NA,L5,Instrumentation,Designer
+5,General,Isometric Markup and Backchecking,NA,L5,Instrumentation,Designer
+5,General,Wetting Voltage Distribution Wiring,NA,L5,Instrumentation,Designer
+5,General,Budgeting / Schedule Tracking,NA,L5,Instrumentation,Designer
+5,General,Labor Estimating,NA,L5,Instrumentation,Designer
+5,General,PROPOSAL & COST ESTIMATION,NA,L5,Instrumentation,Designer
+5,General,AS-BUILT & MAINTENANCE,NA,L5,Instrumentation,Designer
+5,General,Electrical Document Reviews,NA,L5,Instrumentation,Designer
+5,General,Mechanical Document Reviews,NA,L5,Instrumentation,Designer
+5,General,Mechanical Subcontract Scope of Work,NA,L5,Instrumentation,Designer
+5,General,E/I/C Subcontract Scope of Work,NA,L5,Instrumentation,Designer
+5,General,Quality Check - Q4,NA,L5,Instrumentation,Designer
+5,General,SPI-EDE_Query builder,NA,L5,Instrumentation,Designer
+5,General,INSPECTION - FIELD INSTRUMENTS,NA,L5,Instrumentation,Designer
+6,Lists,Instrument Index,1,L6,Instrumentation,Designer
+6,Lists,IO List/ Loading,1,L6,Instrumentation,Designer
+6,Lists,Cable schedule,1,L6,Instrumentation,Designer
+6,Lists,Tubing Schedule,1,L6,Instrumentation,Designer
+6,Miscellaneous,Project Definition / I&C Design Basis,1,L6,Instrumentation,Designer
+6,Control & Automation,DCS Assembly Drawings,1,L6,Instrumentation,Designer
+6,Control & Automation,PLC Assembly Drawings,1,L6,Instrumentation,Designer
+6,Control & Automation,SIS/ BMS Assembly Drawings,1,L6,Instrumentation,Designer
+6,Control & Automation,Machinery Protection Assembly Drawings,NA,L6,Instrumentation,Designer
+6,Control & Automation,Marshalling Panel Assembly Drawings,1,L6,Instrumentation,Designer
+6,Control & Automation,Junction Box Assembly Drawings,1,L6,Instrumentation,Designer
+6,Control & Automation,Control Panel Assembly Drawings,1,L6,Instrumentation,Designer
+6,Control & Automation,Annunciator Assembly Drawings,1,L6,Instrumentation,Designer
+6,Modelling,Installation Details,1,L6,Instrumentation,Designer
+6,Modelling,Instrument Location Key Plan,1,L6,Instrumentation,Designer
+6,Modelling,Instrument Location Plans,1,L6,Instrumentation,Designer
+6,Modelling,Instrument Cable Tray routing study and Backcheck,1,L6,Instrumentation,Designer
+6,Modelling,"Building Floor Plans (RIE, control room, etc.)",1,L6,Instrumentation,Designer
+6,Modelling,"3D Model Work (JBs, instruments, valves, etc.) ",2,L6,Instrumentation,Designer
+6,Modelling,Model Reviews,1,L6,Instrumentation,Designer
+6,Modelling,Control System Architecture Drawings,1,L6,Instrumentation,Designer
+6,Modelling,Fiber Optic Drawings (patching & routing),1,L6,Instrumentation,Designer
+6,Modelling,"Misc. Design (fieldbus, wireless, etc.)",NA,L6,Instrumentation,Designer
+6,Modelling,Material Takeoffs,NA,L6,Instrumentation,Designer
+6,Modelling,SP3D-Modeling,2,L6,Instrumentation,Designer
+6,Modelling,SP3D-Smartsketch,2,L6,Instrumentation,Designer
+6,Modelling,SP3D-Cable Autorouting,1,L6,Instrumentation,Designer
+6,Modelling,SP3D-Tray Modeling,1,L6,Instrumentation,Designer
+6,Modelling,SP3D-Conduit Modeling,1,L6,Instrumentation,Designer
+6,Modelling,SP3D-Admin,NA,L6,Instrumentation,Designer
+6,Modelling,AutoCAD,1,L6,Instrumentation,Designer
+6,Modelling,Infomaker,2,L6,Instrumentation,Designer
+6,Modelling,Microsoft Visio,2,L6,Instrumentation,Designer
+6,Modelling,Micorstation Connect Edition,2,L6,Instrumentation,Designer
+6,Modelling,AutoCAD Plant 3D,2,L6,Instrumentation,Designer
+6,Modelling,Navisworks,2,L6,Instrumentation,Designer
+6,Modelling,DWG Trueview 2022,2,L6,Instrumentation,Designer
+6,Modelling,REVIT,2,L6,Instrumentation,Designer
+6,Modelling,AVEVA E3D,2,L6,Instrumentation,Designer
+6,Modelling,Iconstruct,2,L6,Instrumentation,Designer
+6,Wiring / Loops,Junction Box Wiring,1,L6,Instrumentation,Designer
+6,Wiring / Loops,Panel Wiring,1,L6,Instrumentation,Designer
+6,Wiring / Loops,Marshalling Wiring,1,L6,Instrumentation,Designer
+6,Wiring / Loops,I/O Module Wiring,1,L6,Instrumentation,Designer
+6,Wiring / Loops,Loop Drawings,1,L6,Instrumentation,Designer
+6,Wiring / Loops,Loop Folders,1,L6,Instrumentation,Designer
+6,General,P&ID Markup and Backchecking,1,L6,Instrumentation,Designer
+6,General,Motor Schematics Markup and Backchecking,NA,L6,Instrumentation,Designer
+6,General,Mechanical Skid Drawings Markup and Backchecking,NA,L6,Instrumentation,Designer
+6,General,Isometric Markup and Backchecking,NA,L6,Instrumentation,Designer
+6,General,Wetting Voltage Distribution Wiring,NA,L6,Instrumentation,Designer
+6,General,Budgeting / Schedule Tracking,NA,L6,Instrumentation,Designer
+6,General,Labor Estimating,NA,L6,Instrumentation,Designer
+6,General,PROPOSAL & COST ESTIMATION,NA,L6,Instrumentation,Designer
+6,General,AS-BUILT & MAINTENANCE,NA,L6,Instrumentation,Designer
+6,General,Electrical Document Reviews,NA,L6,Instrumentation,Designer
+6,General,Mechanical Document Reviews,NA,L6,Instrumentation,Designer
+6,General,Mechanical Subcontract Scope of Work,NA,L6,Instrumentation,Designer
+6,General,E/I/C Subcontract Scope of Work,NA,L6,Instrumentation,Designer
+6,General,Quality Check - Q4,NA,L6,Instrumentation,Designer
+6,General,SPI-EDE_Query builder,NA,L6,Instrumentation,Designer
+6,General,INSPECTION - FIELD INSTRUMENTS,NA,L6,Instrumentation,Designer
+7,Lists,Instrument Index,1,L7,Instrumentation,Designer
+7,Lists,IO List/ Loading,1,L7,Instrumentation,Designer
+7,Lists,Cable schedule,1,L7,Instrumentation,Designer
+7,Lists,Tubing Schedule,1,L7,Instrumentation,Designer
+7,Miscellaneous,Project Definition / I&C Design Basis,1,L7,Instrumentation,Designer
+7,Control & Automation,DCS Assembly Drawings,1,L7,Instrumentation,Designer
+7,Control & Automation,PLC Assembly Drawings,1,L7,Instrumentation,Designer
+7,Control & Automation,SIS/ BMS Assembly Drawings,1,L7,Instrumentation,Designer
+7,Control & Automation,Machinery Protection Assembly Drawings,NA,L7,Instrumentation,Designer
+7,Control & Automation,Marshalling Panel Assembly Drawings,1,L7,Instrumentation,Designer
+7,Control & Automation,Junction Box Assembly Drawings,1,L7,Instrumentation,Designer
+7,Control & Automation,Control Panel Assembly Drawings,1,L7,Instrumentation,Designer
+7,Control & Automation,Annunciator Assembly Drawings,1,L7,Instrumentation,Designer
+7,Modelling,Installation Details,1,L7,Instrumentation,Designer
+7,Modelling,Instrument Location Key Plan,2,L7,Instrumentation,Designer
+7,Modelling,Instrument Location Plans,2,L7,Instrumentation,Designer
+7,Modelling,Instrument Cable Tray routing study and Backcheck,2,L7,Instrumentation,Designer
+7,Modelling,"Building Floor Plans (RIE, control room, etc.)",2,L7,Instrumentation,Designer
+7,Modelling,"3D Model Work (JBs, instruments, valves, etc.) ",2,L7,Instrumentation,Designer
+7,Modelling,Model Reviews,2,L7,Instrumentation,Designer
+7,Modelling,Control System Architecture Drawings,1,L7,Instrumentation,Designer
+7,Modelling,Fiber Optic Drawings (patching & routing),1,L7,Instrumentation,Designer
+7,Modelling,"Misc. Design (fieldbus, wireless, etc.)",NA,L7,Instrumentation,Designer
+7,Modelling,Material Takeoffs,1,L7,Instrumentation,Designer
+7,Modelling,SP3D-Modeling,2,L7,Instrumentation,Designer
+7,Modelling,SP3D-Smartsketch,2,L7,Instrumentation,Designer
+7,Modelling,SP3D-Cable Autorouting,1,L7,Instrumentation,Designer
+7,Modelling,SP3D-Tray Modeling,1,L7,Instrumentation,Designer
+7,Modelling,SP3D-Conduit Modeling,1,L7,Instrumentation,Designer
+7,Modelling,SP3D-Admin,NA,L7,Instrumentation,Designer
+7,Modelling,AutoCAD,1,L7,Instrumentation,Designer
+7,Modelling,Infomaker,2,L7,Instrumentation,Designer
+7,Modelling,Microsoft Visio,2,L7,Instrumentation,Designer
+7,Modelling,Micorstation Connect Edition,2,L7,Instrumentation,Designer
+7,Modelling,AutoCAD Plant 3D,2,L7,Instrumentation,Designer
+7,Modelling,Navisworks,2,L7,Instrumentation,Designer
+7,Modelling,DWG Trueview 2022,2,L7,Instrumentation,Designer
+7,Modelling,REVIT,2,L7,Instrumentation,Designer
+7,Modelling,AVEVA E3D,2,L7,Instrumentation,Designer
+7,Modelling,Iconstruct,2,L7,Instrumentation,Designer
+7,Wiring / Loops,Junction Box Wiring,2,L7,Instrumentation,Designer
+7,Wiring / Loops,Panel Wiring,2,L7,Instrumentation,Designer
+7,Wiring / Loops,Marshalling Wiring,2,L7,Instrumentation,Designer
+7,Wiring / Loops,I/O Module Wiring,2,L7,Instrumentation,Designer
+7,Wiring / Loops,Loop Drawings,2,L7,Instrumentation,Designer
+7,Wiring / Loops,Loop Folders,2,L7,Instrumentation,Designer
+7,General,P&ID Markup and Backchecking,1,L7,Instrumentation,Designer
+7,General,Motor Schematics Markup and Backchecking,NA,L7,Instrumentation,Designer
+7,General,Mechanical Skid Drawings Markup and Backchecking,NA,L7,Instrumentation,Designer
+7,General,Isometric Markup and Backchecking,NA,L7,Instrumentation,Designer
+7,General,Wetting Voltage Distribution Wiring,NA,L7,Instrumentation,Designer
+7,General,Budgeting / Schedule Tracking,NA,L7,Instrumentation,Designer
+7,General,Labor Estimating,NA,L7,Instrumentation,Designer
+7,General,PROPOSAL & COST ESTIMATION,NA,L7,Instrumentation,Designer
+7,General,AS-BUILT & MAINTENANCE,NA,L7,Instrumentation,Designer
+7,General,Electrical Document Reviews,NA,L7,Instrumentation,Designer
+7,General,Mechanical Document Reviews,NA,L7,Instrumentation,Designer
+7,General,Mechanical Subcontract Scope of Work,NA,L7,Instrumentation,Designer
+7,General,E/I/C Subcontract Scope of Work,NA,L7,Instrumentation,Designer
+7,General,Quality Check - Q4,NA,L7,Instrumentation,Designer
+7,General,SPI-EDE_Query builder,NA,L7,Instrumentation,Designer
+7,General,INSPECTION - FIELD INSTRUMENTS,NA,L7,Instrumentation,Designer
+8,Lists,Instrument Index,2,L8,Instrumentation,Designer
+8,Lists,IO List/ Loading,2,L8,Instrumentation,Designer
+8,Lists,Cable schedule,2,L8,Instrumentation,Designer
+8,Lists,Tubing Schedule,2,L8,Instrumentation,Designer
+8,Miscellaneous,Project Definition / I&C Design Basis,1,L8,Instrumentation,Designer
+8,Control & Automation,DCS Assembly Drawings,1,L8,Instrumentation,Designer
+8,Control & Automation,PLC Assembly Drawings,1,L8,Instrumentation,Designer
+8,Control & Automation,SIS/ BMS Assembly Drawings,1,L8,Instrumentation,Designer
+8,Control & Automation,Machinery Protection Assembly Drawings,NA,L8,Instrumentation,Designer
+8,Control & Automation,Marshalling Panel Assembly Drawings,1,L8,Instrumentation,Designer
+8,Control & Automation,Junction Box Assembly Drawings,1,L8,Instrumentation,Designer
+8,Control & Automation,Control Panel Assembly Drawings,1,L8,Instrumentation,Designer
+8,Control & Automation,Annunciator Assembly Drawings,1,L8,Instrumentation,Designer
+8,Modelling,Installation Details,1,L8,Instrumentation,Designer
+8,Modelling,Instrument Location Key Plan,2,L8,Instrumentation,Designer
+8,Modelling,Instrument Location Plans,2,L8,Instrumentation,Designer
+8,Modelling,Instrument Cable Tray routing study and Backcheck,2,L8,Instrumentation,Designer
+8,Modelling,"Building Floor Plans (RIE, control room, etc.)",2,L8,Instrumentation,Designer
+8,Modelling,"3D Model Work (JBs, instruments, valves, etc.) ",2,L8,Instrumentation,Designer
+8,Modelling,Model Reviews,2,L8,Instrumentation,Designer
+8,Modelling,Control System Architecture Drawings,2,L8,Instrumentation,Designer
+8,Modelling,Fiber Optic Drawings (patching & routing),1,L8,Instrumentation,Designer
+8,Modelling,"Misc. Design (fieldbus, wireless, etc.)",1,L8,Instrumentation,Designer
+8,Modelling,Material Takeoffs,1,L8,Instrumentation,Designer
+8,Modelling,SP3D-Modeling,2,L8,Instrumentation,Designer
+8,Modelling,SP3D-Smartsketch,2,L8,Instrumentation,Designer
+8,Modelling,SP3D-Cable Autorouting,2,L8,Instrumentation,Designer
+8,Modelling,SP3D-Tray Modeling,2,L8,Instrumentation,Designer
+8,Modelling,SP3D-Conduit Modeling,2,L8,Instrumentation,Designer
+8,Modelling,SP3D-Admin,NA,L8,Instrumentation,Designer
+8,Modelling,AutoCAD,2,L8,Instrumentation,Designer
+8,Modelling,Infomaker,2,L8,Instrumentation,Designer
+8,Modelling,Microsoft Visio,2,L8,Instrumentation,Designer
+8,Modelling,Micorstation Connect Edition,2,L8,Instrumentation,Designer
+8,Modelling,AutoCAD Plant 3D,2,L8,Instrumentation,Designer
+8,Modelling,Navisworks,2,L8,Instrumentation,Designer
+8,Modelling,DWG Trueview 2022,2,L8,Instrumentation,Designer
+8,Modelling,REVIT,2,L8,Instrumentation,Designer
+8,Modelling,AVEVA E3D,2,L8,Instrumentation,Designer
+8,Modelling,Iconstruct,2,L8,Instrumentation,Designer
+8,Wiring / Loops,Junction Box Wiring,2,L8,Instrumentation,Designer
+8,Wiring / Loops,Panel Wiring,2,L8,Instrumentation,Designer
+8,Wiring / Loops,Marshalling Wiring,2,L8,Instrumentation,Designer
+8,Wiring / Loops,I/O Module Wiring,2,L8,Instrumentation,Designer
+8,Wiring / Loops,Loop Drawings,2,L8,Instrumentation,Designer
+8,Wiring / Loops,Loop Folders,2,L8,Instrumentation,Designer
+8,General,P&ID Markup and Backchecking,2,L8,Instrumentation,Designer
+8,General,Motor Schematics Markup and Backchecking,NA,L8,Instrumentation,Designer
+8,General,Mechanical Skid Drawings Markup and Backchecking,NA,L8,Instrumentation,Designer
+8,General,Isometric Markup and Backchecking,NA,L8,Instrumentation,Designer
+8,General,Wetting Voltage Distribution Wiring,NA,L8,Instrumentation,Designer
+8,General,Budgeting / Schedule Tracking,NA,L8,Instrumentation,Designer
+8,General,Labor Estimating,NA,L8,Instrumentation,Designer
+8,General,PROPOSAL & COST ESTIMATION,NA,L8,Instrumentation,Designer
+8,General,AS-BUILT & MAINTENANCE,NA,L8,Instrumentation,Designer
+8,General,Electrical Document Reviews,NA,L8,Instrumentation,Designer
+8,General,Mechanical Document Reviews,NA,L8,Instrumentation,Designer
+8,General,Mechanical Subcontract Scope of Work,NA,L8,Instrumentation,Designer
+8,General,E/I/C Subcontract Scope of Work,NA,L8,Instrumentation,Designer
+8,General,Quality Check - Q4,NA,L8,Instrumentation,Designer
+8,General,SPI-EDE_Query builder,NA,L8,Instrumentation,Designer
+8,General,INSPECTION - FIELD INSTRUMENTS,NA,L8,Instrumentation,Designer
+9,Lists,Instrument Index,2,L9,Instrumentation,Designer
+9,Lists,IO List/ Loading,2,L9,Instrumentation,Designer
+9,Lists,Cable schedule,2,L9,Instrumentation,Designer
+9,Lists,Tubing Schedule,2,L9,Instrumentation,Designer
+9,Miscellaneous,Project Definition / I&C Design Basis,2,L9,Instrumentation,Designer
+9,Control & Automation,DCS Assembly Drawings,1,L9,Instrumentation,Designer
+9,Control & Automation,PLC Assembly Drawings,1,L9,Instrumentation,Designer
+9,Control & Automation,SIS/ BMS Assembly Drawings,1,L9,Instrumentation,Designer
+9,Control & Automation,Machinery Protection Assembly Drawings,NA,L9,Instrumentation,Designer
+9,Control & Automation,Marshalling Panel Assembly Drawings,1,L9,Instrumentation,Designer
+9,Control & Automation,Junction Box Assembly Drawings,1,L9,Instrumentation,Designer
+9,Control & Automation,Control Panel Assembly Drawings,1,L9,Instrumentation,Designer
+9,Control & Automation,Annunciator Assembly Drawings,1,L9,Instrumentation,Designer
+9,Modelling,Installation Details,1,L9,Instrumentation,Designer
+9,Modelling,Instrument Location Key Plan,2,L9,Instrumentation,Designer
+9,Modelling,Instrument Location Plans,2,L9,Instrumentation,Designer
+9,Modelling,Instrument Cable Tray routing study and Backcheck,2,L9,Instrumentation,Designer
+9,Modelling,"Building Floor Plans (RIE, control room, etc.)",2,L9,Instrumentation,Designer
+9,Modelling,"3D Model Work (JBs, instruments, valves, etc.) ",2,L9,Instrumentation,Designer
+9,Modelling,Model Reviews,2,L9,Instrumentation,Designer
+9,Modelling,Control System Architecture Drawings,2,L9,Instrumentation,Designer
+9,Modelling,Fiber Optic Drawings (patching & routing),1,L9,Instrumentation,Designer
+9,Modelling,"Misc. Design (fieldbus, wireless, etc.)",1,L9,Instrumentation,Designer
+9,Modelling,Material Takeoffs,1,L9,Instrumentation,Designer
+9,Modelling,SP3D-Modeling,2,L9,Instrumentation,Designer
+9,Modelling,SP3D-Smartsketch,2,L9,Instrumentation,Designer
+9,Modelling,SP3D-Cable Autorouting,2,L9,Instrumentation,Designer
+9,Modelling,SP3D-Tray Modeling,2,L9,Instrumentation,Designer
+9,Modelling,SP3D-Conduit Modeling,2,L9,Instrumentation,Designer
+9,Modelling,SP3D-Admin,NA,L9,Instrumentation,Designer
+9,Modelling,AutoCAD,2,L9,Instrumentation,Designer
+9,Modelling,Infomaker,2,L9,Instrumentation,Designer
+9,Modelling,Microsoft Visio,2,L9,Instrumentation,Designer
+9,Modelling,Micorstation Connect Edition,2,L9,Instrumentation,Designer
+9,Modelling,AutoCAD Plant 3D,2,L9,Instrumentation,Designer
+9,Modelling,Navisworks,2,L9,Instrumentation,Designer
+9,Modelling,DWG Trueview 2022,2,L9,Instrumentation,Designer
+9,Modelling,REVIT,2,L9,Instrumentation,Designer
+9,Modelling,AVEVA E3D,2,L9,Instrumentation,Designer
+9,Modelling,Iconstruct,2,L9,Instrumentation,Designer
+9,Wiring / Loops,Junction Box Wiring,2,L9,Instrumentation,Designer
+9,Wiring / Loops,Panel Wiring,2,L9,Instrumentation,Designer
+9,Wiring / Loops,Marshalling Wiring,2,L9,Instrumentation,Designer
+9,Wiring / Loops,I/O Module Wiring,2,L9,Instrumentation,Designer
+9,Wiring / Loops,Loop Drawings,2,L9,Instrumentation,Designer
+9,Wiring / Loops,Loop Folders,2,L9,Instrumentation,Designer
+9,General,P&ID Markup and Backchecking,2,L9,Instrumentation,Designer
+9,General,Motor Schematics Markup and Backchecking,NA,L9,Instrumentation,Designer
+9,General,Mechanical Skid Drawings Markup and Backchecking,NA,L9,Instrumentation,Designer
+9,General,Isometric Markup and Backchecking,NA,L9,Instrumentation,Designer
+9,General,Wetting Voltage Distribution Wiring,NA,L9,Instrumentation,Designer
+9,General,Budgeting / Schedule Tracking,NA,L9,Instrumentation,Designer
+9,General,Labor Estimating,NA,L9,Instrumentation,Designer
+9,General,PROPOSAL & COST ESTIMATION,NA,L9,Instrumentation,Designer
+9,General,AS-BUILT & MAINTENANCE,NA,L9,Instrumentation,Designer
+9,General,Electrical Document Reviews,NA,L9,Instrumentation,Designer
+9,General,Mechanical Document Reviews,NA,L9,Instrumentation,Designer
+9,General,Mechanical Subcontract Scope of Work,NA,L9,Instrumentation,Designer
+9,General,E/I/C Subcontract Scope of Work,NA,L9,Instrumentation,Designer
+9,General,Quality Check - Q4,NA,L9,Instrumentation,Designer
+9,General,SPI-EDE_Query builder,NA,L9,Instrumentation,Designer
+9,General,INSPECTION - FIELD INSTRUMENTS,NA,L9,Instrumentation,Designer
+10,Lists,Instrument Index,2,L10,Instrumentation,Designer
+10,Lists,IO List/ Loading,2,L10,Instrumentation,Designer
+10,Lists,Cable schedule,2,L10,Instrumentation,Designer
+10,Lists,Tubing Schedule,2,L10,Instrumentation,Designer
+10,Miscellaneous,Project Definition / I&C Design Basis,2,L10,Instrumentation,Designer
+10,Control & Automation,DCS Assembly Drawings,2,L10,Instrumentation,Designer
+10,Control & Automation,PLC Assembly Drawings,2,L10,Instrumentation,Designer
+10,Control & Automation,SIS/ BMS Assembly Drawings,2,L10,Instrumentation,Designer
+10,Control & Automation,Machinery Protection Assembly Drawings,1,L10,Instrumentation,Designer
+10,Control & Automation,Marshalling Panel Assembly Drawings,2,L10,Instrumentation,Designer
+10,Control & Automation,Junction Box Assembly Drawings,2,L10,Instrumentation,Designer
+10,Control & Automation,Control Panel Assembly Drawings,2,L10,Instrumentation,Designer
+10,Control & Automation,Annunciator Assembly Drawings,1,L10,Instrumentation,Designer
+10,Modelling,Installation Details,2,L10,Instrumentation,Designer
+10,Modelling,Instrument Location Key Plan,3,L10,Instrumentation,Designer
+10,Modelling,Instrument Location Plans,3,L10,Instrumentation,Designer
+10,Modelling,Instrument Cable Tray routing study and Backcheck,3,L10,Instrumentation,Designer
+10,Modelling,"Building Floor Plans (RIE, control room, etc.)",3,L10,Instrumentation,Designer
+10,Modelling,"3D Model Work (JBs, instruments, valves, etc.) ",3,L10,Instrumentation,Designer
+10,Modelling,Model Reviews,3,L10,Instrumentation,Designer
+10,Modelling,Control System Architecture Drawings,2,L10,Instrumentation,Designer
+10,Modelling,Fiber Optic Drawings (patching & routing),1,L10,Instrumentation,Designer
+10,Modelling,"Misc. Design (fieldbus, wireless, etc.)",1,L10,Instrumentation,Designer
+10,Modelling,Material Takeoffs,1,L10,Instrumentation,Designer
+10,Modelling,SP3D-Modeling,3,L10,Instrumentation,Designer
+10,Modelling,SP3D-Smartsketch,3,L10,Instrumentation,Designer
+10,Modelling,SP3D-Cable Autorouting,3,L10,Instrumentation,Designer
+10,Modelling,SP3D-Tray Modeling,3,L10,Instrumentation,Designer
+10,Modelling,SP3D-Conduit Modeling,3,L10,Instrumentation,Designer
+10,Modelling,SP3D-Admin,NA,L10,Instrumentation,Designer
+10,Modelling,AutoCAD,3,L10,Instrumentation,Designer
+10,Modelling,Infomaker,2,L10,Instrumentation,Designer
+10,Modelling,Microsoft Visio,2,L10,Instrumentation,Designer
+10,Modelling,Micorstation Connect Edition,2,L10,Instrumentation,Designer
+10,Modelling,AutoCAD Plant 3D,2,L10,Instrumentation,Designer
+10,Modelling,Navisworks,2,L10,Instrumentation,Designer
+10,Modelling,DWG Trueview 2022,2,L10,Instrumentation,Designer
+10,Modelling,REVIT,2,L10,Instrumentation,Designer
+10,Modelling,AVEVA E3D,2,L10,Instrumentation,Designer
+10,Modelling,Iconstruct,2,L10,Instrumentation,Designer
+10,Wiring / Loops,Junction Box Wiring,3,L10,Instrumentation,Designer
+10,Wiring / Loops,Panel Wiring,3,L10,Instrumentation,Designer
+10,Wiring / Loops,Marshalling Wiring,3,L10,Instrumentation,Designer
+10,Wiring / Loops,I/O Module Wiring,3,L10,Instrumentation,Designer
+10,Wiring / Loops,Loop Drawings,3,L10,Instrumentation,Designer
+10,Wiring / Loops,Loop Folders,3,L10,Instrumentation,Designer
+10,General,P&ID Markup and Backchecking,2,L10,Instrumentation,Designer
+10,General,Motor Schematics Markup and Backchecking,NA,L10,Instrumentation,Designer
+10,General,Mechanical Skid Drawings Markup and Backchecking,NA,L10,Instrumentation,Designer
+10,General,Isometric Markup and Backchecking,NA,L10,Instrumentation,Designer
+10,General,Wetting Voltage Distribution Wiring,NA,L10,Instrumentation,Designer
+10,General,Budgeting / Schedule Tracking,1,L10,Instrumentation,Designer
+10,General,Labor Estimating,1,L10,Instrumentation,Designer
+10,General,PROPOSAL & COST ESTIMATION,NA,L10,Instrumentation,Designer
+10,General,AS-BUILT & MAINTENANCE,2,L10,Instrumentation,Designer
+10,General,Electrical Document Reviews,2,L10,Instrumentation,Designer
+10,General,Mechanical Document Reviews,2,L10,Instrumentation,Designer
+10,General,Mechanical Subcontract Scope of Work,2,L10,Instrumentation,Designer
+10,General,E/I/C Subcontract Scope of Work,2,L10,Instrumentation,Designer
+10,General,Quality Check - Q4,3,L10,Instrumentation,Designer
+10,General,SPI-EDE_Query builder,NA,L10,Instrumentation,Designer
+10,General,INSPECTION - FIELD INSTRUMENTS,NA,L10,Instrumentation,Designer
+11,Lists,Instrument Index,3,L11,Instrumentation,Designer
+11,Lists,IO List/ Loading,3,L11,Instrumentation,Designer
+11,Lists,Cable schedule,3,L11,Instrumentation,Designer
+11,Lists,Tubing Schedule,3,L11,Instrumentation,Designer
+11,Miscellaneous,Project Definition / I&C Design Basis,2,L11,Instrumentation,Designer
+11,Control & Automation,DCS Assembly Drawings,2,L11,Instrumentation,Designer
+11,Control & Automation,PLC Assembly Drawings,2,L11,Instrumentation,Designer
+11,Control & Automation,SIS/ BMS Assembly Drawings,2,L11,Instrumentation,Designer
+11,Control & Automation,Machinery Protection Assembly Drawings,1,L11,Instrumentation,Designer
+11,Control & Automation,Marshalling Panel Assembly Drawings,2,L11,Instrumentation,Designer
+11,Control & Automation,Junction Box Assembly Drawings,2,L11,Instrumentation,Designer
+11,Control & Automation,Control Panel Assembly Drawings,2,L11,Instrumentation,Designer
+11,Control & Automation,Annunciator Assembly Drawings,1,L11,Instrumentation,Designer
+11,Modelling,Installation Details,2,L11,Instrumentation,Designer
+11,Modelling,Instrument Location Key Plan,3,L11,Instrumentation,Designer
+11,Modelling,Instrument Location Plans,3,L11,Instrumentation,Designer
+11,Modelling,Instrument Cable Tray routing study and Backcheck,3,L11,Instrumentation,Designer
+11,Modelling,"Building Floor Plans (RIE, control room, etc.)",3,L11,Instrumentation,Designer
+11,Modelling,"3D Model Work (JBs, instruments, valves, etc.) ",3,L11,Instrumentation,Designer
+11,Modelling,Model Reviews,3,L11,Instrumentation,Designer
+11,Modelling,Control System Architecture Drawings,2,L11,Instrumentation,Designer
+11,Modelling,Fiber Optic Drawings (patching & routing),2,L11,Instrumentation,Designer
+11,Modelling,"Misc. Design (fieldbus, wireless, etc.)",2,L11,Instrumentation,Designer
+11,Modelling,Material Takeoffs,1,L11,Instrumentation,Designer
+11,Modelling,SP3D-Modeling,3,L11,Instrumentation,Designer
+11,Modelling,SP3D-Smartsketch,3,L11,Instrumentation,Designer
+11,Modelling,SP3D-Cable Autorouting,3,L11,Instrumentation,Designer
+11,Modelling,SP3D-Tray Modeling,3,L11,Instrumentation,Designer
+11,Modelling,SP3D-Conduit Modeling,3,L11,Instrumentation,Designer
+11,Modelling,SP3D-Admin,2,L11,Instrumentation,Designer
+11,Modelling,AutoCAD,3,L11,Instrumentation,Designer
+11,Modelling,Infomaker,2,L11,Instrumentation,Designer
+11,Modelling,Microsoft Visio,2,L11,Instrumentation,Designer
+11,Modelling,Micorstation Connect Edition,2,L11,Instrumentation,Designer
+11,Modelling,AutoCAD Plant 3D,2,L11,Instrumentation,Designer
+11,Modelling,Navisworks,2,L11,Instrumentation,Designer
+11,Modelling,DWG Trueview 2022,2,L11,Instrumentation,Designer
+11,Modelling,REVIT,2,L11,Instrumentation,Designer
+11,Modelling,AVEVA E3D,2,L11,Instrumentation,Designer
+11,Modelling,Iconstruct,2,L11,Instrumentation,Designer
+11,Wiring / Loops,Junction Box Wiring,3,L11,Instrumentation,Designer
+11,Wiring / Loops,Panel Wiring,3,L11,Instrumentation,Designer
+11,Wiring / Loops,Marshalling Wiring,3,L11,Instrumentation,Designer
+11,Wiring / Loops,I/O Module Wiring,3,L11,Instrumentation,Designer
+11,Wiring / Loops,Loop Drawings,3,L11,Instrumentation,Designer
+11,Wiring / Loops,Loop Folders,3,L11,Instrumentation,Designer
+11,General,P&ID Markup and Backchecking,2,L11,Instrumentation,Designer
+11,General,Motor Schematics Markup and Backchecking,NA,L11,Instrumentation,Designer
+11,General,Mechanical Skid Drawings Markup and Backchecking,NA,L11,Instrumentation,Designer
+11,General,Isometric Markup and Backchecking,NA,L11,Instrumentation,Designer
+11,General,Wetting Voltage Distribution Wiring,NA,L11,Instrumentation,Designer
+11,General,Budgeting / Schedule Tracking,1,L11,Instrumentation,Designer
+11,General,Labor Estimating,1,L11,Instrumentation,Designer
+11,General,PROPOSAL & COST ESTIMATION,NA,L11,Instrumentation,Designer
+11,General,AS-BUILT & MAINTENANCE,2,L11,Instrumentation,Designer
+11,General,Electrical Document Reviews,2,L11,Instrumentation,Designer
+11,General,Mechanical Document Reviews,2,L11,Instrumentation,Designer
+11,General,Mechanical Subcontract Scope of Work,2,L11,Instrumentation,Designer
+11,General,E/I/C Subcontract Scope of Work,2,L11,Instrumentation,Designer
+11,General,Quality Check - Q4,3,L11,Instrumentation,Designer
+11,General,SPI-EDE_Query builder,NA,L11,Instrumentation,Designer
+11,General,INSPECTION - FIELD INSTRUMENTS,NA,L11,Instrumentation,Designer
+12,Lists,Instrument Index,3,L12,Instrumentation,Designer
+12,Lists,IO List/ Loading,3,L12,Instrumentation,Designer
+12,Lists,Cable schedule,3,L12,Instrumentation,Designer
+12,Lists,Tubing Schedule,3,L12,Instrumentation,Designer
+12,Miscellaneous,Project Definition / I&C Design Basis,2,L12,Instrumentation,Designer
+12,Control & Automation,DCS Assembly Drawings,2,L12,Instrumentation,Designer
+12,Control & Automation,PLC Assembly Drawings,2,L12,Instrumentation,Designer
+12,Control & Automation,SIS/ BMS Assembly Drawings,2,L12,Instrumentation,Designer
+12,Control & Automation,Machinery Protection Assembly Drawings,1,L12,Instrumentation,Designer
+12,Control & Automation,Marshalling Panel Assembly Drawings,2,L12,Instrumentation,Designer
+12,Control & Automation,Junction Box Assembly Drawings,2,L12,Instrumentation,Designer
+12,Control & Automation,Control Panel Assembly Drawings,2,L12,Instrumentation,Designer
+12,Control & Automation,Annunciator Assembly Drawings,1,L12,Instrumentation,Designer
+12,Modelling,Installation Details,2,L12,Instrumentation,Designer
+12,Modelling,Instrument Location Key Plan,3,L12,Instrumentation,Designer
+12,Modelling,Instrument Location Plans,3,L12,Instrumentation,Designer
+12,Modelling,Instrument Cable Tray routing study and Backcheck,3,L12,Instrumentation,Designer
+12,Modelling,"Building Floor Plans (RIE, control room, etc.)",3,L12,Instrumentation,Designer
+12,Modelling,"3D Model Work (JBs, instruments, valves, etc.) ",3,L12,Instrumentation,Designer
+12,Modelling,Model Reviews,3,L12,Instrumentation,Designer
+12,Modelling,Control System Architecture Drawings,2,L12,Instrumentation,Designer
+12,Modelling,Fiber Optic Drawings (patching & routing),2,L12,Instrumentation,Designer
+12,Modelling,"Misc. Design (fieldbus, wireless, etc.)",2,L12,Instrumentation,Designer
+12,Modelling,Material Takeoffs,1,L12,Instrumentation,Designer
+12,Modelling,SP3D-Modeling,3,L12,Instrumentation,Designer
+12,Modelling,SP3D-Smartsketch,3,L12,Instrumentation,Designer
+12,Modelling,SP3D-Cable Autorouting,3,L12,Instrumentation,Designer
+12,Modelling,SP3D-Tray Modeling,3,L12,Instrumentation,Designer
+12,Modelling,SP3D-Conduit Modeling,3,L12,Instrumentation,Designer
+12,Modelling,SP3D-Admin,2,L12,Instrumentation,Designer
+12,Modelling,AutoCAD,3,L12,Instrumentation,Designer
+12,Modelling,Infomaker,2,L12,Instrumentation,Designer
+12,Modelling,Microsoft Visio,2,L12,Instrumentation,Designer
+12,Modelling,Micorstation Connect Edition,2,L12,Instrumentation,Designer
+12,Modelling,AutoCAD Plant 3D,2,L12,Instrumentation,Designer
+12,Modelling,Navisworks,2,L12,Instrumentation,Designer
+12,Modelling,DWG Trueview 2022,2,L12,Instrumentation,Designer
+12,Modelling,REVIT,2,L12,Instrumentation,Designer
+12,Modelling,AVEVA E3D,2,L12,Instrumentation,Designer
+12,Modelling,Iconstruct,2,L12,Instrumentation,Designer
+12,Wiring / Loops,Junction Box Wiring,3,L12,Instrumentation,Designer
+12,Wiring / Loops,Panel Wiring,3,L12,Instrumentation,Designer
+12,Wiring / Loops,Marshalling Wiring,3,L12,Instrumentation,Designer
+12,Wiring / Loops,I/O Module Wiring,3,L12,Instrumentation,Designer
+12,Wiring / Loops,Loop Drawings,3,L12,Instrumentation,Designer
+12,Wiring / Loops,Loop Folders,3,L12,Instrumentation,Designer
+12,General,P&ID Markup and Backchecking,2,L12,Instrumentation,Designer
+12,General,Motor Schematics Markup and Backchecking,NA,L12,Instrumentation,Designer
+12,General,Mechanical Skid Drawings Markup and Backchecking,NA,L12,Instrumentation,Designer
+12,General,Isometric Markup and Backchecking,NA,L12,Instrumentation,Designer
+12,General,Wetting Voltage Distribution Wiring,NA,L12,Instrumentation,Designer
+12,General,Budgeting / Schedule Tracking,1,L12,Instrumentation,Designer
+12,General,Labor Estimating,1,L12,Instrumentation,Designer
+12,General,PROPOSAL & COST ESTIMATION,NA,L12,Instrumentation,Designer
+12,General,AS-BUILT & MAINTENANCE,2,L12,Instrumentation,Designer
+12,General,Electrical Document Reviews,2,L12,Instrumentation,Designer
+12,General,Mechanical Document Reviews,2,L12,Instrumentation,Designer
+12,General,Mechanical Subcontract Scope of Work,2,L12,Instrumentation,Designer
+12,General,E/I/C Subcontract Scope of Work,2,L12,Instrumentation,Designer
+12,General,Quality Check - Q4,3,L12,Instrumentation,Designer
+12,General,SPI-EDE_Query builder,NA,L12,Instrumentation,Designer
+12,General,INSPECTION - FIELD INSTRUMENTS,NA,L12,Instrumentation,Designer
+13,Lists,Instrument Index,3,L13,Instrumentation,Designer
+13,Lists,IO List/ Loading,3,L13,Instrumentation,Designer
+13,Lists,Cable schedule,4,L13,Instrumentation,Designer
+13,Lists,Tubing Schedule,4,L13,Instrumentation,Designer
+13,Miscellaneous,Project Definition / I&C Design Basis,3,L13,Instrumentation,Designer
+13,Control & Automation,DCS Assembly Drawings,3,L13,Instrumentation,Designer
+13,Control & Automation,PLC Assembly Drawings,3,L13,Instrumentation,Designer
+13,Control & Automation,SIS/ BMS Assembly Drawings,3,L13,Instrumentation,Designer
+13,Control & Automation,Machinery Protection Assembly Drawings,1,L13,Instrumentation,Designer
+13,Control & Automation,Marshalling Panel Assembly Drawings,3,L13,Instrumentation,Designer
+13,Control & Automation,Junction Box Assembly Drawings,3,L13,Instrumentation,Designer
+13,Control & Automation,Control Panel Assembly Drawings,3,L13,Instrumentation,Designer
+13,Control & Automation,Annunciator Assembly Drawings,1,L13,Instrumentation,Designer
+13,Modelling,Installation Details,3,L13,Instrumentation,Designer
+13,Modelling,Instrument Location Key Plan,3,L13,Instrumentation,Designer
+13,Modelling,Instrument Location Plans,3,L13,Instrumentation,Designer
+13,Modelling,Instrument Cable Tray routing study and Backcheck,3,L13,Instrumentation,Designer
+13,Modelling,"Building Floor Plans (RIE, control room, etc.)",3,L13,Instrumentation,Designer
+13,Modelling,"3D Model Work (JBs, instruments, valves, etc.) ",3,L13,Instrumentation,Designer
+13,Modelling,Model Reviews,3,L13,Instrumentation,Designer
+13,Modelling,Control System Architecture Drawings,3,L13,Instrumentation,Designer
+13,Modelling,Fiber Optic Drawings (patching & routing),2,L13,Instrumentation,Designer
+13,Modelling,"Misc. Design (fieldbus, wireless, etc.)",2,L13,Instrumentation,Designer
+13,Modelling,Material Takeoffs,1,L13,Instrumentation,Designer
+13,Modelling,SP3D-Modeling,3,L13,Instrumentation,Designer
+13,Modelling,SP3D-Smartsketch,3,L13,Instrumentation,Designer
+13,Modelling,SP3D-Cable Autorouting,3,L13,Instrumentation,Designer
+13,Modelling,SP3D-Tray Modeling,3,L13,Instrumentation,Designer
+13,Modelling,SP3D-Conduit Modeling,3,L13,Instrumentation,Designer
+13,Modelling,SP3D-Admin,2,L13,Instrumentation,Designer
+13,Modelling,AutoCAD,3,L13,Instrumentation,Designer
+13,Modelling,Infomaker,2,L13,Instrumentation,Designer
+13,Modelling,Microsoft Visio,2,L13,Instrumentation,Designer
+13,Modelling,Micorstation Connect Edition,2,L13,Instrumentation,Designer
+13,Modelling,AutoCAD Plant 3D,2,L13,Instrumentation,Designer
+13,Modelling,Navisworks,2,L13,Instrumentation,Designer
+13,Modelling,DWG Trueview 2022,2,L13,Instrumentation,Designer
+13,Modelling,REVIT,2,L13,Instrumentation,Designer
+13,Modelling,AVEVA E3D,2,L13,Instrumentation,Designer
+13,Modelling,Iconstruct,2,L13,Instrumentation,Designer
+13,Wiring / Loops,Junction Box Wiring,3,L13,Instrumentation,Designer
+13,Wiring / Loops,Panel Wiring,3,L13,Instrumentation,Designer
+13,Wiring / Loops,Marshalling Wiring,3,L13,Instrumentation,Designer
+13,Wiring / Loops,I/O Module Wiring,3,L13,Instrumentation,Designer
+13,Wiring / Loops,Loop Drawings,3,L13,Instrumentation,Designer
+13,Wiring / Loops,Loop Folders,3,L13,Instrumentation,Designer
+13,General,P&ID Markup and Backchecking,2,L13,Instrumentation,Designer
+13,General,Motor Schematics Markup and Backchecking,NA,L13,Instrumentation,Designer
+13,General,Mechanical Skid Drawings Markup and Backchecking,NA,L13,Instrumentation,Designer
+13,General,Isometric Markup and Backchecking,NA,L13,Instrumentation,Designer
+13,General,Wetting Voltage Distribution Wiring,NA,L13,Instrumentation,Designer
+13,General,Budgeting / Schedule Tracking,1,L13,Instrumentation,Designer
+13,General,Labor Estimating,1,L13,Instrumentation,Designer
+13,General,PROPOSAL & COST ESTIMATION,NA,L13,Instrumentation,Designer
+13,General,AS-BUILT & MAINTENANCE,2,L13,Instrumentation,Designer
+13,General,Electrical Document Reviews,2,L13,Instrumentation,Designer
+13,General,Mechanical Document Reviews,2,L13,Instrumentation,Designer
+13,General,Mechanical Subcontract Scope of Work,2,L13,Instrumentation,Designer
+13,General,E/I/C Subcontract Scope of Work,2,L13,Instrumentation,Designer
+13,General,Quality Check - Q4,3,L13,Instrumentation,Designer
+13,General,SPI-EDE_Query builder,NA,L13,Instrumentation,Designer
+13,General,INSPECTION - FIELD INSTRUMENTS,NA,L13,Instrumentation,Designer
+14,Lists,Instrument Index,3,L14,Instrumentation,Designer
+14,Lists,IO List/ Loading,3,L14,Instrumentation,Designer
+14,Lists,Cable schedule,4,L14,Instrumentation,Designer
+14,Lists,Tubing Schedule,4,L14,Instrumentation,Designer
+14,Miscellaneous,Project Definition / I&C Design Basis,3,L14,Instrumentation,Designer
+14,Control & Automation,DCS Assembly Drawings,3,L14,Instrumentation,Designer
+14,Control & Automation,PLC Assembly Drawings,3,L14,Instrumentation,Designer
+14,Control & Automation,SIS/ BMS Assembly Drawings,3,L14,Instrumentation,Designer
+14,Control & Automation,Machinery Protection Assembly Drawings,1,L14,Instrumentation,Designer
+14,Control & Automation,Marshalling Panel Assembly Drawings,3,L14,Instrumentation,Designer
+14,Control & Automation,Junction Box Assembly Drawings,3,L14,Instrumentation,Designer
+14,Control & Automation,Control Panel Assembly Drawings,3,L14,Instrumentation,Designer
+14,Control & Automation,Annunciator Assembly Drawings,1,L14,Instrumentation,Designer
+14,Modelling,Installation Details,3,L14,Instrumentation,Designer
+14,Modelling,Instrument Location Key Plan,4,L14,Instrumentation,Designer
+14,Modelling,Instrument Location Plans,4,L14,Instrumentation,Designer
+14,Modelling,Instrument Cable Tray routing study and Backcheck,4,L14,Instrumentation,Designer
+14,Modelling,"Building Floor Plans (RIE, control room, etc.)",4,L14,Instrumentation,Designer
+14,Modelling,"3D Model Work (JBs, instruments, valves, etc.) ",4,L14,Instrumentation,Designer
+14,Modelling,Model Reviews,4,L14,Instrumentation,Designer
+14,Modelling,Control System Architecture Drawings,3,L14,Instrumentation,Designer
+14,Modelling,Fiber Optic Drawings (patching & routing),2,L14,Instrumentation,Designer
+14,Modelling,"Misc. Design (fieldbus, wireless, etc.)",2,L14,Instrumentation,Designer
+14,Modelling,Material Takeoffs,1,L14,Instrumentation,Designer
+14,Modelling,SP3D-Modeling,4,L14,Instrumentation,Designer
+14,Modelling,SP3D-Smartsketch,4,L14,Instrumentation,Designer
+14,Modelling,SP3D-Cable Autorouting,4,L14,Instrumentation,Designer
+14,Modelling,SP3D-Tray Modeling,4,L14,Instrumentation,Designer
+14,Modelling,SP3D-Conduit Modeling,4,L14,Instrumentation,Designer
+14,Modelling,SP3D-Admin,2,L14,Instrumentation,Designer
+14,Modelling,AutoCAD,4,L14,Instrumentation,Designer
+14,Modelling,Infomaker,2,L14,Instrumentation,Designer
+14,Modelling,Microsoft Visio,2,L14,Instrumentation,Designer
+14,Modelling,Micorstation Connect Edition,2,L14,Instrumentation,Designer
+14,Modelling,AutoCAD Plant 3D,2,L14,Instrumentation,Designer
+14,Modelling,Navisworks,2,L14,Instrumentation,Designer
+14,Modelling,DWG Trueview 2022,2,L14,Instrumentation,Designer
+14,Modelling,REVIT,2,L14,Instrumentation,Designer
+14,Modelling,AVEVA E3D,2,L14,Instrumentation,Designer
+14,Modelling,Iconstruct,2,L14,Instrumentation,Designer
+14,Wiring / Loops,Junction Box Wiring,3,L14,Instrumentation,Designer
+14,Wiring / Loops,Panel Wiring,3,L14,Instrumentation,Designer
+14,Wiring / Loops,Marshalling Wiring,3,L14,Instrumentation,Designer
+14,Wiring / Loops,I/O Module Wiring,3,L14,Instrumentation,Designer
+14,Wiring / Loops,Loop Drawings,3,L14,Instrumentation,Designer
+14,Wiring / Loops,Loop Folders,3,L14,Instrumentation,Designer
+14,General,P&ID Markup and Backchecking,2,L14,Instrumentation,Designer
+14,General,Motor Schematics Markup and Backchecking,2,L14,Instrumentation,Designer
+14,General,Mechanical Skid Drawings Markup and Backchecking,2,L14,Instrumentation,Designer
+14,General,Isometric Markup and Backchecking,NA,L14,Instrumentation,Designer
+14,General,Wetting Voltage Distribution Wiring,2,L14,Instrumentation,Designer
+14,General,Budgeting / Schedule Tracking,2,L14,Instrumentation,Designer
+14,General,Labor Estimating,2,L14,Instrumentation,Designer
+14,General,PROPOSAL & COST ESTIMATION,NA,L14,Instrumentation,Designer
+14,General,AS-BUILT & MAINTENANCE,2,L14,Instrumentation,Designer
+14,General,Electrical Document Reviews,2,L14,Instrumentation,Designer
+14,General,Mechanical Document Reviews,2,L14,Instrumentation,Designer
+14,General,Mechanical Subcontract Scope of Work,2,L14,Instrumentation,Designer
+14,General,E/I/C Subcontract Scope of Work,2,L14,Instrumentation,Designer
+14,General,Quality Check - Q4,3,L14,Instrumentation,Designer
+14,General,SPI-EDE_Query builder,NA,L14,Instrumentation,Designer
+14,General,INSPECTION - FIELD INSTRUMENTS,NA,L14,Instrumentation,Designer
+15,Lists,Instrument Index,3,L15,Instrumentation,Designer
+15,Lists,IO List/ Loading,3,L15,Instrumentation,Designer
+15,Lists,Cable schedule,4,L15,Instrumentation,Designer
+15,Lists,Tubing Schedule,4,L15,Instrumentation,Designer
+15,Miscellaneous,Project Definition / I&C Design Basis,3,L15,Instrumentation,Designer
+15,Control & Automation,DCS Assembly Drawings,3,L15,Instrumentation,Designer
+15,Control & Automation,PLC Assembly Drawings,3,L15,Instrumentation,Designer
+15,Control & Automation,SIS/ BMS Assembly Drawings,3,L15,Instrumentation,Designer
+15,Control & Automation,Machinery Protection Assembly Drawings,1,L15,Instrumentation,Designer
+15,Control & Automation,Marshalling Panel Assembly Drawings,3,L15,Instrumentation,Designer
+15,Control & Automation,Junction Box Assembly Drawings,3,L15,Instrumentation,Designer
+15,Control & Automation,Control Panel Assembly Drawings,3,L15,Instrumentation,Designer
+15,Control & Automation,Annunciator Assembly Drawings,1,L15,Instrumentation,Designer
+15,Modelling,Installation Details,3,L15,Instrumentation,Designer
+15,Modelling,Instrument Location Key Plan,4,L15,Instrumentation,Designer
+15,Modelling,Instrument Location Plans,4,L15,Instrumentation,Designer
+15,Modelling,Instrument Cable Tray routing study and Backcheck,4,L15,Instrumentation,Designer
+15,Modelling,"Building Floor Plans (RIE, control room, etc.)",4,L15,Instrumentation,Designer
+15,Modelling,"3D Model Work (JBs, instruments, valves, etc.) ",4,L15,Instrumentation,Designer
+15,Modelling,Model Reviews,4,L15,Instrumentation,Designer
+15,Modelling,Control System Architecture Drawings,3,L15,Instrumentation,Designer
+15,Modelling,Fiber Optic Drawings (patching & routing),3,L15,Instrumentation,Designer
+15,Modelling,"Misc. Design (fieldbus, wireless, etc.)",3,L15,Instrumentation,Designer
+15,Modelling,Material Takeoffs,1,L15,Instrumentation,Designer
+15,Modelling,SP3D-Modeling,4,L15,Instrumentation,Designer
+15,Modelling,SP3D-Smartsketch,4,L15,Instrumentation,Designer
+15,Modelling,SP3D-Cable Autorouting,4,L15,Instrumentation,Designer
+15,Modelling,SP3D-Tray Modeling,4,L15,Instrumentation,Designer
+15,Modelling,SP3D-Conduit Modeling,4,L15,Instrumentation,Designer
+15,Modelling,SP3D-Admin,3,L15,Instrumentation,Designer
+15,Modelling,AutoCAD,4,L15,Instrumentation,Designer
+15,Modelling,Infomaker,2,L15,Instrumentation,Designer
+15,Modelling,Microsoft Visio,2,L15,Instrumentation,Designer
+15,Modelling,Micorstation Connect Edition,2,L15,Instrumentation,Designer
+15,Modelling,AutoCAD Plant 3D,2,L15,Instrumentation,Designer
+15,Modelling,Navisworks,2,L15,Instrumentation,Designer
+15,Modelling,DWG Trueview 2022,2,L15,Instrumentation,Designer
+15,Modelling,REVIT,2,L15,Instrumentation,Designer
+15,Modelling,AVEVA E3D,2,L15,Instrumentation,Designer
+15,Modelling,Iconstruct,2,L15,Instrumentation,Designer
+15,Wiring / Loops,Junction Box Wiring,3,L15,Instrumentation,Designer
+15,Wiring / Loops,Panel Wiring,3,L15,Instrumentation,Designer
+15,Wiring / Loops,Marshalling Wiring,3,L15,Instrumentation,Designer
+15,Wiring / Loops,I/O Module Wiring,3,L15,Instrumentation,Designer
+15,Wiring / Loops,Loop Drawings,3,L15,Instrumentation,Designer
+15,Wiring / Loops,Loop Folders,3,L15,Instrumentation,Designer
+15,General,P&ID Markup and Backchecking,2,L15,Instrumentation,Designer
+15,General,Motor Schematics Markup and Backchecking,2,L15,Instrumentation,Designer
+15,General,Mechanical Skid Drawings Markup and Backchecking,2,L15,Instrumentation,Designer
+15,General,Isometric Markup and Backchecking,NA,L15,Instrumentation,Designer
+15,General,Wetting Voltage Distribution Wiring,2,L15,Instrumentation,Designer
+15,General,Budgeting / Schedule Tracking,2,L15,Instrumentation,Designer
+15,General,Labor Estimating,2,L15,Instrumentation,Designer
+15,General,PROPOSAL & COST ESTIMATION,NA,L15,Instrumentation,Designer
+15,General,AS-BUILT & MAINTENANCE,2,L15,Instrumentation,Designer
+15,General,Electrical Document Reviews,2,L15,Instrumentation,Designer
+15,General,Mechanical Document Reviews,2,L15,Instrumentation,Designer
+15,General,Mechanical Subcontract Scope of Work,2,L15,Instrumentation,Designer
+15,General,E/I/C Subcontract Scope of Work,2,L15,Instrumentation,Designer
+15,General,Quality Check - Q4,3,L15,Instrumentation,Designer
+15,General,SPI-EDE_Query builder,NA,L15,Instrumentation,Designer
+15,General,INSPECTION - FIELD INSTRUMENTS,NA,L15,Instrumentation,Designer
