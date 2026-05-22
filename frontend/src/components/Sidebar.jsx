@@ -11,12 +11,10 @@ function Sidebar() {
   return (
     <div className={`sidebar ${collapsed ? "collapsed" : ""}`}>
       
-      {/* Arrow Toggle */}
       <div
         className="sidebar-toggle"
         onClick={() => setCollapsed(!collapsed)}
       >
-        {/* {collapsed ? "▶" : "◀"} */}
       </div>
 
       {!collapsed && (
