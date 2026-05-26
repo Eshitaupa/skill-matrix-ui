@@ -162,7 +162,52 @@ body {
 .sidebar-menu .active {
   background: #2563eb;
 }
+/* Sidebar base */
+.sidebar {
+  background: #0f172a;
+  color: #fff;
+  padding: 16px;
+  width: 220px;
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
 
+/* Collapse state */
+.sidebar.collapsed {
+  width: 60px !important;   /* force small width */
+  padding: 12px 6px;
+}
+
+/* Toggle button */
+.sidebar-toggle {
+  cursor: pointer;
+  margin-bottom: 12px;
+  font-size: 18px;
+}
+
+/* Title */
+.sidebar-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Hide long text smoothly */
+.sidebar.collapsed .sidebar-title {
+  font-size: 14px;
+}
+
+/* Menu */
+.sidebar-menu li {
+  padding: 10px 8px;
+  text-align: left;
+}
+
+/* Center align when collapsed */
+.sidebar.collapsed .sidebar-menu li {
+  text-align: center;
+}
 /* Main content */
 .main-content {
   flex: 1;

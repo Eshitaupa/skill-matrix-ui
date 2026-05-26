@@ -1,3 +1,46 @@
+// import { sidebarItems } from "../config/sidebarConfig";
+// import { useLocation, useNavigate } from "react-router-dom";
+// import { useState } from "react";
+
+// function Sidebar() {
+//   const navigate = useNavigate();
+//   const location = useLocation();
+
+//   const [collapsed, setCollapsed] = useState(false);
+
+//   return (
+//     <div className={`sidebar ${collapsed ? "collapsed" : ""}`}>
+      
+//       <div
+//         className="sidebar-toggle"
+//         onClick={() => setCollapsed(!collapsed)}
+//       >
+//       </div>
+
+//       {!collapsed && (
+//         <>
+//           <div className="sidebar-title">SkillMatrix</div>
+
+//           <ul className="sidebar-menu">
+//             {sidebarItems
+//               .filter(item => item.enabled)
+//               .map(item => (
+//                 <li
+//                   key={item.id}
+//                   className={location.pathname === item.route ? "active" : ""}
+//                   onClick={() => navigate(item.route)}
+//                 >
+//                   {item.label}
+//                 </li>
+//               ))}
+//           </ul>
+//         </>
+//       )}
+//     </div>
+//   );
+// }
+
+// export default Sidebar;
 import { sidebarItems } from "../config/sidebarConfig";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -15,27 +58,27 @@ function Sidebar() {
         className="sidebar-toggle"
         onClick={() => setCollapsed(!collapsed)}
       >
+        {collapsed ? "»" : "«"}
       </div>
 
-      {!collapsed && (
-        <>
-          <div className="sidebar-title">SkillMatrix</div>
+      <div className="sidebar-title">
+        {collapsed ? "SM" : "SkillMatrix"}
+      </div>
 
-          <ul className="sidebar-menu">
-            {sidebarItems
-              .filter(item => item.enabled)
-              .map(item => (
-                <li
-                  key={item.id}
-                  className={location.pathname === item.route ? "active" : ""}
-                  onClick={() => navigate(item.route)}
-                >
-                  {item.label}
-                </li>
-              ))}
-          </ul>
-        </>
-      )}
+      <ul className="sidebar-menu">
+        {sidebarItems
+          .filter(item => item.enabled)
+          .map(item => (
+            <li
+              key={item.id}
+              className={location.pathname === item.route ? "active" : ""}
+              onClick={() => navigate(item.route)}
+              title={collapsed ? item.label : ""}
+            >
+              {collapsed ? "•" : item.label}
+            </li>
+          ))}
+      </ul>
     </div>
   );
 }

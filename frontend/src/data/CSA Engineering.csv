@@ -1,0 +1,298 @@
+﻿Level,Skill,Subskill,Value,LevelKey,Discipline,Role
+7,Drawings,Review of Soil investigation Report,1,L7,CSA,Engineer
+7,Drawings,Steel Structure Drawings,1,L7,CSA,Engineer
+7,Drawings,Concrete Drawings,1,L7,CSA,Engineer
+7,Drawings,General Civil work,1,L7,CSA,Engineer
+7,Drawings,Architectural Drawings,NA,L7,CSA,Engineer
+7,Drawings,Shop Drawings,NA,L7,CSA,Engineer
+7,Drawings,Bar Bending Schedule,NA,L7,CSA,Engineer
+7,Drawings,Steel / Concrete MTO,NA,L7,CSA,Engineer
+7,Design,STAAD Analysis / Design,1,L7,CSA,Engineer
+7,Design,RISA 3D Analysis / Design,1,L7,CSA,Engineer
+7,Design,RISA Foundation,1,L7,CSA,Engineer
+7,Design,RAM Connection,1,L7,CSA,Engineer
+7,Design,RISA Connection,1,L7,CSA,Engineer
+7,Design,Found 3D/ Mat 3D,1,L7,CSA,Engineer
+7,Modelling,PDS Modeling,NA,L7,CSA,Engineer
+7,Modelling,TEKLA Modeling,NA,L7,CSA,Engineer
+7,Modelling,E3D Modeling,NA,L7,CSA,Engineer
+7,Modelling,SP3D Modeling,NA,L7,CSA,Engineer
+7,Modelling,LFM Software With Microstation,NA,L7,CSA,Engineer
+7,Modelling,LFM with Tekla,NA,L7,CSA,Engineer
+7,Softwares,Bentley Inroads,NA,L7,CSA,Engineer
+7,Softwares,Bentley Openrail,NA,L7,CSA,Engineer
+7,Softwares,AutoCAD,1,L7,CSA,Engineer
+7,Softwares,MicroStation,NA,L7,CSA,Engineer
+7,Softwares,Civil 3D,1,L7,CSA,Engineer
+7,Softwares,HYDROLICS CALCS FOR SWD,1,L7,CSA,Engineer
+7,Softwares,Revit Modeling and Drawing Creation,NA,L7,CSA,Engineer
+8,Drawings,Review of Soil investigation Report,2,L8,CSA,Engineer
+8,Drawings,Steel Structure Drawings,2,L8,CSA,Engineer
+8,Drawings,Concrete Drawings,2,L8,CSA,Engineer
+8,Drawings,General Civil work,2,L8,CSA,Engineer
+8,Drawings,Architectural Drawings,1,L8,CSA,Engineer
+8,Drawings,Shop Drawings,1,L8,CSA,Engineer
+8,Drawings,Bar Bending Schedule,1,L8,CSA,Engineer
+8,Drawings,Steel / Concrete MTO,1,L8,CSA,Engineer
+8,Design,STAAD Analysis / Design,2,L8,CSA,Engineer
+8,Design,RISA 3D Analysis / Design,2,L8,CSA,Engineer
+8,Design,RISA Foundation,2,L8,CSA,Engineer
+8,Design,RAM Connection,2,L8,CSA,Engineer
+8,Design,RISA Connection,2,L8,CSA,Engineer
+8,Design,Found 3D/ Mat 3D,2,L8,CSA,Engineer
+8,Modelling,PDS Modeling,NA,L8,CSA,Engineer
+8,Modelling,TEKLA Modeling,1,L8,CSA,Engineer
+8,Modelling,E3D Modeling,NA,L8,CSA,Engineer
+8,Modelling,SP3D Modeling,NA,L8,CSA,Engineer
+8,Modelling,LFM Software With Microstation,NA,L8,CSA,Engineer
+8,Modelling,LFM with Tekla,NA,L8,CSA,Engineer
+8,Softwares,Bentley Inroads,NA,L8,CSA,Engineer
+8,Softwares,Bentley Openrail,NA,L8,CSA,Engineer
+8,Softwares,AutoCAD,1,L8,CSA,Engineer
+8,Softwares,MicroStation,NA,L8,CSA,Engineer
+8,Softwares,Civil 3D,1,L8,CSA,Engineer
+8,Softwares,HYDROLICS CALCS FOR SWD,1,L8,CSA,Engineer
+8,Softwares,Revit Modeling and Drawing Creation,NA,L8,CSA,Engineer
+9,Drawings,Review of Soil investigation Report,2,L9,CSA,Engineer
+9,Drawings,Steel Structure Drawings,2,L9,CSA,Engineer
+9,Drawings,Concrete Drawings,2,L9,CSA,Engineer
+9,Drawings,General Civil work,2,L9,CSA,Engineer
+9,Drawings,Architectural Drawings,2,L9,CSA,Engineer
+9,Drawings,Shop Drawings,2,L9,CSA,Engineer
+9,Drawings,Bar Bending Schedule,2,L9,CSA,Engineer
+9,Drawings,Steel / Concrete MTO,2,L9,CSA,Engineer
+9,Design,STAAD Analysis / Design,2,L9,CSA,Engineer
+9,Design,RISA 3D Analysis / Design,2,L9,CSA,Engineer
+9,Design,RISA Foundation,2,L9,CSA,Engineer
+9,Design,RAM Connection,2,L9,CSA,Engineer
+9,Design,RISA Connection,2,L9,CSA,Engineer
+9,Design,Found 3D/ Mat 3D,2,L9,CSA,Engineer
+9,Modelling,PDS Modeling,NA,L9,CSA,Engineer
+9,Modelling,TEKLA Modeling,1,L9,CSA,Engineer
+9,Modelling,E3D Modeling,NA,L9,CSA,Engineer
+9,Modelling,SP3D Modeling,NA,L9,CSA,Engineer
+9,Modelling,LFM Software With Microstation,1,L9,CSA,Engineer
+9,Modelling,LFM with Tekla,1,L9,CSA,Engineer
+9,Softwares,Bentley Inroads,NA,L9,CSA,Engineer
+9,Softwares,Bentley Openrail,NA,L9,CSA,Engineer
+9,Softwares,AutoCAD,1,L9,CSA,Engineer
+9,Softwares,MicroStation,1,L9,CSA,Engineer
+9,Softwares,Civil 3D,2,L9,CSA,Engineer
+9,Softwares,HYDROLICS CALCS FOR SWD,2,L9,CSA,Engineer
+9,Softwares,Revit Modeling and Drawing Creation,1,L9,CSA,Engineer
+10,Drawings,Review of Soil investigation Report,2,L10,CSA,Engineer
+10,Drawings,Steel Structure Drawings,3,L10,CSA,Engineer
+10,Drawings,Concrete Drawings,3,L10,CSA,Engineer
+10,Drawings,General Civil work,3,L10,CSA,Engineer
+10,Drawings,Architectural Drawings,2,L10,CSA,Engineer
+10,Drawings,Shop Drawings,2,L10,CSA,Engineer
+10,Drawings,Bar Bending Schedule,2,L10,CSA,Engineer
+10,Drawings,Steel / Concrete MTO,2,L10,CSA,Engineer
+10,Design,STAAD Analysis / Design,3,L10,CSA,Engineer
+10,Design,RISA 3D Analysis / Design,3,L10,CSA,Engineer
+10,Design,RISA Foundation,3,L10,CSA,Engineer
+10,Design,RAM Connection,3,L10,CSA,Engineer
+10,Design,RISA Connection,3,L10,CSA,Engineer
+10,Design,Found 3D/ Mat 3D,3,L10,CSA,Engineer
+10,Modelling,PDS Modeling,NA,L10,CSA,Engineer
+10,Modelling,TEKLA Modeling,1,L10,CSA,Engineer
+10,Modelling,E3D Modeling,NA,L10,CSA,Engineer
+10,Modelling,SP3D Modeling,NA,L10,CSA,Engineer
+10,Modelling,LFM Software With Microstation,1,L10,CSA,Engineer
+10,Modelling,LFM with Tekla,1,L10,CSA,Engineer
+10,Softwares,Bentley Inroads,NA,L10,CSA,Engineer
+10,Softwares,Bentley Openrail,NA,L10,CSA,Engineer
+10,Softwares,AutoCAD,2,L10,CSA,Engineer
+10,Softwares,MicroStation,1,L10,CSA,Engineer
+10,Softwares,Civil 3D,2,L10,CSA,Engineer
+10,Softwares,HYDROLICS CALCS FOR SWD,2,L10,CSA,Engineer
+10,Softwares,Revit Modeling and Drawing Creation,1,L10,CSA,Engineer
+11,Drawings,Review of Soil investigation Report,3,L11,CSA,Engineer
+11,Drawings,Steel Structure Drawings,3,L11,CSA,Engineer
+11,Drawings,Concrete Drawings,3,L11,CSA,Engineer
+11,Drawings,General Civil work,3,L11,CSA,Engineer
+11,Drawings,Architectural Drawings,3,L11,CSA,Engineer
+11,Drawings,Shop Drawings,3,L11,CSA,Engineer
+11,Drawings,Bar Bending Schedule,3,L11,CSA,Engineer
+11,Drawings,Steel / Concrete MTO,3,L11,CSA,Engineer
+11,Design,STAAD Analysis / Design,3,L11,CSA,Engineer
+11,Design,RISA 3D Analysis / Design,3,L11,CSA,Engineer
+11,Design,RISA Foundation,3,L11,CSA,Engineer
+11,Design,RAM Connection,3,L11,CSA,Engineer
+11,Design,RISA Connection,3,L11,CSA,Engineer
+11,Design,Found 3D/ Mat 3D,3,L11,CSA,Engineer
+11,Modelling,PDS Modeling,NA,L11,CSA,Engineer
+11,Modelling,TEKLA Modeling,1,L11,CSA,Engineer
+11,Modelling,E3D Modeling,NA,L11,CSA,Engineer
+11,Modelling,SP3D Modeling,NA,L11,CSA,Engineer
+11,Modelling,LFM Software With Microstation,1,L11,CSA,Engineer
+11,Modelling,LFM with Tekla,1,L11,CSA,Engineer
+11,Softwares,Bentley Inroads,NA,L11,CSA,Engineer
+11,Softwares,Bentley Openrail,NA,L11,CSA,Engineer
+11,Softwares,AutoCAD,2,L11,CSA,Engineer
+11,Softwares,MicroStation,1,L11,CSA,Engineer
+11,Softwares,Civil 3D,2,L11,CSA,Engineer
+11,Softwares,HYDROLICS CALCS FOR SWD,3,L11,CSA,Engineer
+11,Softwares,Revit Modeling and Drawing Creation,1,L11,CSA,Engineer
+12,Drawings,Review of Soil investigation Report,3,L12,CSA,Engineer
+12,Drawings,Steel Structure Drawings,3,L12,CSA,Engineer
+12,Drawings,Concrete Drawings,3,L12,CSA,Engineer
+12,Drawings,General Civil work,3,L12,CSA,Engineer
+12,Drawings,Architectural Drawings,3,L12,CSA,Engineer
+12,Drawings,Shop Drawings,3,L12,CSA,Engineer
+12,Drawings,Bar Bending Schedule,3,L12,CSA,Engineer
+12,Drawings,Steel / Concrete MTO,3,L12,CSA,Engineer
+12,Design,STAAD Analysis / Design,3,L12,CSA,Engineer
+12,Design,RISA 3D Analysis / Design,3,L12,CSA,Engineer
+12,Design,RISA Foundation,3,L12,CSA,Engineer
+12,Design,RAM Connection,3,L12,CSA,Engineer
+12,Design,RISA Connection,3,L12,CSA,Engineer
+12,Design,Found 3D/ Mat 3D,3,L12,CSA,Engineer
+12,Modelling,PDS Modeling,NA,L12,CSA,Engineer
+12,Modelling,TEKLA Modeling,1,L12,CSA,Engineer
+12,Modelling,E3D Modeling,NA,L12,CSA,Engineer
+12,Modelling,SP3D Modeling,NA,L12,CSA,Engineer
+12,Modelling,LFM Software With Microstation,1,L12,CSA,Engineer
+12,Modelling,LFM with Tekla,1,L12,CSA,Engineer
+12,Softwares,Bentley Inroads,NA,L12,CSA,Engineer
+12,Softwares,Bentley Openrail,NA,L12,CSA,Engineer
+12,Softwares,AutoCAD,2,L12,CSA,Engineer
+12,Softwares,MicroStation,1,L12,CSA,Engineer
+12,Softwares,Civil 3D,2,L12,CSA,Engineer
+12,Softwares,HYDROLICS CALCS FOR SWD,3,L12,CSA,Engineer
+12,Softwares,Revit Modeling and Drawing Creation,1,L12,CSA,Engineer
+13,Drawings,Review of Soil investigation Report,3,L13,CSA,Engineer
+13,Drawings,Steel Structure Drawings,4,L13,CSA,Engineer
+13,Drawings,Concrete Drawings,4,L13,CSA,Engineer
+13,Drawings,General Civil work,4,L13,CSA,Engineer
+13,Drawings,Architectural Drawings,3,L13,CSA,Engineer
+13,Drawings,Shop Drawings,3,L13,CSA,Engineer
+13,Drawings,Bar Bending Schedule,3,L13,CSA,Engineer
+13,Drawings,Steel / Concrete MTO,4,L13,CSA,Engineer
+13,Design,STAAD Analysis / Design,4,L13,CSA,Engineer
+13,Design,RISA 3D Analysis / Design,4,L13,CSA,Engineer
+13,Design,RISA Foundation,4,L13,CSA,Engineer
+13,Design,RAM Connection,4,L13,CSA,Engineer
+13,Design,RISA Connection,4,L13,CSA,Engineer
+13,Design,Found 3D/ Mat 3D,4,L13,CSA,Engineer
+13,Modelling,PDS Modeling,NA,L13,CSA,Engineer
+13,Modelling,TEKLA Modeling,1,L13,CSA,Engineer
+13,Modelling,E3D Modeling,NA,L13,CSA,Engineer
+13,Modelling,SP3D Modeling,NA,L13,CSA,Engineer
+13,Modelling,LFM Software With Microstation,1,L13,CSA,Engineer
+13,Modelling,LFM with Tekla,1,L13,CSA,Engineer
+13,Softwares,Bentley Inroads,NA,L13,CSA,Engineer
+13,Softwares,Bentley Openrail,NA,L13,CSA,Engineer
+13,Softwares,AutoCAD,2,L13,CSA,Engineer
+13,Softwares,MicroStation,1,L13,CSA,Engineer
+13,Softwares,Civil 3D,2,L13,CSA,Engineer
+13,Softwares,HYDROLICS CALCS FOR SWD,3,L13,CSA,Engineer
+13,Softwares,Revit Modeling and Drawing Creation,1,L13,CSA,Engineer
+14,Drawings,Review of Soil investigation Report,3,L14,CSA,Engineer
+14,Drawings,Steel Structure Drawings,4,L14,CSA,Engineer
+14,Drawings,Concrete Drawings,4,L14,CSA,Engineer
+14,Drawings,General Civil work,4,L14,CSA,Engineer
+14,Drawings,Architectural Drawings,3,L14,CSA,Engineer
+14,Drawings,Shop Drawings,3,L14,CSA,Engineer
+14,Drawings,Bar Bending Schedule,3,L14,CSA,Engineer
+14,Drawings,Steel / Concrete MTO,4,L14,CSA,Engineer
+14,Design,STAAD Analysis / Design,4,L14,CSA,Engineer
+14,Design,RISA 3D Analysis / Design,4,L14,CSA,Engineer
+14,Design,RISA Foundation,4,L14,CSA,Engineer
+14,Design,RAM Connection,4,L14,CSA,Engineer
+14,Design,RISA Connection,4,L14,CSA,Engineer
+14,Design,Found 3D/ Mat 3D,4,L14,CSA,Engineer
+14,Modelling,PDS Modeling,NA,L14,CSA,Engineer
+14,Modelling,TEKLA Modeling,1,L14,CSA,Engineer
+14,Modelling,E3D Modeling,NA,L14,CSA,Engineer
+14,Modelling,SP3D Modeling,NA,L14,CSA,Engineer
+14,Modelling,LFM Software With Microstation,1,L14,CSA,Engineer
+14,Modelling,LFM with Tekla,1,L14,CSA,Engineer
+14,Softwares,Bentley Inroads,NA,L14,CSA,Engineer
+14,Softwares,Bentley Openrail,NA,L14,CSA,Engineer
+14,Softwares,AutoCAD,2,L14,CSA,Engineer
+14,Softwares,MicroStation,1,L14,CSA,Engineer
+14,Softwares,Civil 3D,2,L14,CSA,Engineer
+14,Softwares,HYDROLICS CALCS FOR SWD,4,L14,CSA,Engineer
+14,Softwares,Revit Modeling and Drawing Creation,1,L14,CSA,Engineer
+15,Drawings,Review of Soil investigation Report,3,L15,CSA,Engineer
+15,Drawings,Steel Structure Drawings,4,L15,CSA,Engineer
+15,Drawings,Concrete Drawings,4,L15,CSA,Engineer
+15,Drawings,General Civil work,4,L15,CSA,Engineer
+15,Drawings,Architectural Drawings,3,L15,CSA,Engineer
+15,Drawings,Shop Drawings,3,L15,CSA,Engineer
+15,Drawings,Bar Bending Schedule,3,L15,CSA,Engineer
+15,Drawings,Steel / Concrete MTO,4,L15,CSA,Engineer
+15,Design,STAAD Analysis / Design,4,L15,CSA,Engineer
+15,Design,RISA 3D Analysis / Design,4,L15,CSA,Engineer
+15,Design,RISA Foundation,4,L15,CSA,Engineer
+15,Design,RAM Connection,4,L15,CSA,Engineer
+15,Design,RISA Connection,4,L15,CSA,Engineer
+15,Design,Found 3D/ Mat 3D,4,L15,CSA,Engineer
+15,Modelling,PDS Modeling,NA,L15,CSA,Engineer
+15,Modelling,TEKLA Modeling,2,L15,CSA,Engineer
+15,Modelling,E3D Modeling,NA,L15,CSA,Engineer
+15,Modelling,SP3D Modeling,NA,L15,CSA,Engineer
+15,Modelling,LFM Software With Microstation,1,L15,CSA,Engineer
+15,Modelling,LFM with Tekla,1,L15,CSA,Engineer
+15,Softwares,Bentley Inroads,NA,L15,CSA,Engineer
+15,Softwares,Bentley Openrail,NA,L15,CSA,Engineer
+15,Softwares,AutoCAD,2,L15,CSA,Engineer
+15,Softwares,MicroStation,1,L15,CSA,Engineer
+15,Softwares,Civil 3D,2,L15,CSA,Engineer
+15,Softwares,HYDROLICS CALCS FOR SWD,4,L15,CSA,Engineer
+15,Softwares,Revit Modeling and Drawing Creation,1,L15,CSA,Engineer
+16,Drawings,Review of Soil investigation Report,3,L16,CSA,Engineer
+16,Drawings,Steel Structure Drawings,4,L16,CSA,Engineer
+16,Drawings,Concrete Drawings,4,L16,CSA,Engineer
+16,Drawings,General Civil work,4,L16,CSA,Engineer
+16,Drawings,Architectural Drawings,3,L16,CSA,Engineer
+16,Drawings,Shop Drawings,3,L16,CSA,Engineer
+16,Drawings,Bar Bending Schedule,3,L16,CSA,Engineer
+16,Drawings,Steel / Concrete MTO,4,L16,CSA,Engineer
+16,Design,STAAD Analysis / Design,4,L16,CSA,Engineer
+16,Design,RISA 3D Analysis / Design,4,L16,CSA,Engineer
+16,Design,RISA Foundation,4,L16,CSA,Engineer
+16,Design,RAM Connection,4,L16,CSA,Engineer
+16,Design,RISA Connection,4,L16,CSA,Engineer
+16,Design,Found 3D/ Mat 3D,4,L16,CSA,Engineer
+16,Modelling,PDS Modeling,NA,L16,CSA,Engineer
+16,Modelling,TEKLA Modeling,2,L16,CSA,Engineer
+16,Modelling,E3D Modeling,NA,L16,CSA,Engineer
+16,Modelling,SP3D Modeling,NA,L16,CSA,Engineer
+16,Modelling,LFM Software With Microstation,1,L16,CSA,Engineer
+16,Modelling,LFM with Tekla,1,L16,CSA,Engineer
+16,Softwares,Bentley Inroads,NA,L16,CSA,Engineer
+16,Softwares,Bentley Openrail,NA,L16,CSA,Engineer
+16,Softwares,AutoCAD,2,L16,CSA,Engineer
+16,Softwares,MicroStation,1,L16,CSA,Engineer
+16,Softwares,Civil 3D,2,L16,CSA,Engineer
+16,Softwares,HYDROLICS CALCS FOR SWD,4,L16,CSA,Engineer
+16,Softwares,Revit Modeling and Drawing Creation,1,L16,CSA,Engineer
+17,Drawings,Review of Soil investigation Report,3,L17,CSA,Engineer
+17,Drawings,Steel Structure Drawings,4,L17,CSA,Engineer
+17,Drawings,Concrete Drawings,4,L17,CSA,Engineer
+17,Drawings,General Civil work,4,L17,CSA,Engineer
+17,Drawings,Architectural Drawings,3,L17,CSA,Engineer
+17,Drawings,Shop Drawings,3,L17,CSA,Engineer
+17,Drawings,Bar Bending Schedule,3,L17,CSA,Engineer
+17,Drawings,Steel / Concrete MTO,4,L17,CSA,Engineer
+17,Design,STAAD Analysis / Design,4,L17,CSA,Engineer
+17,Design,RISA 3D Analysis / Design,4,L17,CSA,Engineer
+17,Design,RISA Foundation,4,L17,CSA,Engineer
+17,Design,RAM Connection,4,L17,CSA,Engineer
+17,Design,RISA Connection,4,L17,CSA,Engineer
+17,Design,Found 3D/ Mat 3D,4,L17,CSA,Engineer
+17,Modelling,PDS Modeling,NA,L17,CSA,Engineer
+17,Modelling,TEKLA Modeling,2,L17,CSA,Engineer
+17,Modelling,E3D Modeling,NA,L17,CSA,Engineer
+17,Modelling,SP3D Modeling,NA,L17,CSA,Engineer
+17,Modelling,LFM Software With Microstation,1,L17,CSA,Engineer
+17,Modelling,LFM with Tekla,1,L17,CSA,Engineer
+17,Softwares,Bentley Inroads,NA,L17,CSA,Engineer
+17,Softwares,Bentley Openrail,NA,L17,CSA,Engineer
+17,Softwares,AutoCAD,2,L17,CSA,Engineer
+17,Softwares,MicroStation,1,L17,CSA,Engineer
+17,Softwares,Civil 3D,2,L17,CSA,Engineer
+17,Softwares,HYDROLICS CALCS FOR SWD,4,L17,CSA,Engineer
+17,Softwares,Revit Modeling and Drawing Creation,1,L17,CSA,Engineer
