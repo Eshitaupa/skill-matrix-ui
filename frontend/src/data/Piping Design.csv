@@ -1,0 +1,1167 @@
+﻿Level,Skill,Subskill,Value,LevelKey,Discipline,Role
+5,Arrangements,Boiler Unit,NA,L5,Piping Design,Designer
+5,Arrangements,Flare Unit,NA,L5,Piping Design,Designer
+5,Arrangements,Hygnic Piping,NA,L5,Piping Design,Designer
+5,Arrangements,ISBL / OSBL Units,2,L5,Piping Design,Designer
+5,Arrangements,ISBL Process Units,2,L5,Piping Design,Designer
+5,Arrangements,Overall Plot Plan,2,L5,Piping Design,Designer
+5,Arrangements,Pipe Rack,2,L5,Piping Design,Designer
+5,Arrangements,Plan Building,2,L5,Piping Design,Designer
+5,Arrangements,Tank Farm,2,L5,Piping Design,Designer
+5,Arrangements,Technological Structure,2,L5,Piping Design,Designer
+5,Arrangements,Unit Plot Plan,2,L5,Piping Design,Designer
+5,Arrangements,Loading Arms & Racks,2,L5,Piping Design,Designer
+5,Arrangements,Packaged Systems (Skid),2,L5,Piping Design,Designer
+5,Arrangements,Utilities,2,L5,Piping Design,Designer
+5,Fixed Equipment,Air Coolers,1,L5,Piping Design,Designer
+5,Fixed Equipment,Compact Block & Plate Exchanger,1,L5,Piping Design,Designer
+5,Fixed Equipment,Cooling Towers,1,L5,Piping Design,Designer
+5,Fixed Equipment,Desuperheaters,1,L5,Piping Design,Designer
+5,Fixed Equipment,Vessel ,1,L5,Piping Design,Designer
+5,Fixed Equipment,Flares,1,L5,Piping Design,Designer
+5,Fixed Equipment,Heaters & Furnaces,NA,L5,Piping Design,Designer
+5,Fixed Equipment,Reactors,1,L5,Piping Design,Designer
+5,Fixed Equipment,S & T Exchagers,1,L5,Piping Design,Designer
+5,Fixed Equipment,Spherical Storage Tanks,1,L5,Piping Design,Designer
+5,Fixed Equipment,Steam Ejectors & Condensers,1,L5,Piping Design,Designer
+5,Fixed Equipment,Thermal Oxidizers,1,L5,Piping Design,Designer
+5,Fixed Equipment,Towers / Columns,NA,L5,Piping Design,Designer
+5,Fixed Equipment,Storage Tanks,1,L5,Piping Design,Designer
+5,Fixed Equipment,Storage Bullets,1,L5,Piping Design,Designer
+5,Piping,Lined Pipe,NA,L5,Piping Design,Designer
+5,Piping,Metalic Piping,1,L5,Piping Design,Designer
+5,Piping,Non-Metalic Piping,1,L5,Piping Design,Designer
+5,Piping,Alloy Steel,1,L5,Piping Design,Designer
+5,Rotary Equipments,Air Compressors,NA,L5,Piping Design,Designer
+5,Rotary Equipments,ANSI Pumps,2,L5,Piping Design,Designer
+5,Rotary Equipments,API Centrifugal Pumps,2,L5,Piping Design,Designer
+5,Rotary Equipments,Centrifugal Compressors,1,L5,Piping Design,Designer
+5,Rotary Equipments,FD and ID Fans / Blowers,1,L5,Piping Design,Designer
+5,Rotary Equipments,Positive Displacement Pumps,2,L5,Piping Design,Designer
+5,Rotary Equipments,Reciprocating Compressors,NA,L5,Piping Design,Designer
+5,Rotary Equipments,Steam Turbines,NA,L5,Piping Design,Designer
+5,Softwares,AutoCad,4,L5,Piping Design,Designer
+5,Softwares,Cadworx,1,L5,Piping Design,Designer
+5,Softwares,E3D,1,L5,Piping Design,Designer
+5,Softwares,LFM,NA,L5,Piping Design,Designer
+5,Softwares,Microstation,2,L5,Piping Design,Designer
+5,Softwares,PDMS,NA,L5,Piping Design,Designer
+5,Softwares,PDS-Plant Design System,NA,L5,Piping Design,Designer
+5,Softwares,Plant 3D,1,L5,Piping Design,Designer
+5,Softwares,S3D,1,L5,Piping Design,Designer
+5,Softwares,SPR- Smart Plant Review,1,L5,Piping Design,Designer
+5,Softwares,Plant Stream,1,L5,Piping Design,Designer
+5,Softwares,I-Construct,NA,L5,Piping Design,Designer
+6,Arrangements,Boiler Unit,1,L6,Piping Design,Designer
+6,Arrangements,Flare Unit,1,L6,Piping Design,Designer
+6,Arrangements,Hygnic Piping,1,L6,Piping Design,Designer
+6,Arrangements,ISBL / OSBL Units,2,L6,Piping Design,Designer
+6,Arrangements,ISBL Process Units,2,L6,Piping Design,Designer
+6,Arrangements,Overall Plot Plan,2,L6,Piping Design,Designer
+6,Arrangements,Pipe Rack,2,L6,Piping Design,Designer
+6,Arrangements,Plan Building,2,L6,Piping Design,Designer
+6,Arrangements,Tank Farm,2,L6,Piping Design,Designer
+6,Arrangements,Technological Structure,2,L6,Piping Design,Designer
+6,Arrangements,Unit Plot Plan,2,L6,Piping Design,Designer
+6,Arrangements,Loading Arms & Racks,2,L6,Piping Design,Designer
+6,Arrangements,Packaged Systems (Skid),2,L6,Piping Design,Designer
+6,Arrangements,Utilities,2,L6,Piping Design,Designer
+6,Fixed Equipment,Air Coolers,1,L6,Piping Design,Designer
+6,Fixed Equipment,Compact Block & Plate Exchanger,1,L6,Piping Design,Designer
+6,Fixed Equipment,Cooling Towers,1,L6,Piping Design,Designer
+6,Fixed Equipment,Desuperheaters,1,L6,Piping Design,Designer
+6,Fixed Equipment,Vessel ,1,L6,Piping Design,Designer
+6,Fixed Equipment,Flares,1,L6,Piping Design,Designer
+6,Fixed Equipment,Heaters & Furnaces,NA,L6,Piping Design,Designer
+6,Fixed Equipment,Reactors,1,L6,Piping Design,Designer
+6,Fixed Equipment,S & T Exchagers,1,L6,Piping Design,Designer
+6,Fixed Equipment,Spherical Storage Tanks,1,L6,Piping Design,Designer
+6,Fixed Equipment,Steam Ejectors & Condensers,1,L6,Piping Design,Designer
+6,Fixed Equipment,Thermal Oxidizers,1,L6,Piping Design,Designer
+6,Fixed Equipment,Towers / Columns,NA,L6,Piping Design,Designer
+6,Fixed Equipment,Storage Tanks,1,L6,Piping Design,Designer
+6,Fixed Equipment,Storage Bullets,1,L6,Piping Design,Designer
+6,Piping,Lined Pipe,NA,L6,Piping Design,Designer
+6,Piping,Metalic Piping,1,L6,Piping Design,Designer
+6,Piping,Non-Metalic Piping,1,L6,Piping Design,Designer
+6,Piping,Alloy Steel,1,L6,Piping Design,Designer
+6,Rotary Equipments,Air Compressors,NA,L6,Piping Design,Designer
+6,Rotary Equipments,ANSI Pumps,2,L6,Piping Design,Designer
+6,Rotary Equipments,API Centrifugal Pumps,2,L6,Piping Design,Designer
+6,Rotary Equipments,Centrifugal Compressors,1,L6,Piping Design,Designer
+6,Rotary Equipments,FD and ID Fans / Blowers,1,L6,Piping Design,Designer
+6,Rotary Equipments,Positive Displacement Pumps,2,L6,Piping Design,Designer
+6,Rotary Equipments,Reciprocating Compressors,NA,L6,Piping Design,Designer
+6,Rotary Equipments,Steam Turbines,NA,L6,Piping Design,Designer
+6,Softwares,AutoCad,4,L6,Piping Design,Designer
+6,Softwares,Cadworx,1,L6,Piping Design,Designer
+6,Softwares,E3D,1,L6,Piping Design,Designer
+6,Softwares,LFM,NA,L6,Piping Design,Designer
+6,Softwares,Microstation,2,L6,Piping Design,Designer
+6,Softwares,PDMS,NA,L6,Piping Design,Designer
+6,Softwares,PDS-Plant Design System,NA,L6,Piping Design,Designer
+6,Softwares,Plant 3D,1,L6,Piping Design,Designer
+6,Softwares,S3D,1,L6,Piping Design,Designer
+6,Softwares,SPR- Smart Plant Review,1,L6,Piping Design,Designer
+6,Softwares,Plant Stream,1,L6,Piping Design,Designer
+6,Softwares,I-Construct,NA,L6,Piping Design,Designer
+7,Arrangements,Boiler Unit,2,L7,Piping Design,Designer
+7,Arrangements,Flare Unit,3,L7,Piping Design,Designer
+7,Arrangements,Hygnic Piping,NA,L7,Piping Design,Designer
+7,Arrangements,ISBL / OSBL Units,3,L7,Piping Design,Designer
+7,Arrangements,ISBL Process Units,3,L7,Piping Design,Designer
+7,Arrangements,Overall Plot Plan,3,L7,Piping Design,Designer
+7,Arrangements,Pipe Rack,3,L7,Piping Design,Designer
+7,Arrangements,Plan Building,3,L7,Piping Design,Designer
+7,Arrangements,Tank Farm,3,L7,Piping Design,Designer
+7,Arrangements,Technological Structure,3,L7,Piping Design,Designer
+7,Arrangements,Unit Plot Plan,3,L7,Piping Design,Designer
+7,Arrangements,Loading Arms & Racks,3,L7,Piping Design,Designer
+7,Arrangements,Packaged Systems (Skid),3,L7,Piping Design,Designer
+7,Arrangements,Utilities,3,L7,Piping Design,Designer
+7,Fixed Equipment,Air Coolers,2,L7,Piping Design,Designer
+7,Fixed Equipment,Compact Block & Plate Exchanger,2,L7,Piping Design,Designer
+7,Fixed Equipment,Cooling Towers,2,L7,Piping Design,Designer
+7,Fixed Equipment,Desuperheaters,2,L7,Piping Design,Designer
+7,Fixed Equipment,Vessel ,2,L7,Piping Design,Designer
+7,Fixed Equipment,Flares,2,L7,Piping Design,Designer
+7,Fixed Equipment,Heaters & Furnaces,1,L7,Piping Design,Designer
+7,Fixed Equipment,Reactors,2,L7,Piping Design,Designer
+7,Fixed Equipment,S & T Exchagers,2,L7,Piping Design,Designer
+7,Fixed Equipment,Spherical Storage Tanks,2,L7,Piping Design,Designer
+7,Fixed Equipment,Steam Ejectors & Condensers,2,L7,Piping Design,Designer
+7,Fixed Equipment,Thermal Oxidizers,2,L7,Piping Design,Designer
+7,Fixed Equipment,Towers / Columns,1,L7,Piping Design,Designer
+7,Fixed Equipment,Storage Tanks,2,L7,Piping Design,Designer
+7,Fixed Equipment,Storage Bullets,2,L7,Piping Design,Designer
+7,Piping,Lined Pipe,1,L7,Piping Design,Designer
+7,Piping,Metalic Piping,2,L7,Piping Design,Designer
+7,Piping,Non-Metalic Piping,2,L7,Piping Design,Designer
+7,Piping,Alloy Steel,2,L7,Piping Design,Designer
+7,Rotary Equipments,Air Compressors,1,L7,Piping Design,Designer
+7,Rotary Equipments,ANSI Pumps,2,L7,Piping Design,Designer
+7,Rotary Equipments,API Centrifugal Pumps,2,L7,Piping Design,Designer
+7,Rotary Equipments,Centrifugal Compressors,2,L7,Piping Design,Designer
+7,Rotary Equipments,FD and ID Fans / Blowers,2,L7,Piping Design,Designer
+7,Rotary Equipments,Positive Displacement Pumps,2,L7,Piping Design,Designer
+7,Rotary Equipments,Reciprocating Compressors,1,L7,Piping Design,Designer
+7,Rotary Equipments,Steam Turbines,1,L7,Piping Design,Designer
+7,Softwares,AutoCad,4,L7,Piping Design,Designer
+7,Softwares,Cadworx,1,L7,Piping Design,Designer
+7,Softwares,E3D,1,L7,Piping Design,Designer
+7,Softwares,LFM,2,L7,Piping Design,Designer
+7,Softwares,Microstation,3,L7,Piping Design,Designer
+7,Softwares,PDMS,NA,L7,Piping Design,Designer
+7,Softwares,PDS-Plant Design System,NA,L7,Piping Design,Designer
+7,Softwares,Plant 3D,2,L7,Piping Design,Designer
+7,Softwares,S3D,3,L7,Piping Design,Designer
+7,Softwares,SPR- Smart Plant Review,2,L7,Piping Design,Designer
+7,Softwares,Plant Stream,2,L7,Piping Design,Designer
+7,Softwares,I-Construct,1,L7,Piping Design,Designer
+8,Arrangements,Boiler Unit,2,L8,Piping Design,Designer
+8,Arrangements,Flare Unit,3,L8,Piping Design,Designer
+8,Arrangements,Hygnic Piping,NA,L8,Piping Design,Designer
+8,Arrangements,ISBL / OSBL Units,3,L8,Piping Design,Designer
+8,Arrangements,ISBL Process Units,3,L8,Piping Design,Designer
+8,Arrangements,Overall Plot Plan,3,L8,Piping Design,Designer
+8,Arrangements,Pipe Rack,3,L8,Piping Design,Designer
+8,Arrangements,Plan Building,3,L8,Piping Design,Designer
+8,Arrangements,Tank Farm,3,L8,Piping Design,Designer
+8,Arrangements,Technological Structure,3,L8,Piping Design,Designer
+8,Arrangements,Unit Plot Plan,3,L8,Piping Design,Designer
+8,Arrangements,Loading Arms & Racks,3,L8,Piping Design,Designer
+8,Arrangements,Packaged Systems (Skid),3,L8,Piping Design,Designer
+8,Arrangements,Utilities,3,L8,Piping Design,Designer
+8,Fixed Equipment,Air Coolers,2,L8,Piping Design,Designer
+8,Fixed Equipment,Compact Block & Plate Exchanger,2,L8,Piping Design,Designer
+8,Fixed Equipment,Cooling Towers,2,L8,Piping Design,Designer
+8,Fixed Equipment,Desuperheaters,2,L8,Piping Design,Designer
+8,Fixed Equipment,Vessel ,2,L8,Piping Design,Designer
+8,Fixed Equipment,Flares,2,L8,Piping Design,Designer
+8,Fixed Equipment,Heaters & Furnaces,1,L8,Piping Design,Designer
+8,Fixed Equipment,Reactors,2,L8,Piping Design,Designer
+8,Fixed Equipment,S & T Exchagers,2,L8,Piping Design,Designer
+8,Fixed Equipment,Spherical Storage Tanks,2,L8,Piping Design,Designer
+8,Fixed Equipment,Steam Ejectors & Condensers,2,L8,Piping Design,Designer
+8,Fixed Equipment,Thermal Oxidizers,2,L8,Piping Design,Designer
+8,Fixed Equipment,Towers / Columns,1,L8,Piping Design,Designer
+8,Fixed Equipment,Storage Tanks,2,L8,Piping Design,Designer
+8,Fixed Equipment,Storage Bullets,2,L8,Piping Design,Designer
+8,Piping,Lined Pipe,1,L8,Piping Design,Designer
+8,Piping,Metalic Piping,2,L8,Piping Design,Designer
+8,Piping,Non-Metalic Piping,2,L8,Piping Design,Designer
+8,Piping,Alloy Steel,2,L8,Piping Design,Designer
+8,Rotary Equipments,Air Compressors,1,L8,Piping Design,Designer
+8,Rotary Equipments,ANSI Pumps,2,L8,Piping Design,Designer
+8,Rotary Equipments,API Centrifugal Pumps,2,L8,Piping Design,Designer
+8,Rotary Equipments,Centrifugal Compressors,2,L8,Piping Design,Designer
+8,Rotary Equipments,FD and ID Fans / Blowers,2,L8,Piping Design,Designer
+8,Rotary Equipments,Positive Displacement Pumps,2,L8,Piping Design,Designer
+8,Rotary Equipments,Reciprocating Compressors,1,L8,Piping Design,Designer
+8,Rotary Equipments,Steam Turbines,1,L8,Piping Design,Designer
+8,Softwares,AutoCad,4,L8,Piping Design,Designer
+8,Softwares,Cadworx,1,L8,Piping Design,Designer
+8,Softwares,E3D,1,L8,Piping Design,Designer
+8,Softwares,LFM,2,L8,Piping Design,Designer
+8,Softwares,Microstation,3,L8,Piping Design,Designer
+8,Softwares,PDMS,NA,L8,Piping Design,Designer
+8,Softwares,PDS-Plant Design System,NA,L8,Piping Design,Designer
+8,Softwares,Plant 3D,2,L8,Piping Design,Designer
+8,Softwares,S3D,3,L8,Piping Design,Designer
+8,Softwares,SPR- Smart Plant Review,2,L8,Piping Design,Designer
+8,Softwares,Plant Stream,2,L8,Piping Design,Designer
+8,Softwares,I-Construct,1,L8,Piping Design,Designer
+9,Arrangements,Boiler Unit,2,L9,Piping Design,Designer
+9,Arrangements,Flare Unit,3,L9,Piping Design,Designer
+9,Arrangements,Hygnic Piping,NA,L9,Piping Design,Designer
+9,Arrangements,ISBL / OSBL Units,3,L9,Piping Design,Designer
+9,Arrangements,ISBL Process Units,3,L9,Piping Design,Designer
+9,Arrangements,Overall Plot Plan,3,L9,Piping Design,Designer
+9,Arrangements,Pipe Rack,3,L9,Piping Design,Designer
+9,Arrangements,Plan Building,3,L9,Piping Design,Designer
+9,Arrangements,Tank Farm,3,L9,Piping Design,Designer
+9,Arrangements,Technological Structure,3,L9,Piping Design,Designer
+9,Arrangements,Unit Plot Plan,3,L9,Piping Design,Designer
+9,Arrangements,Loading Arms & Racks,3,L9,Piping Design,Designer
+9,Arrangements,Packaged Systems (Skid),3,L9,Piping Design,Designer
+9,Arrangements,Utilities,3,L9,Piping Design,Designer
+9,Fixed Equipment,Air Coolers,2,L9,Piping Design,Designer
+9,Fixed Equipment,Compact Block & Plate Exchanger,2,L9,Piping Design,Designer
+9,Fixed Equipment,Cooling Towers,2,L9,Piping Design,Designer
+9,Fixed Equipment,Desuperheaters,2,L9,Piping Design,Designer
+9,Fixed Equipment,Vessel ,2,L9,Piping Design,Designer
+9,Fixed Equipment,Flares,2,L9,Piping Design,Designer
+9,Fixed Equipment,Heaters & Furnaces,1,L9,Piping Design,Designer
+9,Fixed Equipment,Reactors,2,L9,Piping Design,Designer
+9,Fixed Equipment,S & T Exchagers,2,L9,Piping Design,Designer
+9,Fixed Equipment,Spherical Storage Tanks,2,L9,Piping Design,Designer
+9,Fixed Equipment,Steam Ejectors & Condensers,2,L9,Piping Design,Designer
+9,Fixed Equipment,Thermal Oxidizers,2,L9,Piping Design,Designer
+9,Fixed Equipment,Towers / Columns,1,L9,Piping Design,Designer
+9,Fixed Equipment,Storage Tanks,2,L9,Piping Design,Designer
+9,Fixed Equipment,Storage Bullets,2,L9,Piping Design,Designer
+9,Piping,Lined Pipe,1,L9,Piping Design,Designer
+9,Piping,Metalic Piping,2,L9,Piping Design,Designer
+9,Piping,Non-Metalic Piping,2,L9,Piping Design,Designer
+9,Piping,Alloy Steel,2,L9,Piping Design,Designer
+9,Rotary Equipments,Air Compressors,1,L9,Piping Design,Designer
+9,Rotary Equipments,ANSI Pumps,2,L9,Piping Design,Designer
+9,Rotary Equipments,API Centrifugal Pumps,2,L9,Piping Design,Designer
+9,Rotary Equipments,Centrifugal Compressors,2,L9,Piping Design,Designer
+9,Rotary Equipments,FD and ID Fans / Blowers,2,L9,Piping Design,Designer
+9,Rotary Equipments,Positive Displacement Pumps,2,L9,Piping Design,Designer
+9,Rotary Equipments,Reciprocating Compressors,1,L9,Piping Design,Designer
+9,Rotary Equipments,Steam Turbines,1,L9,Piping Design,Designer
+9,Softwares,AutoCad,4,L9,Piping Design,Designer
+9,Softwares,Cadworx,1,L9,Piping Design,Designer
+9,Softwares,E3D,1,L9,Piping Design,Designer
+9,Softwares,LFM,2,L9,Piping Design,Designer
+9,Softwares,Microstation,3,L9,Piping Design,Designer
+9,Softwares,PDMS,NA,L9,Piping Design,Designer
+9,Softwares,PDS-Plant Design System,NA,L9,Piping Design,Designer
+9,Softwares,Plant 3D,2,L9,Piping Design,Designer
+9,Softwares,S3D,3,L9,Piping Design,Designer
+9,Softwares,SPR- Smart Plant Review,2,L9,Piping Design,Designer
+9,Softwares,Plant Stream,2,L9,Piping Design,Designer
+9,Softwares,I-Construct,2,L9,Piping Design,Designer
+10,Arrangements,Boiler Unit,2,L10,Piping Design,Designer
+10,Arrangements,Flare Unit,3,L10,Piping Design,Designer
+10,Arrangements,Hygnic Piping,NA,L10,Piping Design,Designer
+10,Arrangements,ISBL / OSBL Units,3,L10,Piping Design,Designer
+10,Arrangements,ISBL Process Units,3,L10,Piping Design,Designer
+10,Arrangements,Overall Plot Plan,3,L10,Piping Design,Designer
+10,Arrangements,Pipe Rack,3,L10,Piping Design,Designer
+10,Arrangements,Plan Building,3,L10,Piping Design,Designer
+10,Arrangements,Tank Farm,3,L10,Piping Design,Designer
+10,Arrangements,Technological Structure,3,L10,Piping Design,Designer
+10,Arrangements,Unit Plot Plan,3,L10,Piping Design,Designer
+10,Arrangements,Loading Arms & Racks,3,L10,Piping Design,Designer
+10,Arrangements,Packaged Systems (Skid),3,L10,Piping Design,Designer
+10,Arrangements,Utilities,3,L10,Piping Design,Designer
+10,Fixed Equipment,Air Coolers,2,L10,Piping Design,Designer
+10,Fixed Equipment,Compact Block & Plate Exchanger,2,L10,Piping Design,Designer
+10,Fixed Equipment,Cooling Towers,2,L10,Piping Design,Designer
+10,Fixed Equipment,Desuperheaters,2,L10,Piping Design,Designer
+10,Fixed Equipment,Vessel ,2,L10,Piping Design,Designer
+10,Fixed Equipment,Flares,2,L10,Piping Design,Designer
+10,Fixed Equipment,Heaters & Furnaces,1,L10,Piping Design,Designer
+10,Fixed Equipment,Reactors,2,L10,Piping Design,Designer
+10,Fixed Equipment,S & T Exchagers,2,L10,Piping Design,Designer
+10,Fixed Equipment,Spherical Storage Tanks,2,L10,Piping Design,Designer
+10,Fixed Equipment,Steam Ejectors & Condensers,2,L10,Piping Design,Designer
+10,Fixed Equipment,Thermal Oxidizers,2,L10,Piping Design,Designer
+10,Fixed Equipment,Towers / Columns,1,L10,Piping Design,Designer
+10,Fixed Equipment,Storage Tanks,2,L10,Piping Design,Designer
+10,Fixed Equipment,Storage Bullets,2,L10,Piping Design,Designer
+10,Piping,Lined Pipe,1,L10,Piping Design,Designer
+10,Piping,Metalic Piping,2,L10,Piping Design,Designer
+10,Piping,Non-Metalic Piping,2,L10,Piping Design,Designer
+10,Piping,Alloy Steel,2,L10,Piping Design,Designer
+10,Rotary Equipments,Air Compressors,1,L10,Piping Design,Designer
+10,Rotary Equipments,ANSI Pumps,2,L10,Piping Design,Designer
+10,Rotary Equipments,API Centrifugal Pumps,2,L10,Piping Design,Designer
+10,Rotary Equipments,Centrifugal Compressors,2,L10,Piping Design,Designer
+10,Rotary Equipments,FD and ID Fans / Blowers,2,L10,Piping Design,Designer
+10,Rotary Equipments,Positive Displacement Pumps,2,L10,Piping Design,Designer
+10,Rotary Equipments,Reciprocating Compressors,1,L10,Piping Design,Designer
+10,Rotary Equipments,Steam Turbines,1,L10,Piping Design,Designer
+10,Softwares,AutoCad,4,L10,Piping Design,Designer
+10,Softwares,Cadworx,1,L10,Piping Design,Designer
+10,Softwares,E3D,1,L10,Piping Design,Designer
+10,Softwares,LFM,2,L10,Piping Design,Designer
+10,Softwares,Microstation,3,L10,Piping Design,Designer
+10,Softwares,PDMS,NA,L10,Piping Design,Designer
+10,Softwares,PDS-Plant Design System,NA,L10,Piping Design,Designer
+10,Softwares,Plant 3D,2,L10,Piping Design,Designer
+10,Softwares,S3D,3,L10,Piping Design,Designer
+10,Softwares,SPR- Smart Plant Review,2,L10,Piping Design,Designer
+10,Softwares,Plant Stream,2,L10,Piping Design,Designer
+10,Softwares,I-Construct,2,L10,Piping Design,Designer
+11,Arrangements,Boiler Unit,2,L11,Piping Design,Designer
+11,Arrangements,Flare Unit,3,L11,Piping Design,Designer
+11,Arrangements,Hygnic Piping,NA,L11,Piping Design,Designer
+11,Arrangements,ISBL / OSBL Units,3,L11,Piping Design,Designer
+11,Arrangements,ISBL Process Units,3,L11,Piping Design,Designer
+11,Arrangements,Overall Plot Plan,3,L11,Piping Design,Designer
+11,Arrangements,Pipe Rack,3,L11,Piping Design,Designer
+11,Arrangements,Plan Building,3,L11,Piping Design,Designer
+11,Arrangements,Tank Farm,3,L11,Piping Design,Designer
+11,Arrangements,Technological Structure,3,L11,Piping Design,Designer
+11,Arrangements,Unit Plot Plan,3,L11,Piping Design,Designer
+11,Arrangements,Loading Arms & Racks,3,L11,Piping Design,Designer
+11,Arrangements,Packaged Systems (Skid),3,L11,Piping Design,Designer
+11,Arrangements,Utilities,3,L11,Piping Design,Designer
+11,Fixed Equipment,Air Coolers,2,L11,Piping Design,Designer
+11,Fixed Equipment,Compact Block & Plate Exchanger,2,L11,Piping Design,Designer
+11,Fixed Equipment,Cooling Towers,2,L11,Piping Design,Designer
+11,Fixed Equipment,Desuperheaters,2,L11,Piping Design,Designer
+11,Fixed Equipment,Vessel ,2,L11,Piping Design,Designer
+11,Fixed Equipment,Flares,2,L11,Piping Design,Designer
+11,Fixed Equipment,Heaters & Furnaces,1,L11,Piping Design,Designer
+11,Fixed Equipment,Reactors,2,L11,Piping Design,Designer
+11,Fixed Equipment,S & T Exchagers,2,L11,Piping Design,Designer
+11,Fixed Equipment,Spherical Storage Tanks,2,L11,Piping Design,Designer
+11,Fixed Equipment,Steam Ejectors & Condensers,2,L11,Piping Design,Designer
+11,Fixed Equipment,Thermal Oxidizers,2,L11,Piping Design,Designer
+11,Fixed Equipment,Towers / Columns,2,L11,Piping Design,Designer
+11,Fixed Equipment,Storage Tanks,2,L11,Piping Design,Designer
+11,Fixed Equipment,Storage Bullets,2,L11,Piping Design,Designer
+11,Piping,Lined Pipe,2,L11,Piping Design,Designer
+11,Piping,Metalic Piping,2,L11,Piping Design,Designer
+11,Piping,Non-Metalic Piping,2,L11,Piping Design,Designer
+11,Piping,Alloy Steel,2,L11,Piping Design,Designer
+11,Rotary Equipments,Air Compressors,3,L11,Piping Design,Designer
+11,Rotary Equipments,ANSI Pumps,3,L11,Piping Design,Designer
+11,Rotary Equipments,API Centrifugal Pumps,3,L11,Piping Design,Designer
+11,Rotary Equipments,Centrifugal Compressors,2,L11,Piping Design,Designer
+11,Rotary Equipments,FD and ID Fans / Blowers,3,L11,Piping Design,Designer
+11,Rotary Equipments,Positive Displacement Pumps,2,L11,Piping Design,Designer
+11,Rotary Equipments,Reciprocating Compressors,2,L11,Piping Design,Designer
+11,Rotary Equipments,Steam Turbines,2,L11,Piping Design,Designer
+11,Softwares,AutoCad,4,L11,Piping Design,Designer
+11,Softwares,Cadworx,1,L11,Piping Design,Designer
+11,Softwares,E3D,1,L11,Piping Design,Designer
+11,Softwares,LFM,2,L11,Piping Design,Designer
+11,Softwares,Microstation,3,L11,Piping Design,Designer
+11,Softwares,PDMS,NA,L11,Piping Design,Designer
+11,Softwares,PDS-Plant Design System,NA,L11,Piping Design,Designer
+11,Softwares,Plant 3D,2,L11,Piping Design,Designer
+11,Softwares,S3D,3,L11,Piping Design,Designer
+11,Softwares,SPR- Smart Plant Review,2,L11,Piping Design,Designer
+11,Softwares,Plant Stream,2,L11,Piping Design,Designer
+11,Softwares,I-Construct,2,L11,Piping Design,Designer
+12,Arrangements,Boiler Unit,2,L12,Piping Design,Designer
+12,Arrangements,Flare Unit,3,L12,Piping Design,Designer
+12,Arrangements,Hygnic Piping,NA,L12,Piping Design,Designer
+12,Arrangements,ISBL / OSBL Units,3,L12,Piping Design,Designer
+12,Arrangements,ISBL Process Units,3,L12,Piping Design,Designer
+12,Arrangements,Overall Plot Plan,3,L12,Piping Design,Designer
+12,Arrangements,Pipe Rack,3,L12,Piping Design,Designer
+12,Arrangements,Plan Building,3,L12,Piping Design,Designer
+12,Arrangements,Tank Farm,3,L12,Piping Design,Designer
+12,Arrangements,Technological Structure,3,L12,Piping Design,Designer
+12,Arrangements,Unit Plot Plan,3,L12,Piping Design,Designer
+12,Arrangements,Loading Arms & Racks,3,L12,Piping Design,Designer
+12,Arrangements,Packaged Systems (Skid),3,L12,Piping Design,Designer
+12,Arrangements,Utilities,3,L12,Piping Design,Designer
+12,Fixed Equipment,Air Coolers,3,L12,Piping Design,Designer
+12,Fixed Equipment,Compact Block & Plate Exchanger,3,L12,Piping Design,Designer
+12,Fixed Equipment,Cooling Towers,3,L12,Piping Design,Designer
+12,Fixed Equipment,Desuperheaters,3,L12,Piping Design,Designer
+12,Fixed Equipment,Vessel ,3,L12,Piping Design,Designer
+12,Fixed Equipment,Flares,2,L12,Piping Design,Designer
+12,Fixed Equipment,Heaters & Furnaces,2,L12,Piping Design,Designer
+12,Fixed Equipment,Reactors,2,L12,Piping Design,Designer
+12,Fixed Equipment,S & T Exchagers,3,L12,Piping Design,Designer
+12,Fixed Equipment,Spherical Storage Tanks,3,L12,Piping Design,Designer
+12,Fixed Equipment,Steam Ejectors & Condensers,2,L12,Piping Design,Designer
+12,Fixed Equipment,Thermal Oxidizers,2,L12,Piping Design,Designer
+12,Fixed Equipment,Towers / Columns,3,L12,Piping Design,Designer
+12,Fixed Equipment,Storage Tanks,3,L12,Piping Design,Designer
+12,Fixed Equipment,Storage Bullets,2,L12,Piping Design,Designer
+12,Piping,Lined Pipe,3,L12,Piping Design,Designer
+12,Piping,Metalic Piping,3,L12,Piping Design,Designer
+12,Piping,Non-Metalic Piping,3,L12,Piping Design,Designer
+12,Piping,Alloy Steel,3,L12,Piping Design,Designer
+12,Rotary Equipments,Air Compressors,3,L12,Piping Design,Designer
+12,Rotary Equipments,ANSI Pumps,3,L12,Piping Design,Designer
+12,Rotary Equipments,API Centrifugal Pumps,3,L12,Piping Design,Designer
+12,Rotary Equipments,Centrifugal Compressors,2,L12,Piping Design,Designer
+12,Rotary Equipments,FD and ID Fans / Blowers,3,L12,Piping Design,Designer
+12,Rotary Equipments,Positive Displacement Pumps,2,L12,Piping Design,Designer
+12,Rotary Equipments,Reciprocating Compressors,2,L12,Piping Design,Designer
+12,Rotary Equipments,Steam Turbines,2,L12,Piping Design,Designer
+12,Softwares,AutoCad,4,L12,Piping Design,Designer
+12,Softwares,Cadworx,1,L12,Piping Design,Designer
+12,Softwares,E3D,1,L12,Piping Design,Designer
+12,Softwares,LFM,3,L12,Piping Design,Designer
+12,Softwares,Microstation,3,L12,Piping Design,Designer
+12,Softwares,PDMS,NA,L12,Piping Design,Designer
+12,Softwares,PDS-Plant Design System,NA,L12,Piping Design,Designer
+12,Softwares,Plant 3D,2,L12,Piping Design,Designer
+12,Softwares,S3D,3,L12,Piping Design,Designer
+12,Softwares,SPR- Smart Plant Review,3,L12,Piping Design,Designer
+12,Softwares,Plant Stream,2,L12,Piping Design,Designer
+12,Softwares,I-Construct,2,L12,Piping Design,Designer
+13,Arrangements,Boiler Unit,4,L13,Piping Design,Designer
+13,Arrangements,Flare Unit,4,L13,Piping Design,Designer
+13,Arrangements,Hygnic Piping,2,L13,Piping Design,Designer
+13,Arrangements,ISBL / OSBL Units,4,L13,Piping Design,Designer
+13,Arrangements,ISBL Process Units,4,L13,Piping Design,Designer
+13,Arrangements,Overall Plot Plan,4,L13,Piping Design,Designer
+13,Arrangements,Pipe Rack,4,L13,Piping Design,Designer
+13,Arrangements,Plan Building,4,L13,Piping Design,Designer
+13,Arrangements,Tank Farm,4,L13,Piping Design,Designer
+13,Arrangements,Technological Structure,4,L13,Piping Design,Designer
+13,Arrangements,Unit Plot Plan,4,L13,Piping Design,Designer
+13,Arrangements,Loading Arms & Racks,4,L13,Piping Design,Designer
+13,Arrangements,Packaged Systems (Skid),4,L13,Piping Design,Designer
+13,Arrangements,Utilities,4,L13,Piping Design,Designer
+13,Fixed Equipment,Air Coolers,3,L13,Piping Design,Designer
+13,Fixed Equipment,Compact Block & Plate Exchanger,4,L13,Piping Design,Designer
+13,Fixed Equipment,Cooling Towers,4,L13,Piping Design,Designer
+13,Fixed Equipment,Desuperheaters,4,L13,Piping Design,Designer
+13,Fixed Equipment,Vessel ,4,L13,Piping Design,Designer
+13,Fixed Equipment,Flares,3,L13,Piping Design,Designer
+13,Fixed Equipment,Heaters & Furnaces,3,L13,Piping Design,Designer
+13,Fixed Equipment,Reactors,3,L13,Piping Design,Designer
+13,Fixed Equipment,S & T Exchagers,4,L13,Piping Design,Designer
+13,Fixed Equipment,Spherical Storage Tanks,4,L13,Piping Design,Designer
+13,Fixed Equipment,Steam Ejectors & Condensers,3,L13,Piping Design,Designer
+13,Fixed Equipment,Thermal Oxidizers,3,L13,Piping Design,Designer
+13,Fixed Equipment,Towers / Columns,4,L13,Piping Design,Designer
+13,Fixed Equipment,Storage Tanks,4,L13,Piping Design,Designer
+13,Fixed Equipment,Storage Bullets,3,L13,Piping Design,Designer
+13,Piping,Lined Pipe,4,L13,Piping Design,Designer
+13,Piping,Metalic Piping,4,L13,Piping Design,Designer
+13,Piping,Non-Metalic Piping,4,L13,Piping Design,Designer
+13,Piping,Alloy Steel,4,L13,Piping Design,Designer
+13,Rotary Equipments,Air Compressors,3,L13,Piping Design,Designer
+13,Rotary Equipments,ANSI Pumps,4,L13,Piping Design,Designer
+13,Rotary Equipments,API Centrifugal Pumps,4,L13,Piping Design,Designer
+13,Rotary Equipments,Centrifugal Compressors,3,L13,Piping Design,Designer
+13,Rotary Equipments,FD and ID Fans / Blowers,4,L13,Piping Design,Designer
+13,Rotary Equipments,Positive Displacement Pumps,3,L13,Piping Design,Designer
+13,Rotary Equipments,Reciprocating Compressors,3,L13,Piping Design,Designer
+13,Rotary Equipments,Steam Turbines,3,L13,Piping Design,Designer
+13,Softwares,AutoCad,3,L13,Piping Design,Designer
+13,Softwares,Cadworx,4,L13,Piping Design,Designer
+13,Softwares,E3D,2,L13,Piping Design,Designer
+13,Softwares,LFM,4,L13,Piping Design,Designer
+13,Softwares,Microstation,4,L13,Piping Design,Designer
+13,Softwares,PDMS,NA,L13,Piping Design,Designer
+13,Softwares,PDS-Plant Design System,NA,L13,Piping Design,Designer
+13,Softwares,Plant 3D,3,L13,Piping Design,Designer
+13,Softwares,S3D,2,L13,Piping Design,Designer
+13,Softwares,SPR- Smart Plant Review,4,L13,Piping Design,Designer
+13,Softwares,Plant Stream,1,L13,Piping Design,Designer
+13,Softwares,I-Construct,3,L13,Piping Design,Designer
+14,Arrangements,Boiler Unit,4,L14,Piping Design,Designer
+14,Arrangements,Flare Unit,4,L14,Piping Design,Designer
+14,Arrangements,Hygnic Piping,2,L14,Piping Design,Designer
+14,Arrangements,ISBL / OSBL Units,4,L14,Piping Design,Designer
+14,Arrangements,ISBL Process Units,4,L14,Piping Design,Designer
+14,Arrangements,Overall Plot Plan,4,L14,Piping Design,Designer
+14,Arrangements,Pipe Rack,4,L14,Piping Design,Designer
+14,Arrangements,Plan Building,4,L14,Piping Design,Designer
+14,Arrangements,Tank Farm,4,L14,Piping Design,Designer
+14,Arrangements,Technological Structure,4,L14,Piping Design,Designer
+14,Arrangements,Unit Plot Plan,4,L14,Piping Design,Designer
+14,Arrangements,Loading Arms & Racks,4,L14,Piping Design,Designer
+14,Arrangements,Packaged Systems (Skid),4,L14,Piping Design,Designer
+14,Arrangements,Utilities,4,L14,Piping Design,Designer
+14,Fixed Equipment,Air Coolers,4,L14,Piping Design,Designer
+14,Fixed Equipment,Compact Block & Plate Exchanger,4,L14,Piping Design,Designer
+14,Fixed Equipment,Cooling Towers,4,L14,Piping Design,Designer
+14,Fixed Equipment,Desuperheaters,4,L14,Piping Design,Designer
+14,Fixed Equipment,Vessel ,4,L14,Piping Design,Designer
+14,Fixed Equipment,Flares,4,L14,Piping Design,Designer
+14,Fixed Equipment,Heaters & Furnaces,4,L14,Piping Design,Designer
+14,Fixed Equipment,Reactors,4,L14,Piping Design,Designer
+14,Fixed Equipment,S & T Exchagers,4,L14,Piping Design,Designer
+14,Fixed Equipment,Spherical Storage Tanks,4,L14,Piping Design,Designer
+14,Fixed Equipment,Steam Ejectors & Condensers,3,L14,Piping Design,Designer
+14,Fixed Equipment,Thermal Oxidizers,4,L14,Piping Design,Designer
+14,Fixed Equipment,Towers / Columns,4,L14,Piping Design,Designer
+14,Fixed Equipment,Storage Tanks,4,L14,Piping Design,Designer
+14,Fixed Equipment,Storage Bullets,4,L14,Piping Design,Designer
+14,Piping,Lined Pipe,4,L14,Piping Design,Designer
+14,Piping,Metalic Piping,4,L14,Piping Design,Designer
+14,Piping,Non-Metalic Piping,4,L14,Piping Design,Designer
+14,Piping,Alloy Steel,4,L14,Piping Design,Designer
+14,Rotary Equipments,Air Compressors,3,L14,Piping Design,Designer
+14,Rotary Equipments,ANSI Pumps,4,L14,Piping Design,Designer
+14,Rotary Equipments,API Centrifugal Pumps,4,L14,Piping Design,Designer
+14,Rotary Equipments,Centrifugal Compressors,3,L14,Piping Design,Designer
+14,Rotary Equipments,FD and ID Fans / Blowers,4,L14,Piping Design,Designer
+14,Rotary Equipments,Positive Displacement Pumps,3,L14,Piping Design,Designer
+14,Rotary Equipments,Reciprocating Compressors,3,L14,Piping Design,Designer
+14,Rotary Equipments,Steam Turbines,3,L14,Piping Design,Designer
+14,Softwares,AutoCad,3,L14,Piping Design,Designer
+14,Softwares,Cadworx,4,L14,Piping Design,Designer
+14,Softwares,E3D,2,L14,Piping Design,Designer
+14,Softwares,LFM,4,L14,Piping Design,Designer
+14,Softwares,Microstation,4,L14,Piping Design,Designer
+14,Softwares,PDMS,NA,L14,Piping Design,Designer
+14,Softwares,PDS-Plant Design System,NA,L14,Piping Design,Designer
+14,Softwares,Plant 3D,3,L14,Piping Design,Designer
+14,Softwares,S3D,2,L14,Piping Design,Designer
+14,Softwares,SPR- Smart Plant Review,4,L14,Piping Design,Designer
+14,Softwares,Plant Stream,1,L14,Piping Design,Designer
+14,Softwares,I-Construct,3,L14,Piping Design,Designer
+15,Arrangements,Boiler Unit,4,L15,Piping Design,Designer
+15,Arrangements,Flare Unit,4,L15,Piping Design,Designer
+15,Arrangements,Hygnic Piping,2,L15,Piping Design,Designer
+15,Arrangements,ISBL / OSBL Units,4,L15,Piping Design,Designer
+15,Arrangements,ISBL Process Units,4,L15,Piping Design,Designer
+15,Arrangements,Overall Plot Plan,4,L15,Piping Design,Designer
+15,Arrangements,Pipe Rack,4,L15,Piping Design,Designer
+15,Arrangements,Plan Building,4,L15,Piping Design,Designer
+15,Arrangements,Tank Farm,4,L15,Piping Design,Designer
+15,Arrangements,Technological Structure,4,L15,Piping Design,Designer
+15,Arrangements,Unit Plot Plan,4,L15,Piping Design,Designer
+15,Arrangements,Loading Arms & Racks,4,L15,Piping Design,Designer
+15,Arrangements,Packaged Systems (Skid),4,L15,Piping Design,Designer
+15,Arrangements,Utilities,4,L15,Piping Design,Designer
+15,Fixed Equipment,Air Coolers,4,L15,Piping Design,Designer
+15,Fixed Equipment,Compact Block & Plate Exchanger,4,L15,Piping Design,Designer
+15,Fixed Equipment,Cooling Towers,4,L15,Piping Design,Designer
+15,Fixed Equipment,Desuperheaters,4,L15,Piping Design,Designer
+15,Fixed Equipment,Vessel ,4,L15,Piping Design,Designer
+15,Fixed Equipment,Flares,4,L15,Piping Design,Designer
+15,Fixed Equipment,Heaters & Furnaces,4,L15,Piping Design,Designer
+15,Fixed Equipment,Reactors,4,L15,Piping Design,Designer
+15,Fixed Equipment,S & T Exchagers,4,L15,Piping Design,Designer
+15,Fixed Equipment,Spherical Storage Tanks,4,L15,Piping Design,Designer
+15,Fixed Equipment,Steam Ejectors & Condensers,4,L15,Piping Design,Designer
+15,Fixed Equipment,Thermal Oxidizers,4,L15,Piping Design,Designer
+15,Fixed Equipment,Towers / Columns,4,L15,Piping Design,Designer
+15,Fixed Equipment,Storage Tanks,4,L15,Piping Design,Designer
+15,Fixed Equipment,Storage Bullets,4,L15,Piping Design,Designer
+15,Piping,Lined Pipe,4,L15,Piping Design,Designer
+15,Piping,Metalic Piping,4,L15,Piping Design,Designer
+15,Piping,Non-Metalic Piping,4,L15,Piping Design,Designer
+15,Piping,Alloy Steel,4,L15,Piping Design,Designer
+15,Rotary Equipments,Air Compressors,4,L15,Piping Design,Designer
+15,Rotary Equipments,ANSI Pumps,4,L15,Piping Design,Designer
+15,Rotary Equipments,API Centrifugal Pumps,4,L15,Piping Design,Designer
+15,Rotary Equipments,Centrifugal Compressors,4,L15,Piping Design,Designer
+15,Rotary Equipments,FD and ID Fans / Blowers,4,L15,Piping Design,Designer
+15,Rotary Equipments,Positive Displacement Pumps,4,L15,Piping Design,Designer
+15,Rotary Equipments,Reciprocating Compressors,4,L15,Piping Design,Designer
+15,Rotary Equipments,Steam Turbines,4,L15,Piping Design,Designer
+15,Softwares,AutoCad,4,L15,Piping Design,Designer
+15,Softwares,Cadworx,4,L15,Piping Design,Designer
+15,Softwares,E3D,2,L15,Piping Design,Designer
+15,Softwares,LFM,4,L15,Piping Design,Designer
+15,Softwares,Microstation,4,L15,Piping Design,Designer
+15,Softwares,PDMS,NA,L15,Piping Design,Designer
+15,Softwares,PDS-Plant Design System,NA,L15,Piping Design,Designer
+15,Softwares,Plant 3D,3,L15,Piping Design,Designer
+15,Softwares,S3D,2,L15,Piping Design,Designer
+15,Softwares,SPR- Smart Plant Review,4,L15,Piping Design,Designer
+15,Softwares,Plant Stream,1,L15,Piping Design,Designer
+15,Softwares,I-Construct,3,L15,Piping Design,Designer
+7,Arrangements,Boiler Unit,NA,L7,Piping Design,Engineer
+7,Arrangements,Flare Unit,NA,L7,Piping Design,Engineer
+7,Arrangements,Hygnic Piping,NA,L7,Piping Design,Engineer
+7,Arrangements,ISBL / OSBL Units,2,L7,Piping Design,Engineer
+7,Arrangements,ISBL Process Units,2,L7,Piping Design,Engineer
+7,Arrangements,Overall Plot Plan,2,L7,Piping Design,Engineer
+7,Arrangements,Pipe Rack,2,L7,Piping Design,Engineer
+7,Arrangements,Plan Building,2,L7,Piping Design,Engineer
+7,Arrangements,Tank Farm,2,L7,Piping Design,Engineer
+7,Arrangements,Technological Structure,2,L7,Piping Design,Engineer
+7,Arrangements,Unit Plot Plan,2,L7,Piping Design,Engineer
+7,Arrangements,Loading Arms & Racks,2,L7,Piping Design,Engineer
+7,Arrangements,Packaged Systems (Skid),2,L7,Piping Design,Engineer
+7,Arrangements,Utilities,2,L7,Piping Design,Engineer
+7,Fixed Equipment,Air Coolers,1,L7,Piping Design,Engineer
+7,Fixed Equipment,Compact Block & Plate Exchanger,1,L7,Piping Design,Engineer
+7,Fixed Equipment,Cooling Towers,1,L7,Piping Design,Engineer
+7,Fixed Equipment,Desuperheaters,1,L7,Piping Design,Engineer
+7,Fixed Equipment,Vessel ,1,L7,Piping Design,Engineer
+7,Fixed Equipment,Flares,1,L7,Piping Design,Engineer
+7,Fixed Equipment,Heaters & Furnaces,NA,L7,Piping Design,Engineer
+7,Fixed Equipment,Reactors,1,L7,Piping Design,Engineer
+7,Fixed Equipment,S & T Exchagers,1,L7,Piping Design,Engineer
+7,Fixed Equipment,Spherical Storage Tanks,1,L7,Piping Design,Engineer
+7,Fixed Equipment,Steam Ejectors & Condensers,1,L7,Piping Design,Engineer
+7,Fixed Equipment,Thermal Oxidizers,1,L7,Piping Design,Engineer
+7,Fixed Equipment,Towers / Columns,NA,L7,Piping Design,Engineer
+7,Fixed Equipment,Storage Tanks,1,L7,Piping Design,Engineer
+7,Fixed Equipment,Storage Bullets,1,L7,Piping Design,Engineer
+7,Piping,Lined Pipe,NA,L7,Piping Design,Engineer
+7,Piping,Metalic Piping,1,L7,Piping Design,Engineer
+7,Piping,Non-Metalic Piping,1,L7,Piping Design,Engineer
+7,Piping,Alloy Steel,1,L7,Piping Design,Engineer
+7,Rotary Equipments,Air Compressors,NA,L7,Piping Design,Engineer
+7,Rotary Equipments,ANSI Pumps,2,L7,Piping Design,Engineer
+7,Rotary Equipments,API Centrifugal Pumps,2,L7,Piping Design,Engineer
+7,Rotary Equipments,Centrifugal Compressors,1,L7,Piping Design,Engineer
+7,Rotary Equipments,FD and ID Fans / Blowers,1,L7,Piping Design,Engineer
+7,Rotary Equipments,Positive Displacement Pumps,2,L7,Piping Design,Engineer
+7,Rotary Equipments,Reciprocating Compressors,NA,L7,Piping Design,Engineer
+7,Rotary Equipments,Steam Turbines,NA,L7,Piping Design,Engineer
+7,Softwares,AutoCad,4,L7,Piping Design,Engineer
+7,Softwares,Cadworx,1,L7,Piping Design,Engineer
+7,Softwares,E3D,1,L7,Piping Design,Engineer
+7,Softwares,LFM,NA,L7,Piping Design,Engineer
+7,Softwares,Microstation,2,L7,Piping Design,Engineer
+7,Softwares,PDMS,NA,L7,Piping Design,Engineer
+7,Softwares,PDS-Plant Design System,NA,L7,Piping Design,Engineer
+7,Softwares,Plant 3D,1,L7,Piping Design,Engineer
+7,Softwares,S3D,1,L7,Piping Design,Engineer
+7,Softwares,SPR- Smart Plant Review,1,L7,Piping Design,Engineer
+7,Softwares,Plant Stream,1,L7,Piping Design,Engineer
+7,Softwares,I-Construct,NA,L7,Piping Design,Engineer
+8,Arrangements,Boiler Unit,2,L8,Piping Design,Engineer
+8,Arrangements,Flare Unit,3,L8,Piping Design,Engineer
+8,Arrangements,Hygnic Piping,NA,L8,Piping Design,Engineer
+8,Arrangements,ISBL / OSBL Units,3,L8,Piping Design,Engineer
+8,Arrangements,ISBL Process Units,3,L8,Piping Design,Engineer
+8,Arrangements,Overall Plot Plan,3,L8,Piping Design,Engineer
+8,Arrangements,Pipe Rack,3,L8,Piping Design,Engineer
+8,Arrangements,Plan Building,3,L8,Piping Design,Engineer
+8,Arrangements,Tank Farm,3,L8,Piping Design,Engineer
+8,Arrangements,Technological Structure,3,L8,Piping Design,Engineer
+8,Arrangements,Unit Plot Plan,3,L8,Piping Design,Engineer
+8,Arrangements,Loading Arms & Racks,3,L8,Piping Design,Engineer
+8,Arrangements,Packaged Systems (Skid),3,L8,Piping Design,Engineer
+8,Arrangements,Utilities,3,L8,Piping Design,Engineer
+8,Fixed Equipment,Air Coolers,2,L8,Piping Design,Engineer
+8,Fixed Equipment,Compact Block & Plate Exchanger,2,L8,Piping Design,Engineer
+8,Fixed Equipment,Cooling Towers,2,L8,Piping Design,Engineer
+8,Fixed Equipment,Desuperheaters,2,L8,Piping Design,Engineer
+8,Fixed Equipment,Vessel ,2,L8,Piping Design,Engineer
+8,Fixed Equipment,Flares,2,L8,Piping Design,Engineer
+8,Fixed Equipment,Heaters & Furnaces,1,L8,Piping Design,Engineer
+8,Fixed Equipment,Reactors,2,L8,Piping Design,Engineer
+8,Fixed Equipment,S & T Exchagers,2,L8,Piping Design,Engineer
+8,Fixed Equipment,Spherical Storage Tanks,2,L8,Piping Design,Engineer
+8,Fixed Equipment,Steam Ejectors & Condensers,2,L8,Piping Design,Engineer
+8,Fixed Equipment,Thermal Oxidizers,2,L8,Piping Design,Engineer
+8,Fixed Equipment,Towers / Columns,1,L8,Piping Design,Engineer
+8,Fixed Equipment,Storage Tanks,2,L8,Piping Design,Engineer
+8,Fixed Equipment,Storage Bullets,2,L8,Piping Design,Engineer
+8,Piping,Lined Pipe,1,L8,Piping Design,Engineer
+8,Piping,Metalic Piping,2,L8,Piping Design,Engineer
+8,Piping,Non-Metalic Piping,2,L8,Piping Design,Engineer
+8,Piping,Alloy Steel,2,L8,Piping Design,Engineer
+8,Rotary Equipments,Air Compressors,1,L8,Piping Design,Engineer
+8,Rotary Equipments,ANSI Pumps,2,L8,Piping Design,Engineer
+8,Rotary Equipments,API Centrifugal Pumps,2,L8,Piping Design,Engineer
+8,Rotary Equipments,Centrifugal Compressors,2,L8,Piping Design,Engineer
+8,Rotary Equipments,FD and ID Fans / Blowers,2,L8,Piping Design,Engineer
+8,Rotary Equipments,Positive Displacement Pumps,2,L8,Piping Design,Engineer
+8,Rotary Equipments,Reciprocating Compressors,1,L8,Piping Design,Engineer
+8,Rotary Equipments,Steam Turbines,1,L8,Piping Design,Engineer
+8,Softwares,AutoCad,4,L8,Piping Design,Engineer
+8,Softwares,Cadworx,1,L8,Piping Design,Engineer
+8,Softwares,E3D,1,L8,Piping Design,Engineer
+8,Softwares,LFM,2,L8,Piping Design,Engineer
+8,Softwares,Microstation,3,L8,Piping Design,Engineer
+8,Softwares,PDMS,NA,L8,Piping Design,Engineer
+8,Softwares,PDS-Plant Design System,NA,L8,Piping Design,Engineer
+8,Softwares,Plant 3D,2,L8,Piping Design,Engineer
+8,Softwares,S3D,3,L8,Piping Design,Engineer
+8,Softwares,SPR- Smart Plant Review,2,L8,Piping Design,Engineer
+8,Softwares,Plant Stream,2,L8,Piping Design,Engineer
+8,Softwares,I-Construct,1,L8,Piping Design,Engineer
+9,Arrangements,Boiler Unit,2,L9,Piping Design,Engineer
+9,Arrangements,Flare Unit,3,L9,Piping Design,Engineer
+9,Arrangements,Hygnic Piping,NA,L9,Piping Design,Engineer
+9,Arrangements,ISBL / OSBL Units,3,L9,Piping Design,Engineer
+9,Arrangements,ISBL Process Units,3,L9,Piping Design,Engineer
+9,Arrangements,Overall Plot Plan,3,L9,Piping Design,Engineer
+9,Arrangements,Pipe Rack,3,L9,Piping Design,Engineer
+9,Arrangements,Plan Building,3,L9,Piping Design,Engineer
+9,Arrangements,Tank Farm,3,L9,Piping Design,Engineer
+9,Arrangements,Technological Structure,3,L9,Piping Design,Engineer
+9,Arrangements,Unit Plot Plan,3,L9,Piping Design,Engineer
+9,Arrangements,Loading Arms & Racks,3,L9,Piping Design,Engineer
+9,Arrangements,Packaged Systems (Skid),3,L9,Piping Design,Engineer
+9,Arrangements,Utilities,3,L9,Piping Design,Engineer
+9,Fixed Equipment,Air Coolers,2,L9,Piping Design,Engineer
+9,Fixed Equipment,Compact Block & Plate Exchanger,2,L9,Piping Design,Engineer
+9,Fixed Equipment,Cooling Towers,2,L9,Piping Design,Engineer
+9,Fixed Equipment,Desuperheaters,2,L9,Piping Design,Engineer
+9,Fixed Equipment,Vessel ,2,L9,Piping Design,Engineer
+9,Fixed Equipment,Flares,2,L9,Piping Design,Engineer
+9,Fixed Equipment,Heaters & Furnaces,1,L9,Piping Design,Engineer
+9,Fixed Equipment,Reactors,2,L9,Piping Design,Engineer
+9,Fixed Equipment,S & T Exchagers,2,L9,Piping Design,Engineer
+9,Fixed Equipment,Spherical Storage Tanks,2,L9,Piping Design,Engineer
+9,Fixed Equipment,Steam Ejectors & Condensers,2,L9,Piping Design,Engineer
+9,Fixed Equipment,Thermal Oxidizers,2,L9,Piping Design,Engineer
+9,Fixed Equipment,Towers / Columns,1,L9,Piping Design,Engineer
+9,Fixed Equipment,Storage Tanks,2,L9,Piping Design,Engineer
+9,Fixed Equipment,Storage Bullets,2,L9,Piping Design,Engineer
+9,Piping,Lined Pipe,1,L9,Piping Design,Engineer
+9,Piping,Metalic Piping,2,L9,Piping Design,Engineer
+9,Piping,Non-Metalic Piping,2,L9,Piping Design,Engineer
+9,Piping,Alloy Steel,2,L9,Piping Design,Engineer
+9,Rotary Equipments,Air Compressors,1,L9,Piping Design,Engineer
+9,Rotary Equipments,ANSI Pumps,2,L9,Piping Design,Engineer
+9,Rotary Equipments,API Centrifugal Pumps,2,L9,Piping Design,Engineer
+9,Rotary Equipments,Centrifugal Compressors,2,L9,Piping Design,Engineer
+9,Rotary Equipments,FD and ID Fans / Blowers,2,L9,Piping Design,Engineer
+9,Rotary Equipments,Positive Displacement Pumps,2,L9,Piping Design,Engineer
+9,Rotary Equipments,Reciprocating Compressors,1,L9,Piping Design,Engineer
+9,Rotary Equipments,Steam Turbines,1,L9,Piping Design,Engineer
+9,Softwares,AutoCad,4,L9,Piping Design,Engineer
+9,Softwares,Cadworx,1,L9,Piping Design,Engineer
+9,Softwares,E3D,1,L9,Piping Design,Engineer
+9,Softwares,LFM,2,L9,Piping Design,Engineer
+9,Softwares,Microstation,3,L9,Piping Design,Engineer
+9,Softwares,PDMS,NA,L9,Piping Design,Engineer
+9,Softwares,PDS-Plant Design System,NA,L9,Piping Design,Engineer
+9,Softwares,Plant 3D,2,L9,Piping Design,Engineer
+9,Softwares,S3D,3,L9,Piping Design,Engineer
+9,Softwares,SPR- Smart Plant Review,2,L9,Piping Design,Engineer
+9,Softwares,Plant Stream,2,L9,Piping Design,Engineer
+9,Softwares,I-Construct,1,L9,Piping Design,Engineer
+10,Arrangements,Boiler Unit,2,L10,Piping Design,Engineer
+10,Arrangements,Flare Unit,3,L10,Piping Design,Engineer
+10,Arrangements,Hygnic Piping,NA,L10,Piping Design,Engineer
+10,Arrangements,ISBL / OSBL Units,3,L10,Piping Design,Engineer
+10,Arrangements,ISBL Process Units,3,L10,Piping Design,Engineer
+10,Arrangements,Overall Plot Plan,3,L10,Piping Design,Engineer
+10,Arrangements,Pipe Rack,3,L10,Piping Design,Engineer
+10,Arrangements,Plan Building,3,L10,Piping Design,Engineer
+10,Arrangements,Tank Farm,3,L10,Piping Design,Engineer
+10,Arrangements,Technological Structure,3,L10,Piping Design,Engineer
+10,Arrangements,Unit Plot Plan,3,L10,Piping Design,Engineer
+10,Arrangements,Loading Arms & Racks,3,L10,Piping Design,Engineer
+10,Arrangements,Packaged Systems (Skid),3,L10,Piping Design,Engineer
+10,Arrangements,Utilities,3,L10,Piping Design,Engineer
+10,Fixed Equipment,Air Coolers,2,L10,Piping Design,Engineer
+10,Fixed Equipment,Compact Block & Plate Exchanger,2,L10,Piping Design,Engineer
+10,Fixed Equipment,Cooling Towers,2,L10,Piping Design,Engineer
+10,Fixed Equipment,Desuperheaters,2,L10,Piping Design,Engineer
+10,Fixed Equipment,Vessel ,2,L10,Piping Design,Engineer
+10,Fixed Equipment,Flares,2,L10,Piping Design,Engineer
+10,Fixed Equipment,Heaters & Furnaces,1,L10,Piping Design,Engineer
+10,Fixed Equipment,Reactors,2,L10,Piping Design,Engineer
+10,Fixed Equipment,S & T Exchagers,2,L10,Piping Design,Engineer
+10,Fixed Equipment,Spherical Storage Tanks,2,L10,Piping Design,Engineer
+10,Fixed Equipment,Steam Ejectors & Condensers,2,L10,Piping Design,Engineer
+10,Fixed Equipment,Thermal Oxidizers,2,L10,Piping Design,Engineer
+10,Fixed Equipment,Towers / Columns,1,L10,Piping Design,Engineer
+10,Fixed Equipment,Storage Tanks,2,L10,Piping Design,Engineer
+10,Fixed Equipment,Storage Bullets,2,L10,Piping Design,Engineer
+10,Piping,Lined Pipe,1,L10,Piping Design,Engineer
+10,Piping,Metalic Piping,2,L10,Piping Design,Engineer
+10,Piping,Non-Metalic Piping,2,L10,Piping Design,Engineer
+10,Piping,Alloy Steel,2,L10,Piping Design,Engineer
+10,Rotary Equipments,Air Compressors,1,L10,Piping Design,Engineer
+10,Rotary Equipments,ANSI Pumps,2,L10,Piping Design,Engineer
+10,Rotary Equipments,API Centrifugal Pumps,2,L10,Piping Design,Engineer
+10,Rotary Equipments,Centrifugal Compressors,2,L10,Piping Design,Engineer
+10,Rotary Equipments,FD and ID Fans / Blowers,2,L10,Piping Design,Engineer
+10,Rotary Equipments,Positive Displacement Pumps,2,L10,Piping Design,Engineer
+10,Rotary Equipments,Reciprocating Compressors,1,L10,Piping Design,Engineer
+10,Rotary Equipments,Steam Turbines,1,L10,Piping Design,Engineer
+10,Softwares,AutoCad,4,L10,Piping Design,Engineer
+10,Softwares,Cadworx,1,L10,Piping Design,Engineer
+10,Softwares,E3D,1,L10,Piping Design,Engineer
+10,Softwares,LFM,2,L10,Piping Design,Engineer
+10,Softwares,Microstation,3,L10,Piping Design,Engineer
+10,Softwares,PDMS,NA,L10,Piping Design,Engineer
+10,Softwares,PDS-Plant Design System,NA,L10,Piping Design,Engineer
+10,Softwares,Plant 3D,2,L10,Piping Design,Engineer
+10,Softwares,S3D,3,L10,Piping Design,Engineer
+10,Softwares,SPR- Smart Plant Review,2,L10,Piping Design,Engineer
+10,Softwares,Plant Stream,2,L10,Piping Design,Engineer
+10,Softwares,I-Construct,1,L10,Piping Design,Engineer
+11,Arrangements,Boiler Unit,2,L11,Piping Design,Engineer
+11,Arrangements,Flare Unit,3,L11,Piping Design,Engineer
+11,Arrangements,Hygnic Piping,NA,L11,Piping Design,Engineer
+11,Arrangements,ISBL / OSBL Units,3,L11,Piping Design,Engineer
+11,Arrangements,ISBL Process Units,3,L11,Piping Design,Engineer
+11,Arrangements,Overall Plot Plan,3,L11,Piping Design,Engineer
+11,Arrangements,Pipe Rack,3,L11,Piping Design,Engineer
+11,Arrangements,Plan Building,3,L11,Piping Design,Engineer
+11,Arrangements,Tank Farm,3,L11,Piping Design,Engineer
+11,Arrangements,Technological Structure,3,L11,Piping Design,Engineer
+11,Arrangements,Unit Plot Plan,3,L11,Piping Design,Engineer
+11,Arrangements,Loading Arms & Racks,3,L11,Piping Design,Engineer
+11,Arrangements,Packaged Systems (Skid),3,L11,Piping Design,Engineer
+11,Arrangements,Utilities,3,L11,Piping Design,Engineer
+11,Fixed Equipment,Air Coolers,2,L11,Piping Design,Engineer
+11,Fixed Equipment,Compact Block & Plate Exchanger,2,L11,Piping Design,Engineer
+11,Fixed Equipment,Cooling Towers,2,L11,Piping Design,Engineer
+11,Fixed Equipment,Desuperheaters,2,L11,Piping Design,Engineer
+11,Fixed Equipment,Vessel ,2,L11,Piping Design,Engineer
+11,Fixed Equipment,Flares,2,L11,Piping Design,Engineer
+11,Fixed Equipment,Heaters & Furnaces,1,L11,Piping Design,Engineer
+11,Fixed Equipment,Reactors,2,L11,Piping Design,Engineer
+11,Fixed Equipment,S & T Exchagers,2,L11,Piping Design,Engineer
+11,Fixed Equipment,Spherical Storage Tanks,2,L11,Piping Design,Engineer
+11,Fixed Equipment,Steam Ejectors & Condensers,2,L11,Piping Design,Engineer
+11,Fixed Equipment,Thermal Oxidizers,2,L11,Piping Design,Engineer
+11,Fixed Equipment,Towers / Columns,1,L11,Piping Design,Engineer
+11,Fixed Equipment,Storage Tanks,2,L11,Piping Design,Engineer
+11,Fixed Equipment,Storage Bullets,2,L11,Piping Design,Engineer
+11,Piping,Lined Pipe,1,L11,Piping Design,Engineer
+11,Piping,Metalic Piping,2,L11,Piping Design,Engineer
+11,Piping,Non-Metalic Piping,2,L11,Piping Design,Engineer
+11,Piping,Alloy Steel,2,L11,Piping Design,Engineer
+11,Rotary Equipments,Air Compressors,1,L11,Piping Design,Engineer
+11,Rotary Equipments,ANSI Pumps,2,L11,Piping Design,Engineer
+11,Rotary Equipments,API Centrifugal Pumps,2,L11,Piping Design,Engineer
+11,Rotary Equipments,Centrifugal Compressors,2,L11,Piping Design,Engineer
+11,Rotary Equipments,FD and ID Fans / Blowers,2,L11,Piping Design,Engineer
+11,Rotary Equipments,Positive Displacement Pumps,2,L11,Piping Design,Engineer
+11,Rotary Equipments,Reciprocating Compressors,1,L11,Piping Design,Engineer
+11,Rotary Equipments,Steam Turbines,1,L11,Piping Design,Engineer
+11,Softwares,AutoCad,4,L11,Piping Design,Engineer
+11,Softwares,Cadworx,1,L11,Piping Design,Engineer
+11,Softwares,E3D,1,L11,Piping Design,Engineer
+11,Softwares,LFM,2,L11,Piping Design,Engineer
+11,Softwares,Microstation,3,L11,Piping Design,Engineer
+11,Softwares,PDMS,NA,L11,Piping Design,Engineer
+11,Softwares,PDS-Plant Design System,NA,L11,Piping Design,Engineer
+11,Softwares,Plant 3D,2,L11,Piping Design,Engineer
+11,Softwares,S3D,3,L11,Piping Design,Engineer
+11,Softwares,SPR- Smart Plant Review,2,L11,Piping Design,Engineer
+11,Softwares,Plant Stream,2,L11,Piping Design,Engineer
+11,Softwares,I-Construct,1,L11,Piping Design,Engineer
+12,Arrangements,Boiler Unit,2,L12,Piping Design,Engineer
+12,Arrangements,Flare Unit,3,L12,Piping Design,Engineer
+12,Arrangements,Hygnic Piping,NA,L12,Piping Design,Engineer
+12,Arrangements,ISBL / OSBL Units,3,L12,Piping Design,Engineer
+12,Arrangements,ISBL Process Units,3,L12,Piping Design,Engineer
+12,Arrangements,Overall Plot Plan,3,L12,Piping Design,Engineer
+12,Arrangements,Pipe Rack,3,L12,Piping Design,Engineer
+12,Arrangements,Plan Building,3,L12,Piping Design,Engineer
+12,Arrangements,Tank Farm,3,L12,Piping Design,Engineer
+12,Arrangements,Technological Structure,3,L12,Piping Design,Engineer
+12,Arrangements,Unit Plot Plan,3,L12,Piping Design,Engineer
+12,Arrangements,Loading Arms & Racks,3,L12,Piping Design,Engineer
+12,Arrangements,Packaged Systems (Skid),3,L12,Piping Design,Engineer
+12,Arrangements,Utilities,3,L12,Piping Design,Engineer
+12,Fixed Equipment,Air Coolers,2,L12,Piping Design,Engineer
+12,Fixed Equipment,Compact Block & Plate Exchanger,2,L12,Piping Design,Engineer
+12,Fixed Equipment,Cooling Towers,2,L12,Piping Design,Engineer
+12,Fixed Equipment,Desuperheaters,2,L12,Piping Design,Engineer
+12,Fixed Equipment,Vessel ,2,L12,Piping Design,Engineer
+12,Fixed Equipment,Flares,2,L12,Piping Design,Engineer
+12,Fixed Equipment,Heaters & Furnaces,1,L12,Piping Design,Engineer
+12,Fixed Equipment,Reactors,2,L12,Piping Design,Engineer
+12,Fixed Equipment,S & T Exchagers,2,L12,Piping Design,Engineer
+12,Fixed Equipment,Spherical Storage Tanks,2,L12,Piping Design,Engineer
+12,Fixed Equipment,Steam Ejectors & Condensers,2,L12,Piping Design,Engineer
+12,Fixed Equipment,Thermal Oxidizers,2,L12,Piping Design,Engineer
+12,Fixed Equipment,Towers / Columns,1,L12,Piping Design,Engineer
+12,Fixed Equipment,Storage Tanks,2,L12,Piping Design,Engineer
+12,Fixed Equipment,Storage Bullets,2,L12,Piping Design,Engineer
+12,Piping,Lined Pipe,1,L12,Piping Design,Engineer
+12,Piping,Metalic Piping,2,L12,Piping Design,Engineer
+12,Piping,Non-Metalic Piping,2,L12,Piping Design,Engineer
+12,Piping,Alloy Steel,2,L12,Piping Design,Engineer
+12,Rotary Equipments,Air Compressors,1,L12,Piping Design,Engineer
+12,Rotary Equipments,ANSI Pumps,2,L12,Piping Design,Engineer
+12,Rotary Equipments,API Centrifugal Pumps,2,L12,Piping Design,Engineer
+12,Rotary Equipments,Centrifugal Compressors,2,L12,Piping Design,Engineer
+12,Rotary Equipments,FD and ID Fans / Blowers,2,L12,Piping Design,Engineer
+12,Rotary Equipments,Positive Displacement Pumps,2,L12,Piping Design,Engineer
+12,Rotary Equipments,Reciprocating Compressors,1,L12,Piping Design,Engineer
+12,Rotary Equipments,Steam Turbines,1,L12,Piping Design,Engineer
+12,Softwares,AutoCad,4,L12,Piping Design,Engineer
+12,Softwares,Cadworx,1,L12,Piping Design,Engineer
+12,Softwares,E3D,1,L12,Piping Design,Engineer
+12,Softwares,LFM,2,L12,Piping Design,Engineer
+12,Softwares,Microstation,3,L12,Piping Design,Engineer
+12,Softwares,PDMS,NA,L12,Piping Design,Engineer
+12,Softwares,PDS-Plant Design System,NA,L12,Piping Design,Engineer
+12,Softwares,Plant 3D,2,L12,Piping Design,Engineer
+12,Softwares,S3D,3,L12,Piping Design,Engineer
+12,Softwares,SPR- Smart Plant Review,2,L12,Piping Design,Engineer
+12,Softwares,Plant Stream,2,L12,Piping Design,Engineer
+12,Softwares,I-Construct,1,L12,Piping Design,Engineer
+13,Arrangements,Boiler Unit,2,L13,Piping Design,Engineer
+13,Arrangements,Flare Unit,3,L13,Piping Design,Engineer
+13,Arrangements,Hygnic Piping,NA,L13,Piping Design,Engineer
+13,Arrangements,ISBL / OSBL Units,3,L13,Piping Design,Engineer
+13,Arrangements,ISBL Process Units,3,L13,Piping Design,Engineer
+13,Arrangements,Overall Plot Plan,3,L13,Piping Design,Engineer
+13,Arrangements,Pipe Rack,3,L13,Piping Design,Engineer
+13,Arrangements,Plan Building,3,L13,Piping Design,Engineer
+13,Arrangements,Tank Farm,3,L13,Piping Design,Engineer
+13,Arrangements,Technological Structure,3,L13,Piping Design,Engineer
+13,Arrangements,Unit Plot Plan,3,L13,Piping Design,Engineer
+13,Arrangements,Loading Arms & Racks,3,L13,Piping Design,Engineer
+13,Arrangements,Packaged Systems (Skid),3,L13,Piping Design,Engineer
+13,Arrangements,Utilities,3,L13,Piping Design,Engineer
+13,Fixed Equipment,Air Coolers,2,L13,Piping Design,Engineer
+13,Fixed Equipment,Compact Block & Plate Exchanger,2,L13,Piping Design,Engineer
+13,Fixed Equipment,Cooling Towers,2,L13,Piping Design,Engineer
+13,Fixed Equipment,Desuperheaters,2,L13,Piping Design,Engineer
+13,Fixed Equipment,Vessel ,2,L13,Piping Design,Engineer
+13,Fixed Equipment,Flares,2,L13,Piping Design,Engineer
+13,Fixed Equipment,Heaters & Furnaces,1,L13,Piping Design,Engineer
+13,Fixed Equipment,Reactors,2,L13,Piping Design,Engineer
+13,Fixed Equipment,S & T Exchagers,2,L13,Piping Design,Engineer
+13,Fixed Equipment,Spherical Storage Tanks,2,L13,Piping Design,Engineer
+13,Fixed Equipment,Steam Ejectors & Condensers,2,L13,Piping Design,Engineer
+13,Fixed Equipment,Thermal Oxidizers,2,L13,Piping Design,Engineer
+13,Fixed Equipment,Towers / Columns,1,L13,Piping Design,Engineer
+13,Fixed Equipment,Storage Tanks,2,L13,Piping Design,Engineer
+13,Fixed Equipment,Storage Bullets,2,L13,Piping Design,Engineer
+13,Piping,Lined Pipe,1,L13,Piping Design,Engineer
+13,Piping,Metalic Piping,2,L13,Piping Design,Engineer
+13,Piping,Non-Metalic Piping,2,L13,Piping Design,Engineer
+13,Piping,Alloy Steel,2,L13,Piping Design,Engineer
+13,Rotary Equipments,Air Compressors,1,L13,Piping Design,Engineer
+13,Rotary Equipments,ANSI Pumps,2,L13,Piping Design,Engineer
+13,Rotary Equipments,API Centrifugal Pumps,2,L13,Piping Design,Engineer
+13,Rotary Equipments,Centrifugal Compressors,2,L13,Piping Design,Engineer
+13,Rotary Equipments,FD and ID Fans / Blowers,2,L13,Piping Design,Engineer
+13,Rotary Equipments,Positive Displacement Pumps,2,L13,Piping Design,Engineer
+13,Rotary Equipments,Reciprocating Compressors,1,L13,Piping Design,Engineer
+13,Rotary Equipments,Steam Turbines,1,L13,Piping Design,Engineer
+13,Softwares,AutoCad,4,L13,Piping Design,Engineer
+13,Softwares,Cadworx,1,L13,Piping Design,Engineer
+13,Softwares,E3D,1,L13,Piping Design,Engineer
+13,Softwares,LFM,2,L13,Piping Design,Engineer
+13,Softwares,Microstation,3,L13,Piping Design,Engineer
+13,Softwares,PDMS,NA,L13,Piping Design,Engineer
+13,Softwares,PDS-Plant Design System,NA,L13,Piping Design,Engineer
+13,Softwares,Plant 3D,2,L13,Piping Design,Engineer
+13,Softwares,S3D,3,L13,Piping Design,Engineer
+13,Softwares,SPR- Smart Plant Review,2,L13,Piping Design,Engineer
+13,Softwares,Plant Stream,2,L13,Piping Design,Engineer
+13,Softwares,I-Construct,1,L13,Piping Design,Engineer
+14,Arrangements,Boiler Unit,2,L14,Piping Design,Engineer
+14,Arrangements,Flare Unit,3,L14,Piping Design,Engineer
+14,Arrangements,Hygnic Piping,NA,L14,Piping Design,Engineer
+14,Arrangements,ISBL / OSBL Units,3,L14,Piping Design,Engineer
+14,Arrangements,ISBL Process Units,3,L14,Piping Design,Engineer
+14,Arrangements,Overall Plot Plan,3,L14,Piping Design,Engineer
+14,Arrangements,Pipe Rack,3,L14,Piping Design,Engineer
+14,Arrangements,Plan Building,3,L14,Piping Design,Engineer
+14,Arrangements,Tank Farm,3,L14,Piping Design,Engineer
+14,Arrangements,Technological Structure,3,L14,Piping Design,Engineer
+14,Arrangements,Unit Plot Plan,3,L14,Piping Design,Engineer
+14,Arrangements,Loading Arms & Racks,3,L14,Piping Design,Engineer
+14,Arrangements,Packaged Systems (Skid),3,L14,Piping Design,Engineer
+14,Arrangements,Utilities,3,L14,Piping Design,Engineer
+14,Fixed Equipment,Air Coolers,2,L14,Piping Design,Engineer
+14,Fixed Equipment,Compact Block & Plate Exchanger,2,L14,Piping Design,Engineer
+14,Fixed Equipment,Cooling Towers,2,L14,Piping Design,Engineer
+14,Fixed Equipment,Desuperheaters,2,L14,Piping Design,Engineer
+14,Fixed Equipment,Vessel ,2,L14,Piping Design,Engineer
+14,Fixed Equipment,Flares,2,L14,Piping Design,Engineer
+14,Fixed Equipment,Heaters & Furnaces,1,L14,Piping Design,Engineer
+14,Fixed Equipment,Reactors,2,L14,Piping Design,Engineer
+14,Fixed Equipment,S & T Exchagers,2,L14,Piping Design,Engineer
+14,Fixed Equipment,Spherical Storage Tanks,2,L14,Piping Design,Engineer
+14,Fixed Equipment,Steam Ejectors & Condensers,2,L14,Piping Design,Engineer
+14,Fixed Equipment,Thermal Oxidizers,2,L14,Piping Design,Engineer
+14,Fixed Equipment,Towers / Columns,1,L14,Piping Design,Engineer
+14,Fixed Equipment,Storage Tanks,2,L14,Piping Design,Engineer
+14,Fixed Equipment,Storage Bullets,2,L14,Piping Design,Engineer
+14,Piping,Lined Pipe,1,L14,Piping Design,Engineer
+14,Piping,Metalic Piping,2,L14,Piping Design,Engineer
+14,Piping,Non-Metalic Piping,2,L14,Piping Design,Engineer
+14,Piping,Alloy Steel,2,L14,Piping Design,Engineer
+14,Rotary Equipments,Air Compressors,1,L14,Piping Design,Engineer
+14,Rotary Equipments,ANSI Pumps,2,L14,Piping Design,Engineer
+14,Rotary Equipments,API Centrifugal Pumps,2,L14,Piping Design,Engineer
+14,Rotary Equipments,Centrifugal Compressors,2,L14,Piping Design,Engineer
+14,Rotary Equipments,FD and ID Fans / Blowers,2,L14,Piping Design,Engineer
+14,Rotary Equipments,Positive Displacement Pumps,2,L14,Piping Design,Engineer
+14,Rotary Equipments,Reciprocating Compressors,1,L14,Piping Design,Engineer
+14,Rotary Equipments,Steam Turbines,1,L14,Piping Design,Engineer
+14,Softwares,AutoCad,4,L14,Piping Design,Engineer
+14,Softwares,Cadworx,1,L14,Piping Design,Engineer
+14,Softwares,E3D,1,L14,Piping Design,Engineer
+14,Softwares,LFM,2,L14,Piping Design,Engineer
+14,Softwares,Microstation,3,L14,Piping Design,Engineer
+14,Softwares,PDMS,NA,L14,Piping Design,Engineer
+14,Softwares,PDS-Plant Design System,NA,L14,Piping Design,Engineer
+14,Softwares,Plant 3D,2,L14,Piping Design,Engineer
+14,Softwares,S3D,3,L14,Piping Design,Engineer
+14,Softwares,SPR- Smart Plant Review,2,L14,Piping Design,Engineer
+14,Softwares,Plant Stream,2,L14,Piping Design,Engineer
+14,Softwares,I-Construct,1,L14,Piping Design,Engineer
+15,Arrangements,Boiler Unit,2,L15,Piping Design,Engineer
+15,Arrangements,Flare Unit,3,L15,Piping Design,Engineer
+15,Arrangements,Hygnic Piping,NA,L15,Piping Design,Engineer
+15,Arrangements,ISBL / OSBL Units,3,L15,Piping Design,Engineer
+15,Arrangements,ISBL Process Units,3,L15,Piping Design,Engineer
+15,Arrangements,Overall Plot Plan,3,L15,Piping Design,Engineer
+15,Arrangements,Pipe Rack,3,L15,Piping Design,Engineer
+15,Arrangements,Plan Building,3,L15,Piping Design,Engineer
+15,Arrangements,Tank Farm,3,L15,Piping Design,Engineer
+15,Arrangements,Technological Structure,3,L15,Piping Design,Engineer
+15,Arrangements,Unit Plot Plan,3,L15,Piping Design,Engineer
+15,Arrangements,Loading Arms & Racks,3,L15,Piping Design,Engineer
+15,Arrangements,Packaged Systems (Skid),3,L15,Piping Design,Engineer
+15,Arrangements,Utilities,3,L15,Piping Design,Engineer
+15,Fixed Equipment,Air Coolers,2,L15,Piping Design,Engineer
+15,Fixed Equipment,Compact Block & Plate Exchanger,2,L15,Piping Design,Engineer
+15,Fixed Equipment,Cooling Towers,2,L15,Piping Design,Engineer
+15,Fixed Equipment,Desuperheaters,2,L15,Piping Design,Engineer
+15,Fixed Equipment,Vessel ,2,L15,Piping Design,Engineer
+15,Fixed Equipment,Flares,2,L15,Piping Design,Engineer
+15,Fixed Equipment,Heaters & Furnaces,1,L15,Piping Design,Engineer
+15,Fixed Equipment,Reactors,2,L15,Piping Design,Engineer
+15,Fixed Equipment,S & T Exchagers,2,L15,Piping Design,Engineer
+15,Fixed Equipment,Spherical Storage Tanks,2,L15,Piping Design,Engineer
+15,Fixed Equipment,Steam Ejectors & Condensers,2,L15,Piping Design,Engineer
+15,Fixed Equipment,Thermal Oxidizers,2,L15,Piping Design,Engineer
+15,Fixed Equipment,Towers / Columns,1,L15,Piping Design,Engineer
+15,Fixed Equipment,Storage Tanks,2,L15,Piping Design,Engineer
+15,Fixed Equipment,Storage Bullets,2,L15,Piping Design,Engineer
+15,Piping,Lined Pipe,1,L15,Piping Design,Engineer
+15,Piping,Metalic Piping,2,L15,Piping Design,Engineer
+15,Piping,Non-Metalic Piping,2,L15,Piping Design,Engineer
+15,Piping,Alloy Steel,2,L15,Piping Design,Engineer
+15,Rotary Equipments,Air Compressors,1,L15,Piping Design,Engineer
+15,Rotary Equipments,ANSI Pumps,2,L15,Piping Design,Engineer
+15,Rotary Equipments,API Centrifugal Pumps,2,L15,Piping Design,Engineer
+15,Rotary Equipments,Centrifugal Compressors,2,L15,Piping Design,Engineer
+15,Rotary Equipments,FD and ID Fans / Blowers,2,L15,Piping Design,Engineer
+15,Rotary Equipments,Positive Displacement Pumps,2,L15,Piping Design,Engineer
+15,Rotary Equipments,Reciprocating Compressors,1,L15,Piping Design,Engineer
+15,Rotary Equipments,Steam Turbines,1,L15,Piping Design,Engineer
+15,Softwares,AutoCad,4,L15,Piping Design,Engineer
+15,Softwares,Cadworx,1,L15,Piping Design,Engineer
+15,Softwares,E3D,1,L15,Piping Design,Engineer
+15,Softwares,LFM,2,L15,Piping Design,Engineer
+15,Softwares,Microstation,3,L15,Piping Design,Engineer
+15,Softwares,PDMS,NA,L15,Piping Design,Engineer
+15,Softwares,PDS-Plant Design System,NA,L15,Piping Design,Engineer
+15,Softwares,Plant 3D,2,L15,Piping Design,Engineer
+15,Softwares,S3D,3,L15,Piping Design,Engineer
+15,Softwares,SPR- Smart Plant Review,2,L15,Piping Design,Engineer
+15,Softwares,Plant Stream,2,L15,Piping Design,Engineer
+15,Softwares,I-Construct,1,L15,Piping Design,Engineer
+16,Arrangements,Boiler Unit,2,L16,Piping Design,Engineer
+16,Arrangements,Flare Unit,3,L16,Piping Design,Engineer
+16,Arrangements,Hygnic Piping,NA,L16,Piping Design,Engineer
+16,Arrangements,ISBL / OSBL Units,3,L16,Piping Design,Engineer
+16,Arrangements,ISBL Process Units,3,L16,Piping Design,Engineer
+16,Arrangements,Overall Plot Plan,3,L16,Piping Design,Engineer
+16,Arrangements,Pipe Rack,3,L16,Piping Design,Engineer
+16,Arrangements,Plan Building,3,L16,Piping Design,Engineer
+16,Arrangements,Tank Farm,3,L16,Piping Design,Engineer
+16,Arrangements,Technological Structure,3,L16,Piping Design,Engineer
+16,Arrangements,Unit Plot Plan,3,L16,Piping Design,Engineer
+16,Arrangements,Loading Arms & Racks,3,L16,Piping Design,Engineer
+16,Arrangements,Packaged Systems (Skid),3,L16,Piping Design,Engineer
+16,Arrangements,Utilities,3,L16,Piping Design,Engineer
+16,Fixed Equipment,Air Coolers,2,L16,Piping Design,Engineer
+16,Fixed Equipment,Compact Block & Plate Exchanger,2,L16,Piping Design,Engineer
+16,Fixed Equipment,Cooling Towers,2,L16,Piping Design,Engineer
+16,Fixed Equipment,Desuperheaters,2,L16,Piping Design,Engineer
+16,Fixed Equipment,Vessel ,2,L16,Piping Design,Engineer
+16,Fixed Equipment,Flares,2,L16,Piping Design,Engineer
+16,Fixed Equipment,Heaters & Furnaces,1,L16,Piping Design,Engineer
+16,Fixed Equipment,Reactors,2,L16,Piping Design,Engineer
+16,Fixed Equipment,S & T Exchagers,2,L16,Piping Design,Engineer
+16,Fixed Equipment,Spherical Storage Tanks,2,L16,Piping Design,Engineer
+16,Fixed Equipment,Steam Ejectors & Condensers,2,L16,Piping Design,Engineer
+16,Fixed Equipment,Thermal Oxidizers,2,L16,Piping Design,Engineer
+16,Fixed Equipment,Towers / Columns,1,L16,Piping Design,Engineer
+16,Fixed Equipment,Storage Tanks,2,L16,Piping Design,Engineer
+16,Fixed Equipment,Storage Bullets,2,L16,Piping Design,Engineer
+16,Piping,Lined Pipe,1,L16,Piping Design,Engineer
+16,Piping,Metalic Piping,2,L16,Piping Design,Engineer
+16,Piping,Non-Metalic Piping,2,L16,Piping Design,Engineer
+16,Piping,Alloy Steel,2,L16,Piping Design,Engineer
+16,Rotary Equipments,Air Compressors,1,L16,Piping Design,Engineer
+16,Rotary Equipments,ANSI Pumps,2,L16,Piping Design,Engineer
+16,Rotary Equipments,API Centrifugal Pumps,2,L16,Piping Design,Engineer
+16,Rotary Equipments,Centrifugal Compressors,2,L16,Piping Design,Engineer
+16,Rotary Equipments,FD and ID Fans / Blowers,2,L16,Piping Design,Engineer
+16,Rotary Equipments,Positive Displacement Pumps,2,L16,Piping Design,Engineer
+16,Rotary Equipments,Reciprocating Compressors,1,L16,Piping Design,Engineer
+16,Rotary Equipments,Steam Turbines,1,L16,Piping Design,Engineer
+16,Softwares,AutoCad,4,L16,Piping Design,Engineer
+16,Softwares,Cadworx,1,L16,Piping Design,Engineer
+16,Softwares,E3D,1,L16,Piping Design,Engineer
+16,Softwares,LFM,2,L16,Piping Design,Engineer
+16,Softwares,Microstation,3,L16,Piping Design,Engineer
+16,Softwares,PDMS,NA,L16,Piping Design,Engineer
+16,Softwares,PDS-Plant Design System,NA,L16,Piping Design,Engineer
+16,Softwares,Plant 3D,2,L16,Piping Design,Engineer
+16,Softwares,S3D,3,L16,Piping Design,Engineer
+16,Softwares,SPR- Smart Plant Review,2,L16,Piping Design,Engineer
+16,Softwares,Plant Stream,2,L16,Piping Design,Engineer
+16,Softwares,I-Construct,1,L16,Piping Design,Engineer
+17,Arrangements,Boiler Unit,2,L17,Piping Design,Engineer
+17,Arrangements,Flare Unit,3,L17,Piping Design,Engineer
+17,Arrangements,Hygnic Piping,NA,L17,Piping Design,Engineer
+17,Arrangements,ISBL / OSBL Units,3,L17,Piping Design,Engineer
+17,Arrangements,ISBL Process Units,3,L17,Piping Design,Engineer
+17,Arrangements,Overall Plot Plan,3,L17,Piping Design,Engineer
+17,Arrangements,Pipe Rack,3,L17,Piping Design,Engineer
+17,Arrangements,Plan Building,3,L17,Piping Design,Engineer
+17,Arrangements,Tank Farm,3,L17,Piping Design,Engineer
+17,Arrangements,Technological Structure,3,L17,Piping Design,Engineer
+17,Arrangements,Unit Plot Plan,3,L17,Piping Design,Engineer
+17,Arrangements,Loading Arms & Racks,3,L17,Piping Design,Engineer
+17,Arrangements,Packaged Systems (Skid),3,L17,Piping Design,Engineer
+17,Arrangements,Utilities,3,L17,Piping Design,Engineer
+17,Fixed Equipment,Air Coolers,2,L17,Piping Design,Engineer
+17,Fixed Equipment,Compact Block & Plate Exchanger,2,L17,Piping Design,Engineer
+17,Fixed Equipment,Cooling Towers,2,L17,Piping Design,Engineer
+17,Fixed Equipment,Desuperheaters,2,L17,Piping Design,Engineer
+17,Fixed Equipment,Vessel ,2,L17,Piping Design,Engineer
+17,Fixed Equipment,Flares,2,L17,Piping Design,Engineer
+17,Fixed Equipment,Heaters & Furnaces,1,L17,Piping Design,Engineer
+17,Fixed Equipment,Reactors,2,L17,Piping Design,Engineer
+17,Fixed Equipment,S & T Exchagers,2,L17,Piping Design,Engineer
+17,Fixed Equipment,Spherical Storage Tanks,2,L17,Piping Design,Engineer
+17,Fixed Equipment,Steam Ejectors & Condensers,2,L17,Piping Design,Engineer
+17,Fixed Equipment,Thermal Oxidizers,2,L17,Piping Design,Engineer
+17,Fixed Equipment,Towers / Columns,1,L17,Piping Design,Engineer
+17,Fixed Equipment,Storage Tanks,2,L17,Piping Design,Engineer
+17,Fixed Equipment,Storage Bullets,2,L17,Piping Design,Engineer
+17,Piping,Lined Pipe,1,L17,Piping Design,Engineer
+17,Piping,Metalic Piping,2,L17,Piping Design,Engineer
+17,Piping,Non-Metalic Piping,2,L17,Piping Design,Engineer
+17,Piping,Alloy Steel,2,L17,Piping Design,Engineer
+17,Rotary Equipments,Air Compressors,1,L17,Piping Design,Engineer
+17,Rotary Equipments,ANSI Pumps,2,L17,Piping Design,Engineer
+17,Rotary Equipments,API Centrifugal Pumps,2,L17,Piping Design,Engineer
+17,Rotary Equipments,Centrifugal Compressors,2,L17,Piping Design,Engineer
+17,Rotary Equipments,FD and ID Fans / Blowers,2,L17,Piping Design,Engineer
+17,Rotary Equipments,Positive Displacement Pumps,2,L17,Piping Design,Engineer
+17,Rotary Equipments,Reciprocating Compressors,1,L17,Piping Design,Engineer
+17,Rotary Equipments,Steam Turbines,1,L17,Piping Design,Engineer
+17,Softwares,AutoCad,4,L17,Piping Design,Engineer
+17,Softwares,Cadworx,1,L17,Piping Design,Engineer
+17,Softwares,E3D,1,L17,Piping Design,Engineer
+17,Softwares,LFM,2,L17,Piping Design,Engineer
+17,Softwares,Microstation,3,L17,Piping Design,Engineer
+17,Softwares,PDMS,NA,L17,Piping Design,Engineer
+17,Softwares,PDS-Plant Design System,NA,L17,Piping Design,Engineer
+17,Softwares,Plant 3D,2,L17,Piping Design,Engineer
+17,Softwares,S3D,3,L17,Piping Design,Engineer
+17,Softwares,SPR- Smart Plant Review,2,L17,Piping Design,Engineer
+17,Softwares,Plant Stream,2,L17,Piping Design,Engineer
+17,Softwares,I-Construct,1,L17,Piping Design,Engineer
