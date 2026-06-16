@@ -33,28 +33,32 @@
 // }
 
 // export default Header;
-
 import { useExport } from "../context/ExportContext";
+
+const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:3001";
 
 function Header() {
   const exportContext = useExport();
 
-  // ✅ USER DATA
-  const email = localStorage.getItem("userEmail");
-
-  const handleLogout = () => {
-    localStorage.clear();
-    window.location.href = "/";
+  const handleLogout = async () => {
+    try {
+      await fetch(`${API_BASE}/auth/logout`, {
+        method: "POST",
+        credentials: "include",
+      });
+    } catch (err) {
+      console.error("Logout request failed:", err);
+    } finally {
+      window.location.href = "/";
+    }
   };
 
-  // ✅ SAFETY GUARD (UNCHANGED LOGIC)
   if (!exportContext || !exportContext.exporters) {
     return (
       <div className="header" style={styles.header}>
         <span>Skill Matrix</span>
 
         <div style={styles.right}>
-          {email && <span style={styles.email}>{email}</span>}
           <button onClick={handleLogout} style={styles.logout}>
             Logout
           </button>
@@ -67,13 +71,9 @@ function Header() {
 
   return (
     <div className="header" style={styles.header}>
-      {/* ✅ LEFT SIDE */}
       <span>Skill Matrix</span>
 
-      {/* ✅ RIGHT SIDE */}
       <div style={styles.right}>
-        
-        {/* ✅ EXISTING EXPORT BUTTONS */}
         {exporters.exportExcel && (
           <button onClick={exporters.exportExcel}>Export Excel</button>
         )}
@@ -82,10 +82,6 @@ function Header() {
           <button onClick={exporters.exportPdf}>Export PDF</button>
         )}
 
-        {/* ✅ USER EMAIL */}
-        {email && <span style={styles.email}>{email}</span>}
-
-        {/* ✅ LOGOUT */}
         <button onClick={handleLogout} style={styles.logout}>
           Logout
         </button>
@@ -95,6 +91,7 @@ function Header() {
 }
 
 export default Header;
+
 const styles = {
   header: {
     display: "flex",

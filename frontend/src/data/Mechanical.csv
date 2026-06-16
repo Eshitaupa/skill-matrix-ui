@@ -1,0 +1,243 @@
+﻿Level,Skill,Subskill,Value,LevelKey,Discipline,Role
+7,Static Equipment,Pressure Vessels,1,L7,Mechanical,Engineer
+7,Static Equipment,Shell & Tube Heat Exchanger ,1,L7,Mechanical,Engineer
+7,Static Equipment,Air Cooled Heat Exchanger,1,L7,Mechanical,Engineer
+7,Static Equipment,Plate & Frame Heat Exchanger,1,L7,Mechanical,Engineer
+7,Static Equipment,Columns,1,L7,Mechanical,Engineer
+7,Static Equipment,Storage Tanks ,1,L7,Mechanical,Engineer
+7,Static Equipment,Silos,1,L7,Mechanical,Engineer
+7,Static Equipment,Column Internals,1,L7,Mechanical,Engineer
+7,Static Equipment,FRP Vessels,1,L7,Mechanical,Engineer
+7,Rotary & Packaged Equipment,Pump,1,L7,Mechanical,Engineer
+7,,Compressor,1,L7,Mechanical,Engineer
+7,Rotary & Packaged Equipment,Agitator,1,L7,Mechanical,Engineer
+7,Rotary & Packaged Equipment,Cooling tower,1,L7,Mechanical,Engineer
+7,Rotary & Packaged Equipment,WWT Plant,1,L7,Mechanical,Engineer
+7,Rotary & Packaged Equipment,Raw / DM Water Treatment Plant,1,L7,Mechanical,Engineer
+7,Rotary & Packaged Equipment,IA / N2 Unit,1,L7,Mechanical,Engineer
+7,Rotary & Packaged Equipment,Boiler,1,L7,Mechanical,Engineer
+7,Rotary & Packaged Equipment,Chiiler / Refrigeration,1,L7,Mechanical,Engineer
+7,Rotary & Packaged Equipment,Matl Handling Eqpt ,1,L7,Mechanical,Engineer
+7,Software Skills,Compress,1,L7,Mechanical,Engineer
+7,Software Skills,PV Elite,1,L7,Mechanical,Engineer
+7,Software Skills,HTRI,1,L7,Mechanical,Engineer
+8,Static Equipment,Pressure Vessels,1,L8,Mechanical,Engineer
+8,Static Equipment,Shell & Tube Heat Exchanger ,1,L8,Mechanical,Engineer
+8,Static Equipment,Air Cooled Heat Exchanger,1,L8,Mechanical,Engineer
+8,Static Equipment,Plate & Frame Heat Exchanger,1,L8,Mechanical,Engineer
+8,Static Equipment,Columns,1,L8,Mechanical,Engineer
+8,Static Equipment,Storage Tanks ,1,L8,Mechanical,Engineer
+8,Static Equipment,Silos,1,L8,Mechanical,Engineer
+8,Static Equipment,Column Internals,1,L8,Mechanical,Engineer
+8,Static Equipment,FRP Vessels,1,L8,Mechanical,Engineer
+8,Rotary & Packaged Equipment,Pump,1,L8,Mechanical,Engineer
+8,,Compressor,2,L8,Mechanical,Engineer
+8,Rotary & Packaged Equipment,Agitator,1,L8,Mechanical,Engineer
+8,Rotary & Packaged Equipment,Cooling tower,1,L8,Mechanical,Engineer
+8,Rotary & Packaged Equipment,WWT Plant,2,L8,Mechanical,Engineer
+8,Rotary & Packaged Equipment,Raw / DM Water Treatment Plant,2,L8,Mechanical,Engineer
+8,Rotary & Packaged Equipment,IA / N2 Unit,2,L8,Mechanical,Engineer
+8,Rotary & Packaged Equipment,Boiler,2,L8,Mechanical,Engineer
+8,Rotary & Packaged Equipment,Chiiler / Refrigeration,2,L8,Mechanical,Engineer
+8,Rotary & Packaged Equipment,Matl Handling Eqpt ,2,L8,Mechanical,Engineer
+8,Software Skills,Compress,1,L8,Mechanical,Engineer
+8,Software Skills,PV Elite,1,L8,Mechanical,Engineer
+8,Software Skills,HTRI,1,L8,Mechanical,Engineer
+9,Static Equipment,Pressure Vessels,2,L9,Mechanical,Engineer
+9,Static Equipment,Shell & Tube Heat Exchanger ,2,L9,Mechanical,Engineer
+9,Static Equipment,Air Cooled Heat Exchanger,2,L9,Mechanical,Engineer
+9,Static Equipment,Plate & Frame Heat Exchanger,2,L9,Mechanical,Engineer
+9,Static Equipment,Columns,2,L9,Mechanical,Engineer
+9,Static Equipment,Storage Tanks ,2,L9,Mechanical,Engineer
+9,Static Equipment,Silos,2,L9,Mechanical,Engineer
+9,Static Equipment,Column Internals,2,L9,Mechanical,Engineer
+9,Static Equipment,FRP Vessels,2,L9,Mechanical,Engineer
+9,Rotary & Packaged Equipment,Pump,1,L9,Mechanical,Engineer
+9,,Compressor,2,L9,Mechanical,Engineer
+9,Rotary & Packaged Equipment,Agitator,2,L9,Mechanical,Engineer
+9,Rotary & Packaged Equipment,Cooling tower,2,L9,Mechanical,Engineer
+9,Rotary & Packaged Equipment,WWT Plant,2,L9,Mechanical,Engineer
+9,Rotary & Packaged Equipment,Raw / DM Water Treatment Plant,2,L9,Mechanical,Engineer
+9,Rotary & Packaged Equipment,IA / N2 Unit,2,L9,Mechanical,Engineer
+9,Rotary & Packaged Equipment,Boiler,2,L9,Mechanical,Engineer
+9,Rotary & Packaged Equipment,Chiiler / Refrigeration,2,L9,Mechanical,Engineer
+9,Rotary & Packaged Equipment,Matl Handling Eqpt ,2,L9,Mechanical,Engineer
+9,Software Skills,Compress,2,L9,Mechanical,Engineer
+9,Software Skills,PV Elite,2,L9,Mechanical,Engineer
+9,Software Skills,HTRI,2,L9,Mechanical,Engineer
+10,Static Equipment,Pressure Vessels,2,L10,Mechanical,Engineer
+10,Static Equipment,Shell & Tube Heat Exchanger ,2,L10,Mechanical,Engineer
+10,Static Equipment,Air Cooled Heat Exchanger,2,L10,Mechanical,Engineer
+10,Static Equipment,Plate & Frame Heat Exchanger,2,L10,Mechanical,Engineer
+10,Static Equipment,Columns,2,L10,Mechanical,Engineer
+10,Static Equipment,Storage Tanks ,2,L10,Mechanical,Engineer
+10,Static Equipment,Silos,2,L10,Mechanical,Engineer
+10,Static Equipment,Column Internals,2,L10,Mechanical,Engineer
+10,Static Equipment,FRP Vessels,2,L10,Mechanical,Engineer
+10,Rotary & Packaged Equipment,Pump,2,L10,Mechanical,Engineer
+10,,Compressor,3,L10,Mechanical,Engineer
+10,Rotary & Packaged Equipment,Agitator,2,L10,Mechanical,Engineer
+10,Rotary & Packaged Equipment,Cooling tower,2,L10,Mechanical,Engineer
+10,Rotary & Packaged Equipment,WWT Plant,3,L10,Mechanical,Engineer
+10,Rotary & Packaged Equipment,Raw / DM Water Treatment Plant,3,L10,Mechanical,Engineer
+10,Rotary & Packaged Equipment,IA / N2 Unit,3,L10,Mechanical,Engineer
+10,Rotary & Packaged Equipment,Boiler,3,L10,Mechanical,Engineer
+10,Rotary & Packaged Equipment,Chiiler / Refrigeration,3,L10,Mechanical,Engineer
+10,Rotary & Packaged Equipment,Matl Handling Eqpt ,3,L10,Mechanical,Engineer
+10,Software Skills,Compress,3,L10,Mechanical,Engineer
+10,Software Skills,PV Elite,3,L10,Mechanical,Engineer
+10,Software Skills,HTRI,3,L10,Mechanical,Engineer
+11,Static Equipment,Pressure Vessels,3,L11,Mechanical,Engineer
+11,Static Equipment,Shell & Tube Heat Exchanger ,3,L11,Mechanical,Engineer
+11,Static Equipment,Air Cooled Heat Exchanger,3,L11,Mechanical,Engineer
+11,Static Equipment,Plate & Frame Heat Exchanger,3,L11,Mechanical,Engineer
+11,Static Equipment,Columns,3,L11,Mechanical,Engineer
+11,Static Equipment,Storage Tanks ,3,L11,Mechanical,Engineer
+11,Static Equipment,Silos,3,L11,Mechanical,Engineer
+11,Static Equipment,Column Internals,3,L11,Mechanical,Engineer
+11,Static Equipment,FRP Vessels,3,L11,Mechanical,Engineer
+11,Rotary & Packaged Equipment,Pump,2,L11,Mechanical,Engineer
+11,,Compressor,3,L11,Mechanical,Engineer
+11,Rotary & Packaged Equipment,Agitator,3,L11,Mechanical,Engineer
+11,Rotary & Packaged Equipment,Cooling tower,3,L11,Mechanical,Engineer
+11,Rotary & Packaged Equipment,WWT Plant,3,L11,Mechanical,Engineer
+11,Rotary & Packaged Equipment,Raw / DM Water Treatment Plant,3,L11,Mechanical,Engineer
+11,Rotary & Packaged Equipment,IA / N2 Unit,3,L11,Mechanical,Engineer
+11,Rotary & Packaged Equipment,Boiler,3,L11,Mechanical,Engineer
+11,Rotary & Packaged Equipment,Chiiler / Refrigeration,3,L11,Mechanical,Engineer
+11,Rotary & Packaged Equipment,Matl Handling Eqpt ,3,L11,Mechanical,Engineer
+11,Software Skills,Compress,3,L11,Mechanical,Engineer
+11,Software Skills,PV Elite,3,L11,Mechanical,Engineer
+11,Software Skills,HTRI,3,L11,Mechanical,Engineer
+12,Static Equipment,Pressure Vessels,3,L12,Mechanical,Engineer
+12,Static Equipment,Shell & Tube Heat Exchanger ,3,L12,Mechanical,Engineer
+12,Static Equipment,Air Cooled Heat Exchanger,3,L12,Mechanical,Engineer
+12,Static Equipment,Plate & Frame Heat Exchanger,3,L12,Mechanical,Engineer
+12,Static Equipment,Columns,3,L12,Mechanical,Engineer
+12,Static Equipment,Storage Tanks ,3,L12,Mechanical,Engineer
+12,Static Equipment,Silos,3,L12,Mechanical,Engineer
+12,Static Equipment,Column Internals,3,L12,Mechanical,Engineer
+12,Static Equipment,FRP Vessels,3,L12,Mechanical,Engineer
+12,Rotary & Packaged Equipment,Pump,3,L12,Mechanical,Engineer
+12,,Compressor,4,L12,Mechanical,Engineer
+12,Rotary & Packaged Equipment,Agitator,3,L12,Mechanical,Engineer
+12,Rotary & Packaged Equipment,Cooling tower,3,L12,Mechanical,Engineer
+12,Rotary & Packaged Equipment,WWT Plant,3,L12,Mechanical,Engineer
+12,Rotary & Packaged Equipment,Raw / DM Water Treatment Plant,3,L12,Mechanical,Engineer
+12,Rotary & Packaged Equipment,IA / N2 Unit,3,L12,Mechanical,Engineer
+12,Rotary & Packaged Equipment,Boiler,3,L12,Mechanical,Engineer
+12,Rotary & Packaged Equipment,Chiiler / Refrigeration,3,L12,Mechanical,Engineer
+12,Rotary & Packaged Equipment,Matl Handling Eqpt ,3,L12,Mechanical,Engineer
+12,Software Skills,Compress,3,L12,Mechanical,Engineer
+12,Software Skills,PV Elite,3,L12,Mechanical,Engineer
+12,Software Skills,HTRI,3,L12,Mechanical,Engineer
+13,Static Equipment,Pressure Vessels,3,L13,Mechanical,Engineer
+13,Static Equipment,Shell & Tube Heat Exchanger ,3,L13,Mechanical,Engineer
+13,Static Equipment,Air Cooled Heat Exchanger,3,L13,Mechanical,Engineer
+13,Static Equipment,Plate & Frame Heat Exchanger,3,L13,Mechanical,Engineer
+13,Static Equipment,Columns,3,L13,Mechanical,Engineer
+13,Static Equipment,Storage Tanks ,3,L13,Mechanical,Engineer
+13,Static Equipment,Silos,3,L13,Mechanical,Engineer
+13,Static Equipment,Column Internals,3,L13,Mechanical,Engineer
+13,Static Equipment,FRP Vessels,3,L13,Mechanical,Engineer
+13,Rotary & Packaged Equipment,Pump,3,L13,Mechanical,Engineer
+13,,Compressor,4,L13,Mechanical,Engineer
+13,Rotary & Packaged Equipment,Agitator,3,L13,Mechanical,Engineer
+13,Rotary & Packaged Equipment,Cooling tower,3,L13,Mechanical,Engineer
+13,Rotary & Packaged Equipment,WWT Plant,3,L13,Mechanical,Engineer
+13,Rotary & Packaged Equipment,Raw / DM Water Treatment Plant,3,L13,Mechanical,Engineer
+13,Rotary & Packaged Equipment,IA / N2 Unit,3,L13,Mechanical,Engineer
+13,Rotary & Packaged Equipment,Boiler,3,L13,Mechanical,Engineer
+13,Rotary & Packaged Equipment,Chiiler / Refrigeration,3,L13,Mechanical,Engineer
+13,Rotary & Packaged Equipment,Matl Handling Eqpt ,3,L13,Mechanical,Engineer
+13,Software Skills,Compress,4,L13,Mechanical,Engineer
+13,Software Skills,PV Elite,4,L13,Mechanical,Engineer
+13,Software Skills,HTRI,4,L13,Mechanical,Engineer
+14,Static Equipment,Pressure Vessels,4,L14,Mechanical,Engineer
+14,Static Equipment,Shell & Tube Heat Exchanger ,4,L14,Mechanical,Engineer
+14,Static Equipment,Air Cooled Heat Exchanger,4,L14,Mechanical,Engineer
+14,Static Equipment,Plate & Frame Heat Exchanger,4,L14,Mechanical,Engineer
+14,Static Equipment,Columns,4,L14,Mechanical,Engineer
+14,Static Equipment,Storage Tanks ,4,L14,Mechanical,Engineer
+14,Static Equipment,Silos,4,L14,Mechanical,Engineer
+14,Static Equipment,Column Internals,4,L14,Mechanical,Engineer
+14,Static Equipment,FRP Vessels,4,L14,Mechanical,Engineer
+14,Rotary & Packaged Equipment,Pump,3,L14,Mechanical,Engineer
+14,,Compressor,4,L14,Mechanical,Engineer
+14,Rotary & Packaged Equipment,Agitator,4,L14,Mechanical,Engineer
+14,Rotary & Packaged Equipment,Cooling tower,4,L14,Mechanical,Engineer
+14,Rotary & Packaged Equipment,WWT Plant,4,L14,Mechanical,Engineer
+14,Rotary & Packaged Equipment,Raw / DM Water Treatment Plant,4,L14,Mechanical,Engineer
+14,Rotary & Packaged Equipment,IA / N2 Unit,4,L14,Mechanical,Engineer
+14,Rotary & Packaged Equipment,Boiler,4,L14,Mechanical,Engineer
+14,Rotary & Packaged Equipment,Chiiler / Refrigeration,4,L14,Mechanical,Engineer
+14,Rotary & Packaged Equipment,Matl Handling Eqpt ,4,L14,Mechanical,Engineer
+14,Software Skills,Compress,4,L14,Mechanical,Engineer
+14,Software Skills,PV Elite,4,L14,Mechanical,Engineer
+14,Software Skills,HTRI,4,L14,Mechanical,Engineer
+15,Static Equipment,Pressure Vessels,4,L15,Mechanical,Engineer
+15,Static Equipment,Shell & Tube Heat Exchanger ,4,L15,Mechanical,Engineer
+15,Static Equipment,Air Cooled Heat Exchanger,4,L15,Mechanical,Engineer
+15,Static Equipment,Plate & Frame Heat Exchanger,4,L15,Mechanical,Engineer
+15,Static Equipment,Columns,4,L15,Mechanical,Engineer
+15,Static Equipment,Storage Tanks ,4,L15,Mechanical,Engineer
+15,Static Equipment,Silos,4,L15,Mechanical,Engineer
+15,Static Equipment,Column Internals,4,L15,Mechanical,Engineer
+15,Static Equipment,FRP Vessels,4,L15,Mechanical,Engineer
+15,Rotary & Packaged Equipment,Pump,3,L15,Mechanical,Engineer
+15,,Compressor,4,L15,Mechanical,Engineer
+15,Rotary & Packaged Equipment,Agitator,4,L15,Mechanical,Engineer
+15,Rotary & Packaged Equipment,Cooling tower,4,L15,Mechanical,Engineer
+15,Rotary & Packaged Equipment,WWT Plant,4,L15,Mechanical,Engineer
+15,Rotary & Packaged Equipment,Raw / DM Water Treatment Plant,4,L15,Mechanical,Engineer
+15,Rotary & Packaged Equipment,IA / N2 Unit,4,L15,Mechanical,Engineer
+15,Rotary & Packaged Equipment,Boiler,4,L15,Mechanical,Engineer
+15,Rotary & Packaged Equipment,Chiiler / Refrigeration,4,L15,Mechanical,Engineer
+15,Rotary & Packaged Equipment,Matl Handling Eqpt ,4,L15,Mechanical,Engineer
+15,Software Skills,Compress,4,L15,Mechanical,Engineer
+15,Software Skills,PV Elite,4,L15,Mechanical,Engineer
+15,Software Skills,HTRI,4,L15,Mechanical,Engineer
+16,Static Equipment,Pressure Vessels,4,L16,Mechanical,Engineer
+16,Static Equipment,Shell & Tube Heat Exchanger ,4,L16,Mechanical,Engineer
+16,Static Equipment,Air Cooled Heat Exchanger,4,L16,Mechanical,Engineer
+16,Static Equipment,Plate & Frame Heat Exchanger,4,L16,Mechanical,Engineer
+16,Static Equipment,Columns,4,L16,Mechanical,Engineer
+16,Static Equipment,Storage Tanks ,4,L16,Mechanical,Engineer
+16,Static Equipment,Silos,4,L16,Mechanical,Engineer
+16,Static Equipment,Column Internals,4,L16,Mechanical,Engineer
+16,Static Equipment,FRP Vessels,4,L16,Mechanical,Engineer
+16,Rotary & Packaged Equipment,Pump,3,L16,Mechanical,Engineer
+16,,Compressor,4,L16,Mechanical,Engineer
+16,Rotary & Packaged Equipment,Agitator,4,L16,Mechanical,Engineer
+16,Rotary & Packaged Equipment,Cooling tower,4,L16,Mechanical,Engineer
+16,Rotary & Packaged Equipment,WWT Plant,4,L16,Mechanical,Engineer
+16,Rotary & Packaged Equipment,Raw / DM Water Treatment Plant,4,L16,Mechanical,Engineer
+16,Rotary & Packaged Equipment,IA / N2 Unit,4,L16,Mechanical,Engineer
+16,Rotary & Packaged Equipment,Boiler,4,L16,Mechanical,Engineer
+16,Rotary & Packaged Equipment,Chiiler / Refrigeration,4,L16,Mechanical,Engineer
+16,Rotary & Packaged Equipment,Matl Handling Eqpt ,4,L16,Mechanical,Engineer
+16,Software Skills,Compress,4,L16,Mechanical,Engineer
+16,Software Skills,PV Elite,4,L16,Mechanical,Engineer
+16,Software Skills,HTRI,4,L16,Mechanical,Engineer
+17,Static Equipment,Pressure Vessels,4,L17,Mechanical,Engineer
+17,Static Equipment,Shell & Tube Heat Exchanger ,4,L17,Mechanical,Engineer
+17,Static Equipment,Air Cooled Heat Exchanger,4,L17,Mechanical,Engineer
+17,Static Equipment,Plate & Frame Heat Exchanger,4,L17,Mechanical,Engineer
+17,Static Equipment,Columns,4,L17,Mechanical,Engineer
+17,Static Equipment,Storage Tanks ,4,L17,Mechanical,Engineer
+17,Static Equipment,Silos,4,L17,Mechanical,Engineer
+17,Static Equipment,Column Internals,4,L17,Mechanical,Engineer
+17,Static Equipment,FRP Vessels,4,L17,Mechanical,Engineer
+17,Rotary & Packaged Equipment,Pump,3,L17,Mechanical,Engineer
+17,,Compressor,4,L17,Mechanical,Engineer
+17,Rotary & Packaged Equipment,Agitator,4,L17,Mechanical,Engineer
+17,Rotary & Packaged Equipment,Cooling tower,4,L17,Mechanical,Engineer
+17,Rotary & Packaged Equipment,WWT Plant,4,L17,Mechanical,Engineer
+17,Rotary & Packaged Equipment,Raw / DM Water Treatment Plant,4,L17,Mechanical,Engineer
+17,Rotary & Packaged Equipment,IA / N2 Unit,4,L17,Mechanical,Engineer
+17,Rotary & Packaged Equipment,Boiler,4,L17,Mechanical,Engineer
+17,Rotary & Packaged Equipment,Chiiler / Refrigeration,4,L17,Mechanical,Engineer
+17,Rotary & Packaged Equipment,Matl Handling Eqpt ,4,L17,Mechanical,Engineer
+17,Software Skills,Compress,4,L17,Mechanical,Engineer
+17,Software Skills,PV Elite,4,L17,Mechanical,Engineer
+17,Software Skills,HTRI,4,L17,Mechanical,Engineer

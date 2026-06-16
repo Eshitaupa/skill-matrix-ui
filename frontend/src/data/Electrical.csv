@@ -1,0 +1,991 @@
+Level,Skill,Subskill,Value,LevelKey,Discipline,Role
+7,Engineering,Design Calculations,1,L7,Electrical,Engineer
+7,Engineering,Specifications and TBA,NA,L7,Electrical,Engineer
+7,Engineering,Vendor Drawing Review,NA,L7,Electrical,Engineer
+7,Engineering,Power System Studies using,1,L7,Electrical,Engineer
+7,Engineering,Power System Studies using SKM,1,L7,Electrical,Engineer
+7,Engineering,LV One Line Diagram,NA,L7,Electrical,Engineer
+7,Engineering,MV One Line Diagram,NA,L7,Electrical,Engineer
+7,Engineering,LV Schematics and Wiring Diagrams,NA,L7,Electrical,Engineer
+7,Engineering,MV Schematics and Wiring Diagrams,NA,L7,Electrical,Engineer
+7,Engineering,SPEL capabilities,1,L7,Electrical,Engineer
+7,Engineering,LV Cable & Conduit Schedule,1,L7,Electrical,Engineer
+7,Engineering,MV Cable & Conduit Schedule,NA,L7,Electrical,Engineer
+7,Engineering,Area Classification,NA,L7,Electrical,Engineer
+7,Engineering,Electrical Layouts,1,L7,Electrical,Engineer
+7,Engineering,Panel Schedules,NA,L7,Electrical,Engineer
+7,Engineering,PDC Equipment Layout,NA,L7,Electrical,Engineer
+7,Engineering,Lighting software visual,1,L7,Electrical,Engineer
+7,Engineering,AVEVA Engineering capabilities  (Y/N),NA,L7,Electrical,Engineer
+7,Engineering,Sub-Station (Switchyard) Engineering,NA,L7,Electrical,Engineer
+7,Engineering,Scope of work for Electrical Heat Tracing,NA,L7,Electrical,Engineer
+7,Engineering,Scope of work for cathodic protection,NA,L7,Electrical,Engineer
+7,Engineering,"PA, FA and communication system layout",NA,L7,Electrical,Engineer
+7,Engineering,Site Supervision (Y/N),NA,L7,Electrical,Engineer
+7,Software Capablities,SP3D Modeling (N/U/AS),NA,L7,Electrical,Engineer
+7,Software Capablities,Smart Sketch (N/U/AS),NA,L7,Electrical,Engineer
+7,Software Capablities,AVEVA E3D (Y/N),NA,L7,Electrical,Engineer
+7,Software Capablities,REVIT (Y/N),NA,L7,Electrical,Engineer
+7,Software Capablities,Microstation (Y/N),NA,L7,Electrical,Engineer
+7,Software Capablities,Plant 3D (Y/N),NA,L7,Electrical,Engineer
+7,Software Capablities,AutoCAD (Y/N),NA,L7,Electrical,Engineer
+7,3D Modelling ,Grounding,NA,L7,Electrical,Engineer
+7,3D Modelling ,Cable Tray,NA,L7,Electrical,Engineer
+7,3D Modelling ,Lighting,NA,L7,Electrical,Engineer
+7,3D Modelling ,Duct Bank,NA,L7,Electrical,Engineer
+7,3D Modelling ,Electrical Equipment,NA,L7,Electrical,Engineer
+7,3D Modelling ,PDC,NA,L7,Electrical,Engineer
+7,Drafting 2D Layouts,One Line Diagrams,NA,L7,Electrical,Engineer
+7,Drafting 2D Layouts,Wiring Diagrams & Schematics,NA,L7,Electrical,Engineer
+7,Drafting 2D Layouts,Area Classification Drawings,NA,L7,Electrical,Engineer
+7,Drafting 2D Layouts,Grounding Drawings,NA,L7,Electrical,Engineer
+7,Drafting 2D Layouts,Module Drawings,NA,L7,Electrical,Engineer
+7,Drafting 2D Layouts,Power Drawings,NA,L7,Electrical,Engineer
+7,Drafting 2D Layouts,Cable Tray Drawings,NA,L7,Electrical,Engineer
+7,Drafting 2D Layouts,Duct Bank Drawings,NA,L7,Electrical,Engineer
+7,Drafting 2D Layouts,Lighting Drawings,NA,L7,Electrical,Engineer
+8,Engineering,Design Calculations,2,L8,Electrical,Engineer
+8,Engineering,Specifications and TBA,NA,L8,Electrical,Engineer
+8,Engineering,Vendor Drawing Review,1,L8,Electrical,Engineer
+8,Engineering,Power System Studies using,1,L8,Electrical,Engineer
+8,Engineering,Power System Studies using SKM,1,L8,Electrical,Engineer
+8,Engineering,LV One Line Diagram,1,L8,Electrical,Engineer
+8,Engineering,MV One Line Diagram,NA,L8,Electrical,Engineer
+8,Engineering,LV Schematics and Wiring Diagrams,1,L8,Electrical,Engineer
+8,Engineering,MV Schematics and Wiring Diagrams,NA,L8,Electrical,Engineer
+8,Engineering,SPEL capabilities,2,L8,Electrical,Engineer
+8,Engineering,LV Cable & Conduit Schedule,2,L8,Electrical,Engineer
+8,Engineering,MV Cable & Conduit Schedule,1,L8,Electrical,Engineer
+8,Engineering,Area Classification,1,L8,Electrical,Engineer
+8,Engineering,Electrical Layouts,2,L8,Electrical,Engineer
+8,Engineering,Panel Schedules,1,L8,Electrical,Engineer
+8,Engineering,PDC Equipment Layout,1,L8,Electrical,Engineer
+8,Engineering,Lighting software visual,2,L8,Electrical,Engineer
+8,Engineering,AVEVA Engineering capabilities  (Y/N),NA,L8,Electrical,Engineer
+8,Engineering,Sub-Station (Switchyard) Engineering,NA,L8,Electrical,Engineer
+8,Engineering,Scope of work for Electrical Heat Tracing,1,L8,Electrical,Engineer
+8,Engineering,Scope of work for cathodic protection,NA,L8,Electrical,Engineer
+8,Engineering,"PA, FA and communication system layout",NA,L8,Electrical,Engineer
+8,Engineering,Site Supervision (Y/N),NA,L8,Electrical,Engineer
+8,Software Capablities,SP3D Modeling (N/U/AS),NA,L8,Electrical,Engineer
+8,Software Capablities,Smart Sketch (N/U/AS),NA,L8,Electrical,Engineer
+8,Software Capablities,AVEVA E3D (Y/N),NA,L8,Electrical,Engineer
+8,Software Capablities,REVIT (Y/N),NA,L8,Electrical,Engineer
+8,Software Capablities,Microstation (Y/N),NA,L8,Electrical,Engineer
+8,Software Capablities,Plant 3D (Y/N),NA,L8,Electrical,Engineer
+8,Software Capablities,AutoCAD (Y/N),NA,L8,Electrical,Engineer
+8,3D Modelling ,Grounding,NA,L8,Electrical,Engineer
+8,3D Modelling ,Cable Tray,NA,L8,Electrical,Engineer
+8,3D Modelling ,Lighting,NA,L8,Electrical,Engineer
+8,3D Modelling ,Duct Bank,NA,L8,Electrical,Engineer
+8,3D Modelling ,Electrical Equipment,NA,L8,Electrical,Engineer
+8,3D Modelling ,PDC,NA,L8,Electrical,Engineer
+8,Drafting 2D Layouts,One Line Diagrams,NA,L8,Electrical,Engineer
+8,Drafting 2D Layouts,Wiring Diagrams & Schematics,NA,L8,Electrical,Engineer
+8,Drafting 2D Layouts,Area Classification Drawings,NA,L8,Electrical,Engineer
+8,Drafting 2D Layouts,Grounding Drawings,NA,L8,Electrical,Engineer
+8,Drafting 2D Layouts,Module Drawings,NA,L8,Electrical,Engineer
+8,Drafting 2D Layouts,Power Drawings,NA,L8,Electrical,Engineer
+8,Drafting 2D Layouts,Cable Tray Drawings,NA,L8,Electrical,Engineer
+8,Drafting 2D Layouts,Duct Bank Drawings,NA,L8,Electrical,Engineer
+8,Drafting 2D Layouts,Lighting Drawings,NA,L8,Electrical,Engineer
+9,Engineering,Design Calculations,2,L9,Electrical,Engineer
+9,Engineering,Specifications and TBA,1,L9,Electrical,Engineer
+9,Engineering,Vendor Drawing Review,2,L9,Electrical,Engineer
+9,Engineering,Power System Studies using,2,L9,Electrical,Engineer
+9,Engineering,Power System Studies using SKM,2,L9,Electrical,Engineer
+9,Engineering,LV One Line Diagram,2,L9,Electrical,Engineer
+9,Engineering,MV One Line Diagram,1,L9,Electrical,Engineer
+9,Engineering,LV Schematics and Wiring Diagrams,2,L9,Electrical,Engineer
+9,Engineering,MV Schematics and Wiring Diagrams,1,L9,Electrical,Engineer
+9,Engineering,SPEL capabilities,2,L9,Electrical,Engineer
+9,Engineering,LV Cable & Conduit Schedule,2,L9,Electrical,Engineer
+9,Engineering,MV Cable & Conduit Schedule,2,L9,Electrical,Engineer
+9,Engineering,Area Classification,1,L9,Electrical,Engineer
+9,Engineering,Electrical Layouts,2,L9,Electrical,Engineer
+9,Engineering,Panel Schedules,2,L9,Electrical,Engineer
+9,Engineering,PDC Equipment Layout,1,L9,Electrical,Engineer
+9,Engineering,Lighting software visual,3,L9,Electrical,Engineer
+9,Engineering,AVEVA Engineering capabilities  (Y/N),NA,L9,Electrical,Engineer
+9,Engineering,Sub-Station (Switchyard) Engineering,NA,L9,Electrical,Engineer
+9,Engineering,Scope of work for Electrical Heat Tracing,2,L9,Electrical,Engineer
+9,Engineering,Scope of work for cathodic protection,NA,L9,Electrical,Engineer
+9,Engineering,"PA, FA and communication system layout",NA,L9,Electrical,Engineer
+9,Engineering,Site Supervision (Y/N),1,L9,Electrical,Engineer
+9,Software Capablities,SP3D Modeling (N/U/AS),NA,L9,Electrical,Engineer
+9,Software Capablities,Smart Sketch (N/U/AS),NA,L9,Electrical,Engineer
+9,Software Capablities,AVEVA E3D (Y/N),NA,L9,Electrical,Engineer
+9,Software Capablities,REVIT (Y/N),NA,L9,Electrical,Engineer
+9,Software Capablities,Microstation (Y/N),NA,L9,Electrical,Engineer
+9,Software Capablities,Plant 3D (Y/N),NA,L9,Electrical,Engineer
+9,Software Capablities,AutoCAD (Y/N),NA,L9,Electrical,Engineer
+9,3D Modelling ,Grounding,NA,L9,Electrical,Engineer
+9,3D Modelling ,Cable Tray,NA,L9,Electrical,Engineer
+9,3D Modelling ,Lighting,NA,L9,Electrical,Engineer
+9,3D Modelling ,Duct Bank,NA,L9,Electrical,Engineer
+9,3D Modelling ,Electrical Equipment,NA,L9,Electrical,Engineer
+9,3D Modelling ,PDC,NA,L9,Electrical,Engineer
+9,Drafting 2D Layouts,One Line Diagrams,NA,L9,Electrical,Engineer
+9,Drafting 2D Layouts,Wiring Diagrams & Schematics,NA,L9,Electrical,Engineer
+9,Drafting 2D Layouts,Area Classification Drawings,NA,L9,Electrical,Engineer
+9,Drafting 2D Layouts,Grounding Drawings,NA,L9,Electrical,Engineer
+9,Drafting 2D Layouts,Module Drawings,NA,L9,Electrical,Engineer
+9,Drafting 2D Layouts,Power Drawings,NA,L9,Electrical,Engineer
+9,Drafting 2D Layouts,Cable Tray Drawings,NA,L9,Electrical,Engineer
+9,Drafting 2D Layouts,Duct Bank Drawings,NA,L9,Electrical,Engineer
+9,Drafting 2D Layouts,Lighting Drawings,NA,L9,Electrical,Engineer
+10,Engineering,Design Calculations,3,L10,Electrical,Engineer
+10,Engineering,Specifications and TBA,2,L10,Electrical,Engineer
+10,Engineering,Vendor Drawing Review,2,L10,Electrical,Engineer
+10,Engineering,Power System Studies using,2,L10,Electrical,Engineer
+10,Engineering,Power System Studies using SKM,2,L10,Electrical,Engineer
+10,Engineering,LV One Line Diagram,2,L10,Electrical,Engineer
+10,Engineering,MV One Line Diagram,2,L10,Electrical,Engineer
+10,Engineering,LV Schematics and Wiring Diagrams,3,L10,Electrical,Engineer
+10,Engineering,MV Schematics and Wiring Diagrams,2,L10,Electrical,Engineer
+10,Engineering,SPEL capabilities,3,L10,Electrical,Engineer
+10,Engineering,LV Cable & Conduit Schedule,3,L10,Electrical,Engineer
+10,Engineering,MV Cable & Conduit Schedule,2,L10,Electrical,Engineer
+10,Engineering,Area Classification,2,L10,Electrical,Engineer
+10,Engineering,Electrical Layouts,2,L10,Electrical,Engineer
+10,Engineering,Panel Schedules,3,L10,Electrical,Engineer
+10,Engineering,PDC Equipment Layout,2,L10,Electrical,Engineer
+10,Engineering,Lighting software visual,4,L10,Electrical,Engineer
+10,Engineering,AVEVA Engineering capabilities  (Y/N),NA,L10,Electrical,Engineer
+10,Engineering,Sub-Station (Switchyard) Engineering,NA,L10,Electrical,Engineer
+10,Engineering,Scope of work for Electrical Heat Tracing,2,L10,Electrical,Engineer
+10,Engineering,Scope of work for cathodic protection,NA,L10,Electrical,Engineer
+10,Engineering,"PA, FA and communication system layout",NA,L10,Electrical,Engineer
+10,Engineering,Site Supervision (Y/N),1,L10,Electrical,Engineer
+10,Software Capablities,SP3D Modeling (N/U/AS),NA,L10,Electrical,Engineer
+10,Software Capablities,Smart Sketch (N/U/AS),NA,L10,Electrical,Engineer
+10,Software Capablities,AVEVA E3D (Y/N),NA,L10,Electrical,Engineer
+10,Software Capablities,REVIT (Y/N),NA,L10,Electrical,Engineer
+10,Software Capablities,Microstation (Y/N),NA,L10,Electrical,Engineer
+10,Software Capablities,Plant 3D (Y/N),NA,L10,Electrical,Engineer
+10,Software Capablities,AutoCAD (Y/N),NA,L10,Electrical,Engineer
+10,3D Modelling ,Grounding,NA,L10,Electrical,Engineer
+10,3D Modelling ,Cable Tray,NA,L10,Electrical,Engineer
+10,3D Modelling ,Lighting,NA,L10,Electrical,Engineer
+10,3D Modelling ,Duct Bank,NA,L10,Electrical,Engineer
+10,3D Modelling ,Electrical Equipment,NA,L10,Electrical,Engineer
+10,3D Modelling ,PDC,NA,L10,Electrical,Engineer
+10,Drafting 2D Layouts,One Line Diagrams,NA,L10,Electrical,Engineer
+10,Drafting 2D Layouts,Wiring Diagrams & Schematics,NA,L10,Electrical,Engineer
+10,Drafting 2D Layouts,Area Classification Drawings,NA,L10,Electrical,Engineer
+10,Drafting 2D Layouts,Grounding Drawings,NA,L10,Electrical,Engineer
+10,Drafting 2D Layouts,Module Drawings,NA,L10,Electrical,Engineer
+10,Drafting 2D Layouts,Power Drawings,NA,L10,Electrical,Engineer
+10,Drafting 2D Layouts,Cable Tray Drawings,NA,L10,Electrical,Engineer
+10,Drafting 2D Layouts,Duct Bank Drawings,NA,L10,Electrical,Engineer
+10,Drafting 2D Layouts,Lighting Drawings,NA,L10,Electrical,Engineer
+11,Engineering,Design Calculations,3,L11,Electrical,Engineer
+11,Engineering,Specifications and TBA,2,L11,Electrical,Engineer
+11,Engineering,Vendor Drawing Review,3,L11,Electrical,Engineer
+11,Engineering,Power System Studies using,2,L11,Electrical,Engineer
+11,Engineering,Power System Studies using SKM,2,L11,Electrical,Engineer
+11,Engineering,LV One Line Diagram,3,L11,Electrical,Engineer
+11,Engineering,MV One Line Diagram,2,L11,Electrical,Engineer
+11,Engineering,LV Schematics and Wiring Diagrams,3,L11,Electrical,Engineer
+11,Engineering,MV Schematics and Wiring Diagrams,2,L11,Electrical,Engineer
+11,Engineering,SPEL capabilities,3,L11,Electrical,Engineer
+11,Engineering,LV Cable & Conduit Schedule,3,L11,Electrical,Engineer
+11,Engineering,MV Cable & Conduit Schedule,3,L11,Electrical,Engineer
+11,Engineering,Area Classification,2,L11,Electrical,Engineer
+11,Engineering,Electrical Layouts,3,L11,Electrical,Engineer
+11,Engineering,Panel Schedules,3,L11,Electrical,Engineer
+11,Engineering,PDC Equipment Layout,2,L11,Electrical,Engineer
+11,Engineering,Lighting software visual,4,L11,Electrical,Engineer
+11,Engineering,AVEVA Engineering capabilities  (Y/N),NA,L11,Electrical,Engineer
+11,Engineering,Sub-Station (Switchyard) Engineering,NA,L11,Electrical,Engineer
+11,Engineering,Scope of work for Electrical Heat Tracing,3,L11,Electrical,Engineer
+11,Engineering,Scope of work for cathodic protection,NA,L11,Electrical,Engineer
+11,Engineering,"PA, FA and communication system layout",NA,L11,Electrical,Engineer
+11,Engineering,Site Supervision (Y/N),1,L11,Electrical,Engineer
+11,Software Capablities,SP3D Modeling (N/U/AS),NA,L11,Electrical,Engineer
+11,Software Capablities,Smart Sketch (N/U/AS),NA,L11,Electrical,Engineer
+11,Software Capablities,AVEVA E3D (Y/N),NA,L11,Electrical,Engineer
+11,Software Capablities,REVIT (Y/N),NA,L11,Electrical,Engineer
+11,Software Capablities,Microstation (Y/N),NA,L11,Electrical,Engineer
+11,Software Capablities,Plant 3D (Y/N),NA,L11,Electrical,Engineer
+11,Software Capablities,AutoCAD (Y/N),NA,L11,Electrical,Engineer
+11,3D Modelling ,Grounding,NA,L11,Electrical,Engineer
+11,3D Modelling ,Cable Tray,NA,L11,Electrical,Engineer
+11,3D Modelling ,Lighting,NA,L11,Electrical,Engineer
+11,3D Modelling ,Duct Bank,NA,L11,Electrical,Engineer
+11,3D Modelling ,Electrical Equipment,NA,L11,Electrical,Engineer
+11,3D Modelling ,PDC,NA,L11,Electrical,Engineer
+11,Drafting 2D Layouts,One Line Diagrams,NA,L11,Electrical,Engineer
+11,Drafting 2D Layouts,Wiring Diagrams & Schematics,NA,L11,Electrical,Engineer
+11,Drafting 2D Layouts,Area Classification Drawings,NA,L11,Electrical,Engineer
+11,Drafting 2D Layouts,Grounding Drawings,NA,L11,Electrical,Engineer
+11,Drafting 2D Layouts,Module Drawings,NA,L11,Electrical,Engineer
+11,Drafting 2D Layouts,Power Drawings,NA,L11,Electrical,Engineer
+11,Drafting 2D Layouts,Cable Tray Drawings,NA,L11,Electrical,Engineer
+11,Drafting 2D Layouts,Duct Bank Drawings,NA,L11,Electrical,Engineer
+11,Drafting 2D Layouts,Lighting Drawings,NA,L11,Electrical,Engineer
+12,Engineering,Design Calculations,4,L12,Electrical,Engineer
+12,Engineering,Specifications and TBA,2,L12,Electrical,Engineer
+12,Engineering,Vendor Drawing Review,3,L12,Electrical,Engineer
+12,Engineering,Power System Studies using,3,L12,Electrical,Engineer
+12,Engineering,Power System Studies using SKM,3,L12,Electrical,Engineer
+12,Engineering,LV One Line Diagram,3,L12,Electrical,Engineer
+12,Engineering,MV One Line Diagram,2,L12,Electrical,Engineer
+12,Engineering,LV Schematics and Wiring Diagrams,3,L12,Electrical,Engineer
+12,Engineering,MV Schematics and Wiring Diagrams,2,L12,Electrical,Engineer
+12,Engineering,SPEL capabilities,4,L12,Electrical,Engineer
+12,Engineering,LV Cable & Conduit Schedule,3,L12,Electrical,Engineer
+12,Engineering,MV Cable & Conduit Schedule,3,L12,Electrical,Engineer
+12,Engineering,Area Classification,3,L12,Electrical,Engineer
+12,Engineering,Electrical Layouts,3,L12,Electrical,Engineer
+12,Engineering,Panel Schedules,4,L12,Electrical,Engineer
+12,Engineering,PDC Equipment Layout,3,L12,Electrical,Engineer
+12,Engineering,Lighting software visual,4,L12,Electrical,Engineer
+12,Engineering,AVEVA Engineering capabilities  (Y/N),NA,L12,Electrical,Engineer
+12,Engineering,Sub-Station (Switchyard) Engineering,NA,L12,Electrical,Engineer
+12,Engineering,Scope of work for Electrical Heat Tracing,3,L12,Electrical,Engineer
+12,Engineering,Scope of work for cathodic protection,NA,L12,Electrical,Engineer
+12,Engineering,"PA, FA and communication system layout",NA,L12,Electrical,Engineer
+12,Engineering,Site Supervision (Y/N),1,L12,Electrical,Engineer
+12,Software Capablities,SP3D Modeling (N/U/AS),NA,L12,Electrical,Engineer
+12,Software Capablities,Smart Sketch (N/U/AS),NA,L12,Electrical,Engineer
+12,Software Capablities,AVEVA E3D (Y/N),NA,L12,Electrical,Engineer
+12,Software Capablities,REVIT (Y/N),NA,L12,Electrical,Engineer
+12,Software Capablities,Microstation (Y/N),NA,L12,Electrical,Engineer
+12,Software Capablities,Plant 3D (Y/N),NA,L12,Electrical,Engineer
+12,Software Capablities,AutoCAD (Y/N),NA,L12,Electrical,Engineer
+12,3D Modelling ,Grounding,NA,L12,Electrical,Engineer
+12,3D Modelling ,Cable Tray,NA,L12,Electrical,Engineer
+12,3D Modelling ,Lighting,NA,L12,Electrical,Engineer
+12,3D Modelling ,Duct Bank,NA,L12,Electrical,Engineer
+12,3D Modelling ,Electrical Equipment,NA,L12,Electrical,Engineer
+12,3D Modelling ,PDC,NA,L12,Electrical,Engineer
+12,Drafting 2D Layouts,One Line Diagrams,NA,L12,Electrical,Engineer
+12,Drafting 2D Layouts,Wiring Diagrams & Schematics,NA,L12,Electrical,Engineer
+12,Drafting 2D Layouts,Area Classification Drawings,NA,L12,Electrical,Engineer
+12,Drafting 2D Layouts,Grounding Drawings,NA,L12,Electrical,Engineer
+12,Drafting 2D Layouts,Module Drawings,NA,L12,Electrical,Engineer
+12,Drafting 2D Layouts,Power Drawings,NA,L12,Electrical,Engineer
+12,Drafting 2D Layouts,Cable Tray Drawings,NA,L12,Electrical,Engineer
+12,Drafting 2D Layouts,Duct Bank Drawings,NA,L12,Electrical,Engineer
+12,Drafting 2D Layouts,Lighting Drawings,NA,L12,Electrical,Engineer
+13,Engineering,Design Calculations,4,L13,Electrical,Engineer
+13,Engineering,Specifications and TBA,3,L13,Electrical,Engineer
+13,Engineering,Vendor Drawing Review,3,L13,Electrical,Engineer
+13,Engineering,Power System Studies using,3,L13,Electrical,Engineer
+13,Engineering,Power System Studies using SKM,3,L13,Electrical,Engineer
+13,Engineering,LV One Line Diagram,3,L13,Electrical,Engineer
+13,Engineering,MV One Line Diagram,3,L13,Electrical,Engineer
+13,Engineering,LV Schematics and Wiring Diagrams,4,L13,Electrical,Engineer
+13,Engineering,MV Schematics and Wiring Diagrams,3,L13,Electrical,Engineer
+13,Engineering,SPEL capabilities,4,L13,Electrical,Engineer
+13,Engineering,LV Cable & Conduit Schedule,4,L13,Electrical,Engineer
+13,Engineering,MV Cable & Conduit Schedule,4,L13,Electrical,Engineer
+13,Engineering,Area Classification,3,L13,Electrical,Engineer
+13,Engineering,Electrical Layouts,4,L13,Electrical,Engineer
+13,Engineering,Panel Schedules,4,L13,Electrical,Engineer
+13,Engineering,PDC Equipment Layout,3,L13,Electrical,Engineer
+13,Engineering,Lighting software visual,4,L13,Electrical,Engineer
+13,Engineering,AVEVA Engineering capabilities  (Y/N),NA,L13,Electrical,Engineer
+13,Engineering,Sub-Station (Switchyard) Engineering,NA,L13,Electrical,Engineer
+13,Engineering,Scope of work for Electrical Heat Tracing,4,L13,Electrical,Engineer
+13,Engineering,Scope of work for cathodic protection,NA,L13,Electrical,Engineer
+13,Engineering,"PA, FA and communication system layout",NA,L13,Electrical,Engineer
+13,Engineering,Site Supervision (Y/N),2,L13,Electrical,Engineer
+13,Software Capablities,SP3D Modeling (N/U/AS),NA,L13,Electrical,Engineer
+13,Software Capablities,Smart Sketch (N/U/AS),NA,L13,Electrical,Engineer
+13,Software Capablities,AVEVA E3D (Y/N),NA,L13,Electrical,Engineer
+13,Software Capablities,REVIT (Y/N),NA,L13,Electrical,Engineer
+13,Software Capablities,Microstation (Y/N),NA,L13,Electrical,Engineer
+13,Software Capablities,Plant 3D (Y/N),NA,L13,Electrical,Engineer
+13,Software Capablities,AutoCAD (Y/N),NA,L13,Electrical,Engineer
+13,3D Modelling ,Grounding,NA,L13,Electrical,Engineer
+13,3D Modelling ,Cable Tray,NA,L13,Electrical,Engineer
+13,3D Modelling ,Lighting,NA,L13,Electrical,Engineer
+13,3D Modelling ,Duct Bank,NA,L13,Electrical,Engineer
+13,3D Modelling ,Electrical Equipment,NA,L13,Electrical,Engineer
+13,3D Modelling ,PDC,NA,L13,Electrical,Engineer
+13,Drafting 2D Layouts,One Line Diagrams,NA,L13,Electrical,Engineer
+13,Drafting 2D Layouts,Wiring Diagrams & Schematics,NA,L13,Electrical,Engineer
+13,Drafting 2D Layouts,Area Classification Drawings,NA,L13,Electrical,Engineer
+13,Drafting 2D Layouts,Grounding Drawings,NA,L13,Electrical,Engineer
+13,Drafting 2D Layouts,Module Drawings,NA,L13,Electrical,Engineer
+13,Drafting 2D Layouts,Power Drawings,NA,L13,Electrical,Engineer
+13,Drafting 2D Layouts,Cable Tray Drawings,NA,L13,Electrical,Engineer
+13,Drafting 2D Layouts,Duct Bank Drawings,NA,L13,Electrical,Engineer
+13,Drafting 2D Layouts,Lighting Drawings,NA,L13,Electrical,Engineer
+14,Engineering,Design Calculations,4,L14,Electrical,Engineer
+14,Engineering,Specifications and TBA,3,L14,Electrical,Engineer
+14,Engineering,Vendor Drawing Review,4,L14,Electrical,Engineer
+14,Engineering,Power System Studies using,3,L14,Electrical,Engineer
+14,Engineering,Power System Studies using SKM,3,L14,Electrical,Engineer
+14,Engineering,LV One Line Diagram,4,L14,Electrical,Engineer
+14,Engineering,MV One Line Diagram,3,L14,Electrical,Engineer
+14,Engineering,LV Schematics and Wiring Diagrams,4,L14,Electrical,Engineer
+14,Engineering,MV Schematics and Wiring Diagrams,3,L14,Electrical,Engineer
+14,Engineering,SPEL capabilities,4,L14,Electrical,Engineer
+14,Engineering,LV Cable & Conduit Schedule,4,L14,Electrical,Engineer
+14,Engineering,MV Cable & Conduit Schedule,4,L14,Electrical,Engineer
+14,Engineering,Area Classification,4,L14,Electrical,Engineer
+14,Engineering,Electrical Layouts,4,L14,Electrical,Engineer
+14,Engineering,Panel Schedules,4,L14,Electrical,Engineer
+14,Engineering,PDC Equipment Layout,4,L14,Electrical,Engineer
+14,Engineering,Lighting software visual,4,L14,Electrical,Engineer
+14,Engineering,AVEVA Engineering capabilities  (Y/N),NA,L14,Electrical,Engineer
+14,Engineering,Sub-Station (Switchyard) Engineering,NA,L14,Electrical,Engineer
+14,Engineering,Scope of work for Electrical Heat Tracing,4,L14,Electrical,Engineer
+14,Engineering,Scope of work for cathodic protection,NA,L14,Electrical,Engineer
+14,Engineering,"PA, FA and communication system layout",NA,L14,Electrical,Engineer
+14,Engineering,Site Supervision (Y/N),2,L14,Electrical,Engineer
+14,Software Capablities,SP3D Modeling (N/U/AS),NA,L14,Electrical,Engineer
+14,Software Capablities,Smart Sketch (N/U/AS),NA,L14,Electrical,Engineer
+14,Software Capablities,AVEVA E3D (Y/N),NA,L14,Electrical,Engineer
+14,Software Capablities,REVIT (Y/N),NA,L14,Electrical,Engineer
+14,Software Capablities,Microstation (Y/N),NA,L14,Electrical,Engineer
+14,Software Capablities,Plant 3D (Y/N),NA,L14,Electrical,Engineer
+14,Software Capablities,AutoCAD (Y/N),NA,L14,Electrical,Engineer
+14,3D Modelling ,Grounding,NA,L14,Electrical,Engineer
+14,3D Modelling ,Cable Tray,NA,L14,Electrical,Engineer
+14,3D Modelling ,Lighting,NA,L14,Electrical,Engineer
+14,3D Modelling ,Duct Bank,NA,L14,Electrical,Engineer
+14,3D Modelling ,Electrical Equipment,NA,L14,Electrical,Engineer
+14,3D Modelling ,PDC,NA,L14,Electrical,Engineer
+14,Drafting 2D Layouts,One Line Diagrams,NA,L14,Electrical,Engineer
+14,Drafting 2D Layouts,Wiring Diagrams & Schematics,NA,L14,Electrical,Engineer
+14,Drafting 2D Layouts,Area Classification Drawings,NA,L14,Electrical,Engineer
+14,Drafting 2D Layouts,Grounding Drawings,NA,L14,Electrical,Engineer
+14,Drafting 2D Layouts,Module Drawings,NA,L14,Electrical,Engineer
+14,Drafting 2D Layouts,Power Drawings,NA,L14,Electrical,Engineer
+14,Drafting 2D Layouts,Cable Tray Drawings,NA,L14,Electrical,Engineer
+14,Drafting 2D Layouts,Duct Bank Drawings,NA,L14,Electrical,Engineer
+14,Drafting 2D Layouts,Lighting Drawings,NA,L14,Electrical,Engineer
+15,Engineering,Design Calculations,4,L15,Electrical,Engineer
+15,Engineering,Specifications and TBA,4,L15,Electrical,Engineer
+15,Engineering,Vendor Drawing Review,4,L15,Electrical,Engineer
+15,Engineering,Power System Studies using,4,L15,Electrical,Engineer
+15,Engineering,Power System Studies using SKM,4,L15,Electrical,Engineer
+15,Engineering,LV One Line Diagram,4,L15,Electrical,Engineer
+15,Engineering,MV One Line Diagram,4,L15,Electrical,Engineer
+15,Engineering,LV Schematics and Wiring Diagrams,4,L15,Electrical,Engineer
+15,Engineering,MV Schematics and Wiring Diagrams,4,L15,Electrical,Engineer
+15,Engineering,SPEL capabilities,4,L15,Electrical,Engineer
+15,Engineering,LV Cable & Conduit Schedule,4,L15,Electrical,Engineer
+15,Engineering,MV Cable & Conduit Schedule,4,L15,Electrical,Engineer
+15,Engineering,Area Classification,4,L15,Electrical,Engineer
+15,Engineering,Electrical Layouts,4,L15,Electrical,Engineer
+15,Engineering,Panel Schedules,4,L15,Electrical,Engineer
+15,Engineering,PDC Equipment Layout,4,L15,Electrical,Engineer
+15,Engineering,Lighting software visual,4,L15,Electrical,Engineer
+15,Engineering,AVEVA Engineering capabilities  (Y/N),NA,L15,Electrical,Engineer
+15,Engineering,Sub-Station (Switchyard) Engineering,NA,L15,Electrical,Engineer
+15,Engineering,Scope of work for Electrical Heat Tracing,4,L15,Electrical,Engineer
+15,Engineering,Scope of work for cathodic protection,NA,L15,Electrical,Engineer
+15,Engineering,"PA, FA and communication system layout",NA,L15,Electrical,Engineer
+15,Engineering,Site Supervision (Y/N),2,L15,Electrical,Engineer
+15,Software Capablities,SP3D Modeling (N/U/AS),NA,L15,Electrical,Engineer
+15,Software Capablities,Smart Sketch (N/U/AS),NA,L15,Electrical,Engineer
+15,Software Capablities,AVEVA E3D (Y/N),NA,L15,Electrical,Engineer
+15,Software Capablities,REVIT (Y/N),NA,L15,Electrical,Engineer
+15,Software Capablities,Microstation (Y/N),NA,L15,Electrical,Engineer
+15,Software Capablities,Plant 3D (Y/N),NA,L15,Electrical,Engineer
+15,Software Capablities,AutoCAD (Y/N),NA,L15,Electrical,Engineer
+15,3D Modelling ,Grounding,NA,L15,Electrical,Engineer
+15,3D Modelling ,Cable Tray,NA,L15,Electrical,Engineer
+15,3D Modelling ,Lighting,NA,L15,Electrical,Engineer
+15,3D Modelling ,Duct Bank,NA,L15,Electrical,Engineer
+15,3D Modelling ,Electrical Equipment,NA,L15,Electrical,Engineer
+15,3D Modelling ,PDC,NA,L15,Electrical,Engineer
+15,Drafting 2D Layouts,One Line Diagrams,NA,L15,Electrical,Engineer
+15,Drafting 2D Layouts,Wiring Diagrams & Schematics,NA,L15,Electrical,Engineer
+15,Drafting 2D Layouts,Area Classification Drawings,NA,L15,Electrical,Engineer
+15,Drafting 2D Layouts,Grounding Drawings,NA,L15,Electrical,Engineer
+15,Drafting 2D Layouts,Module Drawings,NA,L15,Electrical,Engineer
+15,Drafting 2D Layouts,Power Drawings,NA,L15,Electrical,Engineer
+15,Drafting 2D Layouts,Cable Tray Drawings,NA,L15,Electrical,Engineer
+15,Drafting 2D Layouts,Duct Bank Drawings,NA,L15,Electrical,Engineer
+15,Drafting 2D Layouts,Lighting Drawings,NA,L15,Electrical,Engineer
+16,Engineering,Design Calculations,4,L16,Electrical,Engineer
+16,Engineering,Specifications and TBA,4,L16,Electrical,Engineer
+16,Engineering,Vendor Drawing Review,4,L16,Electrical,Engineer
+16,Engineering,Power System Studies using,4,L16,Electrical,Engineer
+16,Engineering,Power System Studies using SKM,4,L16,Electrical,Engineer
+16,Engineering,LV One Line Diagram,4,L16,Electrical,Engineer
+16,Engineering,MV One Line Diagram,4,L16,Electrical,Engineer
+16,Engineering,LV Schematics and Wiring Diagrams,4,L16,Electrical,Engineer
+16,Engineering,MV Schematics and Wiring Diagrams,4,L16,Electrical,Engineer
+16,Engineering,SPEL capabilities,4,L16,Electrical,Engineer
+16,Engineering,LV Cable & Conduit Schedule,4,L16,Electrical,Engineer
+16,Engineering,MV Cable & Conduit Schedule,4,L16,Electrical,Engineer
+16,Engineering,Area Classification,4,L16,Electrical,Engineer
+16,Engineering,Electrical Layouts,4,L16,Electrical,Engineer
+16,Engineering,Panel Schedules,4,L16,Electrical,Engineer
+16,Engineering,PDC Equipment Layout,4,L16,Electrical,Engineer
+16,Engineering,Lighting software visual,4,L16,Electrical,Engineer
+16,Engineering,AVEVA Engineering capabilities  (Y/N),NA,L16,Electrical,Engineer
+16,Engineering,Sub-Station (Switchyard) Engineering,NA,L16,Electrical,Engineer
+16,Engineering,Scope of work for Electrical Heat Tracing,4,L16,Electrical,Engineer
+16,Engineering,Scope of work for cathodic protection,NA,L16,Electrical,Engineer
+16,Engineering,"PA, FA and communication system layout",NA,L16,Electrical,Engineer
+16,Engineering,Site Supervision (Y/N),2,L16,Electrical,Engineer
+16,Software Capablities,SP3D Modeling (N/U/AS),NA,L16,Electrical,Engineer
+16,Software Capablities,Smart Sketch (N/U/AS),NA,L16,Electrical,Engineer
+16,Software Capablities,AVEVA E3D (Y/N),NA,L16,Electrical,Engineer
+16,Software Capablities,REVIT (Y/N),NA,L16,Electrical,Engineer
+16,Software Capablities,Microstation (Y/N),NA,L16,Electrical,Engineer
+16,Software Capablities,Plant 3D (Y/N),NA,L16,Electrical,Engineer
+16,Software Capablities,AutoCAD (Y/N),NA,L16,Electrical,Engineer
+16,3D Modelling ,Grounding,NA,L16,Electrical,Engineer
+16,3D Modelling ,Cable Tray,NA,L16,Electrical,Engineer
+16,3D Modelling ,Lighting,NA,L16,Electrical,Engineer
+16,3D Modelling ,Duct Bank,NA,L16,Electrical,Engineer
+16,3D Modelling ,Electrical Equipment,NA,L16,Electrical,Engineer
+16,3D Modelling ,PDC,NA,L16,Electrical,Engineer
+16,Drafting 2D Layouts,One Line Diagrams,NA,L16,Electrical,Engineer
+16,Drafting 2D Layouts,Wiring Diagrams & Schematics,NA,L16,Electrical,Engineer
+16,Drafting 2D Layouts,Area Classification Drawings,NA,L16,Electrical,Engineer
+16,Drafting 2D Layouts,Grounding Drawings,NA,L16,Electrical,Engineer
+16,Drafting 2D Layouts,Module Drawings,NA,L16,Electrical,Engineer
+16,Drafting 2D Layouts,Power Drawings,NA,L16,Electrical,Engineer
+16,Drafting 2D Layouts,Cable Tray Drawings,NA,L16,Electrical,Engineer
+16,Drafting 2D Layouts,Duct Bank Drawings,NA,L16,Electrical,Engineer
+16,Drafting 2D Layouts,Lighting Drawings,NA,L16,Electrical,Engineer
+17,Engineering,Design Calculations,4,L17,Electrical,Engineer
+17,Engineering,Specifications and TBA,4,L17,Electrical,Engineer
+17,Engineering,Vendor Drawing Review,4,L17,Electrical,Engineer
+17,Engineering,Power System Studies using,4,L17,Electrical,Engineer
+17,Engineering,Power System Studies using SKM,4,L17,Electrical,Engineer
+17,Engineering,LV One Line Diagram,4,L17,Electrical,Engineer
+17,Engineering,MV One Line Diagram,4,L17,Electrical,Engineer
+17,Engineering,LV Schematics and Wiring Diagrams,4,L17,Electrical,Engineer
+17,Engineering,MV Schematics and Wiring Diagrams,4,L17,Electrical,Engineer
+17,Engineering,SPEL capabilities,4,L17,Electrical,Engineer
+17,Engineering,LV Cable & Conduit Schedule,4,L17,Electrical,Engineer
+17,Engineering,MV Cable & Conduit Schedule,4,L17,Electrical,Engineer
+17,Engineering,Area Classification,4,L17,Electrical,Engineer
+17,Engineering,Electrical Layouts,4,L17,Electrical,Engineer
+17,Engineering,Panel Schedules,4,L17,Electrical,Engineer
+17,Engineering,PDC Equipment Layout,4,L17,Electrical,Engineer
+17,Engineering,Lighting software visual,4,L17,Electrical,Engineer
+17,Engineering,AVEVA Engineering capabilities  (Y/N),NA,L17,Electrical,Engineer
+17,Engineering,Sub-Station (Switchyard) Engineering,NA,L17,Electrical,Engineer
+17,Engineering,Scope of work for Electrical Heat Tracing,4,L17,Electrical,Engineer
+17,Engineering,Scope of work for cathodic protection,NA,L17,Electrical,Engineer
+17,Engineering,"PA, FA and communication system layout",NA,L17,Electrical,Engineer
+17,Engineering,Site Supervision (Y/N),2,L17,Electrical,Engineer
+17,Software Capablities,SP3D Modeling (N/U/AS),NA,L17,Electrical,Engineer
+17,Software Capablities,Smart Sketch (N/U/AS),NA,L17,Electrical,Engineer
+17,Software Capablities,AVEVA E3D (Y/N),NA,L17,Electrical,Engineer
+17,Software Capablities,REVIT (Y/N),NA,L17,Electrical,Engineer
+17,Software Capablities,Microstation (Y/N),NA,L17,Electrical,Engineer
+17,Software Capablities,Plant 3D (Y/N),NA,L17,Electrical,Engineer
+17,Software Capablities,AutoCAD (Y/N),NA,L17,Electrical,Engineer
+17,3D Modelling ,Grounding,NA,L17,Electrical,Engineer
+17,3D Modelling ,Cable Tray,NA,L17,Electrical,Engineer
+17,3D Modelling ,Lighting,NA,L17,Electrical,Engineer
+17,3D Modelling ,Duct Bank,NA,L17,Electrical,Engineer
+17,3D Modelling ,Electrical Equipment,NA,L17,Electrical,Engineer
+17,3D Modelling ,PDC,NA,L17,Electrical,Engineer
+17,Drafting 2D Layouts,One Line Diagrams,NA,L17,Electrical,Engineer
+17,Drafting 2D Layouts,Wiring Diagrams & Schematics,NA,L17,Electrical,Engineer
+17,Drafting 2D Layouts,Area Classification Drawings,NA,L17,Electrical,Engineer
+17,Drafting 2D Layouts,Grounding Drawings,NA,L17,Electrical,Engineer
+17,Drafting 2D Layouts,Module Drawings,NA,L17,Electrical,Engineer
+17,Drafting 2D Layouts,Power Drawings,NA,L17,Electrical,Engineer
+17,Drafting 2D Layouts,Cable Tray Drawings,NA,L17,Electrical,Engineer
+17,Drafting 2D Layouts,Duct Bank Drawings,NA,L17,Electrical,Engineer
+17,Drafting 2D Layouts,Lighting Drawings,NA,L17,Electrical,Engineer
+5,Engineering,Design Calculations,NA,L5,Electrical,Engineer
+5,Engineering,Specifications and TBA,NA,L5,Electrical,Designer
+5,Engineering,Vendor Drawing Review,NA,L5,Electrical,Designer
+5,Engineering,Power System Studies using,NA,L5,Electrical,Designer
+5,Engineering,Power System Studies using SKM,NA,L5,Electrical,Designer
+5,Engineering,LV One Line Diagram,NA,L5,Electrical,Designer
+5,Engineering,MV One Line Diagram,NA,L5,Electrical,Designer
+5,Engineering,LV Schematics and Wiring Diagrams,NA,L5,Electrical,Designer
+5,Engineering,MV Schematics and Wiring Diagrams,NA,L5,Electrical,Designer
+5,Engineering,SPEL capabilities,NA,L5,Electrical,Designer
+5,Engineering,LV Cable & Conduit Schedule,NA,L5,Electrical,Designer
+5,Engineering,MV Cable & Conduit Schedule,NA,L5,Electrical,Designer
+5,Engineering,Area Classification,NA,L5,Electrical,Designer
+5,Engineering,Electrical Layouts,NA,L5,Electrical,Designer
+5,Engineering,Panel Schedules,NA,L5,Electrical,Designer
+5,Engineering,PDC Equipment Layout,NA,L5,Electrical,Designer
+5,Engineering,Lighting software visual,NA,L5,Electrical,Designer
+5,Engineering,AVEVA Engineering capabilities  (Y/N),NA,L5,Electrical,Designer
+5,Engineering,Sub-Station (Switchyard) Engineering,NA,L5,Electrical,Designer
+5,Engineering,Scope of work for Electrical Heat Tracing,NA,L5,Electrical,Designer
+5,Engineering,Scope of work for cathodic protection,NA,L5,Electrical,Designer
+5,Engineering,"PA, FA and communication system layout",NA,L5,Electrical,Designer
+5,Engineering,Site Supervision (Y/N),NA,L5,Electrical,Designer
+5,Software Capablities,SP3D Modeling (N/U/AS),NA,L5,Electrical,Designer
+5,Software Capablities,Smart Sketch (N/U/AS),NA,L5,Electrical,Designer
+5,Software Capablities,AVEVA E3D (Y/N),NA,L5,Electrical,Designer
+5,Software Capablities,REVIT (Y/N),NA,L5,Electrical,Designer
+5,Software Capablities,Microstation (Y/N),NA,L5,Electrical,Designer
+5,Software Capablities,Plant 3D (Y/N),NA,L5,Electrical,Designer
+5,Software Capablities,AutoCAD (Y/N),NA,L5,Electrical,Designer
+5,3D Modelling ,Grounding,NA,L5,Electrical,Designer
+5,3D Modelling ,Cable Tray,NA,L5,Electrical,Designer
+5,3D Modelling ,Lighting,NA,L5,Electrical,Designer
+5,3D Modelling ,Duct Bank,NA,L5,Electrical,Designer
+5,3D Modelling ,Electrical Equipment,NA,L5,Electrical,Designer
+5,3D Modelling ,PDC,NA,L5,Electrical,Designer
+5,Drafting 2D Layouts,One Line Diagrams,NA,L5,Electrical,Designer
+5,Drafting 2D Layouts,Wiring Diagrams & Schematics,NA,L5,Electrical,Designer
+5,Drafting 2D Layouts,Area Classification Drawings,NA,L5,Electrical,Designer
+5,Drafting 2D Layouts,Grounding Drawings,NA,L5,Electrical,Designer
+5,Drafting 2D Layouts,Module Drawings,NA,L5,Electrical,Designer
+5,Drafting 2D Layouts,Power Drawings,NA,L5,Electrical,Designer
+5,Drafting 2D Layouts,Cable Tray Drawings,NA,L5,Electrical,Designer
+5,Drafting 2D Layouts,Duct Bank Drawings,NA,L5,Electrical,Designer
+5,Drafting 2D Layouts,Lighting Drawings,NA,L5,Electrical,Designer
+6,Engineering,Design Calculations,NA,L6,Electrical,Designer
+6,Engineering,Specifications and TBA,NA,L6,Electrical,Designer
+6,Engineering,Vendor Drawing Review,NA,L6,Electrical,Designer
+6,Engineering,Power System Studies using,NA,L6,Electrical,Designer
+6,Engineering,Power System Studies using SKM,NA,L6,Electrical,Designer
+6,Engineering,LV One Line Diagram,NA,L6,Electrical,Designer
+6,Engineering,MV One Line Diagram,NA,L6,Electrical,Designer
+6,Engineering,LV Schematics and Wiring Diagrams,NA,L6,Electrical,Designer
+6,Engineering,MV Schematics and Wiring Diagrams,NA,L6,Electrical,Designer
+6,Engineering,SPEL capabilities,NA,L6,Electrical,Designer
+6,Engineering,LV Cable & Conduit Schedule,NA,L6,Electrical,Designer
+6,Engineering,MV Cable & Conduit Schedule,NA,L6,Electrical,Designer
+6,Engineering,Area Classification,NA,L6,Electrical,Designer
+6,Engineering,Electrical Layouts,NA,L6,Electrical,Designer
+6,Engineering,Panel Schedules,NA,L6,Electrical,Designer
+6,Engineering,PDC Equipment Layout,NA,L6,Electrical,Designer
+6,Engineering,Lighting software visual,NA,L6,Electrical,Designer
+6,Engineering,AVEVA Engineering capabilities  (Y/N),NA,L6,Electrical,Designer
+6,Engineering,Sub-Station (Switchyard) Engineering,NA,L6,Electrical,Designer
+6,Engineering,Scope of work for Electrical Heat Tracing,NA,L6,Electrical,Designer
+6,Engineering,Scope of work for cathodic protection,NA,L6,Electrical,Designer
+6,Engineering,"PA, FA and communication system layout",NA,L6,Electrical,Designer
+6,Engineering,Site Supervision (Y/N),NA,L6,Electrical,Designer
+6,Software Capablities,SP3D Modeling (N/U/AS),NA,L6,Electrical,Designer
+6,Software Capablities,Smart Sketch (N/U/AS),NA,L6,Electrical,Designer
+6,Software Capablities,AVEVA E3D (Y/N),NA,L6,Electrical,Designer
+6,Software Capablities,REVIT (Y/N),NA,L6,Electrical,Designer
+6,Software Capablities,Microstation (Y/N),NA,L6,Electrical,Designer
+6,Software Capablities,Plant 3D (Y/N),NA,L6,Electrical,Designer
+6,Software Capablities,AutoCAD (Y/N),1,L6,Electrical,Designer
+6,3D Modelling ,Grounding,NA,L6,Electrical,Designer
+6,3D Modelling ,Cable Tray,NA,L6,Electrical,Designer
+6,3D Modelling ,Lighting,NA,L6,Electrical,Designer
+6,3D Modelling ,Duct Bank,NA,L6,Electrical,Designer
+6,3D Modelling ,Electrical Equipment,NA,L6,Electrical,Designer
+6,3D Modelling ,PDC,NA,L6,Electrical,Designer
+6,Drafting 2D Layouts,One Line Diagrams,1,L6,Electrical,Designer
+6,Drafting 2D Layouts,Wiring Diagrams & Schematics,1,L6,Electrical,Designer
+6,Drafting 2D Layouts,Area Classification Drawings,NA,L6,Electrical,Designer
+6,Drafting 2D Layouts,Grounding Drawings,NA,L6,Electrical,Designer
+6,Drafting 2D Layouts,Module Drawings,NA,L6,Electrical,Designer
+6,Drafting 2D Layouts,Power Drawings,NA,L6,Electrical,Designer
+6,Drafting 2D Layouts,Cable Tray Drawings,NA,L6,Electrical,Designer
+6,Drafting 2D Layouts,Duct Bank Drawings,NA,L6,Electrical,Designer
+6,Drafting 2D Layouts,Lighting Drawings,NA,L6,Electrical,Designer
+7,Engineering,Design Calculations,NA,L7,Electrical,Designer
+7,Engineering,Specifications and TBA,NA,L7,Electrical,Designer
+7,Engineering,Vendor Drawing Review,NA,L7,Electrical,Designer
+7,Engineering,Power System Studies using,NA,L7,Electrical,Designer
+7,Engineering,Power System Studies using SKM,NA,L7,Electrical,Designer
+7,Engineering,LV One Line Diagram,NA,L7,Electrical,Designer
+7,Engineering,MV One Line Diagram,NA,L7,Electrical,Designer
+7,Engineering,LV Schematics and Wiring Diagrams,NA,L7,Electrical,Designer
+7,Engineering,MV Schematics and Wiring Diagrams,NA,L7,Electrical,Designer
+7,Engineering,SPEL capabilities,NA,L7,Electrical,Designer
+7,Engineering,LV Cable & Conduit Schedule,NA,L7,Electrical,Designer
+7,Engineering,MV Cable & Conduit Schedule,NA,L7,Electrical,Designer
+7,Engineering,Area Classification,NA,L7,Electrical,Designer
+7,Engineering,Electrical Layouts,NA,L7,Electrical,Designer
+7,Engineering,Panel Schedules,NA,L7,Electrical,Designer
+7,Engineering,PDC Equipment Layout,NA,L7,Electrical,Designer
+7,Engineering,Lighting software visual,NA,L7,Electrical,Designer
+7,Engineering,AVEVA Engineering capabilities  (Y/N),NA,L7,Electrical,Designer
+7,Engineering,Sub-Station (Switchyard) Engineering,NA,L7,Electrical,Designer
+7,Engineering,Scope of work for Electrical Heat Tracing,NA,L7,Electrical,Designer
+7,Engineering,Scope of work for cathodic protection,NA,L7,Electrical,Designer
+7,Engineering,"PA, FA and communication system layout",NA,L7,Electrical,Designer
+7,Engineering,Site Supervision (Y/N),NA,L7,Electrical,Designer
+7,Software Capablities,SP3D Modeling (N/U/AS),NA,L7,Electrical,Designer
+7,Software Capablities,Smart Sketch (N/U/AS),1,L7,Electrical,Designer
+7,Software Capablities,AVEVA E3D (Y/N),NA,L7,Electrical,Designer
+7,Software Capablities,REVIT (Y/N),NA,L7,Electrical,Designer
+7,Software Capablities,Microstation (Y/N),1,L7,Electrical,Designer
+7,Software Capablities,Plant 3D (Y/N),1,L7,Electrical,Designer
+7,Software Capablities,AutoCAD (Y/N),1,L7,Electrical,Designer
+7,3D Modelling ,Grounding,NA,L7,Electrical,Designer
+7,3D Modelling ,Cable Tray,NA,L7,Electrical,Designer
+7,3D Modelling ,Lighting,NA,L7,Electrical,Designer
+7,3D Modelling ,Duct Bank,NA,L7,Electrical,Designer
+7,3D Modelling ,Electrical Equipment,NA,L7,Electrical,Designer
+7,3D Modelling ,PDC,NA,L7,Electrical,Designer
+7,Drafting 2D Layouts,One Line Diagrams,1,L7,Electrical,Designer
+7,Drafting 2D Layouts,Wiring Diagrams & Schematics,1,L7,Electrical,Designer
+7,Drafting 2D Layouts,Area Classification Drawings,NA,L7,Electrical,Designer
+7,Drafting 2D Layouts,Grounding Drawings,1,L7,Electrical,Designer
+7,Drafting 2D Layouts,Module Drawings,1,L7,Electrical,Designer
+7,Drafting 2D Layouts,Power Drawings,1,L7,Electrical,Designer
+7,Drafting 2D Layouts,Cable Tray Drawings,1,L7,Electrical,Designer
+7,Drafting 2D Layouts,Duct Bank Drawings,NA,L7,Electrical,Designer
+7,Drafting 2D Layouts,Lighting Drawings,1,L7,Electrical,Designer
+8,Engineering,Design Calculations,NA,L8,Electrical,Designer
+8,Engineering,Specifications and TBA,NA,L8,Electrical,Designer
+8,Engineering,Vendor Drawing Review,NA,L8,Electrical,Designer
+8,Engineering,Power System Studies using,NA,L8,Electrical,Designer
+8,Engineering,Power System Studies using SKM,NA,L8,Electrical,Designer
+8,Engineering,LV One Line Diagram,NA,L8,Electrical,Designer
+8,Engineering,MV One Line Diagram,NA,L8,Electrical,Designer
+8,Engineering,LV Schematics and Wiring Diagrams,NA,L8,Electrical,Designer
+8,Engineering,MV Schematics and Wiring Diagrams,NA,L8,Electrical,Designer
+8,Engineering,SPEL capabilities,NA,L8,Electrical,Designer
+8,Engineering,LV Cable & Conduit Schedule,NA,L8,Electrical,Designer
+8,Engineering,MV Cable & Conduit Schedule,NA,L8,Electrical,Designer
+8,Engineering,Area Classification,NA,L8,Electrical,Designer
+8,Engineering,Electrical Layouts,NA,L8,Electrical,Designer
+8,Engineering,Panel Schedules,NA,L8,Electrical,Designer
+8,Engineering,PDC Equipment Layout,NA,L8,Electrical,Designer
+8,Engineering,Lighting software visual,NA,L8,Electrical,Designer
+8,Engineering,AVEVA Engineering capabilities  (Y/N),NA,L8,Electrical,Designer
+8,Engineering,Sub-Station (Switchyard) Engineering,NA,L8,Electrical,Designer
+8,Engineering,Scope of work for Electrical Heat Tracing,NA,L8,Electrical,Designer
+8,Engineering,Scope of work for cathodic protection,NA,L8,Electrical,Designer
+8,Engineering,"PA, FA and communication system layout",NA,L8,Electrical,Designer
+8,Engineering,Site Supervision (Y/N),NA,L8,Electrical,Designer
+8,Software Capablities,SP3D Modeling (N/U/AS),1,L8,Electrical,Designer
+8,Software Capablities,Smart Sketch (N/U/AS),1,L8,Electrical,Designer
+8,Software Capablities,AVEVA E3D (Y/N),NA,L8,Electrical,Designer
+8,Software Capablities,REVIT (Y/N),NA,L8,Electrical,Designer
+8,Software Capablities,Microstation (Y/N),2,L8,Electrical,Designer
+8,Software Capablities,Plant 3D (Y/N),2,L8,Electrical,Designer
+8,Software Capablities,AutoCAD (Y/N),2,L8,Electrical,Designer
+8,3D Modelling ,Grounding,1,L8,Electrical,Designer
+8,3D Modelling ,Cable Tray,1,L8,Electrical,Designer
+8,3D Modelling ,Lighting,1,L8,Electrical,Designer
+8,3D Modelling ,Duct Bank,1,L8,Electrical,Designer
+8,3D Modelling ,Electrical Equipment,1,L8,Electrical,Designer
+8,3D Modelling ,PDC,NA,L8,Electrical,Designer
+8,Drafting 2D Layouts,One Line Diagrams,1,L8,Electrical,Designer
+8,Drafting 2D Layouts,Wiring Diagrams & Schematics,1,L8,Electrical,Designer
+8,Drafting 2D Layouts,Area Classification Drawings,1,L8,Electrical,Designer
+8,Drafting 2D Layouts,Grounding Drawings,2,L8,Electrical,Designer
+8,Drafting 2D Layouts,Module Drawings,2,L8,Electrical,Designer
+8,Drafting 2D Layouts,Power Drawings,2,L8,Electrical,Designer
+8,Drafting 2D Layouts,Cable Tray Drawings,2,L8,Electrical,Designer
+8,Drafting 2D Layouts,Duct Bank Drawings,1,L8,Electrical,Designer
+8,Drafting 2D Layouts,Lighting Drawings,2,L8,Electrical,Designer
+9,Engineering,Design Calculations,NA,L9,Electrical,Designer
+9,Engineering,Specifications and TBA,NA,L9,Electrical,Designer
+9,Engineering,Vendor Drawing Review,NA,L9,Electrical,Designer
+9,Engineering,Power System Studies using,NA,L9,Electrical,Designer
+9,Engineering,Power System Studies using SKM,NA,L9,Electrical,Designer
+9,Engineering,LV One Line Diagram,NA,L9,Electrical,Designer
+9,Engineering,MV One Line Diagram,NA,L9,Electrical,Designer
+9,Engineering,LV Schematics and Wiring Diagrams,NA,L9,Electrical,Designer
+9,Engineering,MV Schematics and Wiring Diagrams,NA,L9,Electrical,Designer
+9,Engineering,SPEL capabilities,NA,L9,Electrical,Designer
+9,Engineering,LV Cable & Conduit Schedule,NA,L9,Electrical,Designer
+9,Engineering,MV Cable & Conduit Schedule,NA,L9,Electrical,Designer
+9,Engineering,Area Classification,NA,L9,Electrical,Designer
+9,Engineering,Electrical Layouts,NA,L9,Electrical,Designer
+9,Engineering,Panel Schedules,NA,L9,Electrical,Designer
+9,Engineering,PDC Equipment Layout,NA,L9,Electrical,Designer
+9,Engineering,Lighting software visual,NA,L9,Electrical,Designer
+9,Engineering,AVEVA Engineering capabilities  (Y/N),NA,L9,Electrical,Designer
+9,Engineering,Sub-Station (Switchyard) Engineering,NA,L9,Electrical,Designer
+9,Engineering,Scope of work for Electrical Heat Tracing,NA,L9,Electrical,Designer
+9,Engineering,Scope of work for cathodic protection,NA,L9,Electrical,Designer
+9,Engineering,"PA, FA and communication system layout",NA,L9,Electrical,Designer
+9,Engineering,Site Supervision (Y/N),NA,L9,Electrical,Designer
+9,Software Capablities,SP3D Modeling (N/U/AS),2,L9,Electrical,Designer
+9,Software Capablities,Smart Sketch (N/U/AS),2,L9,Electrical,Designer
+9,Software Capablities,AVEVA E3D (Y/N),NA,L9,Electrical,Designer
+9,Software Capablities,REVIT (Y/N),NA,L9,Electrical,Designer
+9,Software Capablities,Microstation (Y/N),2,L9,Electrical,Designer
+9,Software Capablities,Plant 3D (Y/N),2,L9,Electrical,Designer
+9,Software Capablities,AutoCAD (Y/N),3,L9,Electrical,Designer
+9,3D Modelling ,Grounding,2,L9,Electrical,Designer
+9,3D Modelling ,Cable Tray,2,L9,Electrical,Designer
+9,3D Modelling ,Lighting,2,L9,Electrical,Designer
+9,3D Modelling ,Duct Bank,2,L9,Electrical,Designer
+9,3D Modelling ,Electrical Equipment,2,L9,Electrical,Designer
+9,3D Modelling ,PDC,1,L9,Electrical,Designer
+9,Drafting 2D Layouts,One Line Diagrams,2,L9,Electrical,Designer
+9,Drafting 2D Layouts,Wiring Diagrams & Schematics,2,L9,Electrical,Designer
+9,Drafting 2D Layouts,Area Classification Drawings,2,L9,Electrical,Designer
+9,Drafting 2D Layouts,Grounding Drawings,2,L9,Electrical,Designer
+9,Drafting 2D Layouts,Module Drawings,2,L9,Electrical,Designer
+9,Drafting 2D Layouts,Power Drawings,2,L9,Electrical,Designer
+9,Drafting 2D Layouts,Cable Tray Drawings,2,L9,Electrical,Designer
+9,Drafting 2D Layouts,Duct Bank Drawings,2,L9,Electrical,Designer
+9,Drafting 2D Layouts,Lighting Drawings,2,L9,Electrical,Designer
+10,Engineering,Design Calculations,NA,L10,Electrical,Designer
+10,Engineering,Specifications and TBA,NA,L10,Electrical,Designer
+10,Engineering,Vendor Drawing Review,NA,L10,Electrical,Designer
+10,Engineering,Power System Studies using,NA,L10,Electrical,Designer
+10,Engineering,Power System Studies using SKM,NA,L10,Electrical,Designer
+10,Engineering,LV One Line Diagram,NA,L10,Electrical,Designer
+10,Engineering,MV One Line Diagram,NA,L10,Electrical,Designer
+10,Engineering,LV Schematics and Wiring Diagrams,NA,L10,Electrical,Designer
+10,Engineering,MV Schematics and Wiring Diagrams,NA,L10,Electrical,Designer
+10,Engineering,SPEL capabilities,NA,L10,Electrical,Designer
+10,Engineering,LV Cable & Conduit Schedule,NA,L10,Electrical,Designer
+10,Engineering,MV Cable & Conduit Schedule,NA,L10,Electrical,Designer
+10,Engineering,Area Classification,NA,L10,Electrical,Designer
+10,Engineering,Electrical Layouts,NA,L10,Electrical,Designer
+10,Engineering,Panel Schedules,NA,L10,Electrical,Designer
+10,Engineering,PDC Equipment Layout,NA,L10,Electrical,Designer
+10,Engineering,Lighting software visual,NA,L10,Electrical,Designer
+10,Engineering,AVEVA Engineering capabilities  (Y/N),NA,L10,Electrical,Designer
+10,Engineering,Sub-Station (Switchyard) Engineering,NA,L10,Electrical,Designer
+10,Engineering,Scope of work for Electrical Heat Tracing,NA,L10,Electrical,Designer
+10,Engineering,Scope of work for cathodic protection,NA,L10,Electrical,Designer
+10,Engineering,"PA, FA and communication system layout",NA,L10,Electrical,Designer
+10,Engineering,Site Supervision (Y/N),NA,L10,Electrical,Designer
+10,Software Capablities,SP3D Modeling (N/U/AS),2,L10,Electrical,Designer
+10,Software Capablities,Smart Sketch (N/U/AS),2,L10,Electrical,Designer
+10,Software Capablities,AVEVA E3D (Y/N),NA,L10,Electrical,Designer
+10,Software Capablities,REVIT (Y/N),NA,L10,Electrical,Designer
+10,Software Capablities,Microstation (Y/N),3,L10,Electrical,Designer
+10,Software Capablities,Plant 3D (Y/N),3,L10,Electrical,Designer
+10,Software Capablities,AutoCAD (Y/N),3,L10,Electrical,Designer
+10,3D Modelling ,Grounding,3,L10,Electrical,Designer
+10,3D Modelling ,Cable Tray,3,L10,Electrical,Designer
+10,3D Modelling ,Lighting,3,L10,Electrical,Designer
+10,3D Modelling ,Duct Bank,2,L10,Electrical,Designer
+10,3D Modelling ,Electrical Equipment,3,L10,Electrical,Designer
+10,3D Modelling ,PDC,2,L10,Electrical,Designer
+10,Drafting 2D Layouts,One Line Diagrams,2,L10,Electrical,Designer
+10,Drafting 2D Layouts,Wiring Diagrams & Schematics,2,L10,Electrical,Designer
+10,Drafting 2D Layouts,Area Classification Drawings,2,L10,Electrical,Designer
+10,Drafting 2D Layouts,Grounding Drawings,3,L10,Electrical,Designer
+10,Drafting 2D Layouts,Module Drawings,3,L10,Electrical,Designer
+10,Drafting 2D Layouts,Power Drawings,3,L10,Electrical,Designer
+10,Drafting 2D Layouts,Cable Tray Drawings,3,L10,Electrical,Designer
+10,Drafting 2D Layouts,Duct Bank Drawings,2,L10,Electrical,Designer
+10,Drafting 2D Layouts,Lighting Drawings,3,L10,Electrical,Designer
+11,Engineering,Design Calculations,NA,L11,Electrical,Designer
+11,Engineering,Specifications and TBA,NA,L11,Electrical,Designer
+11,Engineering,Vendor Drawing Review,NA,L11,Electrical,Designer
+11,Engineering,Power System Studies using,NA,L11,Electrical,Designer
+11,Engineering,Power System Studies using SKM,NA,L11,Electrical,Designer
+11,Engineering,LV One Line Diagram,NA,L11,Electrical,Designer
+11,Engineering,MV One Line Diagram,NA,L11,Electrical,Designer
+11,Engineering,LV Schematics and Wiring Diagrams,NA,L11,Electrical,Designer
+11,Engineering,MV Schematics and Wiring Diagrams,NA,L11,Electrical,Designer
+11,Engineering,SPEL capabilities,NA,L11,Electrical,Designer
+11,Engineering,LV Cable & Conduit Schedule,NA,L11,Electrical,Designer
+11,Engineering,MV Cable & Conduit Schedule,NA,L11,Electrical,Designer
+11,Engineering,Area Classification,NA,L11,Electrical,Designer
+11,Engineering,Electrical Layouts,NA,L11,Electrical,Designer
+11,Engineering,Panel Schedules,NA,L11,Electrical,Designer
+11,Engineering,PDC Equipment Layout,NA,L11,Electrical,Designer
+11,Engineering,Lighting software visual,NA,L11,Electrical,Designer
+11,Engineering,AVEVA Engineering capabilities  (Y/N),NA,L11,Electrical,Designer
+11,Engineering,Sub-Station (Switchyard) Engineering,NA,L11,Electrical,Designer
+11,Engineering,Scope of work for Electrical Heat Tracing,NA,L11,Electrical,Designer
+11,Engineering,Scope of work for cathodic protection,NA,L11,Electrical,Designer
+11,Engineering,"PA, FA and communication system layout",NA,L11,Electrical,Designer
+11,Engineering,Site Supervision (Y/N),NA,L11,Electrical,Designer
+11,Software Capablities,SP3D Modeling (N/U/AS),3,L11,Electrical,Designer
+11,Software Capablities,Smart Sketch (N/U/AS),3,L11,Electrical,Designer
+11,Software Capablities,AVEVA E3D (Y/N),NA,L11,Electrical,Designer
+11,Software Capablities,REVIT (Y/N),NA,L11,Electrical,Designer
+11,Software Capablities,Microstation (Y/N),3,L11,Electrical,Designer
+11,Software Capablities,Plant 3D (Y/N),3,L11,Electrical,Designer
+11,Software Capablities,AutoCAD (Y/N),4,L11,Electrical,Designer
+11,3D Modelling ,Grounding,4,L11,Electrical,Designer
+11,3D Modelling ,Cable Tray,4,L11,Electrical,Designer
+11,3D Modelling ,Lighting,4,L11,Electrical,Designer
+11,3D Modelling ,Duct Bank,3,L11,Electrical,Designer
+11,3D Modelling ,Electrical Equipment,4,L11,Electrical,Designer
+11,3D Modelling ,PDC,3,L11,Electrical,Designer
+11,Drafting 2D Layouts,One Line Diagrams,3,L11,Electrical,Designer
+11,Drafting 2D Layouts,Wiring Diagrams & Schematics,3,L11,Electrical,Designer
+11,Drafting 2D Layouts,Area Classification Drawings,3,L11,Electrical,Designer
+11,Drafting 2D Layouts,Grounding Drawings,3,L11,Electrical,Designer
+11,Drafting 2D Layouts,Module Drawings,3,L11,Electrical,Designer
+11,Drafting 2D Layouts,Power Drawings,3,L11,Electrical,Designer
+11,Drafting 2D Layouts,Cable Tray Drawings,3,L11,Electrical,Designer
+11,Drafting 2D Layouts,Duct Bank Drawings,3,L11,Electrical,Designer
+11,Drafting 2D Layouts,Lighting Drawings,3,L11,Electrical,Designer
+12,Engineering,Design Calculations,NA,L12,Electrical,Designer
+12,Engineering,Specifications and TBA,NA,L12,Electrical,Designer
+12,Engineering,Vendor Drawing Review,NA,L12,Electrical,Designer
+12,Engineering,Power System Studies using,NA,L12,Electrical,Designer
+12,Engineering,Power System Studies using SKM,NA,L12,Electrical,Designer
+12,Engineering,LV One Line Diagram,NA,L12,Electrical,Designer
+12,Engineering,MV One Line Diagram,NA,L12,Electrical,Designer
+12,Engineering,LV Schematics and Wiring Diagrams,NA,L12,Electrical,Designer
+12,Engineering,MV Schematics and Wiring Diagrams,NA,L12,Electrical,Designer
+12,Engineering,SPEL capabilities,NA,L12,Electrical,Designer
+12,Engineering,LV Cable & Conduit Schedule,NA,L12,Electrical,Designer
+12,Engineering,MV Cable & Conduit Schedule,NA,L12,Electrical,Designer
+12,Engineering,Area Classification,NA,L12,Electrical,Designer
+12,Engineering,Electrical Layouts,NA,L12,Electrical,Designer
+12,Engineering,Panel Schedules,NA,L12,Electrical,Designer
+12,Engineering,PDC Equipment Layout,NA,L12,Electrical,Designer
+12,Engineering,Lighting software visual,NA,L12,Electrical,Designer
+12,Engineering,AVEVA Engineering capabilities  (Y/N),NA,L12,Electrical,Designer
+12,Engineering,Sub-Station (Switchyard) Engineering,NA,L12,Electrical,Designer
+12,Engineering,Scope of work for Electrical Heat Tracing,NA,L12,Electrical,Designer
+12,Engineering,Scope of work for cathodic protection,NA,L12,Electrical,Designer
+12,Engineering,"PA, FA and communication system layout",NA,L12,Electrical,Designer
+12,Engineering,Site Supervision (Y/N),NA,L12,Electrical,Designer
+12,Software Capablities,SP3D Modeling (N/U/AS),3,L12,Electrical,Designer
+12,Software Capablities,Smart Sketch (N/U/AS),3,L12,Electrical,Designer
+12,Software Capablities,AVEVA E3D (Y/N),NA,L12,Electrical,Designer
+12,Software Capablities,REVIT (Y/N),NA,L12,Electrical,Designer
+12,Software Capablities,Microstation (Y/N),3,L12,Electrical,Designer
+12,Software Capablities,Plant 3D (Y/N),3,L12,Electrical,Designer
+12,Software Capablities,AutoCAD (Y/N),4,L12,Electrical,Designer
+12,3D Modelling ,Grounding,4,L12,Electrical,Designer
+12,3D Modelling ,Cable Tray,4,L12,Electrical,Designer
+12,3D Modelling ,Lighting,4,L12,Electrical,Designer
+12,3D Modelling ,Duct Bank,3,L12,Electrical,Designer
+12,3D Modelling ,Electrical Equipment,4,L12,Electrical,Designer
+12,3D Modelling ,PDC,3,L12,Electrical,Designer
+12,Drafting 2D Layouts,One Line Diagrams,3,L12,Electrical,Designer
+12,Drafting 2D Layouts,Wiring Diagrams & Schematics,3,L12,Electrical,Designer
+12,Drafting 2D Layouts,Area Classification Drawings,3,L12,Electrical,Designer
+12,Drafting 2D Layouts,Grounding Drawings,4,L12,Electrical,Designer
+12,Drafting 2D Layouts,Module Drawings,4,L12,Electrical,Designer
+12,Drafting 2D Layouts,Power Drawings,4,L12,Electrical,Designer
+12,Drafting 2D Layouts,Cable Tray Drawings,4,L12,Electrical,Designer
+12,Drafting 2D Layouts,Duct Bank Drawings,3,L12,Electrical,Designer
+12,Drafting 2D Layouts,Lighting Drawings,4,L12,Electrical,Designer
+13,Engineering,Design Calculations,NA,L13,Electrical,Designer
+13,Engineering,Specifications and TBA,NA,L13,Electrical,Designer
+13,Engineering,Vendor Drawing Review,NA,L13,Electrical,Designer
+13,Engineering,Power System Studies using,NA,L13,Electrical,Designer
+13,Engineering,Power System Studies using SKM,NA,L13,Electrical,Designer
+13,Engineering,LV One Line Diagram,NA,L13,Electrical,Designer
+13,Engineering,MV One Line Diagram,NA,L13,Electrical,Designer
+13,Engineering,LV Schematics and Wiring Diagrams,NA,L13,Electrical,Designer
+13,Engineering,MV Schematics and Wiring Diagrams,NA,L13,Electrical,Designer
+13,Engineering,SPEL capabilities,NA,L13,Electrical,Designer
+13,Engineering,LV Cable & Conduit Schedule,NA,L13,Electrical,Designer
+13,Engineering,MV Cable & Conduit Schedule,NA,L13,Electrical,Designer
+13,Engineering,Area Classification,NA,L13,Electrical,Designer
+13,Engineering,Electrical Layouts,NA,L13,Electrical,Designer
+13,Engineering,Panel Schedules,NA,L13,Electrical,Designer
+13,Engineering,PDC Equipment Layout,NA,L13,Electrical,Designer
+13,Engineering,Lighting software visual,NA,L13,Electrical,Designer
+13,Engineering,AVEVA Engineering capabilities  (Y/N),NA,L13,Electrical,Designer
+13,Engineering,Sub-Station (Switchyard) Engineering,NA,L13,Electrical,Designer
+13,Engineering,Scope of work for Electrical Heat Tracing,NA,L13,Electrical,Designer
+13,Engineering,Scope of work for cathodic protection,NA,L13,Electrical,Designer
+13,Engineering,"PA, FA and communication system layout",NA,L13,Electrical,Designer
+13,Engineering,Site Supervision (Y/N),NA,L13,Electrical,Designer
+13,Software Capablities,SP3D Modeling (N/U/AS),4,L13,Electrical,Designer
+13,Software Capablities,Smart Sketch (N/U/AS),4,L13,Electrical,Designer
+13,Software Capablities,AVEVA E3D (Y/N),NA,L13,Electrical,Designer
+13,Software Capablities,REVIT (Y/N),NA,L13,Electrical,Designer
+13,Software Capablities,Microstation (Y/N),4,L13,Electrical,Designer
+13,Software Capablities,Plant 3D (Y/N),3,L13,Electrical,Designer
+13,Software Capablities,AutoCAD (Y/N),4,L13,Electrical,Designer
+13,3D Modelling ,Grounding,4,L13,Electrical,Designer
+13,3D Modelling ,Cable Tray,4,L13,Electrical,Designer
+13,3D Modelling ,Lighting,4,L13,Electrical,Designer
+13,3D Modelling ,Duct Bank,4,L13,Electrical,Designer
+13,3D Modelling ,Electrical Equipment,4,L13,Electrical,Designer
+13,3D Modelling ,PDC,4,L13,Electrical,Designer
+13,Drafting 2D Layouts,One Line Diagrams,3,L13,Electrical,Designer
+13,Drafting 2D Layouts,Wiring Diagrams & Schematics,3,L13,Electrical,Designer
+13,Drafting 2D Layouts,Area Classification Drawings,4,L13,Electrical,Designer
+13,Drafting 2D Layouts,Grounding Drawings,4,L13,Electrical,Designer
+13,Drafting 2D Layouts,Module Drawings,4,L13,Electrical,Designer
+13,Drafting 2D Layouts,Power Drawings,4,L13,Electrical,Designer
+13,Drafting 2D Layouts,Cable Tray Drawings,4,L13,Electrical,Designer
+13,Drafting 2D Layouts,Duct Bank Drawings,4,L13,Electrical,Designer
+13,Drafting 2D Layouts,Lighting Drawings,4,L13,Electrical,Designer
+14,Engineering,Design Calculations,NA,L14,Electrical,Designer
+14,Engineering,Specifications and TBA,NA,L14,Electrical,Designer
+14,Engineering,Vendor Drawing Review,NA,L14,Electrical,Designer
+14,Engineering,Power System Studies using,NA,L14,Electrical,Designer
+14,Engineering,Power System Studies using SKM,NA,L14,Electrical,Designer
+14,Engineering,LV One Line Diagram,NA,L14,Electrical,Designer
+14,Engineering,MV One Line Diagram,NA,L14,Electrical,Designer
+14,Engineering,LV Schematics and Wiring Diagrams,NA,L14,Electrical,Designer
+14,Engineering,MV Schematics and Wiring Diagrams,NA,L14,Electrical,Designer
+14,Engineering,SPEL capabilities,NA,L14,Electrical,Designer
+14,Engineering,LV Cable & Conduit Schedule,NA,L14,Electrical,Designer
+14,Engineering,MV Cable & Conduit Schedule,NA,L14,Electrical,Designer
+14,Engineering,Area Classification,NA,L14,Electrical,Designer
+14,Engineering,Electrical Layouts,NA,L14,Electrical,Designer
+14,Engineering,Panel Schedules,NA,L14,Electrical,Designer
+14,Engineering,PDC Equipment Layout,NA,L14,Electrical,Designer
+14,Engineering,Lighting software visual,NA,L14,Electrical,Designer
+14,Engineering,AVEVA Engineering capabilities  (Y/N),NA,L14,Electrical,Designer
+14,Engineering,Sub-Station (Switchyard) Engineering,NA,L14,Electrical,Designer
+14,Engineering,Scope of work for Electrical Heat Tracing,NA,L14,Electrical,Designer
+14,Engineering,Scope of work for cathodic protection,NA,L14,Electrical,Designer
+14,Engineering,"PA, FA and communication system layout",NA,L14,Electrical,Designer
+14,Engineering,Site Supervision (Y/N),NA,L14,Electrical,Designer
+14,Software Capablities,SP3D Modeling (N/U/AS),4,L14,Electrical,Designer
+14,Software Capablities,Smart Sketch (N/U/AS),4,L14,Electrical,Designer
+14,Software Capablities,AVEVA E3D (Y/N),NA,L14,Electrical,Designer
+14,Software Capablities,REVIT (Y/N),NA,L14,Electrical,Designer
+14,Software Capablities,Microstation (Y/N),4,L14,Electrical,Designer
+14,Software Capablities,Plant 3D (Y/N),4,L14,Electrical,Designer
+14,Software Capablities,AutoCAD (Y/N),4,L14,Electrical,Designer
+14,3D Modelling ,Grounding,4,L14,Electrical,Designer
+14,3D Modelling ,Cable Tray,4,L14,Electrical,Designer
+14,3D Modelling ,Lighting,4,L14,Electrical,Designer
+14,3D Modelling ,Duct Bank,4,L14,Electrical,Designer
+14,3D Modelling ,Electrical Equipment,4,L14,Electrical,Designer
+14,3D Modelling ,PDC,4,L14,Electrical,Designer
+14,Drafting 2D Layouts,One Line Diagrams,3,L14,Electrical,Designer
+14,Drafting 2D Layouts,Wiring Diagrams & Schematics,3,L14,Electrical,Designer
+14,Drafting 2D Layouts,Area Classification Drawings,4,L14,Electrical,Designer
+14,Drafting 2D Layouts,Grounding Drawings,4,L14,Electrical,Designer
+14,Drafting 2D Layouts,Module Drawings,4,L14,Electrical,Designer
+14,Drafting 2D Layouts,Power Drawings,4,L14,Electrical,Designer
+14,Drafting 2D Layouts,Cable Tray Drawings,4,L14,Electrical,Designer
+14,Drafting 2D Layouts,Duct Bank Drawings,4,L14,Electrical,Designer
+14,Drafting 2D Layouts,Lighting Drawings,4,L14,Electrical,Designer
+15,Engineering,Design Calculations,NA,L15,Electrical,Designer
+15,Engineering,Specifications and TBA,NA,L15,Electrical,Designer
+15,Engineering,Vendor Drawing Review,NA,L15,Electrical,Designer
+15,Engineering,Power System Studies using,NA,L15,Electrical,Designer
+15,Engineering,Power System Studies using SKM,NA,L15,Electrical,Designer
+15,Engineering,LV One Line Diagram,NA,L15,Electrical,Designer
+15,Engineering,MV One Line Diagram,NA,L15,Electrical,Designer
+15,Engineering,LV Schematics and Wiring Diagrams,NA,L15,Electrical,Designer
+15,Engineering,MV Schematics and Wiring Diagrams,NA,L15,Electrical,Designer
+15,Engineering,SPEL capabilities,NA,L15,Electrical,Designer
+15,Engineering,LV Cable & Conduit Schedule,NA,L15,Electrical,Designer
+15,Engineering,MV Cable & Conduit Schedule,NA,L15,Electrical,Designer
+15,Engineering,Area Classification,NA,L15,Electrical,Designer
+15,Engineering,Electrical Layouts,NA,L15,Electrical,Designer
+15,Engineering,Panel Schedules,NA,L15,Electrical,Designer
+15,Engineering,PDC Equipment Layout,NA,L15,Electrical,Designer
+15,Engineering,Lighting software visual,NA,L15,Electrical,Designer
+15,Engineering,AVEVA Engineering capabilities  (Y/N),NA,L15,Electrical,Designer
+15,Engineering,Sub-Station (Switchyard) Engineering,NA,L15,Electrical,Designer
+15,Engineering,Scope of work for Electrical Heat Tracing,NA,L15,Electrical,Designer
+15,Engineering,Scope of work for cathodic protection,NA,L15,Electrical,Designer
+15,Engineering,"PA, FA and communication system layout",NA,L15,Electrical,Designer
+15,Engineering,Site Supervision (Y/N),NA,L15,Electrical,Designer
+15,Software Capablities,SP3D Modeling (N/U/AS),4,L15,Electrical,Designer
+15,Software Capablities,Smart Sketch (N/U/AS),4,L15,Electrical,Designer
+15,Software Capablities,AVEVA E3D (Y/N),NA,L15,Electrical,Designer
+15,Software Capablities,REVIT (Y/N),NA,L15,Electrical,Designer
+15,Software Capablities,Microstation (Y/N),4,L15,Electrical,Designer
+15,Software Capablities,Plant 3D (Y/N),4,L15,Electrical,Designer
+15,Software Capablities,AutoCAD (Y/N),4,L15,Electrical,Designer
+15,3D Modelling ,Grounding,4,L15,Electrical,Designer
+15,3D Modelling ,Cable Tray,4,L15,Electrical,Designer
+15,3D Modelling ,Lighting,4,L15,Electrical,Designer
+15,3D Modelling ,Duct Bank,4,L15,Electrical,Designer
+15,3D Modelling ,Electrical Equipment,4,L15,Electrical,Designer
+15,3D Modelling ,PDC,4,L15,Electrical,Designer
+15,Drafting 2D Layouts,One Line Diagrams,3,L15,Electrical,Designer
+15,Drafting 2D Layouts,Wiring Diagrams & Schematics,3,L15,Electrical,Designer
+15,Drafting 2D Layouts,Area Classification Drawings,4,L15,Electrical,Designer
+15,Drafting 2D Layouts,Grounding Drawings,4,L15,Electrical,Designer
+15,Drafting 2D Layouts,Module Drawings,4,L15,Electrical,Designer
+15,Drafting 2D Layouts,Power Drawings,4,L15,Electrical,Designer
+15,Drafting 2D Layouts,Cable Tray Drawings,4,L15,Electrical,Designer
+15,Drafting 2D Layouts,Duct Bank Drawings,4,L15,Electrical,Designer
+15,Drafting 2D Layouts,Lighting Drawings,4,L15,Electrical,Designer

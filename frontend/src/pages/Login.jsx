@@ -1,98 +1,64 @@
-import React, { useState } from "react";
+import React from "react";
+
+function base64url(buffer) {
+  return btoa(String.fromCharCode(...new Uint8Array(buffer)))
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_")
+    .replace(/=/g, "");
+}
+
+async function sha256(plain) {
+  const data = new TextEncoder().encode(plain);
+  return await window.crypto.subtle.digest("SHA-256", data);
+}
+
+function randomString(len = 64) {
+  const arr = new Uint8Array(len);
+  window.crypto.getRandomValues(arr);
+  return base64url(arr);
+}
+
+const TENANT_ID = "bfbb9a2b-6d99-4e78-b3c7-95005d555c8b";
+const CLIENT_ID = "f40b4118-24a7-4c0e-a5e9-1b3cad660d2e";
+const REDIRECT_URI = "http://localhost:3000/auth/callback";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const handleLogin = async () => {
+    const codeVerifier = randomString();
+    const challengeBuf = await sha256(codeVerifier);
+    const codeChallenge = base64url(challengeBuf);
 
-  const handleLogin = () => {
-    // ✅ Dummy credentials
-    if (email === "admin@test.com" && password === "1234") {
-      localStorage.setItem("isLoggedIn", "true");
-      localStorage.setItem("userEmail", email);
+    sessionStorage.setItem("pkce_verifier", codeVerifier);
 
-      window.location.href = "/matrix";
-    } else {
-      alert("Invalid email or password");
-    }
+    const authUrl =
+      `https://login.microsoftonline.com/${TENANT_ID}/oauth2/v2.0/authorize` +
+      `?client_id=${CLIENT_ID}` +
+      `&response_type=code` +
+      `&redirect_uri=${encodeURIComponent(REDIRECT_URI)}` +
+      `&scope=${encodeURIComponent("openid profile email")}` +
+      `&code_challenge=${codeChallenge}` +
+      `&code_challenge_method=S256`;
+
+    window.location.href = authUrl;
   };
 
   return (
     <div style={styles.page}>
       <div style={styles.card}>
         <h2 style={styles.title}>Skill Matrix</h2>
-        <p style={styles.subtitle}>Login to continue</p>
-
-        <input
-          type="email"
-          placeholder="Enter Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          style={styles.input}
-        />
-
-        <input
-          type="password"
-          placeholder="Enter Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          style={styles.input}
-        />
-
+        <p style={styles.subtitle}>Sign in with your organization account</p>
         <button onClick={handleLogin} style={styles.button}>
-          Login
+          Sign in with Microsoft
         </button>
-
-        <p style={styles.note}>
-          Demo Login: admin@test.com / 1234
-        </p>
       </div>
     </div>
   );
 }
 
 const styles = {
-  page: {
-    height: "100vh",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    background: "#f2f5f9",
-  },
-  card: {
-    background: "#fff",
-    padding: "30px",
-    borderRadius: "10px",
-    width: "350px",
-    boxShadow: "0 5px 15px rgba(0,0,0,0.1)",
-    textAlign: "center",
-  },
-  title: {
-    marginBottom: "5px",
-  },
-  subtitle: {
-    marginBottom: "20px",
-    fontSize: "14px",
-    color: "#666",
-  },
-  input: {
-    width: "100%",
-    padding: "10px",
-    marginBottom: "15px",
-    borderRadius: "5px",
-    border: "1px solid #ccc",
-  },
-  button: {
-    width: "100%",
-    padding: "10px",
-    background: "#2563eb",
-    color: "#fff",
-    border: "none",
-    borderRadius: "5px",
-    cursor: "pointer",
-  },
-  note: {
-    marginTop: "10px",
-    fontSize: "12px",
-    color: "gray",
-  },
+  page: { height: "100vh", display: "flex", justifyContent: "center", alignItems: "center", background: "#f2f5f9" },
+  card: { background: "#fff", padding: "30px", borderRadius: "10px", width: "350px", boxShadow: "0 5px 15px rgba(0,0,0,0.1)", textAlign: "center" },
+  title: { marginBottom: "5px" },
+  subtitle: { marginBottom: "20px", fontSize: "14px", color: "#666" },
+  button: { width: "100%", padding: "10px", background: "#2563eb", color: "#fff", border: "none", borderRadius: "5px", cursor: "pointer" },
 };
