@@ -35,39 +35,19 @@
 // export default Header;
 import { useExport } from "../context/ExportContext";
 
-const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:3001";
-
-function Header() {
+function Header({ onLogout }) {
   const exportContext = useExport();
+  const exporters = exportContext?.exporters || {};
 
-  const handleLogout = async () => {
-    try {
-      await fetch(`${API_BASE}/auth/logout`, {
-        method: "POST",
-        credentials: "include",
-      });
-    } catch (err) {
-      console.error("Logout request failed:", err);
-    } finally {
-      window.location.href = "/";
+  const handleLogout = () => {
+    if (onLogout) {
+      onLogout();
+      return;
     }
+
+    sessionStorage.clear();
+    window.location.replace("/");
   };
-
-  if (!exportContext || !exportContext.exporters) {
-    return (
-      <div className="header" style={styles.header}>
-        <span>Skill Matrix</span>
-
-        <div style={styles.right}>
-          <button onClick={handleLogout} style={styles.logout}>
-            Logout
-          </button>
-        </div>
-      </div>
-    );
-  }
-
-  const { exporters } = exportContext;
 
   return (
     <div className="header" style={styles.header}>
@@ -96,26 +76,28 @@ const styles = {
   header: {
     display: "flex",
     alignItems: "center",
+    flexWrap: "wrap",
+    gap: "10px",
     padding: "10px 15px",
     borderBottom: "1px solid #ddd",
     background: "#fff",
   },
+
   right: {
     marginLeft: "auto",
     display: "flex",
     alignItems: "center",
     gap: "10px",
+    flexWrap: "wrap",
   },
-  email: {
-    fontSize: "13px",
-    color: "#444",
-  },
+
   logout: {
-    padding: "5px 10px",
+    padding: "6px 12px",
     background: "#ef4444",
     color: "#fff",
     border: "none",
     borderRadius: "4px",
     cursor: "pointer",
+    whiteSpace: "nowrap",
   },
 };
