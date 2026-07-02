@@ -44,7 +44,17 @@ import cookieParser from "cookie-parser";
 
 import skillMatrixRoutes from "./routes/skillMatrix.routes.js";
 import authRoutes from "./routes/auth.routes.js";
+import path from "path";
+import { fileURLToPath } from "url";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use(express.static(path.join(__dirname, "build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
 dotenv.config();
 
 const app = express();
@@ -55,6 +65,7 @@ origin: [
 "http://localhost:3000",
 "http://localhost:3002",
 "http://localhost:5173",
+"https://skill-matrix.azurewebsites.net"
 ],
 credentials: true,
 })
