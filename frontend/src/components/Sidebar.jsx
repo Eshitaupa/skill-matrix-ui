@@ -73,17 +73,6 @@ function Sidebar({ onLogout }) {
   const [loading,     setLoading]     = useState(true);
 
   useEffect(() => {
-    // ── 1. sessionStorage (fastest — no network) ────────────────────────────
-    const storedEmail = sessionStorage.getItem("userEmail");
-    const storedDisc  = sessionStorage.getItem("allowedDisciplines");
-
-    if (storedEmail) {
-      setEmail(storedEmail);
-      try { setDisciplines(JSON.parse(storedDisc) ?? []); } catch { setDisciplines([]); }
-      setLoading(false);
-      return;
-    }
-
 fetch("http://localhost:3001/api/auth/me", {
   credentials: "include",
 })

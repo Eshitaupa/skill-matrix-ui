@@ -176,7 +176,7 @@ function App() {
 }
 
       const data = await res.json().catch(() => ({}));
-
+      console.log("CURRENT USER:", data.email, data.allowedDisciplines);
       setAuthed(true);
       setAllowedDisciplines(data.allowedDisciplines || []);
       setUserEmail(data.email || "");

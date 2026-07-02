@@ -1070,7 +1070,8 @@ const DISCIPLINE_ROLE_MAP = {
   "Mechanical": "Engineer",
 };
 
-const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:3001";
+// const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:3001";
+const API_BASE = window.location.origin;
 const API_SKILL = `${API_BASE}/api/skill-matrix`;
 
 const norm = (v) => String(v ?? "").trim().replace(/\s+/g, " ");
