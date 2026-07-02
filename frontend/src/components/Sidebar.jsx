@@ -71,9 +71,10 @@ function Sidebar({ onLogout }) {
   const [email,       setEmail]       = useState(null);
   const [disciplines, setDisciplines] = useState([]);
   const [loading,     setLoading]     = useState(true);
-
+const API_BASE =
+  process.env.REACT_APP_API_BASE || "http://localhost:3001";
   useEffect(() => {
-fetch("http://localhost:3001/api/auth/me", {
+fetch(`${API_BASE}/api/auth/me`, {
   credentials: "include",
 })
       .then(r => {
