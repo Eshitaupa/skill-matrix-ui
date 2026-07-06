@@ -1,0 +1,52 @@
+name: Build and deploy React app to Azure Web App - skill-matrix
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install frontend dependencies
+        working-directory: ./frontend
+        run: npm install
+
+      - name: Build frontend
+        working-directory: ./frontend
+        env:
+          CI: false
+          REACT_APP_API_BASE: https://skill-matrix-api.azurewebsites.net
+          REACT_APP_TENANT_ID: bfbb9a2b-6d99-4e78-b3c7-95005d555c8b
+          REACT_APP_CLIENT_ID: f40b4118-24a7-4c0e-a5e9-1b3cad660d2e
+        run: npm run build
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: frontend-build
+          path: ./frontend/build
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: frontend-build
+          path: .
+
+      - uses: azure/webapps-deploy@v3
+        with:
+          app-name: skill-matrix
+          package: .
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B12C94544D3447EAA00169CEE296BD7E }}
