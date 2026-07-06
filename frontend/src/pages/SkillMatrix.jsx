@@ -1071,7 +1071,8 @@ const DISCIPLINE_ROLE_MAP = {
 };
 
 // const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:3001";
-const API_BASE = window.location.origin;
+const API_BASE =
+  process.env.REACT_APP_API_BASE || "http://localhost:3001";
 const API_SKILL = `${API_BASE}/api/skill-matrix`;
 
 const norm = (v) => String(v ?? "").trim().replace(/\s+/g, " ");
@@ -1255,8 +1256,12 @@ if (allowedDisciplines.length > 0) {
         const [Skill, Subskill, LevelKey] = key.split("|");
         return { Discipline: norm(filters.discipline), Role: norm(filters.role), Skill: norm(Skill), Subskill: norm(Subskill), LevelKey: norm(LevelKey), Value: String(value ?? "NA") };
       });
-      const res = await fetch(`${API_SKILL}/save`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
-      if (!res.ok) { alert((await safeText(res)) || "Save failed"); return; }
+const res = await fetch(`${API_SKILL}/save`, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  credentials: "include",
+  body: JSON.stringify(payload),
+});      if (!res.ok) { alert((await safeText(res)) || "Save failed"); return; }
       setEditedValues({}); setIsEditMode(false); setRefreshKey((k) => k + 1);
     } catch (err) { console.error("SAVE FAILED:", err); alert("Save failed"); }
     finally { setActionBusy(false); }
@@ -1283,8 +1288,12 @@ if (allowedDisciplines.length > 0) {
     const payload = [{ Discipline: d, Role: r, Skill: cat, Subskill: ss, LevelKey: levels[0], Value: "NA" }];
     setActionBusy(true);
     try {
-      const res = await fetch(`${API_SKILL}/save`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
-      if (!res.ok) { alert((await safeText(res)) || "Add failed"); return; }
+const res = await fetch(`${API_SKILL}/save`, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  credentials: "include",
+  body: JSON.stringify(payload),
+});      if (!res.ok) { alert((await safeText(res)) || "Add failed"); return; }
       alert("Added"); setShowAddRow(false); setRefreshKey((k) => k + 1);
     } catch (err) { console.error("ADD FAILED:", err); alert("Add failed"); }
     finally { setActionBusy(false); }
@@ -1296,8 +1305,12 @@ if (allowedDisciplines.length > 0) {
     const payload = { Discipline: norm(filters.discipline), Role: norm(filters.role), Skill: norm(category), Subskill: norm(subskillName) };
     setActionBusy(true);
     try {
-      const res = await fetch(`${API_SKILL}/row/delete`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
-      if (!res.ok) { alert((await safeText(res)) || "Delete failed"); return; }
+const res = await fetch(`${API_SKILL}/row/delete`, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  credentials: "include",
+  body: JSON.stringify(payload),
+});      if (!res.ok) { alert((await safeText(res)) || "Delete failed"); return; }
       alert("Deleted"); setRefreshKey((k) => k + 1);
     } catch (err) { console.error("DELETE FAILED:", err); alert("Delete failed"); }
     finally { setActionBusy(false); }

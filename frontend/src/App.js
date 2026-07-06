@@ -8,7 +8,9 @@ import AssessmentReview from "./pages/AssessmentReview";
 import SkillMatrix from "./pages/SkillMatrix";
 import Login from "./pages/Login";
 
-const API_BASE = process.env.REACT_APP_API_BASE || "https://skill-matrix-api.azurewebsites.net";
+const API_BASE =
+ process.env.REACT_APP_API_BASE ||
+ "http://localhost:3001";
 const TENANT_ID =
   process.env.REACT_APP_TENANT_ID || "bfbb9a2b-6d99-4e78-b3c7-95005d555c8b";
 const CLIENT_ID =

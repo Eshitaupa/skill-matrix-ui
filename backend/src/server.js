@@ -44,68 +44,50 @@ import cookieParser from "cookie-parser";
 
 import skillMatrixRoutes from "./routes/skillMatrix.routes.js";
 import authRoutes from "./routes/auth.routes.js";
-import path from "path";
-import { fileURLToPath } from "url";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-app.use(express.static(path.join(__dirname, "build")));
-
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
-});
 dotenv.config();
 
 const app = express();
 
-app.use(
-cors({
-origin: [
-"http://localhost:3000",
-"http://localhost:3002",
-"http://localhost:5173",
-"https://skill-matrix.azurewebsites.net"
-],
-credentials: true,
-})
-);
+app.use(cors({
+  origin: [
+    "http://localhost:3000",
+    "http://localhost:5173",
+    "https://skill-matrix.azurewebsites.net"
+  ],
+  credentials: true
+}));
 
 app.use(cookieParser());
 app.use(express.json({ limit: "10mb" }));
 
-// API Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/skill-matrix", skillMatrixRoutes);
 
-// Health Check
 app.get("/", (req, res) => {
-res.json({
-ok: true,
-message: "Project Meridian API Running",
-});
+  res.json({
+    ok: true,
+    message: "Project Meridian API Running"
+  });
 });
 
-// 404 Handler
 app.use((req, res) => {
-res.status(404).json({
-ok: false,
-message: `Route not found: ${req.method} ${req.originalUrl}`,
-});
+  res.status(404).json({
+    ok: false,
+    message: `Route not found: ${req.method} ${req.originalUrl}`
+  });
 });
 
-// Global Error Handler
 app.use((err, req, res, next) => {
-console.error("SERVER ERROR:", err);
-
-res.status(500).json({
-ok: false,
-message: "Internal Server Error",
-});
+  console.error("SERVER ERROR:", err);
+  res.status(500).json({
+    ok: false,
+    message: "Internal Server Error"
+  });
 });
 
 const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, () => {
-console.log(`API running on http://localhost:${PORT}`);
+  console.log(`API running on port ${PORT}`);
 });
