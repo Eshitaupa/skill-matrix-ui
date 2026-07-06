@@ -73,26 +73,31 @@ function Sidebar({ onLogout }) {
   const [loading,     setLoading]     = useState(true);
 const API_BASE =
   process.env.REACT_APP_API_BASE || "http://localhost:3001";
-  useEffect(() => {
-fetch(`${API_BASE}/api/auth/me`, {
-  credentials: "include",
-})
-      .then(r => {
-        if (!r.ok) throw new Error(`${r.status}`);
-        return r.json();
-      })
-      .then(data => {
-        if (data.authenticated && data.email) {
-          setEmail(data.email);
-          setDisciplines(data.allowedDisciplines ?? []);
-          // Cache so next render is instant
-          sessionStorage.setItem("userEmail", data.email);
-          sessionStorage.setItem("allowedDisciplines", JSON.stringify(data.allowedDisciplines ?? []));
-        }
-      })
-      .catch(err => console.warn("Sidebar /api/auth/me failed:", err))
-      .finally(() => setLoading(false));
-  }, []);
+
+useEffect(() => {
+  fetch(`${API_BASE}/api/auth/me`, {
+    credentials: "include",
+  })
+  .then(r => {
+    if (!r.ok) throw new Error(`${r.status}`);
+    return r.json();
+  })
+  .then(data => {
+    if (data.authenticated && data.email) {
+      setEmail(data.email);
+      setDisciplines(data.allowedDisciplines ?? []);
+
+      sessionStorage.setItem("userEmail", data.email);
+      sessionStorage.setItem(
+        "allowedDisciplines",
+        JSON.stringify(data.allowedDisciplines ?? [])
+      );
+    }
+  })
+  .catch(err => console.warn("Sidebar /api/auth/me failed:", err))
+  .finally(() => setLoading(false));
+
+}, [API_BASE]); 
 
   // ── Display helpers ──────────────────────────────────────────────────────
   const getInitials = (e = "") => {
