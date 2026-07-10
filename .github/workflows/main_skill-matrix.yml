@@ -25,7 +25,7 @@ jobs:
         working-directory: ./frontend
         env:
           CI: false
-          REACT_APP_API_BASE: https://skill-matrix-api.azurewebsites.net
+          REACT_APP_API_BASE: https://skill-matrix-api-aye4fhfqddhtb0bp.northcentralus-01.azurewebsites.net
           REACT_APP_TENANT_ID: bfbb9a2b-6d99-4e78-b3c7-95005d555c8b
           REACT_APP_CLIENT_ID: f40b4118-24a7-4c0e-a5e9-1b3cad660d2e
         run: npm run build
