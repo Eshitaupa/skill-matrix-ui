@@ -72,32 +72,34 @@ function Sidebar({ onLogout }) {
   const [disciplines, setDisciplines] = useState([]);
   const [loading,     setLoading]     = useState(true);
 const API_BASE =
-  process.env.REACT_APP_API_BASE || "http://localhost:3001";
+  process.env.REACT_APP_API_BASE ||
+  "https://skill-matrix-api-aye4fhfqddhtb0bp.northcentralus-01.azurewebsites.net";
 
 useEffect(() => {
   fetch(`${API_BASE}/api/auth/me`, {
     credentials: "include",
   })
-  .then(r => {
-    if (!r.ok) throw new Error(`${r.status}`);
-    return r.json();
-  })
-  .then(data => {
-    if (data.authenticated && data.email) {
-      setEmail(data.email);
-      setDisciplines(data.allowedDisciplines ?? []);
+    .then((r) => {
+      if (!r.ok) throw new Error(`${r.status}`);
+      return r.json();
+    })
+    .then((data) => {
+      if (data.authenticated && data.email) {
+        setEmail(data.email);
+        setDisciplines(data.allowedDisciplines ?? []);
 
-      sessionStorage.setItem("userEmail", data.email);
-      sessionStorage.setItem(
-        "allowedDisciplines",
-        JSON.stringify(data.allowedDisciplines ?? [])
-      );
-    }
-  })
-  .catch(err => console.warn("Sidebar /api/auth/me failed:", err))
-  .finally(() => setLoading(false));
-
-}, [API_BASE]); 
+        sessionStorage.setItem("userEmail", data.email);
+        sessionStorage.setItem(
+          "allowedDisciplines",
+          JSON.stringify(data.allowedDisciplines ?? [])
+        );
+      }
+    })
+    .catch((err) =>
+      console.warn("Sidebar /api/auth/me failed:", err)
+    )
+    .finally(() => setLoading(false));
+}, [API_BASE]);
 
   // ── Display helpers ──────────────────────────────────────────────────────
   const getInitials = (e = "") => {

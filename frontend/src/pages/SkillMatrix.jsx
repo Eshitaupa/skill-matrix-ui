@@ -472,7 +472,7 @@ const DEFAULT_DISCIPLINES = [
   "Piping Design",
 ];
 
-const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:3001";
+const API_BASE = process.env.REACT_APP_API_BASE || "https://skill-matrix-api-aye4fhfqddhtb0bp.northcentralus-01.azurewebsites.net";
 const API_SKILL = `${API_BASE}/api/skill-matrix`;
 
 const norm = (v) => String(v ?? "").trim().replace(/\s+/g, " ");
