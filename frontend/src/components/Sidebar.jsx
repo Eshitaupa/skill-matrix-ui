@@ -99,7 +99,7 @@ useEffect(() => {
       console.warn("Sidebar /api/auth/me failed:", err)
     )
     .finally(() => setLoading(false));
-}, [API_BASE]);
+}, []);
 
   // ── Display helpers ──────────────────────────────────────────────────────
   const getInitials = (e = "") => {
