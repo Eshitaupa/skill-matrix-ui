@@ -170,13 +170,17 @@ function App() {
         credentials: "include",
       });
 
-  if (!res.ok) {
-    setAuthed(false);
-    setAllowedDisciplines([]);
-    setUserEmail("");
-    return;
+if (res.status === 401) {
+  setAuthed(false);
+  setAllowedDisciplines([]);
+  setUserEmail("");
+  setCheckError(false);
+  return;
 }
 
+if (!res.ok) {
+  throw new Error(`HTTP ${res.status}`);
+}
       const data = await res.json().catch(() => ({}));
       console.log("CURRENT USER:", data.email, data.allowedDisciplines);
       setAuthed(true);
@@ -190,12 +194,12 @@ function App() {
         JSON.stringify(data.allowedDisciplines || [])
       );
     } catch (err) {
-    console.error("Session check failed:", err);
+  console.error("Session check failed:", err);
 
-    setAuthed(false);
-    setAllowedDisciplines([]);
-    setUserEmail("");
-    setCheckError(true);
+  setAuthed(false);
+  setAllowedDisciplines([]);
+  setUserEmail("");
+  setCheckError(true);
 }
   }, []);
 
@@ -232,12 +236,11 @@ function App() {
   return (
     <ExportProvider>
       <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
-
-      {checkError && (
-        <div style={bannerStyle}>
-          ⚠ Cannot reach the server at {API_BASE}. Check that the backend is running.
-        </div>
-      )}
+{checkError && authed !== false && (
+  <div style={bannerStyle}>
+    ⚠ Cannot reach the server at {API_BASE}. Check that the backend is running.
+  </div>
+)}
 
       <BrowserRouter>
         <Routes>
