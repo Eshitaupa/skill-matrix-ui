@@ -54,7 +54,7 @@ app.use(cors({
     "http://localhost:3000",
     "http://localhost:5173",
     "https://skill-matrix.azurewebsites.net",
-  "https://skill-matrix-fhadc3d4c3g8dhcg.northcentralus-01.azurewebsites.net"
+    "https://skill-matrix-fhadc3d4c3g8dhcg.northcentralus-01.azurewebsites.net"
   ],
   credentials: true
 }));
