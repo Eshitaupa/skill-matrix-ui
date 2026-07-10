@@ -296,6 +296,12 @@ function getChangedBy(req) {
 
 router.get("/meta", async (req, res) => {
   try {
+
+    console.log("==== META API HIT ====");
+    console.log("DBX_HOST:", process.env.DBX_HOST);
+    console.log("DBX_WAREHOUSE_ID:", process.env.DBX_WAREHOUSE_ID);
+    console.log("TOKEN EXISTS:", !!process.env.DBX_TOKEN);
+
     const rows = await queryDatabricks(`
       SELECT DISTINCT Discipline
       FROM ${UPLOAD}
@@ -303,23 +309,29 @@ router.get("/meta", async (req, res) => {
       ORDER BY Discipline
     `);
 
+    console.log("DISCIPLINES:", rows);
+
     res.json({
       disciplines: rows.map((r) => r[0]),
-      roles: ["Engineer", "Designer"],
+      roles: ["Engineer", "Designer"]
     });
-  } catch (err) {
-  console.error("META ERROR:", err.response?.data || err.message);
 
-  return res.status(500).json({
-    message: "Meta failed",
-    error:
-      err.response?.data?.message ||
-      err.response?.data ||
-      err.message ||
-      "Unknown error",
-  });
-}
+  } catch (err) {
+
+    console.error("========== META FAILED ==========");
+    console.error("MESSAGE:", err.message);
+    console.error("STATUS:", err.response?.status);
+    console.error("DATA:", err.response?.data);
+
+    return res.status(500).json({
+      message: "Meta failed",
+      error: err.message,
+      status: err.response?.status,
+      data: err.response?.data
+    });
+  }
 });
+
 
 router.get("/", async (req, res) => {
   try {
