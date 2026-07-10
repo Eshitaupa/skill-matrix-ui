@@ -86,30 +86,55 @@
 //     throw err;
 //   }
 // }
-
 import axios from "axios";
 
-const sleep = (ms) =>
-  new Promise((resolve) => setTimeout(resolve, ms));
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+// ── OAuth token cache ──────────────────────────────────────────────
+let cachedToken = null;
+let tokenExpiresAt = 0;
+
+async function getAccessToken() {
+  const host = String(process.env.DBX_HOST || "").replace(/\/+$/, "");
+  const clientId = process.env.DBX_CLIENT_ID;
+  const clientSecret = process.env.DBX_CLIENT_SECRET;
+
+  if (!host) throw new Error("DBX_HOST is missing");
+  if (!clientId) throw new Error("DBX_CLIENT_ID is missing");
+  if (!clientSecret) throw new Error("DBX_CLIENT_SECRET is missing");
+
+  // Reuse cached token if it still has >60s of life left
+  if (cachedToken && Date.now() < tokenExpiresAt - 60_000) {
+    return cachedToken;
+  }
+
+  const params = new URLSearchParams({
+    grant_type: "client_credentials",
+    client_id: clientId,
+    client_secret: clientSecret,
+    scope: "all-apis",
+  });
+
+  const res = await axios.post(`${host}/oidc/v1/token`, params.toString(), {
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+  });
+
+  cachedToken = res.data.access_token;
+  tokenExpiresAt = Date.now() + (res.data.expires_in || 3600) * 1000;
+
+  return cachedToken;
+}
 
 export async function queryDatabricks(sql) {
   const host = String(process.env.DBX_HOST || "").replace(/\/+$/, "");
   const warehouseId = process.env.DBX_WAREHOUSE_ID;
-  const token = process.env.DBX_TOKEN;
 
-  if (!host) {
-    throw new Error("DBX_HOST is missing");
-  }
-
-  if (!warehouseId) {
-    throw new Error("DBX_WAREHOUSE_ID is missing");
-  }
-
-  if (!token) {
-    throw new Error("DBX_TOKEN is missing");
-  }
+  if (!host) throw new Error("DBX_HOST is missing");
+  if (!warehouseId) throw new Error("DBX_WAREHOUSE_ID is missing");
 
   try {
+    const token = await getAccessToken();
+
     const response = await axios.post(
       `${host}/api/2.0/sql/statements`,
       {
@@ -134,11 +159,9 @@ export async function queryDatabricks(sql) {
     }
 
     const statementId = response.data.statement_id;
-
     if (!statementId) {
       throw new Error(
-        response.data.status?.error?.message ||
-        "No Databricks statement ID returned"
+        response.data.status?.error?.message || "No Databricks statement ID returned"
       );
     }
 
@@ -147,15 +170,10 @@ export async function queryDatabricks(sql) {
 
       const poll = await axios.get(
         `${host}/api/2.0/sql/statements/${statementId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        { headers: { Authorization: `Bearer ${token}` } }
       );
 
       const state = poll.data.status?.state;
-
       console.log("DBX STATE:", state);
 
       if (state === "SUCCEEDED") {
@@ -168,8 +186,7 @@ export async function queryDatabricks(sql) {
 
       if (state === "FAILED" || state === "CANCELED") {
         throw new Error(
-          poll.data.status?.error?.message ||
-          `Databricks query ${state.toLowerCase()}`
+          poll.data.status?.error?.message || `Databricks query ${state.toLowerCase()}`
         );
       }
     }
@@ -181,7 +198,6 @@ export async function queryDatabricks(sql) {
       err.response?.status,
       err.response?.data || err.message
     );
-
     throw err;
   }
 }

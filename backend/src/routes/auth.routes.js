@@ -30,7 +30,7 @@ const USER_DISCIPLINE_ACCESS = {
   "vsvyas@burnsmcd.in": ["Electrical"],
   "dmpatil@burnsmcd.in": ["Electrical"],
 
-//   "esupadhyaya@burnsmcd.in": ["Electrical"],
+  // "esupadhyaya@burnsmcd.in": ["Electrical"],
 // "esupadhyaya@burnsmcd.com": ["Electrical"],
 };
 
