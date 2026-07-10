@@ -417,10 +417,16 @@ ORDER BY Skill, Subskill, LevelKey
       proficiency: r[5],
       changed_by: r[6],
     })));
-  } catch (err) {
-    console.error("GET ERROR:", err.response?.data || err.message);
-    res.status(500).json({ message: "Fetch failed" });
-  }
+} catch (err) {
+  console.error("META ERROR FULL:", err);
+  console.error("META ERROR DATA:", err.response?.data);
+  console.error("META ERROR MESSAGE:", err.message);
+
+  return res.status(500).json({
+    message: "Meta failed",
+    error: err.response?.data || err.message
+  });
+}
 });
 
 router.post("/save", async (req, res) => {
