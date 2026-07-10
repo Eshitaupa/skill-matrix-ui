@@ -296,13 +296,20 @@ function getChangedBy(req) {
 
 router.get("/meta", async (req, res) => {
   try {
-    const rows = await queryDatabricks(`
-      SELECT DISTINCT Discipline
-      FROM ogc_techdept_test.skill_matrix.skill_matrix_upload
-      WHERE Discipline IS NOT NULL
-      ORDER BY Discipline
-    `);
-
+    // const rows = await queryDatabricks(`
+    //   SELECT DISTINCT Discipline
+    //   FROM ogc_techdept_test.skill_matrix.skill_matrix_upload
+    //   WHERE Discipline IS NOT NULL
+    //   ORDER BY Discipline
+    // `);
+const rows = [
+  ["Electrical"],
+  ["Mechanical"],
+  ["Process"],
+  ["CSA"],
+  ["Piping Engineering"],
+  ["Instrumentation"]
+];
     return res.json({
       disciplines: rows.map(r => r[0]),
       roles: ["Engineer", "Designer"]
