@@ -9,8 +9,7 @@ import SkillMatrix from "./pages/SkillMatrix";
 import Login from "./pages/Login";
 
 const API_BASE =
- process.env.REACT_APP_API_BASE ||
- "http://localhost:3001";
+ process.env.REACT_APP_API_BASE || "https://skill-matrix-api-aye4fhfqddhtb0bp.northcentralus-01.azurewebsites.net";
 const TENANT_ID =
   process.env.REACT_APP_TENANT_ID || "bfbb9a2b-6d99-4e78-b3c7-95005d555c8b";
 const CLIENT_ID =

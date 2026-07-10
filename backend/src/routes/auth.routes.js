@@ -94,6 +94,12 @@ const cookieOptions = {
   maxAge: 1000 * 60 * 60,
 };
 
+const clearCookieOptions = {
+  httpOnly: true,
+  secure: true,
+  sameSite: "none",
+};
+
 router.post("/session", (req, res) => {
   try {
     console.log("POST /api/auth/session");
@@ -162,8 +168,8 @@ router.get("/me", (req, res) => {
   const validation = validateToken(decoded);
 
   if (!validation.valid) {
-    res.clearCookie("session_token");
-    res.clearCookie("user_email");
+res.clearCookie("session_token", clearCookieOptions);
+res.clearCookie("user_email", clearCookieOptions);
 
     return res.status(401).json({
       authenticated: false,
@@ -183,8 +189,8 @@ router.get("/me", (req, res) => {
 
 // Logout
 router.post("/logout", (req, res) => {
-  res.clearCookie("session_token");
-  res.clearCookie("user_email");
+  res.clearCookie("session_token", clearCookieOptions);
+  res.clearCookie("user_email", clearCookieOptions);
 
   return res.json({
     ok: true,
