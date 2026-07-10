@@ -164,44 +164,49 @@ function App() {
   const [userEmail, setUserEmail] = useState("");
   const [checkError, setCheckError] = useState(false);
 
-  const checkSession = useCallback(async () => {
-    try {
-      const res = await fetch(`${API_BASE}/api/auth/me`, {
-        credentials: "include",
-      });
+const checkSession = useCallback(async () => {
+  try {
+    const res = await fetch(`${API_BASE}/api/auth/me`, {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        Accept: "application/json",
+      },
+    });
 
-if (res.status === 401) {
-  setAuthed(false);
-  setAllowedDisciplines([]);
-  setUserEmail("");
-  setCheckError(false);
-  return;
-}
-
-if (!res.ok) {
-  throw new Error(`HTTP ${res.status}`);
-}
-      const data = await res.json().catch(() => ({}));
-      console.log("CURRENT USER:", data.email, data.allowedDisciplines);
-      setAuthed(true);
-      setAllowedDisciplines(data.allowedDisciplines || []);
-      setUserEmail(data.email || "");
+    if (res.status === 401) {
+      setAuthed(false);
+      setAllowedDisciplines([]);
+      setUserEmail("");
       setCheckError(false);
+      return;
+    }
 
-      sessionStorage.setItem("userEmail", data.email || "");
-      sessionStorage.setItem(
-        "allowedDisciplines",
-        JSON.stringify(data.allowedDisciplines || [])
-      );
-    } catch (err) {
-  console.error("Session check failed:", err);
+    if (!res.ok) {
+      throw new Error(`Session check failed: HTTP ${res.status}`);
+    }
 
-  setAuthed(false);
-  setAllowedDisciplines([]);
-  setUserEmail("");
-  setCheckError(true);
-}
-  }, []);
+    const data = await res.json();
+
+    setAuthed(Boolean(data.authenticated));
+    setAllowedDisciplines(data.allowedDisciplines || []);
+    setUserEmail(data.email || "");
+    setCheckError(false);
+
+    sessionStorage.setItem("userEmail", data.email || "");
+    sessionStorage.setItem(
+      "allowedDisciplines",
+      JSON.stringify(data.allowedDisciplines || [])
+    );
+  } catch (err) {
+    console.error("Session check failed:", err);
+
+    setAuthed(false);
+    setAllowedDisciplines([]);
+    setUserEmail("");
+    setCheckError(true);
+  }
+}, []);
 
   const handleLogout = useCallback(async () => {
     try {
@@ -236,12 +241,11 @@ if (!res.ok) {
   return (
     <ExportProvider>
       <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
-{checkError && authed !== false && (
+{checkError && (
   <div style={bannerStyle}>
     ⚠ Cannot reach the server at {API_BASE}. Check that the backend is running.
   </div>
 )}
-
       <BrowserRouter>
         <Routes>
           <Route path="/" element={authed ? <Navigate to="/home" replace /> : <Login />} />
