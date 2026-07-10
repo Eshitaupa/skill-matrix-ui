@@ -329,17 +329,20 @@ function getChangedBy(req) {
 //   }
 // });
 router.get("/meta", (req, res) => {
-  return res.json({
-    // test: "Eshita backend updated",
+  console.log("GET /api/skill-matrix/meta - NEW VERSION");
+
+  return res.status(200).json({
     disciplines: [
-      "Electrical",
-      "Mechanical",
+      "Project Management",
       "Process",
+      "Mechanical",
       "CSA",
+      "Piping Design",
       "Piping Engineering",
-      "Instrumentation"
+      "Instrumentation",
+      "Electrical",
     ],
-    roles: ["Engineer", "Designer"]
+    roles: ["Engineer", "Designer"],
   });
 });
 

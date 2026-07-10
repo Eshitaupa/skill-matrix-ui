@@ -1069,10 +1069,19 @@ const DISCIPLINE_ROLE_MAP = {
   "Instrumentation": "Designer",
   "Mechanical": "Engineer",
 };
-
+const ALL_DISCIPLINES = [
+  "Project Management",
+  "Process",
+  "Mechanical",
+  "CSA",
+  "Piping Design",
+  "Piping Engineering",
+  "Instrumentation",
+  "Electrical",
+];
 // const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:3001";
 const API_BASE =
-  process.env.REACT_APP_API_BASE || "http://localhost:3001";
+  process.env.REACT_APP_API_BASE ||  "https://skill-matrix-api-aye4fhfqddhtb0bp.northcentralus-01.azurewebsites.net";
 const API_SKILL = `${API_BASE}/api/skill-matrix`;
 
 const norm = (v) => String(v ?? "").trim().replace(/\s+/g, " ");
@@ -1151,22 +1160,61 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
   const [actionBusy, setActionBusy] = useState(false);
 
   // ✅ Load meta from API
-  useEffect(() => {
-    let cancelled = false;
-    (async () => {
-      try {
-        const res = await fetch(`${API_SKILL}/meta`);
-        if (!res.ok) return;
-        const data = await safeJson(res);
-        if (!data || cancelled) return;
+useEffect(() => {
+  let cancelled = false;
+
+  async function loadMeta() {
+    try {
+      const res = await fetch(`${API_SKILL}/meta`, {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      const data = await safeJson(res);
+
+      if (!res.ok) {
+        throw new Error(
+          data?.error ||
+          data?.message ||
+          `Meta request failed with HTTP ${res.status}`
+        );
+      }
+
+      if (cancelled) return;
+
+      setMeta({
+        disciplines:
+          Array.isArray(data?.disciplines) && data.disciplines.length
+            ? data.disciplines
+            : ALL_DISCIPLINES,
+
+        roles:
+          Array.isArray(data?.roles) && data.roles.length
+            ? data.roles
+            : ["Engineer", "Designer"],
+      });
+    } catch (err) {
+      console.error("META LOAD FAILED:", err);
+
+      // Keeps the dropdown working even if /meta temporarily fails.
+      if (!cancelled) {
         setMeta({
-          disciplines: Array.isArray(data.disciplines) ? data.disciplines : [],
-          roles: Array.isArray(data.roles) && data.roles.length ? data.roles : ["Engineer", "Designer"],
+          disciplines: ALL_DISCIPLINES,
+          roles: ["Engineer", "Designer"],
         });
-      } catch (err) { console.error("META LOAD FAILED:", err); }
-    })();
-    return () => { cancelled = true; };
-  }, []);
+      }
+    }
+  }
+
+  loadMeta();
+
+  return () => {
+    cancelled = true;
+  };
+}, []);
 
   // ✅ Auto-set role when discipline changes
   useEffect(() => {
@@ -1222,15 +1270,24 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
   }, [showAddRow, form.discipline, form.role, filters.discipline, filters.role]);
 
 const disciplineOptions = useMemo(() => {
-if (allowedDisciplines.includes("All")) {
-  return meta.disciplines?.length ? meta.disciplines : [];
-}
+  const availableDisciplines =
+    Array.isArray(meta.disciplines) && meta.disciplines.length
+      ? meta.disciplines
+      : ALL_DISCIPLINES;
 
-if (allowedDisciplines.length > 0) {
-  return allowedDisciplines;
-}
-  // Fallback for admin/no restriction: use meta
-  return meta.disciplines?.length ? meta.disciplines : [];
+  if (allowedDisciplines.includes("All")) {
+    return availableDisciplines;
+  }
+
+  if (allowedDisciplines.length > 0) {
+    return availableDisciplines.filter((discipline) =>
+      allowedDisciplines.some(
+        (allowed) => keyOfText(allowed) === keyOfText(discipline)
+      )
+    );
+  }
+
+  return availableDisciplines;
 }, [meta.disciplines, allowedDisciplines]);
 
   const roleOptions = useMemo(() => (meta.roles?.length ? meta.roles : ["Engineer", "Designer"]), [meta.roles]);

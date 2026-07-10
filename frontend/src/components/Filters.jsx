@@ -198,16 +198,25 @@ function Filters({
           <option key={d} value={d}>{d}</option>
         ))}
       </select>
+<select
+  value={filters.role}
+  onChange={(e) =>
+    setFilters((p) => ({
+      ...p,
+      role: e.target.value,
+      level: "",
+    }))
+  }
+  disabled={!filters.discipline}
+>
+  <option value="">Role</option>
 
-      <select
-        value={filters.role}
-        onChange={(e) => setFilters((p) => ({ ...p, role: e.target.value, level: "" }))}
-        disabled={!filters.discipline}
-      >
-        <option value="">Role</option>
-        <option value="Engineer">Engineer</option>
-        <option value="Designer">Designer</option>
-      </select>
+  {filters.role && (
+    <option value={filters.role}>
+      {filters.role}
+    </option>
+  )}
+</select>
 
       <select
         value={filters.level}
