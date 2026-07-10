@@ -308,9 +308,17 @@ router.get("/meta", async (req, res) => {
       roles: ["Engineer", "Designer"],
     });
   } catch (err) {
-    console.error("META ERROR:", err.response?.data || err.message);
-    res.status(500).json({ message: "Meta failed" });
-  }
+  console.error("META ERROR:", err.response?.data || err.message);
+
+  return res.status(500).json({
+    message: "Meta failed",
+    error:
+      err.response?.data?.message ||
+      err.response?.data ||
+      err.message ||
+      "Unknown error",
+  });
+}
 });
 
 router.get("/", async (req, res) => {
