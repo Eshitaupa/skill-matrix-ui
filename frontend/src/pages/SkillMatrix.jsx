@@ -106,8 +106,18 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
     let cancelled = false;
     (async () => {
       try {
-        const res = await fetch(`${API_SKILL}/meta`);
-        if (!res.ok) return;
+     const res = await fetch(`${API_SKILL}/meta`, {
+  method: "GET",
+  credentials: "include",
+  headers: {
+    Accept: "application/json",
+  },
+});
+
+if (!res.ok) {
+  console.error("META API FAILED:", res.status);
+  return;
+}
         const data = await safeJson(res);
         if (!data || cancelled) return;
         setMeta({
@@ -173,15 +183,15 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
   }, [showAddRow, form.discipline, form.role, filters.discipline, filters.role]);
 
 const disciplineOptions = useMemo(() => {
-if (allowedDisciplines.includes("All")) {
-  return meta.disciplines?.length ? meta.disciplines : [];
-}
+  if (allowedDisciplines.includes("All")) {
+    return meta.disciplines || [];
+  }
 
-if (allowedDisciplines.length > 0) {
-  return allowedDisciplines;
-}
-  // Fallback for admin/no restriction: use meta
-  return meta.disciplines?.length ? meta.disciplines : [];
+  if (allowedDisciplines.length > 0) {
+    return allowedDisciplines;
+  }
+
+  return meta.disciplines || [];
 }, [meta.disciplines, allowedDisciplines]);
 
   const roleOptions = useMemo(() => (meta.roles?.length ? meta.roles : ["Engineer", "Designer"]), [meta.roles]);

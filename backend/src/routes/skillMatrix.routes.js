@@ -294,14 +294,14 @@ function getChangedBy(req) {
   return String(req.cookies?.user_email || "").trim().toLowerCase() || "unknown";
 }
 
-// router.get("/meta", async (req, res) => {
-//   try {
-//     // const rows = await queryDatabricks(`
-//     //   SELECT DISTINCT Discipline
-//     //   FROM ogc_techdept_test.skill_matrix.skill_matrix_upload
-//     //   WHERE Discipline IS NOT NULL
-//     //   ORDER BY Discipline
-//     // `);
+router.get("/meta", async (req, res) => {
+  try {
+    // const rows = await queryDatabricks(`
+    //   SELECT DISTINCT Discipline
+    //   FROM ogc_techdept_test.skill_matrix.skill_matrix_upload
+    //   WHERE Discipline IS NOT NULL
+    //   ORDER BY Discipline
+    // `);
 // const rows = [
 //   ["Electrical"],
 //   ["Mechanical"],
@@ -310,24 +310,6 @@ function getChangedBy(req) {
 //   ["Piping Engineering"],
 //   ["Instrumentation"]
 // ];
-//     return res.json({
-//       disciplines: rows.map(r => r[0]),
-//       roles: ["Engineer", "Designer"]
-//     });
-
-//   } catch (err) {
-
-//     console.error("META ERROR FULL:", err);
-//     console.error("META ERROR MESSAGE:", err.message);
-//     console.error("META ERROR DATA:", err.response?.data);
-
-//     return res.status(500).json({
-//       message: "Meta failed",
-//       error: err.message,
-//       data: err.response?.data
-//     });
-//   }
-// });
 router.get("/meta", (req, res) => {
   return res.status(200).json({
     disciplines: [
@@ -343,6 +325,25 @@ router.get("/meta", (req, res) => {
     roles: ["Engineer", "Designer"],
   });
 });
+    return res.json({
+      disciplines: rows.map(r => r[0]),
+      roles: ["Engineer", "Designer"]
+    });
+
+  } catch (err) {
+
+    console.error("META ERROR FULL:", err);
+    console.error("META ERROR MESSAGE:", err.message);
+    console.error("META ERROR DATA:", err.response?.data);
+
+    return res.status(500).json({
+      message: "Meta failed",
+      error: err.message,
+      data: err.response?.data
+    });
+  }
+});
+
 
 router.get("/", async (req, res) => {
   try {
