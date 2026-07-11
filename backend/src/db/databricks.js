@@ -90,13 +90,12 @@ import axios from "axios";
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-// ── OAuth token cache ──────────────────────────────────────────────
 let cachedToken = null;
 let tokenExpiresAt = 0;
 
 async function getAccessToken() {
   const host = String(process.env.DBX_HOST || "").replace(/\/+$/, "");
-  const clientId = process.env.DBX_CLIENT_ID;
+  const clientId = process.env.D_CLIENT_ID;
   const clientSecret = process.env.DBX_CLIENT_SECRET;
 
   if (!host) throw new Error("DBX_HOST is missing");
