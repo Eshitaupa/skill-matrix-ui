@@ -390,14 +390,9 @@ function levelsForRole(role) {
 router.get("/meta", (req, res) => {
   console.log("META ROUTE HIT");
 
-  res.json({
-    test: "working",
-    disciplines: [
-      "Mechanical"
-    ],
-    roles: [
-      "Engineer"
-    ]
+  return res.status(200).json({
+    disciplines: DISCIPLINES,
+    roles: ROLES,
   });
 });
 
