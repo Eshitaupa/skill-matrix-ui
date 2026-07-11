@@ -323,6 +323,8 @@
 import express from "express";
 import { queryDatabricks } from "../db/databricks.js";
 
+console.log("SKILL MATRIX ROUTES LOADED");
+
 const router = express.Router();
 
 const UPLOAD = "ogc_techdept_test.skill_matrix.skill_matrix_upload";
@@ -385,23 +387,22 @@ function levelsForRole(role) {
     : ENGINEER_LEVELS;
 }
 
-/**
- * META API
- * Keep this static for now so frontend filters always load.
- */
-router.get("/meta", async (req, res) => {
-  try {
-    return res.status(200).json({
-      disciplines: DISCIPLINES,
-      roles: ROLES,
-    });
-  } catch (err) {
-    console.error("META ERROR:", err);
-    return res.status(500).json({
-      message: "Meta failed",
-      error: err.message,
-    });
-  }
+router.get("/meta", (req, res) => {
+  console.log("META ENDPOINT HIT");
+
+  return res.json({
+    disciplines: [
+      "Project Management",
+      "Process",
+      "Mechanical",
+      "CSA",
+      "Piping Design",
+      "Piping Engineering",
+      "Instrumentation",
+      "Electrical",
+    ],
+    roles: ["Engineer", "Designer"],
+  });
 });
 
 /**
