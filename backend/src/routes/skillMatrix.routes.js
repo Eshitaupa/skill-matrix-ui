@@ -388,20 +388,16 @@ function levelsForRole(role) {
 }
 
 router.get("/meta", (req, res) => {
-  console.log("META ENDPOINT HIT");
+  console.log("META ROUTE HIT");
 
-  return res.json({
+  res.json({
+    test: "working",
     disciplines: [
-      "Project Management",
-      "Process",
-      "Mechanical",
-      "CSA",
-      "Piping Design",
-      "Piping Engineering",
-      "Instrumentation",
-      "Electrical",
+      "Mechanical"
     ],
-    roles: ["Engineer", "Designer"],
+    roles: [
+      "Engineer"
+    ]
   });
 });
 
