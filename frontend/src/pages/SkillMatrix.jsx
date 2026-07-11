@@ -855,10 +855,10 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
   ]);
 
 const disciplineOptions = useMemo(() => {
-  const hasAllAccess = allowedDisciplines.some((item) => {
-    const value = keyOfText(item);
-    return value === "all" || value === "all disciplines";
-  });
+const hasAllAccess = allowedDisciplines.some((item) => {
+  const value = keyOfText(item);
+  return value === "all" || value === "all disciplines";
+});
 
   if (hasAllAccess) {
     return meta.disciplines?.length ? meta.disciplines : DEFAULT_DISCIPLINES;
