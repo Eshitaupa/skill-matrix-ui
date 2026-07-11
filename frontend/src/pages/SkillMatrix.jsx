@@ -854,21 +854,22 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
     filters.role,
   ]);
 
-  const disciplineOptions = useMemo(() => {
-    const hasAllAccess = allowedDisciplines.some(
-      (item) => keyOfText(item) === "all"
-    );
+const disciplineOptions = useMemo(() => {
+  const hasAllAccess = allowedDisciplines.some((item) => {
+    const value = keyOfText(item);
+    return value === "all" || value === "all disciplines";
+  });
 
-    if (hasAllAccess) {
-      return meta.disciplines?.length ? meta.disciplines : DEFAULT_DISCIPLINES;
-    }
-
-    if (allowedDisciplines.length > 0) {
-      return allowedDisciplines;
-    }
-
+  if (hasAllAccess) {
     return meta.disciplines?.length ? meta.disciplines : DEFAULT_DISCIPLINES;
-  }, [meta.disciplines, allowedDisciplines]);
+  }
+
+  if (allowedDisciplines.length > 0) {
+    return allowedDisciplines;
+  }
+
+  return meta.disciplines?.length ? meta.disciplines : DEFAULT_DISCIPLINES;
+}, [meta.disciplines, allowedDisciplines]);
 
   const roleOptions = useMemo(() => {
     return meta.roles?.length ? meta.roles : ["Engineer", "Designer"];
@@ -1300,11 +1301,11 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
               editable={isEditMode}
               editedValues={editedValues}
               onEdit={(key, value) =>
-                setEditedValues((prev) => ({
-                  ...prev,
-                  value,
-                }))
-              }
+  setEditedValues((prev) => ({
+    ...prev,
+    [key]: value,
+  }))
+}
               onDeleteRow={handleDeleteRow}
             />
           )}

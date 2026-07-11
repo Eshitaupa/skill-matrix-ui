@@ -191,7 +191,7 @@ function Filters({
       <select
         value={filters.discipline}
         onChange={(e) => setFilters((p) => ({ ...p, discipline: e.target.value, role: "", level: "" }))}
-        disabled={disciplineOptions.length === 1}  // ← auto-locked if only one option
+        disabled={false}
       >
         {disciplineOptions.length !== 1 && <option value="">Discipline</option>}
         {disciplineOptions.map((d) => (
@@ -210,12 +210,8 @@ function Filters({
   disabled={!filters.discipline}
 >
   <option value="">Role</option>
-
-  {filters.role && (
-    <option value={filters.role}>
-      {filters.role}
-    </option>
-  )}
+  <option value="Engineer">Engineer</option>
+  <option value="Designer">Designer</option>
 </select>
 
       <select
