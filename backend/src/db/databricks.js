@@ -95,7 +95,7 @@ let tokenExpiresAt = 0;
 
 async function getAccessToken() {
   const host = String(process.env.DBX_HOST || "").replace(/\/+$/, "");
-  const clientId = process.env.D_CLIENT_ID;
+  const clientId = process.env.DBX_CLIENT_ID;
   const clientSecret = process.env.DBX_CLIENT_SECRET;
 
   if (!host) throw new Error("DBX_HOST is missing");
