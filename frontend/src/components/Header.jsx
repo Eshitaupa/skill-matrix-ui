@@ -1,41 +1,79 @@
 
-
 // import { useExport } from "../context/ExportContext";
 
-// function Header() {
+// function Header({ onLogout }) {
 //   const exportContext = useExport();
+//   const exporters = exportContext?.exporters || {};
 
-//   // ✅ SAFETY GUARD
-//   if (!exportContext || !exportContext.exporters) {
-//     return (
-//       <div className="header">
-//         <span>Skill Matrix</span>
-//       </div>
-//     );
-//   }
+//   const handleLogout = () => {
+//     if (onLogout) {
+//       onLogout();
+//       return;
+//     }
 
-//   const { exporters } = exportContext;
+//     sessionStorage.clear();
+//     window.location.replace("/");
+//   };
 
 //   return (
-//     <div className="header">
+//     <div className="header" style={styles.header}>
 //       <span>Skill Matrix</span>
 
-//       <div style={{ marginLeft: "auto", display: "flex", gap: 8 }}>
+//       <div style={styles.right}>
 //         {exporters.exportExcel && (
 //           <button onClick={exporters.exportExcel}>Export Excel</button>
 //         )}
+
 //         {exporters.exportPdf && (
 //           <button onClick={exporters.exportPdf}>Export PDF</button>
 //         )}
+
+//         <button onClick={handleLogout} style={styles.logout}>
+//           Logout
+//         </button>
 //       </div>
 //     </div>
 //   );
 // }
 
 // export default Header;
+
+// const styles = {
+//   header: {
+//     display: "flex",
+//     alignItems: "center",
+//     flexWrap: "wrap",
+//     gap: "10px",
+//     padding: "10px 15px",
+//     borderBottom: "1px solid #ddd",
+//     background: "#fff",
+//   },
+
+//   right: {
+//     marginLeft: "auto",
+//     display: "flex",
+//     alignItems: "center",
+//     gap: "10px",
+//     flexWrap: "wrap",
+//   },
+
+//   logout: {
+//     padding: "6px 12px",
+//     background: "#ef4444",
+//     color: "#fff",
+//     border: "none",
+//     borderRadius: "4px",
+//     cursor: "pointer",
+//     whiteSpace: "nowrap",
+//   },
+// };
+
+
+import { useNavigate } from "react-router-dom";
 import { useExport } from "../context/ExportContext";
 
 function Header({ onLogout }) {
+  const navigate = useNavigate();
   const exportContext = useExport();
   const exporters = exportContext?.exporters || {};
 
@@ -51,15 +89,29 @@ function Header({ onLogout }) {
 
   return (
     <div className="header" style={styles.header}>
-      <span>Skill Matrix</span>
+      <div style={styles.left}>
+        <button
+          style={styles.backButton}
+          onClick={() => navigate("/home")}
+          title="Back to Home"
+        >
+          ← Back to Home
+        </button>
+
+        <span style={styles.title}>Skill Matrix</span>
+      </div>
 
       <div style={styles.right}>
         {exporters.exportExcel && (
-          <button onClick={exporters.exportExcel}>Export Excel</button>
+          <button style={styles.actionBtn} onClick={exporters.exportExcel}>
+            Export Excel
+          </button>
         )}
 
         {exporters.exportPdf && (
-          <button onClick={exporters.exportPdf}>Export PDF</button>
+          <button style={styles.actionBtn} onClick={exporters.exportPdf}>
+            Export PDF
+          </button>
         )}
 
         <button onClick={handleLogout} style={styles.logout}>
@@ -75,29 +127,63 @@ export default Header;
 const styles = {
   header: {
     display: "flex",
+    justifyContent: "space-between",
     alignItems: "center",
     flexWrap: "wrap",
     gap: "10px",
-    padding: "10px 15px",
-    borderBottom: "1px solid #ddd",
-    background: "#fff",
+    padding: "12px 18px",
+    borderBottom: "1px solid #e5e7eb",
+    background: "#ffffff",
+  },
+
+  left: {
+    display: "flex",
+    alignItems: "center",
+    gap: "14px",
+  },
+
+  title: {
+    fontSize: "18px",
+    fontWeight: "600",
+    color: "#111827",
+  },
+
+  backButton: {
+    border: "none",
+    background: "transparent",
+    cursor: "pointer",
+    color: "#4338ca",
+    fontSize: "14px",
+    fontWeight: "600",
+    padding: "4px 0",
   },
 
   right: {
-    marginLeft: "auto",
     display: "flex",
     alignItems: "center",
     gap: "10px",
     flexWrap: "wrap",
   },
 
+  actionBtn: {
+    padding: "8px 14px",
+    border: "none",
+    borderRadius: "6px",
+    background: "#4f46e5",
+    color: "#fff",
+    cursor: "pointer",
+    fontSize: "13px",
+    fontWeight: "500",
+  },
+
   logout: {
-    padding: "6px 12px",
+    padding: "8px 14px",
     background: "#ef4444",
     color: "#fff",
     border: "none",
-    borderRadius: "4px",
+    borderRadius: "6px",
     cursor: "pointer",
-    whiteSpace: "nowrap",
+    fontSize: "13px",
+    fontWeight: "500",
   },
 };
