@@ -148,15 +148,14 @@ const styles = {
     color: "#111827",
   },
 
-  backButton: {
-    border: "none",
-    background: "transparent",
-    cursor: "pointer",
-    color: "#4338ca",
-    fontSize: "14px",
-    fontWeight: "600",
-    padding: "4px 0",
-  },
+backButton: {
+  cursor: "pointer",
+  color: "#4338ca",
+  fontSize: "24px",
+  fontWeight: "700",
+  border: "none",
+  background: "none",
+},
 
   right: {
     display: "flex",
