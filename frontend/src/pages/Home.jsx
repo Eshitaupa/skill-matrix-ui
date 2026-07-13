@@ -190,18 +190,19 @@ export default function Home() {
         /* ── Page ── */
         .hp {
           min-height: 100vh;
-          background: #f4f5f8;
+          background:#f8fafc;
           padding: clamp(16px, 3vw, 40px);
           font-family: "Segoe UI", system-ui, sans-serif;
         }
 
         /* ── Logo ── */
-        .hp-brand {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          margin: 8px 0 28px;
-        }
+.hp-brand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  margin: 0 0 30px;
+}
         /* Transparent PNG — just render it, no blend tricks needed */
         .hp-brand__img {
           height: 72px;
@@ -211,7 +212,7 @@ export default function Home() {
 
         /* ── Hero ── */
         .hp-hero {
-          background: linear-gradient(135deg, #2e2480 0%, #4435b0 55%, #6556cc 100%);
+         background: linear-gradient(135deg,#343381 0%,#4a49a2 55%,#6766c8 100%);
           border-radius: 18px;
           padding: clamp(28px, 4vw, 52px) clamp(20px, 5vw, 56px);
           color: #fff;
@@ -220,7 +221,7 @@ export default function Home() {
           box-shadow: 0 8px 32px rgba(46,36,128,.28);
         }
         .hp-hero__title {
-          font-size: clamp(28px, 4vw, 44px);
+          font-size: clamp(28px, 4vw, 52px);
           font-weight: 800;
           margin: 0 0 8px;
           letter-spacing: -.5px;
@@ -242,7 +243,7 @@ export default function Home() {
           justify-content: center; margin-bottom: 28px;
         }
         .hp-pill {
-          background: rgba(255,255,255,.14);
+          background: rgba(255,255,255,.16);
           border: 1px solid rgba(255,255,255,.24);
           border-radius: 999px;
           padding: 5px 15px;
@@ -276,18 +277,26 @@ export default function Home() {
           gap: 20px;
           margin-bottom: 36px;
         }
-        .hp-card {
-          background: #fff;
-          border-radius: 16px;
-          padding: clamp(18px,2.5vw,28px);
-          cursor: pointer;
-          border-top: 3px solid var(--accent);
-          box-shadow: 0 2px 12px rgba(0,0,0,.06);
-          transition: transform .18s, box-shadow .18s;
-          display: flex; flex-direction: column; gap: 10px;
-          outline: none;
-        }
-        .hp-card:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(0,0,0,.11); }
+   .hp-card {
+  background: white;
+  border-radius: 20px;
+
+  border: 1px solid #e5e7eb;
+
+  box-shadow:
+    0 4px 12px rgba(0,0,0,.04),
+    0 8px 28px rgba(0,0,0,.06);
+
+  transition: all .25s ease;
+}
+
+        .hp-card:hover {
+  transform: translateY(-6px);
+
+  box-shadow:
+    0 12px 30px rgba(0,0,0,.09),
+    0 18px 40px rgba(0,0,0,.06);
+}
         .hp-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
         .hp-card--expanded { grid-column: 1 / -1; }
 
@@ -319,14 +328,15 @@ export default function Home() {
           grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
           gap: 16px; margin-bottom: 36px;
         }
-        .hp-rm {
-          background: #fff;
-          border-radius: 13px;
-          padding: clamp(14px,2vw,22px);
-          border-left: 4px solid var(--accent);
-          box-shadow: 0 1px 8px rgba(0,0,0,.05);
-          display: flex; flex-direction: column; gap: 6px;
-        }
+      .hp-rm {
+  border-left: 5px solid var(--accent);
+
+  border-radius: 16px;
+
+  border-top: 1px solid #eef2f7;
+  border-right: 1px solid #eef2f7;
+  border-bottom: 1px solid #eef2f7;
+}
         .hp-rm__phase { font-size: 11px; font-weight: 700; letter-spacing: .5px; }
         .hp-rm__title { font-size: clamp(14px,1.3vw,16px); color: #111827; }
         .hp-rm__desc  { font-size: clamp(11px,1.1vw,13px); color: #6b7280; line-height: 1.5; margin: 0; }
@@ -338,7 +348,7 @@ export default function Home() {
           gap: 20px; margin-bottom: 48px;
         }
         .hp-principle {
-          background: #fff;
+          background:white;
           border-radius: 16px;
           padding: 26px;
           border-top: 4px solid var(--accent);
