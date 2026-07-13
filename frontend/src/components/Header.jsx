@@ -95,7 +95,7 @@ function Header({ onLogout }) {
     window.location.href = "/home";
   }}
 >
-  ←Home
+  ← Home
 </button>
        
       </div>
@@ -150,7 +150,7 @@ const styles = {
 backButton: {
   cursor: "pointer",
   color: "#4338ca",
-  fontSize: "24px",
+  fontSize: "14px",
   fontWeight: "700",
   border: "none",
   background: "none",
