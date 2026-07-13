@@ -113,6 +113,7 @@ function Filters({
     padding: 12px 16px;
     margin-bottom: 16px;
     background: var(--color-base-100);
+    border-color: var(--color-primary);
 border: 1px solid var(--color-base-300);
     border-radius: 16px;
   }
