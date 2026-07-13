@@ -142,7 +142,7 @@ const styles = {
   },
 
   title: {
-    fontSize: "18px",
+    fontSize: "14px",
     fontWeight: "600",
     color: "#111827",
   },
