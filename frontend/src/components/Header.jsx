@@ -95,7 +95,7 @@ function Header({ onLogout }) {
     window.location.href = "/home";
   }}
 >
-  ←
+  ←Home
 </button>
        
       </div>
