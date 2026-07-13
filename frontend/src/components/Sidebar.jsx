@@ -57,7 +57,6 @@
  *     sessionStorage.setItem("allowedDisciplines", JSON.stringify(session.allowedDisciplines));
  *   That's it — sidebar reads it instantly on next render.
  */
-
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { sidebarItems } from "../config/sidebarConfig";
@@ -72,7 +71,7 @@ function Sidebar({ onLogout }) {
   const [disciplines, setDisciplines] = useState([]);
   const [loading,     setLoading]     = useState(true);
 const API_BASE =
-  process.env.REACT_APP_API_BASE ||
+  process.env.REACT_API_BASE ||
   "https://skill-matrix-api-aye4fhfqddhtb0bp.northcentralus-01.azurewebsites.net";
 
 useEffect(() => {
@@ -109,18 +108,10 @@ useEffect(() => {
     return local.slice(0, 2).toUpperCase();
   };
 
-const getDisplayName = (email = "") => {
-  const local = email.split("@")[0];
-
-  return local
-    .split(/[._-]/)
-    .map(
-      word =>
-        word.charAt(0).toUpperCase() +
-        word.slice(1).toLowerCase()
-    )
-    .join(" ");
-};
+  const getDisplayName = (e = "") => {
+    const local = e.split("@")[0];
+    return local.charAt(0).toUpperCase() + local.slice(1);
+  };
 
   const initials    = email ? getInitials(email)    : "?";
   const displayName = email ? getDisplayName(email) : "Not signed in";
@@ -135,7 +126,7 @@ const getDisplayName = (email = "") => {
         .sidebar {
           display: flex; flex-direction: column;
           width: 230px; min-height: 100vh;
-          background: var(--color-primary);
+          background: linear-gradient(180deg,#1a1740 0%,#252060 50%,#312880 100%);
           transition: width .22s ease;
           position: relative; flex-shrink: 0; overflow: hidden;
         }
@@ -144,14 +135,13 @@ const getDisplayName = (email = "") => {
         .sb-toggle {
           position: absolute; top: 16px; right: -13px;
           width: 26px; height: 26px; border-radius: 50%;
-          background: var(--color-base-100);
-color: var(--color-primary);
+          background: #fff; color: #312880;
           font-size: 14px; font-weight: 800; border: none; cursor: pointer;
           display: flex; align-items: center; justify-content: center;
           box-shadow: 0 2px 10px rgba(0,0,0,.22); z-index: 20;
           transition: background .15s; user-select: none;
         }
-        .sb-toggle:hover { background: color-mix(in srgb, var(--color-primary) 10%, white);}
+        .sb-toggle:hover { background: #ede9fe; }
 
         .sb-logo {
           display: flex; align-items: center; justify-content: center;
@@ -208,8 +198,7 @@ color: var(--color-primary);
         }
         .sb-avatar {
           width: 36px; height: 36px; border-radius: 50%;
-          background: var(--color-primary);
-color: var(--color-primary-content);
+          background: linear-gradient(135deg,#5b4fd4,#8b7cf8);
           border: 2px solid rgba(255,255,255,.25);
           display: flex; align-items: center; justify-content: center;
           font-size: 13px; font-weight: 700; color: #fff;
@@ -234,8 +223,7 @@ color: var(--color-primary-content);
         }
         .sb-discipline {
           font-size: 11px; font-weight: 600;
-          color: var(--color-primary-content);
-opacity:.9;
+          color: rgba(165,180,252,.9);
           white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
           margin-top: 3px;
         }
@@ -319,3 +307,5 @@ opacity:.9;
 }
 
 export default Sidebar;
+
+

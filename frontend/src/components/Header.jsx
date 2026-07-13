@@ -68,7 +68,6 @@
 //   },
 // };
 
-
 import { useNavigate } from "react-router-dom";
 import { useExport } from "../context/ExportContext";
 
@@ -132,8 +131,8 @@ const styles = {
     flexWrap: "wrap",
     gap: "10px",
     padding: "12px 18px",
-    background: "var(--color-base-100)",
-borderBottom: "1px solid var(--color-base-300)",
+    borderBottom: "1px solid #e5e7eb",
+    background: "#ffffff",
   },
 
   left: {
@@ -145,12 +144,12 @@ borderBottom: "1px solid var(--color-base-300)",
   title: {
     fontSize: "18px",
     fontWeight: "600",
-   color: "var(--color-base-content)",
+    color: "#111827",
   },
 
 backButton: {
   cursor: "pointer",
-  color: "var(--color-primary)",
+  color: "#4338ca",
   fontSize: "24px",
   fontWeight: "700",
   border: "none",
@@ -168,8 +167,8 @@ backButton: {
     padding: "8px 14px",
     border: "none",
     borderRadius: "6px",
-    background: "var(--color-primary)",
-color: "var(--color-primary-content)",
+    background: "#4f46e5",
+    color: "#fff",
     cursor: "pointer",
     fontSize: "13px",
     fontWeight: "500",
@@ -177,8 +176,8 @@ color: "var(--color-primary-content)",
 
   logout: {
     padding: "8px 14px",
-    background: "var(--color-error)",
-color: "var(--color-error-content)",
+    background: "#ef4444",
+    color: "#fff",
     border: "none",
     borderRadius: "6px",
     cursor: "pointer",
