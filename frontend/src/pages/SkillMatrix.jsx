@@ -1218,7 +1218,14 @@ const hasAllAccess = allowedDisciplines.some((item) => {
         disciplineOptions={disciplineOptions}
       />
 
- <div className="flex justify-end gap-2 mb-4">
+<div
+  style={{
+    display: "flex",
+    justifyContent: "flex-end",
+    gap: "12px",
+    marginBottom: "16px",
+  }}
+>
         <div
           style={{
             display: "flex",
@@ -1229,7 +1236,7 @@ const hasAllAccess = allowedDisciplines.some((item) => {
         >
           <div style={{ display: "flex", gap: "8px" }}>
             <button
-              className="btn-edit"
+              className="btn btn-primary"
               onClick={() => {
                 if (!isEditMode) startEditMode();
               }}
@@ -1239,7 +1246,7 @@ const hasAllAccess = allowedDisciplines.some((item) => {
             </button>
 
             <button
-              className="btn-edit"
+              className="btn btn-primary"
               onClick={openAddModal}
               disabled={loading || actionBusy || !filters.discipline || !filters.role}
             >
@@ -1249,7 +1256,7 @@ const hasAllAccess = allowedDisciplines.some((item) => {
             {isEditMode && (
               <>
                 <button
-                  className="btn-save"
+                  className="btn btn-success"
                   onClick={saveChanges}
                   disabled={loading || actionBusy}
                 >
@@ -1257,7 +1264,7 @@ const hasAllAccess = allowedDisciplines.some((item) => {
                 </button>
 
                 <button
-                  className="btn-edit"
+                  className="btn btn-outline"
                   onClick={cancelEdit}
                   disabled={loading || actionBusy}
                 >
@@ -1293,27 +1300,29 @@ const hasAllAccess = allowedDisciplines.some((item) => {
           )}
         </div>
 
-       <div className="flex flex-wrap gap-3 p-4 bg-base-100 border rounded-xl mt-4">
-        <div className="badge badge-neutral">
-  NA - Not Applicable
-</div>
+<div className="hover-legend">
+  <span className="legend-title">Proficiency Scale</span>
 
-<div className="badge badge-success">
-  1 - Familiar
-</div>
+  <span className="legend-pill l1">
+    NA - Not Applicable
+  </span>
 
-<div className="badge badge-info">
-  2 - Working Level
-</div>
+  <span className="legend-pill l2">
+    1 - Familiar
+  </span>
 
-<div className="badge badge-secondary">
-  3 - Extensive
-</div>
+  <span className="legend-pill l3">
+    2 - Working Level
+  </span>
 
-<div className="badge badge-warning">
-  4 - Authoritative
+  <span className="legend-pill l4">
+    3 - Extensive
+  </span>
+
+  <span className="legend-pill l5">
+    4 - Authoritative
+  </span>
 </div>
-        </div>
       </div>
 
       {showAddRow && (
