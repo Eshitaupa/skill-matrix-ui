@@ -1200,13 +1200,22 @@ const hasAllAccess = allowedDisciplines.some((item) => {
   }
 
   return (
-    <div className="card-section p-6">
+    <div className="page-container">
       {metaError && (
-<div className="alert alert-warning mb-4">
-  <span>
-    Could not load the discipline list from the API. Showing the default list.
-  </span>
-</div>
+        <div
+          style={{
+            background: "#fef3c7",
+            color: "#92400e",
+            padding: "8px 14px",
+            fontSize: "12.5px",
+            borderRadius: "10px",
+            marginBottom: "10px",
+            border: "1px solid #fde68a",
+          }}
+        >
+          Could not load the discipline list from the API. Showing the default
+          list.
+        </div>
       )}
 
       <Filters
@@ -1218,14 +1227,13 @@ const hasAllAccess = allowedDisciplines.some((item) => {
         disciplineOptions={disciplineOptions}
       />
 
-<div
-  style={{
-    display: "flex",
-    justifyContent: "flex-end",
-    gap: "12px",
-    marginBottom: "16px",
-  }}
->
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-end",
+          margin: "10px 0 12px 0",
+        }}
+      >
         <div
           style={{
             display: "flex",
@@ -1236,7 +1244,7 @@ const hasAllAccess = allowedDisciplines.some((item) => {
         >
           <div style={{ display: "flex", gap: "8px" }}>
             <button
-              className="btn btn-primary"
+              className="btn-edit"
               onClick={() => {
                 if (!isEditMode) startEditMode();
               }}
@@ -1246,7 +1254,7 @@ const hasAllAccess = allowedDisciplines.some((item) => {
             </button>
 
             <button
-              className="btn btn-primary"
+              className="btn-edit"
               onClick={openAddModal}
               disabled={loading || actionBusy || !filters.discipline || !filters.role}
             >
@@ -1256,7 +1264,7 @@ const hasAllAccess = allowedDisciplines.some((item) => {
             {isEditMode && (
               <>
                 <button
-                  className="btn btn-success"
+                  className="btn-save"
                   onClick={saveChanges}
                   disabled={loading || actionBusy}
                 >
@@ -1264,7 +1272,7 @@ const hasAllAccess = allowedDisciplines.some((item) => {
                 </button>
 
                 <button
-                  className="btn btn-outline"
+                  className="btn-edit"
                   onClick={cancelEdit}
                   disabled={loading || actionBusy}
                 >
@@ -1279,9 +1287,7 @@ const hasAllAccess = allowedDisciplines.some((item) => {
       <div className="table-hover-wrapper">
         <div className="table-responsive">
           {loading ? (
-            <div className="flex justify-center py-12">
-  <span className="loading loading-spinner loading-lg text-primary"></span>
-</div>
+            <div>Loading...</div>
           ) : (
             <SkillTable
               data={matrixData}
@@ -1300,34 +1306,19 @@ const hasAllAccess = allowedDisciplines.some((item) => {
           )}
         </div>
 
-<div className="hover-legend">
-  <span className="legend-title">Proficiency Scale</span>
-
-  <span className="legend-pill l1">
-    NA - Not Applicable
-  </span>
-
-  <span className="legend-pill l2">
-    1 - Familiar
-  </span>
-
-  <span className="legend-pill l3">
-    2 - Working Level
-  </span>
-
-  <span className="legend-pill l4">
-    3 - Extensive
-  </span>
-
-  <span className="legend-pill l5">
-    4 - Authoritative
-  </span>
-</div>
+        <div className="hover-legend">
+          <span className="legend-title">Proficiency Scale</span>
+          <span className="legend-pill l1">NA - Not Applicable</span>
+          <span className="legend-pill l2">1 - Familiar</span>
+          <span className="legend-pill l3">2 - Working Level</span>
+          <span className="legend-pill l4">3 - Extensive</span>
+          <span className="legend-pill l5">4 - Authoritative</span>
+        </div>
       </div>
 
       {showAddRow && (
         <div className="modal-overlay">
-          <div className="card bg-base-100 shadow-xl p-6 w-full max-w-xl">
+          <div className="modal">
             <h3 style={{ marginTop: 0 }}>Add Skill</h3>
 
             <label>Discipline</label>
