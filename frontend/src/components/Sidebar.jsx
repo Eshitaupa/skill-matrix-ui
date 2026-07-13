@@ -109,10 +109,18 @@ useEffect(() => {
     return local.slice(0, 2).toUpperCase();
   };
 
-  const getDisplayName = (e = "") => {
-    const local = e.split("@")[0];
-    return local.charAt(0).toUpperCase() + local.slice(1);
-  };
+const getDisplayName = (email = "") => {
+  const local = email.split("@")[0];
+
+  return local
+    .split(/[._-]/)
+    .map(
+      word =>
+        word.charAt(0).toUpperCase() +
+        word.slice(1).toLowerCase()
+    )
+    .join(" ");
+};
 
   const initials    = email ? getInitials(email)    : "?";
   const displayName = email ? getDisplayName(email) : "Not signed in";
@@ -127,7 +135,7 @@ useEffect(() => {
         .sidebar {
           display: flex; flex-direction: column;
           width: 230px; min-height: 100vh;
-          background: linear-gradient(180deg,#1a1740 0%,#252060 50%,#312880 100%);
+          background: var(--color-primary);
           transition: width .22s ease;
           position: relative; flex-shrink: 0; overflow: hidden;
         }
@@ -136,13 +144,14 @@ useEffect(() => {
         .sb-toggle {
           position: absolute; top: 16px; right: -13px;
           width: 26px; height: 26px; border-radius: 50%;
-          background: #fff; color: #312880;
+          background: var(--color-base-100);
+color: var(--color-primary);
           font-size: 14px; font-weight: 800; border: none; cursor: pointer;
           display: flex; align-items: center; justify-content: center;
           box-shadow: 0 2px 10px rgba(0,0,0,.22); z-index: 20;
           transition: background .15s; user-select: none;
         }
-        .sb-toggle:hover { background: #ede9fe; }
+        .sb-toggle:hover { background: color-mix(in srgb, var(--color-primary) 10%, white);}
 
         .sb-logo {
           display: flex; align-items: center; justify-content: center;
@@ -199,7 +208,8 @@ useEffect(() => {
         }
         .sb-avatar {
           width: 36px; height: 36px; border-radius: 50%;
-          background: linear-gradient(135deg,#5b4fd4,#8b7cf8);
+          background: var(--color-primary);
+color: var(--color-primary-content);
           border: 2px solid rgba(255,255,255,.25);
           display: flex; align-items: center; justify-content: center;
           font-size: 13px; font-weight: 700; color: #fff;
@@ -224,7 +234,8 @@ useEffect(() => {
         }
         .sb-discipline {
           font-size: 11px; font-weight: 600;
-          color: rgba(165,180,252,.9);
+          color: var(--color-primary-content);
+opacity:.9;
           white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
           margin-top: 3px;
         }
