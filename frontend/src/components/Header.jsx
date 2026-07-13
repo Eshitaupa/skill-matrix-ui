@@ -98,7 +98,7 @@ function Header({ onLogout }) {
 >
   ←
 </button>
-        <span style={styles.title}>Skill Matrix</span>
+       
       </div>
 
       <div style={styles.right}>
@@ -132,8 +132,8 @@ const styles = {
     flexWrap: "wrap",
     gap: "10px",
     padding: "12px 18px",
-    borderBottom: "1px solid #e5e7eb",
-    background: "#ffffff",
+    background: "var(--color-base-100)",
+borderBottom: "1px solid var(--color-base-300)",
   },
 
   left: {
@@ -145,12 +145,12 @@ const styles = {
   title: {
     fontSize: "18px",
     fontWeight: "600",
-    color: "#111827",
+   color: "var(--color-base-content)",
   },
 
 backButton: {
   cursor: "pointer",
-  color: "#4338ca",
+  color: "var(--color-primary)",
   fontSize: "24px",
   fontWeight: "700",
   border: "none",
@@ -168,8 +168,8 @@ backButton: {
     padding: "8px 14px",
     border: "none",
     borderRadius: "6px",
-    background: "#4f46e5",
-    color: "#fff",
+    background: "var(--color-primary)",
+color: "var(--color-primary-content)",
     cursor: "pointer",
     fontSize: "13px",
     fontWeight: "500",
@@ -177,8 +177,8 @@ backButton: {
 
   logout: {
     padding: "8px 14px",
-    background: "#ef4444",
-    color: "#fff",
+    background: "var(--color-error)",
+color: "var(--color-error-content)",
     border: "none",
     borderRadius: "6px",
     cursor: "pointer",
