@@ -112,8 +112,8 @@ function Filters({
     gap: 12px;
     padding: 12px 16px;
     margin-bottom: 16px;
-    background: #f8fafc;
-    border: 1px solid #e5e7eb;
+    background: var(--color-base-100);
+border: 1px solid var(--color-base-300);
     border-radius: 16px;
   }
   .smf-label {
@@ -124,7 +124,7 @@ function Filters({
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: #2563eb;
+    color: var(--color-primary);
     white-space: nowrap;
   }
   .smf-bar select {
@@ -134,12 +134,14 @@ function Filters({
     max-width: 240px;
     width: 100%;
     padding: 9px 36px 9px 14px;
-    border: 1px solid #dbe2ea;
+   border: 1px solid var(--color-base-300);
+background: var(--color-base-100);
+color: var(--color-base-content);
     border-radius: 999px;
-    background:
-      #fff
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'><path d='M5 7.5L10 12.5L15 7.5' stroke='%236b7280' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/></svg>")
-      no-repeat right 12px center;
+    // background:
+    //   #fff
+    //   url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'><path d='M5 7.5L10 12.5L15 7.5' stroke='%236b7280' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/></svg>")
+    //   no-repeat right 12px center;
     background-size: 14px;
     font-size: 13px;
     font-weight: 500;
@@ -147,15 +149,22 @@ function Filters({
     transition: all 0.2s ease;
     cursor: pointer;
   }
-  .smf-bar select:hover { border-color: #cbd5e1; }
-  .smf-bar select:focus { outline: none; border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37,99,235,0.15); }
-  .smf-bar select:disabled { background-color: #f1f5f9; color: #94a3b8; cursor: not-allowed; }
+  .smf-bar select:hover {
+    border-color: var(--color-primary);
+}
+.smf-bar select:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 18%, transparent);
+}
+  .smf-bar select:disabled {background: color-mix(in srgb, var(--color-base-300) 30%, white);
+color: #9ca3af; cursor: not-allowed; }
   .smf-spacer { flex: 1; }
   .smf-export-group { display: flex; align-items: center; gap: 8px; margin-left: auto; flex-wrap: wrap; }
   .smf-export-btn {
     display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-    padding: 9px 14px; border-radius: 999px; border: 1px solid #2563eb;
-    background: #2563eb; color: #fff; font-size: 13px; font-weight: 600;
+    padding: 9px 14px; border-radius: 999px; border: 1px solid var(--color-primary);
+background: var(--color-primary);
+color: var(--color-primary-content); font-size: 13px; font-weight: 600;
     cursor: pointer; transition: all 0.2s ease; white-space: nowrap;
   }
   .smf-export-btn:hover:not(:disabled) { background: #1d4ed8; border-color: #1d4ed8; }
@@ -182,7 +191,7 @@ function Filters({
 
       <span className="smf-label">
         <svg width="13" height="13" viewBox="0 0 20 20" fill="none">
-          <path d="M3 4h14l-5.5 6.5V16l-3 1.5v-7L3 4z" stroke="#2563eb" strokeWidth="1.4" strokeLinejoin="round" />
+          <path d="M3 4h14l-5.5 6.5V16l-3 1.5v-7L3 4z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
         </svg>
         Filters
       </span>
