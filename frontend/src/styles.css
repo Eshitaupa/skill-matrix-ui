@@ -7,8 +7,8 @@ GLOBAL VARIABLES
 --text: #111827;
 --text-muted: #6b7280;
 
---primary: #2563eb;
---primary-dark: #1d4ed8;
+--primary: #343381;
+--primary-dark: #272660;
 --success: #16a34a;
 --warning: #f97316;
 --danger: #ef4444;
@@ -30,11 +30,12 @@ box-sizing: border-box;
 }
 
 body {
-margin: 0;
-font-family: "Times New Roman", serif;
-background: var(--bg);
-color: var(--text);
+  margin: 0;
+  font-family: "Segoe UI", Inter, sans-serif;
+  background: #f8fafc;
+  color: #1f2937;
 }
+
 
 /* =========================
 APP LAYOUT
@@ -111,10 +112,10 @@ overflow-x: hidden;
 }
 
 .page-container {
-background: var(--card);
-padding: 20px;
-border-radius: 10px;
-box-shadow: var(--shadow);
+  background: white;
+  padding: 24px;
+  border-radius: 18px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
 }
 
 /* =========================
@@ -150,16 +151,14 @@ gap: 8px;
 BUTTONS
 ========================= */
 .btn {
-border: 1px solid var(--border);
-background: white;
-padding: 8px 14px;
-border-radius: 6px;
-cursor: pointer;
-transition: 0.2s;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: all .2s ease;
 }
 
 .btn:hover {
-background: #f3f4f6;
+  transform: translateY(-1px);
 }
 
 .btn-primary {
