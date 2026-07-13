@@ -90,14 +90,14 @@ function Header({ onLogout }) {
   return (
     <div className="header" style={styles.header}>
       <div style={styles.left}>
-        <button
-          style={styles.backButton}
-          onClick={() => navigate("/home")}
-          title="Back to Home"
-        >
-          ← Back to Home
-        </button>
-
+      <button
+  style={styles.backButton}
+  onClick={() => {
+    window.location.href = "/home";
+  }}
+>
+  ←
+</button>
         <span style={styles.title}>Skill Matrix</span>
       </div>
 
