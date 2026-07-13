@@ -1200,22 +1200,13 @@ const hasAllAccess = allowedDisciplines.some((item) => {
   }
 
   return (
-    <div className="page-container">
+    <div className="card-section p-6">
       {metaError && (
-        <div
-          style={{
-            background: "#fef3c7",
-            color: "#92400e",
-            padding: "8px 14px",
-            fontSize: "12.5px",
-            borderRadius: "10px",
-            marginBottom: "10px",
-            border: "1px solid #fde68a",
-          }}
-        >
-          Could not load the discipline list from the API. Showing the default
-          list.
-        </div>
+<div className="alert alert-warning mb-4">
+  <span>
+    Could not load the discipline list from the API. Showing the default list.
+  </span>
+</div>
       )}
 
       <Filters
@@ -1227,13 +1218,7 @@ const hasAllAccess = allowedDisciplines.some((item) => {
         disciplineOptions={disciplineOptions}
       />
 
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "flex-end",
-          margin: "10px 0 12px 0",
-        }}
-      >
+ <div className="flex justify-end gap-2 mb-4">
         <div
           style={{
             display: "flex",
@@ -1287,7 +1272,9 @@ const hasAllAccess = allowedDisciplines.some((item) => {
       <div className="table-hover-wrapper">
         <div className="table-responsive">
           {loading ? (
-            <div>Loading...</div>
+            <div className="flex justify-center py-12">
+  <span className="loading loading-spinner loading-lg text-primary"></span>
+</div>
           ) : (
             <SkillTable
               data={matrixData}
@@ -1306,19 +1293,32 @@ const hasAllAccess = allowedDisciplines.some((item) => {
           )}
         </div>
 
-        <div className="hover-legend">
-          <span className="legend-title">Proficiency Scale</span>
-          <span className="legend-pill l1">NA - Not Applicable</span>
-          <span className="legend-pill l2">1 - Familiar</span>
-          <span className="legend-pill l3">2 - Working Level</span>
-          <span className="legend-pill l4">3 - Extensive</span>
-          <span className="legend-pill l5">4 - Authoritative</span>
+       <div className="flex flex-wrap gap-3 p-4 bg-base-100 border rounded-xl mt-4">
+        <div className="badge badge-neutral">
+  NA - Not Applicable
+</div>
+
+<div className="badge badge-success">
+  1 - Familiar
+</div>
+
+<div className="badge badge-info">
+  2 - Working Level
+</div>
+
+<div className="badge badge-secondary">
+  3 - Extensive
+</div>
+
+<div className="badge badge-warning">
+  4 - Authoritative
+</div>
         </div>
       </div>
 
       {showAddRow && (
         <div className="modal-overlay">
-          <div className="modal">
+          <div className="card bg-base-100 shadow-xl p-6 w-full max-w-xl">
             <h3 style={{ marginTop: 0 }}>Add Skill</h3>
 
             <label>Discipline</label>
