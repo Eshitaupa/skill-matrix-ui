@@ -129,6 +129,7 @@ border: 1px solid var(--color-base-300);
     white-space: nowrap;
   }
   .smf-bar select {
+      border-color: var(--color-primary);
     appearance: none;
     -webkit-appearance: none;
     min-width: 180px;
