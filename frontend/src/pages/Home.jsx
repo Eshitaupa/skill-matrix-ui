@@ -220,25 +220,33 @@ export default function Home() {
           margin-bottom: 36px;
           box-shadow: 0 8px 32px rgba(46,36,128,.28);
         }
-        .hp-hero__title {
-  font-size: clamp(42px, 5vw, 64px);
+.hp-hero__title {
+  font-size: clamp(52px, 6vw, 72px);
   font-weight: 900;
-  letter-spacing: -2px;
-  line-height: 1;
-}
+  line-height: .95;
+  letter-spacing: -3px;
+  color: #ffffff;
 
-        .hp-hero__sub {
-          font-size: clamp(13px, 1.5vw, 15px);
-          opacity: .76;
-          margin: 0 0 18px;
-        }
-        .hp-hero__desc {
-          max-width: 640px;
-          margin: 0 auto 28px;
-          font-size: clamp(13px, 1.4vw, 15px);
-          line-height: 1.75;
-          opacity: .88;
-        }
+  margin-bottom: 18px;
+
+  background: transparent;
+  padding: 0;
+  border: 0;
+}
+.hp-hero__sub {
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 600;
+  margin-bottom: 22px;
+  opacity: .9;
+}
+      .hp-hero__desc {
+  max-width: 850px;
+
+  font-size: 17px;
+  line-height: 1.9;
+
+  margin: 0 auto 36px;
+}
         .hp-pills {
           display: flex; flex-wrap: wrap; gap: 8px;
           justify-content: center; margin-bottom: 28px;
@@ -264,12 +272,18 @@ export default function Home() {
         .hp-stat__n { font-size: clamp(22px,3vw,34px); font-weight: 800; }
         .hp-stat__l { font-size: 12px; opacity: .72; text-align: center; }
 
-        /* ── Section label ── */
-        .hp-label {
-          font-size: 24px; font-weight: 700;
-          letter-spacing: 1.6px; color: #9ca3af;
-          margin: 0 0 16px; padding-left: 2px;
-        }
+ .hp-label {
+  font-size: 26px;
+  font-weight: 800;
+
+  color: #051B38;
+
+  letter-spacing: -.5px;
+
+  margin-bottom: 24px;
+
+  text-transform: none;
+}
 
         /* ── Nav cards ── */
         .hp-cards {
@@ -279,10 +293,12 @@ export default function Home() {
           margin-bottom: 36px;
         }
    .hp-card {
+   min-height: 240px;
+padding: 24px;
   background: white;
   border-radius: 20px;
-border-top:4px solid var(--accent);
-  border: 1px solid #e5e7eb;
+border: 1px solid #d9e2ef;
+border-top: 4px solid var(--accent);
 
   box-shadow:
     0 4px 12px rgba(0,0,0,.04),
@@ -305,7 +321,12 @@ border-top:4px solid var(--accent);
           width: 38px; height: 38px; border-radius: 10px;
           display: flex; align-items: center; justify-content: center;
         }
-        .hp-card__title { font-size: clamp(15px,1.5vw,17px); font-weight: 700; color: #111827; margin: 0; }
+       .hp-card__title {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
         .hp-card__desc  { font-size: clamp(12px,1.2vw,13.5px); color: #6b7280; line-height: 1.65; margin: 0; flex: 1; }
         .hp-card__cta   { font-size: 13px; font-weight: 700; }
 
@@ -329,14 +350,18 @@ border-top:4px solid var(--accent);
           grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
           gap: 16px; margin-bottom: 36px;
         }
-      .hp-rm {
-  border-left: 5px solid var(--accent);
+   .hp-rm {
+  background: white;
 
-  border-radius: 16px;
+  padding: 22px;
 
-  border-top: 1px solid #eef2f7;
-  border-right: 1px solid #eef2f7;
-  border-bottom: 1px solid #eef2f7;
+  border: 1px solid #d9e2ef;
+
+  border-left: 4px solid var(--accent);
+
+  border-radius: 14px;
+
+  min-height: 130px;
 }
         .hp-rm__phase { font-size: 11px; font-weight: 700; letter-spacing: .5px; }
         .hp-rm__title { font-size: 20px; color: #111827; }
