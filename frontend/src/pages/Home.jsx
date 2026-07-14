@@ -272,17 +272,11 @@ font-family: Inter, sans-serif !important;
         .hp-stat__n { font-size: clamp(22px,3vw,34px); font-weight: 800; }
         .hp-stat__l { font-size: 12px; opacity: .72; text-align: center; }
 
- .hp-label {
-  font-size: 26px;
-  font-weight: 800;
+.hp-label {
+  margin-bottom: 32px;
 
-  color: #051B38;
-
-  letter-spacing: -.5px;
-
-  margin-bottom: 24px;
-
-  text-transform: none;
+  font-size: 28px;
+  font-weight: 900;
 }
 
         /* ── Nav cards ── */
@@ -353,7 +347,7 @@ border-top: 4px solid var(--accent);
    .hp-rm {
   background: white;
 
-  padding: 22px;
+  padding: 28px;
 
   border: 1px solid #d9e2ef;
 
@@ -361,11 +355,25 @@ border-top: 4px solid var(--accent);
 
   border-radius: 14px;
 
-  min-height: 130px;
+  min-height: 190px;
 }
         .hp-rm__phase { font-size: 11px; font-weight: 700; letter-spacing: .5px; }
-        .hp-rm__title { font-size: 20px; color: #111827; }
-        .hp-rm__desc  { font-size: clamp(11px,1.1vw,13px); color: #6b7280; line-height: 1.5; margin: 0; }
+.hp-rm__title {
+  display: block;
+
+  margin-top: 12px;
+  margin-bottom: 12px;
+
+  font-size: 24px;
+  font-weight: 800;
+
+  line-height: 1.15;
+}
+.hp-rm__desc {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #475569;
+}
 
         /* ── Principles ── */
         .hp-principles {
@@ -374,16 +382,30 @@ border-top: 4px solid var(--accent);
           gap: 20px; margin-bottom: 48px;
         }
         .hp-principle {
-          background:;
-          border-radius: 16px;
-          padding: 26px;
-          border-top: 4px solid var(--accent);
-          box-shadow: 0 2px 12px rgba(0,0,0,.06);
-          transition: transform .2s, box-shadow .2s;
-        }
+  background: white;
+
+  border: 1px solid #d9e2ef;
+  border-top: 5px solid var(--accent);
+
+  border-radius: 16px;
+
+  padding: 32px;
+
+  min-height: 220px;
+
+  box-shadow: 0 4px 16px rgba(0,0,0,.05);
+
+  transition: .25s;
+}
         .hp-principle:hover { transform: translateY(-4px); box-shadow: 0 14px 28px rgba(0,0,0,.11); }
-        .hp-principle__title { margin: 0 0 10px; font-size: 17px; font-weight: 700; color: #111827; }
-        .hp-principle__desc  { margin: 0; line-height: 1.75; color: #6b7280; font-size: 14px; }
+        .hp-principle__title {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.2;
+
+  margin-bottom: 16px;
+}
+        .hp-principle__desc  { margin: 0; line-height: 1.8; color: #6b7280; font-size: 15px; }
 
         /* ── Mobile ── */
         @media (max-width: 600px) {
