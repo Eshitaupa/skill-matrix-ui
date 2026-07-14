@@ -205,7 +205,7 @@ export default function Home() {
 }
         /* Transparent PNG — just render it, no blend tricks needed */
         .hp-brand__img {
-          height: 72px;
+          height: 140px;
           width: auto;
           object-fit: contain;
         }

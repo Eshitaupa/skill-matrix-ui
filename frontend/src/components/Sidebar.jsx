@@ -125,27 +125,41 @@ useEffect(() => {
       <style>{`
         .sidebar {
           display: flex; flex-direction: column;
-          width: 230px; min-height: 100vh;
-          background: linear-gradient(180deg,#1a1740 0%,#252060 50%,#312880 100%);
-          transition: width .22s ease;
+          width: 270px; min-height: 100vh;
+background: linear-gradient(
+  180deg,
+  #1b1b4b 0%,
+  #262677 60%,
+  #343381 100%
+);          transition: width .22s ease;
           position: relative; flex-shrink: 0; overflow: hidden;
         }
-        .sidebar.collapsed { width: 58px; }
+        .sidebar.collapsed { width: 76px; }
 
-        .sb-toggle {
-          position: absolute; top: 16px; right: -13px;
-          width: 26px; height: 26px; border-radius: 50%;
-          background: #fff; color: #312880;
-          font-size: 14px; font-weight: 800; border: none; cursor: pointer;
-          display: flex; align-items: center; justify-content: center;
-          box-shadow: 0 2px 10px rgba(0,0,0,.22); z-index: 20;
-          transition: background .15s; user-select: none;
-        }
+       .sb-toggle {
+  position: absolute;
+  top: 16px;
+  right: 12px;
+
+  width: 32px;
+  height: 32px;
+
+  border-radius: 10px;
+
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.14);
+
+  color: white;
+
+  backdrop-filter: blur(10px);
+
+  box-shadow: none;
+}
         .sb-toggle:hover { background: #ede9fe; }
 
         .sb-logo {
           display: flex; align-items: center; justify-content: center;
-          padding: 26px 16px 22px; cursor: pointer;
+          padding: 24px; cursor: pointer;min-height:96px;
           border-bottom: 1px solid rgba(255,255,255,.09);
           margin-bottom: 6px; min-height: 82px; flex-shrink: 0;
         }
@@ -168,21 +182,47 @@ useEffect(() => {
           flex: 1; display: flex; flex-direction: column; gap: 3px;
           overflow-y: auto; overflow-x: hidden;
         }
-        .sb-menu li {
-          display: flex; align-items: center; gap: 11px;
-          padding: 10px 13px; border-radius: 11px;
-          font-size: 13.5px; font-weight: 500;
-          color: rgba(255,255,255,.68); cursor: pointer;
-          transition: background .15s, color .15s;
-          white-space: nowrap; overflow: hidden;
-        }
-        .sb-menu li:hover  { background: rgba(255,255,255,.11); color: #fff; }
-        .sb-menu li.active { background: rgba(255,255,255,.17); color: #fff; font-weight: 600; }
-        .sb-dot {
-          width: 7px; height: 7px; border-radius: 50%;
-          background: rgba(255,255,255,.35); flex-shrink: 0;
-          transition: background .15s;
-        }
+      .sb-menu li {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  height: 48px;
+
+  padding: 0 16px;
+
+  border-radius: 14px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  color: rgba(255,255,255,.75);
+
+  transition: .2s;
+}
+        .sb-menu li:hover {
+  background: rgba(255,255,255,.08);
+  color: white;
+
+  transform: translateX(4px);
+}
+.sb-menu li.active {
+  background: rgba(255,255,255,.12);
+
+  color: white;
+
+  border-left: 4px solid #a5b4fc;
+
+  font-weight: 700;
+}       .sb-dot {
+  width: 10px;
+  height: 10px;
+
+  background: #818cf8;
+
+  box-shadow: 0 0 12px rgba(129,140,248,.7);
+}
         .sb-menu li:hover .sb-dot,
         .sb-menu li.active .sb-dot { background: #a5b4fc; }
         .sidebar.collapsed .sb-menu li { justify-content: center; padding: 10px 0; }
@@ -194,7 +234,8 @@ useEffect(() => {
           padding: 14px 12px;
           display: flex; align-items: center; gap: 11px;
           flex-shrink: 0; overflow: hidden; min-height: 68px;
-          background: rgba(0,0,0,.15);
+    background: rgba(255,255,255,.05);
+backdrop-filter: blur(8px)
         }
         .sb-avatar {
           width: 36px; height: 36px; border-radius: 50%;
