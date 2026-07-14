@@ -226,7 +226,7 @@ export default function Home() {
   line-height: .95;
   letter-spacing: -3px;
   color: #ffffff;
-
+font-family: Inter, sans-serif !important;
   margin-bottom: 18px;
 
   background: transparent;
