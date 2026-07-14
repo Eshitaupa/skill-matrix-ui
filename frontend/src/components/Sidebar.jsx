@@ -190,16 +190,36 @@ background: linear-gradient(
           transition: opacity .2s;
         }
         .sb-logo img:hover { opacity: .82; }
+        .sb-icon {
+  width: 28px;
+  height: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 8px;
+
+  background: rgba(255,255,255,.12);
+
+  color: white;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  flex-shrink: 0;
+}
 .sb-logo-icon {
   width: 44px;
   height: 44px;
 
-  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   border-radius: 12px;
 
   background: rgba(255,255,255,.10);
-
   border: 1px solid rgba(255,255,255,.15);
 
   color: white;
@@ -208,9 +228,11 @@ background: linear-gradient(
   font-weight: 800;
 
   letter-spacing: 1px;
+
+  margin: 0 auto;
 }
   .sidebar.collapsed .sb-dot {
-  display: none;
+  display: flex;
 }
 
         .sidebar.collapsed .sb-logo { padding: 26px 0 22px; }
@@ -348,8 +370,11 @@ backdrop-filter: blur(8px)
               onClick={() => navigate(item.route)}
               title={collapsed ? item.label : ""}
             >
-              <span className="sb-dot" />
-              <span className="sb-label">{item.label}</span>
+            <span className="sb-icon">
+  {item.label === "Level Wise Matrix" ? "LW" : "AR"}
+</span>
+
+<span className="sb-label">{item.label}</span>
             </li>
           ))}
         </ul>
