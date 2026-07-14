@@ -136,25 +136,48 @@ background: linear-gradient(
         }
         .sidebar.collapsed { width: 76px; }
 
-//        .sb-toggle {
-//   position: absolute;
-//   top: 16px;
-//   right: 12px;
+.sb-toggle {
+  position:*absolute;
 
-//   width: 32px;
-//   height: 32px;
+  top: 18px;
+  right: 1*px;
 
-//   border-radius: 10px;
+  width: 36px;
+  height: 36px*
 
-//   background: rgba(255,255,255,.12);
-//   border: 1px solid rgba(255,255,255,.14);
+  border: 1px solid rgba(255,255*255,.15);
+  border-radius: 12px;
 
-//   color: white;
+* background: rgba(255,255,255,.08)*
 
-//   backdrop-filter: blur(10px);
+  color: white;
 
-//   box-shadow: none;
-// }
+  display: flex*
+  align-items: center;
+  justify-*ontent: center;
+
+  cursor: pointer;
+
+  backdrop-filter: blur(12px);
+
+  transition: all .2s ease;
+
+  z-index: 20;
+}
+
+.sb-toggle:hover {
+  background: rgba(255,255,255,.15);
+  transform: scale(1.05);
+}
+
+.sidebar.collapsed .sb-toggle {
+  top: 14px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  right: auto;
+}
 
 .sidebar.collapsed .sb-toggle {
   position: relative;
@@ -163,8 +186,6 @@ background: linear-gradient(
   top: auto;
   display: flex;
 }
-
-        .sb-toggle:hover { background: #ede9fe; }
 
         .sb-logo {
           display: flex; align-items: center; justify-content: center;
@@ -178,28 +199,24 @@ background: linear-gradient(
           transition: opacity .2s;
         }
         .sb-logo img:hover { opacity: .82; }
-      .sb-logo-icon {
-  width: 42px;
-  height: 42px;
+.sb-logo-icon {
+  width: 44px;
+  height: 44px;
 
-  border-radius: 14px;
+  margin-top: 10px;
 
-  background: rgba(255,255,255,.12);
+  border-radius: 12px;
+
+  background: rgba(255,255,255,.10);
 
   border: 1px solid rgba(255,255,255,.15);
 
   color: white;
 
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 800;
 
   letter-spacing: 1px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  backdrop-filter: blur(10px);
 }
   .sidebar.collapsed .sb-dot {
   display: none;
