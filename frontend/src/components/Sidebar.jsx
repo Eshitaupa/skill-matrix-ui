@@ -135,57 +135,48 @@ background: linear-gradient(
           position: relative; flex-shrink: 0; overflow: hidden;
         }
         .sidebar.collapsed { width: 76px; }
-
 .sb-toggle {
-  position:*absolute;
-
+  position: absolute;
   top: 18px;
-  right: 1*px;
+  right: 18px;
 
-  width: 36px;
-  height: 36px*
+  width: 32px;
+  height: 32px;
 
-  border: 1px solid rgba(255,255*255,.15);
-  border-radius: 12px;
+  border: none;
+  border-radius: 999px;
 
-* background: rgba(255,255,255,.08)*
+  background: rgba(255,255,255,.10);
+  color: #ffffff;
 
-  color: white;
-
-  display: flex*
+  display: flex;
   align-items: center;
-  justify-*ontent: center;
+  justify-content: center;
 
   cursor: pointer;
 
-  backdrop-filter: blur(12px);
-
   transition: all .2s ease;
-
-  z-index: 20;
 }
 
 .sb-toggle:hover {
-  background: rgba(255,255,255,.15);
-  transform: scale(1.05);
-}
-
-.sidebar.collapsed .sb-toggle {
-  top: 14px;
-  left: 50%;
-
-  transform: translateX(-50%);
-
-  right: auto;
+  background: rgba(255,255,255,.18);
 }
 
 .sidebar.collapsed .sb-toggle {
   position: relative;
-  margin: 12px auto 0;
-  right: auto;
   top: auto;
-  display: flex;
+  right: auto;
+  margin: 12px auto 0;
 }
+
+.sidebar.collapsed .sb-toggle {
+  position: relative;
+  top: auto;
+}
+
+
+
+
 
         .sb-logo {
           display: flex; align-items: center; justify-content: center;
