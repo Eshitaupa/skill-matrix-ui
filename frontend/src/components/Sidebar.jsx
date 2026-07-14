@@ -136,25 +136,34 @@ background: linear-gradient(
         }
         .sidebar.collapsed { width: 76px; }
 
-       .sb-toggle {
-  position: absolute;
-  top: 16px;
-  right: 12px;
+//        .sb-toggle {
+//   position: absolute;
+//   top: 16px;
+//   right: 12px;
 
-  width: 32px;
-  height: 32px;
+//   width: 32px;
+//   height: 32px;
 
-  border-radius: 10px;
+//   border-radius: 10px;
 
-  background: rgba(255,255,255,.12);
-  border: 1px solid rgba(255,255,255,.14);
+//   background: rgba(255,255,255,.12);
+//   border: 1px solid rgba(255,255,255,.14);
 
-  color: white;
+//   color: white;
 
-  backdrop-filter: blur(10px);
+//   backdrop-filter: blur(10px);
 
-  box-shadow: none;
+//   box-shadow: none;
+// }
+
+.sidebar.collapsed .sb-toggle {
+  position: relative;
+  margin: 12px auto 0;
+  right: auto;
+  top: auto;
+  display: flex;
 }
+
         .sb-toggle:hover { background: #ede9fe; }
 
         .sb-logo {
@@ -169,12 +178,33 @@ background: linear-gradient(
           transition: opacity .2s;
         }
         .sb-logo img:hover { opacity: .82; }
-        .sb-logo-icon {
-          width: 34px; height: 34px; border-radius: 9px;
-          background: rgba(255,255,255,.14);
-          font-size: 16px; font-weight: 800; color: #fff;
-          display: flex; align-items: center; justify-content: center;
-        }
+      .sb-logo-icon {
+  width: 42px;
+  height: 42px;
+
+  border-radius: 14px;
+
+  background: rgba(255,255,255,.12);
+
+  border: 1px solid rgba(255,255,255,.15);
+
+  color: white;
+
+  font-size: 14px;
+  font-weight: 800;
+
+  letter-spacing: 1px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  backdrop-filter: blur(10px);
+}
+  .sidebar.collapsed .sb-dot {
+  display: none;
+}
+
         .sidebar.collapsed .sb-logo { padding: 26px 0 22px; }
 
         .sb-menu {
@@ -223,9 +253,16 @@ background: linear-gradient(
 
   box-shadow: 0 0 12px rgba(129,140,248,.7);
 }
+  .sidebar.collapsed .sb-menu {
+  padding: 0 6px;
+}
         .sb-menu li:hover .sb-dot,
         .sb-menu li.active .sb-dot { background: #a5b4fc; }
-        .sidebar.collapsed .sb-menu li { justify-content: center; padding: 10px 0; }
+.sidebar.collapsed .sb-menu li {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto;
+}
         .sidebar.collapsed .sb-menu li .sb-label { display: none; }
 
         /* ── User footer ── */
@@ -291,7 +328,7 @@ backdrop-filter: blur(8px)
 
         <div className="sb-logo" onClick={() => navigate("/home")}>
           {collapsed
-            ? <div className="sb-logo-icon">M</div>
+            ? <div className="sb-logo-icon">PM</div>
             : <img src={meridianLogo} alt="Project Meridian" />}
         </div>
 
