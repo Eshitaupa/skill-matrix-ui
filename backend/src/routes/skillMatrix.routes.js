@@ -319,7 +319,6 @@
 
 // export default router;
 
-
 import express from "express";
 import { queryDatabricks } from "../db/databricks.js";
 
@@ -396,9 +395,7 @@ router.get("/meta", (req, res) => {
   });
 });
 
-/**
- * GET MATRIX DATA
- */
+
 router.get("/", async (req, res) => {
   try {
     const discipline = norm(req.query.discipline);
