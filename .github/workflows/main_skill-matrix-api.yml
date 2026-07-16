@@ -46,4 +46,4 @@ jobs:
           app-name: 'skill-matrix-api'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C4D920E2018C4802AA47214253E0FA10 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_95380104755143A49FC839F2A8757532 }}
