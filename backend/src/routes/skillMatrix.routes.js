@@ -318,7 +318,6 @@
 // });
 
 // export default router;
-
 import express from "express";
 import { queryDatabricks } from "../db/databricks.js";
 
@@ -370,9 +369,7 @@ const esc = (value) =>
   String(value ?? "").replaceAll("'", "''");
 
 const norm = (value) =>
-  String(value ?? "")
-    .trim()
-    .replace(/\s+/g, " ");
+  String(value ?? "").trim().replace(/\s+/g, " ");
 
 const keyOf = (value) => norm(value).toLowerCase();
 
@@ -413,7 +410,8 @@ function isDisciplineAllowed(requestedDiscipline, allowedDisciplines) {
 
 /* =========================================================
    ACCESS LOOKUP
-   Strict whitelist — no fallback.
+   No row in DB = user sees ALL disciplines (login gate
+   is handled by Azure, not this table).
    ========================================================= */
 
 function getEmailCandidates(email) {
@@ -435,9 +433,7 @@ function getEmailCandidates(email) {
 async function getAllowedDisciplinesFromAccessTable(email) {
   const candidates = getEmailCandidates(email);
 
-  if (candidates.length === 0) {
-    return [];
-  }
+  if (candidates.length === 0) return ["All"];
 
   const inClause = candidates
     .map((e) => `LOWER('${esc(e)}')`)
@@ -461,7 +457,9 @@ async function getAllowedDisciplinesFromAccessTable(email) {
 
   console.log("MATRIX ACCESS RESULT:", disciplines);
 
-  // 🚫 No fallback. Empty = unauthorized.
+  // No row = full access
+  if (disciplines.length === 0) return ["All"];
+
   return disciplines;
 }
 
@@ -493,14 +491,6 @@ async function requireDisciplineAccess(req, res, requestedDiscipline) {
     return null;
   }
 
-  // 🚫 User not in whitelist — block everything
-  if (!allowedDisciplines || allowedDisciplines.length === 0) {
-    res.status(403).json({
-      message: "You are not authorized to use Skill Matrix.",
-    });
-    return null;
-  }
-
   if (
     requestedDiscipline &&
     !isDisciplineAllowed(requestedDiscipline, allowedDisciplines)
@@ -517,7 +507,6 @@ async function requireDisciplineAccess(req, res, requestedDiscipline) {
 
 /* =========================================================
    GET /api/skill-matrix/meta
-   Returns only disciplines the current user can access.
    ========================================================= */
 
 router.get("/meta", async (req, res) => {
@@ -565,7 +554,6 @@ router.get("/meta", async (req, res) => {
 
 /* =========================================================
    GET /api/skill-matrix
-   Returns matrix data filtered by user's allowed disciplines.
    ========================================================= */
 
 router.get("/", async (req, res) => {
@@ -601,9 +589,7 @@ router.get("/", async (req, res) => {
       `;
     } else if (!hasAllAccess(allowedDisciplines)) {
       const allowedSql = allowedDisciplines
-        .map(
-          (discipline) => `LOWER('${esc(norm(discipline))}')`
-        )
+        .map((discipline) => `LOWER('${esc(norm(discipline))}')`)
         .join(", ");
 
       disciplineFilter = `
@@ -667,9 +653,7 @@ router.get("/", async (req, res) => {
       ),
 
       latest_history AS (
-        SELECT *
-        FROM hist_ranked
-        WHERE rn = 1
+        SELECT * FROM hist_ranked WHERE rn = 1
       ),
 
       all_keys AS (
@@ -758,7 +742,6 @@ router.get("/", async (req, res) => {
 
 /* =========================================================
    POST /api/skill-matrix/save
-   Save / Update / Add cells.
    ========================================================= */
 
 router.post("/save", async (req, res) => {
@@ -859,20 +842,15 @@ router.post("/save", async (req, res) => {
                 ),
 
                 latest_history AS (
-                  SELECT *
-                  FROM history_ranked
-                  WHERE rn = 1
+                  SELECT * FROM history_ranked WHERE rn = 1
                 )
 
                 SELECT
                   CASE
-                    WHEN (
-                      SELECT action FROM latest_history
-                    ) = 'DELETE' THEN NULL
+                    WHEN (SELECT action FROM latest_history) = 'DELETE'
+                      THEN NULL
 
-                    WHEN (
-                      SELECT new_value FROM latest_history
-                    ) IS NOT NULL
+                    WHEN (SELECT new_value FROM latest_history) IS NOT NULL
                       THEN (SELECT new_value FROM latest_history)
 
                     ELSE (SELECT Value FROM base_value)
@@ -945,7 +923,6 @@ router.post("/save", async (req, res) => {
 
 /* =========================================================
    POST /api/skill-matrix/row/delete
-   Delete full subskill row across all role levels.
    ========================================================= */
 
 router.post("/row/delete", async (req, res) => {
@@ -961,11 +938,7 @@ router.post("/row/delete", async (req, res) => {
       });
     }
 
-    const access = await requireDisciplineAccess(
-      req,
-      res,
-      Discipline
-    );
+    const access = await requireDisciplineAccess(req, res, Discipline);
     if (!access) return;
 
     const changedBy = access.email;

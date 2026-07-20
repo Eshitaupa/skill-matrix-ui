@@ -36,15 +36,13 @@ function getEmailCandidates(email) {
 
 /* =========================================================
    ACCESS LOOKUP
-   Strict whitelist — no fallback. No row = no access.
+   Login is gated by Azure. This table only controls
+   discipline filtering. No row = ["All"] (see everything).
    ========================================================= */
 
 async function getAllowedDisciplines(email) {
   const candidates = getEmailCandidates(email);
-
-  if (candidates.length === 0) {
-    return [];
-  }
+  if (candidates.length === 0) return ["All"];
 
   const inClause = candidates
     .map((e) => `'${escSql(e)}'`)
@@ -70,7 +68,9 @@ async function getAllowedDisciplines(email) {
 
   console.log("FINAL DISCIPLINES:", disciplines);
 
-  // 🚫 No fallback. Empty array = user not authorized.
+  // No row in DB = user has full access to all disciplines
+  if (disciplines.length === 0) return ["All"];
+
   return disciplines;
 }
 
@@ -81,10 +81,7 @@ async function getAllowedDisciplines(email) {
 function decodeJwt(token) {
   try {
     const payload = token.split(".")[1];
-
-    if (!payload) {
-      return null;
-    }
+    if (!payload) return null;
 
     return JSON.parse(
       Buffer.from(payload, "base64url").toString("utf8")
@@ -113,25 +110,15 @@ function extractEmail(decoded) {
 }
 
 function validateToken(decoded) {
-  if (!decoded) {
-    return {
-      valid: false,
-      reason: "Invalid token",
-    };
-  }
+  if (!decoded) return { valid: false, reason: "Invalid token" };
 
   const now = Math.floor(Date.now() / 1000);
 
   if (decoded.exp && decoded.exp < now) {
-    return {
-      valid: false,
-      reason: "Token expired",
-    };
+    return { valid: false, reason: "Token expired" };
   }
 
-  return {
-    valid: true,
-  };
+  return { valid: true };
 }
 
 /* =========================================================
@@ -142,7 +129,7 @@ const cookieOptions = {
   httpOnly: true,
   secure: true,
   sameSite: "none",
-  maxAge: 1000 * 60 * 60, // 1 hour
+  maxAge: 1000 * 60 * 60,
 };
 
 const clearCookieOptions = {
@@ -153,8 +140,6 @@ const clearCookieOptions = {
 
 /* =========================================================
    POST /api/auth/session
-   Creates a session after MSAL login.
-   Blocks anyone not in the access table.
    ========================================================= */
 
 router.post("/session", async (req, res) => {
@@ -192,22 +177,6 @@ router.post("/session", async (req, res) => {
 
     const allowedDisciplines = await getAllowedDisciplines(email);
 
-    // 🚫 Whitelist enforcement — user must be in the access table
-    if (!allowedDisciplines || allowedDisciplines.length === 0) {
-      console.warn("LOGIN BLOCKED — no access row for:", email);
-
-      // Ensure no stale session lingers
-      res.clearCookie("session_token", clearCookieOptions);
-      res.clearCookie("user_email", clearCookieOptions);
-
-      return res.status(403).json({
-        ok: false,
-        authenticated: false,
-        message:
-          "You are not authorized to use Skill Matrix. Please contact the administrator.",
-      });
-    }
-
     res.cookie("session_token", id_token, cookieOptions);
     res.cookie("user_email", email, cookieOptions);
 
@@ -229,8 +198,6 @@ router.post("/session", async (req, res) => {
 
 /* =========================================================
    GET /api/auth/me
-   Returns current user. Re-checks whitelist on every call
-   so revoked users are kicked out even mid-session.
    ========================================================= */
 
 router.get("/me", async (req, res) => {
@@ -239,9 +206,7 @@ router.get("/me", async (req, res) => {
     const email = req.cookies.user_email;
 
     if (!token || !email) {
-      return res.status(401).json({
-        authenticated: false,
-      });
+      return res.status(401).json({ authenticated: false });
     }
 
     const decoded = decodeJwt(token);
@@ -258,26 +223,7 @@ router.get("/me", async (req, res) => {
     }
 
     const normalizedEmail = String(email).trim().toLowerCase();
-
-    const allowedDisciplines = await getAllowedDisciplines(
-      normalizedEmail
-    );
-
-    // 🚫 Kick out if access was revoked while session was active
-    if (!allowedDisciplines || allowedDisciplines.length === 0) {
-      console.warn(
-        "SESSION REVOKED — user no longer has access:",
-        normalizedEmail
-      );
-
-      res.clearCookie("session_token", clearCookieOptions);
-      res.clearCookie("user_email", clearCookieOptions);
-
-      return res.status(403).json({
-        authenticated: false,
-        message: "You are not authorized to use Skill Matrix.",
-      });
-    }
+    const allowedDisciplines = await getAllowedDisciplines(normalizedEmail);
 
     return res.status(200).json({
       authenticated: true,
@@ -302,9 +248,7 @@ router.post("/logout", (req, res) => {
   res.clearCookie("session_token", clearCookieOptions);
   res.clearCookie("user_email", clearCookieOptions);
 
-  return res.json({
-    ok: true,
-  });
+  return res.json({ ok: true });
 });
 
 export default router;
