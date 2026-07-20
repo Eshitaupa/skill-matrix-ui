@@ -130,6 +130,7 @@ border: 1px solid var(--color-base-300);
   }
   .smf-bar select {
       border-color: var(--color-primary);
+          box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 18%, transparent);
     appearance: none;
     -webkit-appearance: none;
     min-width: 180px;
