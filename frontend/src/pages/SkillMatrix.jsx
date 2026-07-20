@@ -638,12 +638,14 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
     async function loadMeta() {
       try {
         const res = await fetch(`${API_SKILL}/meta`, {
-          method: "GET",
-          credentials: "include",
-          headers: {
-            Accept: "application/json",
-          },
-        });
+  method: "GET",
+  credentials: "include",
+  cache: "no-store",
+  headers: {
+    Accept: "application/json",
+    "Cache-Control": "no-cache",
+  },
+});
 
         if (!res.ok) {
           console.error("META API FAILED:", res.status, await safeText(res));

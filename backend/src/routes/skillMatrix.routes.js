@@ -435,7 +435,11 @@ function levelsForRole(role) {
 // });
 router.get("/meta", async (req, res) => {
   try {
-    console.log("META ROUTE HIT");
+    res.set({
+      "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+      Pragma: "no-cache",
+      Expires: "0",
+    });
 
     const allowedDisciplines =
       await getAllowedDisciplinesForRequest(req);
@@ -443,7 +447,11 @@ router.get("/meta", async (req, res) => {
     const visibleDisciplines = allowedDisciplines.includes("All")
       ? DISCIPLINES
       : DISCIPLINES.filter((discipline) =>
-          allowedDisciplines.includes(discipline)
+          allowedDisciplines.some(
+            (allowed) =>
+              norm(allowed).toLowerCase() ===
+              norm(discipline).toLowerCase()
+          )
         );
 
     return res.status(200).json({
@@ -460,7 +468,6 @@ router.get("/meta", async (req, res) => {
     });
   }
 });
-
 router.get("/", async (req, res) => {
   try {
     // const discipline = norm(req.query.discipline);
