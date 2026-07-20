@@ -48,24 +48,6 @@ const norm = (value) =>
     .trim()
     .replace(/\s+/g, " ");
 
-function getEmailCandidates(email) {
-  const normalizedEmail = String(email || "")
-    .trim()
-    .toLowerCase();
-
-  if (!normalizedEmail || !normalizedEmail.includes("@")) {
-    return [];
-  }
-
-  const [username] = normalizedEmail.split("@");
-
-  return [
-    normalizedEmail,
-    `${username}@burnsmcd.in`,
-    `${username}@burnsmcd.com`,
-  ].filter((value, index, array) => array.indexOf(value) === index);
-}
-
 async function getAllowedDisciplines(email) {
   const normalizedEmail = String(email || "")
     .trim()
@@ -79,24 +61,24 @@ async function getAllowedDisciplines(email) {
 
   const sql = `
     SELECT DISTINCT discipline
-    FROM ogc_techdept_test.skill_matrix.user_discipline_access
-    WHERE LOWER(TRIM(email)) = LOWER('${escapedEmail}')
+    FROM ${ACCESS_TABLE}
+    WHERE LOWER(TRIM(email)) = '${escapedEmail}'
       AND is_active = true
       AND discipline IS NOT NULL
   `;
 
-  console.log("AUTH ACCESS EMAIL:", normalizedEmail);
+  console.log("LOOKING UP ACCESS FOR:", normalizedEmail);
 
   const rows = await queryDatabricks(sql);
+
+  console.log("RAW ACCESS ROWS:", rows);
 
   const disciplines = (rows || [])
     .map((row) => String(row?.[0] || "").trim())
     .filter(Boolean);
 
-  console.log("AUTH ACCESS RESULT:", disciplines);
+  console.log("FINAL DISCIPLINES:", disciplines);
 
-  // Your business rule:
-  // No database row means access to every discipline.
   if (disciplines.length === 0) {
     return ["All"];
   }
@@ -119,17 +101,23 @@ function decodeJwt(token) {
 }
 
 function extractEmail(decoded) {
-  return (
+  const email =
     decoded?.preferred_username ||
     decoded?.upn ||
     decoded?.email ||
     decoded?.unique_name ||
-    ""
-  )
+    "";
+
+  console.log("TOKEN preferred_username:", decoded?.preferred_username);
+  console.log("TOKEN upn:", decoded?.upn);
+  console.log("TOKEN email:", decoded?.email);
+  console.log("TOKEN unique_name:", decoded?.unique_name);
+  console.log("FINAL EXTRACTED EMAIL:", email);
+
+  return String(email)
     .trim()
     .toLowerCase();
 }
-
 function validateToken(decoded) {
   if (!decoded) {
     return {
@@ -189,6 +177,7 @@ router.post("/session", async(req, res) => {
     }
 
     const email = extractEmail(decoded);
+console.log("SESSION EMAIL USED FOR ACCESS:", email);
 
     if (!email) {
       return res.status(401).json({
