@@ -328,7 +328,46 @@ const router = express.Router();
 
 const UPLOAD = "ogc_techdept_test.skill_matrix.skill_matrix_upload";
 const HISTORY = "ogc_techdept_test.skill_matrix.skill_matrix_history";
+const ACCESS_TABLE =
+  "ogc_techdept_test.skill_matrix.user_discipline_access";
 
+const escSql = (v) => String(v ?? "").replaceAll("'", "''");
+
+async function getAllowedDisciplinesFromAccessTable(email) {
+  const normalizedEmail = String(email || "").trim().toLowerCase();
+
+  if (!normalizedEmail) {
+    return [];
+  }
+
+  const sql = `
+    SELECT discipline
+    FROM ${ACCESS_TABLE}
+    WHERE lower(email) = lower('${escSql(normalizedEmail)}')
+      AND is_active = true
+  `;
+
+  const rows = await queryDatabricks(sql);
+
+  return rows
+    .map((row) => String(row[0] || "").trim())
+    .filter(Boolean);
+}
+
+async function getAllowedDisciplinesForRequest(req) {
+  const email = String(req.cookies?.user_email || "")
+    .trim()
+    .toLowerCase();
+
+  const allowedDisciplines =
+    await getAllowedDisciplinesFromAccessTable(email);
+
+  if (!allowedDisciplines || allowedDisciplines.length === 0) {
+    return ["All"];
+  }
+
+  return allowedDisciplines;
+}
 const DISCIPLINES = [
   "Project Management",
   "Process",
@@ -386,24 +425,81 @@ function levelsForRole(role) {
     : ENGINEER_LEVELS;
 }
 
-router.get("/meta", (req, res) => {
-  console.log("META ROUTE HIT");
+// router.get("/meta", (req, res) => {
+//   console.log("META ROUTE HIT");
 
-  return res.status(200).json({
-    disciplines: DISCIPLINES,
-    roles: ROLES,
-  });
+//   return res.status(200).json({
+//     disciplines: DISCIPLINES,
+//     roles: ROLES,
+//   });
+// });
+router.get("/meta", async (req, res) => {
+  try {
+    console.log("META ROUTE HIT");
+
+    const allowedDisciplines =
+      await getAllowedDisciplinesForRequest(req);
+
+    const visibleDisciplines = allowedDisciplines.includes("All")
+      ? DISCIPLINES
+      : DISCIPLINES.filter((discipline) =>
+          allowedDisciplines.includes(discipline)
+        );
+
+    return res.status(200).json({
+      disciplines: visibleDisciplines,
+      roles: ROLES,
+      allowedDisciplines,
+    });
+  } catch (err) {
+    console.error("META ERROR:", err);
+
+    return res.status(500).json({
+      message: "Meta fetch failed",
+      error: err.response?.data || err.message,
+    });
+  }
 });
-
 
 router.get("/", async (req, res) => {
   try {
-    const discipline = norm(req.query.discipline);
-    const role = norm(req.query.role);
+    // const discipline = norm(req.query.discipline);
+    // const role = norm(req.query.role);
 
-    const dFilter = discipline
-      ? ` AND ${normKeySql("Discipline")} = LOWER('${esc(discipline)}') `
-      : "";
+    // const dFilter = discipline
+    //   ? ` AND ${normKeySql("Discipline")} = LOWER('${esc(discipline)}') `
+    //   : "";
+const requestedDiscipline = norm(req.query.discipline);
+const role = norm(req.query.role);
+
+const allowedDisciplines =
+  await getAllowedDisciplinesForRequest(req);
+
+let effectiveDiscipline = requestedDiscipline;
+
+if (!allowedDisciplines.includes("All")) {
+  if (
+    requestedDiscipline &&
+    !allowedDisciplines.includes(requestedDiscipline)
+  ) {
+    return res.status(403).json({
+      message: "You do not have access to this discipline",
+      allowedDisciplines,
+    });
+  }
+
+  if (!requestedDiscipline && allowedDisciplines.length === 1) {
+    effectiveDiscipline = allowedDisciplines[0];
+  }
+}
+
+const dFilter = effectiveDiscipline
+  ? ` AND ${normKeySql("Discipline")} = LOWER('${esc(effectiveDiscipline)}') `
+  : !allowedDisciplines.includes("All")
+    ? ` AND ${normDispSql("Discipline")} IN (${allowedDisciplines
+        .map((d) => `'${esc(d)}'`)
+        .join(", ")}) `
+    : "";
 
     const rFilter = role
       ? ` AND ${normKeySql("Role")} = LOWER('${esc(role)}') `

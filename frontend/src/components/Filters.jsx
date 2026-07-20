@@ -644,12 +644,13 @@ function Filters({
       </span>
 
       {/* Discipline */}
-      <select
-        className="smf-select"
-        aria-label="Select discipline"
-        value={filters.discipline || ""}
-        onChange={handleDisciplineChange}
-      >
+ <select
+  className="smf-select"
+  aria-label="Select discipline"
+  value={filters.discipline || ""}
+  onChange={handleDisciplineChange}
+  disabled={disciplineOptions.length === 1}
+>
         {disciplineOptions.length !== 1 && (
           <option value="">Discipline</option>
         )}
