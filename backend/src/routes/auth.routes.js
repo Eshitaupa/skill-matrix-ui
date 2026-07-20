@@ -1,44 +1,14 @@
 import express from "express";
 import { queryDatabricks } from "../db/databricks.js";
+
 const router = express.Router();
 
-// const USER_DISCIPLINE_ACCESS = {
-//   "pnshinde@burnsmcd.in": ["Project Management"],
-//   "akdalal@burnsmcd.in": ["Process"],
-//   "ndkhandale@burnsmcd.in": ["Process"],
-//   "saharchandani@burnsmcd.in": ["Process"],
-
-//   "tvmahale@burnsmcd.in": ["Mechanical"],
-//   "jssahoo@burnsmcd.in": ["Mechanical"],
-
-//   "mjsawant@burnsmcd.in": ["CSA"],
-//   "ptbhosale@burnsmcd.in": ["CSA"],
-//   "ambane@burnsmcd.in": ["CSA"],
-//   "sswale@burnsmcd.in": ["CSA"],
-
-//   "vatelkar@burnsmcd.in": ["Piping Design"],
-//   "mringulkar@burnsmcd.in": ["Piping Design"],
-//   "sbbabar@burnsmcd.in": ["Piping Design"],
-
-//   "hpdoshi@burnsmcd.in": ["Piping Engineering"],
-//   "svboppa@burnsmcd.in": ["Piping Engineering"],
-
-//   "jkshirodkar@burnsmcd.in": ["Instrumentation"],
-//   "kpsave@burnsmcd.in": ["Instrumentation"],
-
-//   "mchakrabartti@burnsmcd.in": ["Electrical"],
-//   "vsvyas@burnsmcd.in": ["Electrical"],
-//   "dmpatil@burnsmcd.in": ["Electrical"],
-
-//   // "esupadhyaya@burnsmcd.in": ["Electrical"],
-// // "esupadhyaya@burnsmcd.com": ["Electrical"],
-// };
-
-// function getAllowedDisciplines(email) {
-//   return USER_DISCIPLINE_ACCESS[email] || ["All"];
-// }
 const ACCESS_TABLE =
   "ogc_techdept_test.skill_matrix.user_discipline_access";
+
+/* =========================================================
+   HELPERS
+   ========================================================= */
 
 const escSql = (value) =>
   String(value ?? "").replaceAll("'", "''");
@@ -50,20 +20,35 @@ const norm = (value) =>
 
 function getEmailCandidates(email) {
   const normalizedEmail = String(email || "").trim().toLowerCase();
-  if (!normalizedEmail || !normalizedEmail.includes("@")) return [];
+
+  if (!normalizedEmail || !normalizedEmail.includes("@")) {
+    return [];
+  }
+
   const [username] = normalizedEmail.split("@");
+
   return [
     normalizedEmail,
     `${username}@burnsmcd.in`,
     `${username}@burnsmcd.com`,
-  ].filter((v, i, a) => a.indexOf(v) === i);
+  ].filter((value, index, array) => array.indexOf(value) === index);
 }
+
+/* =========================================================
+   ACCESS LOOKUP
+   Strict whitelist — no fallback. No row = no access.
+   ========================================================= */
 
 async function getAllowedDisciplines(email) {
   const candidates = getEmailCandidates(email);
-  if (candidates.length === 0) throw new Error("Email is missing");
 
-  const inClause = candidates.map((e) => `'${e.replaceAll("'", "''")}'`).join(", ");
+  if (candidates.length === 0) {
+    return [];
+  }
+
+  const inClause = candidates
+    .map((e) => `'${escSql(e)}'`)
+    .join(", ");
 
   const sql = `
     SELECT DISTINCT discipline
@@ -74,7 +59,9 @@ async function getAllowedDisciplines(email) {
   `;
 
   console.log("LOOKING UP ACCESS FOR:", candidates);
+
   const rows = await queryDatabricks(sql);
+
   console.log("RAW ACCESS ROWS:", rows);
 
   const disciplines = (rows || [])
@@ -83,9 +70,14 @@ async function getAllowedDisciplines(email) {
 
   console.log("FINAL DISCIPLINES:", disciplines);
 
-  if (disciplines.length === 0) return ["All"];
+  // 🚫 No fallback. Empty array = user not authorized.
   return disciplines;
 }
+
+/* =========================================================
+   JWT / TOKEN HELPERS
+   ========================================================= */
+
 function decodeJwt(token) {
   try {
     const payload = token.split(".")[1];
@@ -94,7 +86,9 @@ function decodeJwt(token) {
       return null;
     }
 
-    return JSON.parse(Buffer.from(payload, "base64url").toString("utf8"));
+    return JSON.parse(
+      Buffer.from(payload, "base64url").toString("utf8")
+    );
   } catch (err) {
     console.error("JWT decode failed:", err);
     return null;
@@ -115,10 +109,9 @@ function extractEmail(decoded) {
   console.log("TOKEN unique_name:", decoded?.unique_name);
   console.log("FINAL EXTRACTED EMAIL:", email);
 
-  return String(email)
-    .trim()
-    .toLowerCase();
+  return String(email).trim().toLowerCase();
 }
+
 function validateToken(decoded) {
   if (!decoded) {
     return {
@@ -141,11 +134,15 @@ function validateToken(decoded) {
   };
 }
 
+/* =========================================================
+   COOKIE CONFIG
+   ========================================================= */
+
 const cookieOptions = {
   httpOnly: true,
   secure: true,
   sameSite: "none",
-  maxAge: 1000 * 60 * 60,
+  maxAge: 1000 * 60 * 60, // 1 hour
 };
 
 const clearCookieOptions = {
@@ -154,7 +151,13 @@ const clearCookieOptions = {
   sameSite: "none",
 };
 
-router.post("/session", async(req, res) => {
+/* =========================================================
+   POST /api/auth/session
+   Creates a session after MSAL login.
+   Blocks anyone not in the access table.
+   ========================================================= */
+
+router.post("/session", async (req, res) => {
   try {
     console.log("POST /api/auth/session");
 
@@ -178,7 +181,7 @@ router.post("/session", async(req, res) => {
     }
 
     const email = extractEmail(decoded);
-console.log("SESSION EMAIL USED FOR ACCESS:", email);
+    console.log("SESSION EMAIL USED FOR ACCESS:", email);
 
     if (!email) {
       return res.status(401).json({
@@ -187,17 +190,33 @@ console.log("SESSION EMAIL USED FOR ACCESS:", email);
       });
     }
 
-const allowedDisciplines = await getAllowedDisciplines(email);
+    const allowedDisciplines = await getAllowedDisciplines(email);
 
-res.cookie("session_token", id_token, cookieOptions);
-res.cookie("user_email", email, cookieOptions);
+    // 🚫 Whitelist enforcement — user must be in the access table
+    if (!allowedDisciplines || allowedDisciplines.length === 0) {
+      console.warn("LOGIN BLOCKED — no access row for:", email);
 
-return res.json({
-  ok: true,
-  authenticated: true,
-  email,
-  allowedDisciplines,
-});
+      // Ensure no stale session lingers
+      res.clearCookie("session_token", clearCookieOptions);
+      res.clearCookie("user_email", clearCookieOptions);
+
+      return res.status(403).json({
+        ok: false,
+        authenticated: false,
+        message:
+          "You are not authorized to use Skill Matrix. Please contact the administrator.",
+      });
+    }
+
+    res.cookie("session_token", id_token, cookieOptions);
+    res.cookie("user_email", email, cookieOptions);
+
+    return res.json({
+      ok: true,
+      authenticated: true,
+      email,
+      allowedDisciplines,
+    });
   } catch (err) {
     console.error("SESSION ERROR:", err);
 
@@ -208,45 +227,77 @@ return res.json({
   }
 });
 
-// Current User
+/* =========================================================
+   GET /api/auth/me
+   Returns current user. Re-checks whitelist on every call
+   so revoked users are kicked out even mid-session.
+   ========================================================= */
+
 router.get("/me", async (req, res) => {
-  const token = req.cookies.session_token;
-  const email = req.cookies.user_email;
+  try {
+    const token = req.cookies.session_token;
+    const email = req.cookies.user_email;
 
-  if (!token || !email) {
-    return res.status(401).json({
+    if (!token || !email) {
+      return res.status(401).json({
+        authenticated: false,
+      });
+    }
+
+    const decoded = decodeJwt(token);
+    const validation = validateToken(decoded);
+
+    if (!validation.valid) {
+      res.clearCookie("session_token", clearCookieOptions);
+      res.clearCookie("user_email", clearCookieOptions);
+
+      return res.status(401).json({
+        authenticated: false,
+        message: validation.reason,
+      });
+    }
+
+    const normalizedEmail = String(email).trim().toLowerCase();
+
+    const allowedDisciplines = await getAllowedDisciplines(
+      normalizedEmail
+    );
+
+    // 🚫 Kick out if access was revoked while session was active
+    if (!allowedDisciplines || allowedDisciplines.length === 0) {
+      console.warn(
+        "SESSION REVOKED — user no longer has access:",
+        normalizedEmail
+      );
+
+      res.clearCookie("session_token", clearCookieOptions);
+      res.clearCookie("user_email", clearCookieOptions);
+
+      return res.status(403).json({
+        authenticated: false,
+        message: "You are not authorized to use Skill Matrix.",
+      });
+    }
+
+    return res.status(200).json({
+      authenticated: true,
+      email: normalizedEmail,
+      allowedDisciplines,
+    });
+  } catch (err) {
+    console.error("ME ERROR:", err);
+
+    return res.status(500).json({
       authenticated: false,
+      message: "Failed to load session",
     });
   }
-
-  const decoded = decodeJwt(token);
-  const validation = validateToken(decoded);
-
-  if (!validation.valid) {
-res.clearCookie("session_token", clearCookieOptions);
-res.clearCookie("user_email", clearCookieOptions);
-
-    return res.status(401).json({
-      authenticated: false,
-      message: validation.reason,
-    });
-  }
-
-const normalizedEmail = String(email)
-  .trim()
-  .toLowerCase();
-
-const allowedDisciplines =
-  await getAllowedDisciplines(normalizedEmail);
-
-return res.status(200).json({
-  authenticated: true,
-  email: normalizedEmail,
-  allowedDisciplines,
-});
 });
 
-// Logout
+/* =========================================================
+   POST /api/auth/logout
+   ========================================================= */
+
 router.post("/logout", (req, res) => {
   res.clearCookie("session_token", clearCookieOptions);
   res.clearCookie("user_email", clearCookieOptions);

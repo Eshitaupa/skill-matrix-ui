@@ -318,12 +318,17 @@
 // });
 
 // export default router;
+
 import express from "express";
 import { queryDatabricks } from "../db/databricks.js";
 
 const router = express.Router();
 
 console.log("SKILL MATRIX ROUTES LOADED");
+
+/* =========================================================
+   CONSTANTS
+   ========================================================= */
 
 const UPLOAD =
   "ogc_techdept_test.skill_matrix.skill_matrix_upload";
@@ -348,31 +353,13 @@ const DISCIPLINES = [
 const ROLES = ["Engineer", "Designer"];
 
 const ENGINEER_LEVELS = [
-  "L7",
-  "L8",
-  "L9",
-  "L10",
-  "L11",
-  "L12",
-  "L13",
-  "L14",
-  "L15",
-  "L16",
-  "L17",
+  "L7", "L8", "L9", "L10", "L11",
+  "L12", "L13", "L14", "L15", "L16", "L17",
 ];
 
 const DESIGNER_LEVELS = [
-  "L5",
-  "L6",
-  "L7",
-  "L8",
-  "L9",
-  "L10",
-  "L11",
-  "L12",
-  "L13",
-  "L14",
-  "L15",
+  "L5", "L6", "L7", "L8", "L9",
+  "L10", "L11", "L12", "L13", "L14", "L15",
 ];
 
 /* =========================================================
@@ -387,8 +374,7 @@ const norm = (value) =>
     .trim()
     .replace(/\s+/g, " ");
 
-const keyOf = (value) =>
-  norm(value).toLowerCase();
+const keyOf = (value) => norm(value).toLowerCase();
 
 const normDispSql = (column) =>
   `TRIM(REGEXP_REPLACE(${column}, '\\\\s+', ' '))`;
@@ -402,10 +388,6 @@ function getUserEmail(req) {
     .toLowerCase();
 }
 
-function getChangedBy(req) {
-  return getUserEmail(req) || "unknown";
-}
-
 function levelsForRole(role) {
   return keyOf(role) === "designer"
     ? DESIGNER_LEVELS
@@ -413,36 +395,29 @@ function levelsForRole(role) {
 }
 
 function hasAllAccess(allowedDisciplines) {
-  return allowedDisciplines.some((discipline) => {
+  return (allowedDisciplines || []).some((discipline) => {
     const value = keyOf(discipline);
-
     return value === "all" || value === "all disciplines";
   });
 }
 
-function isDisciplineAllowed(
-  requestedDiscipline,
-  allowedDisciplines
-) {
-  if (hasAllAccess(allowedDisciplines)) {
-    return true;
-  }
+function isDisciplineAllowed(requestedDiscipline, allowedDisciplines) {
+  if (hasAllAccess(allowedDisciplines)) return true;
 
   const requestedKey = keyOf(requestedDiscipline);
 
-  return allowedDisciplines.some(
+  return (allowedDisciplines || []).some(
     (allowed) => keyOf(allowed) === requestedKey
   );
 }
 
 /* =========================================================
    ACCESS LOOKUP
+   Strict whitelist — no fallback.
    ========================================================= */
 
 function getEmailCandidates(email) {
-  const normalizedEmail = String(email || "")
-    .trim()
-    .toLowerCase();
+  const normalizedEmail = String(email || "").trim().toLowerCase();
 
   if (!normalizedEmail || !normalizedEmail.includes("@")) {
     return [];
@@ -456,11 +431,12 @@ function getEmailCandidates(email) {
     `${username}@burnsmcd.com`,
   ].filter((value, index, array) => array.indexOf(value) === index);
 }
+
 async function getAllowedDisciplinesFromAccessTable(email) {
   const candidates = getEmailCandidates(email);
 
   if (candidates.length === 0) {
-    return ["All"];
+    return [];
   }
 
   const inClause = candidates
@@ -485,78 +461,62 @@ async function getAllowedDisciplinesFromAccessTable(email) {
 
   console.log("MATRIX ACCESS RESULT:", disciplines);
 
-  if (disciplines.length === 0) {
-    return ["All"];
-  }
-
+  // 🚫 No fallback. Empty = unauthorized.
   return disciplines;
 }
+
 async function getAccessForRequest(req) {
   const email = getUserEmail(req);
 
   console.log("ACCESS CHECK EMAIL:", email);
 
   if (!email) {
-    return {
-      email: "",
-      allowedDisciplines: [],
-    };
+    return { email: "", allowedDisciplines: [] };
   }
 
   const allowedDisciplines =
     await getAllowedDisciplinesFromAccessTable(email);
 
-  console.log(
-    "ACCESS CHECK DISCIPLINES:",
-    allowedDisciplines
-  );
+  console.log("ACCESS CHECK DISCIPLINES:", allowedDisciplines);
 
-  return {
-    email,
-    allowedDisciplines,
-  };
+  return { email, allowedDisciplines };
 }
 
-async function requireDisciplineAccess(
-  req,
-  res,
-  requestedDiscipline
-) {
-  const { email, allowedDisciplines } =
-    await getAccessForRequest(req);
+async function requireDisciplineAccess(req, res, requestedDiscipline) {
+  const { email, allowedDisciplines } = await getAccessForRequest(req);
 
   if (!email) {
     res.status(401).json({
       message:
         "User session email is missing. Please log out and log in again.",
     });
+    return null;
+  }
 
+  // 🚫 User not in whitelist — block everything
+  if (!allowedDisciplines || allowedDisciplines.length === 0) {
+    res.status(403).json({
+      message: "You are not authorized to use Skill Matrix.",
+    });
     return null;
   }
 
   if (
     requestedDiscipline &&
-    !isDisciplineAllowed(
-      requestedDiscipline,
-      allowedDisciplines
-    )
+    !isDisciplineAllowed(requestedDiscipline, allowedDisciplines)
   ) {
     res.status(403).json({
-      message:
-        "You do not have access to this discipline.",
+      message: "You do not have access to this discipline.",
       allowedDisciplines,
     });
-
     return null;
   }
 
-  return {
-    email,
-    allowedDisciplines,
-  };
+  return { email, allowedDisciplines };
 }
+
 /* =========================================================
-   META
+   GET /api/skill-matrix/meta
    Returns only disciplines the current user can access.
    ========================================================= */
 
@@ -570,26 +530,16 @@ router.get("/meta", async (req, res) => {
       SurrogateControl: "no-store",
     });
 
-    const access = await requireDisciplineAccess(
-      req,
-      res,
-      ""
-    );
-
-    if (!access) {
-      return;
-    }
+    const access = await requireDisciplineAccess(req, res, "");
+    if (!access) return;
 
     const { email, allowedDisciplines } = access;
 
-    const visibleDisciplines = hasAllAccess(
-      allowedDisciplines
-    )
+    const visibleDisciplines = hasAllAccess(allowedDisciplines)
       ? DISCIPLINES
       : DISCIPLINES.filter((discipline) =>
           allowedDisciplines.some(
-            (allowed) =>
-              keyOf(allowed) === keyOf(discipline)
+            (allowed) => keyOf(allowed) === keyOf(discipline)
           )
         );
 
@@ -601,10 +551,7 @@ router.get("/meta", async (req, res) => {
     });
   } catch (err) {
     console.error("META ERROR:", err);
-    console.error(
-      "META ERROR DATA:",
-      err.response?.data
-    );
+    console.error("META ERROR DATA:", err.response?.data);
 
     return res.status(500).json({
       message: "Meta fetch failed",
@@ -617,15 +564,13 @@ router.get("/meta", async (req, res) => {
 });
 
 /* =========================================================
-   GET MATRIX DATA
+   GET /api/skill-matrix
+   Returns matrix data filtered by user's allowed disciplines.
    ========================================================= */
 
 router.get("/", async (req, res) => {
   try {
-    const requestedDiscipline = norm(
-      req.query.discipline
-    );
-
+    const requestedDiscipline = norm(req.query.discipline);
     const role = norm(req.query.role);
 
     const access = await requireDisciplineAccess(
@@ -633,10 +578,7 @@ router.get("/", async (req, res) => {
       res,
       requestedDiscipline
     );
-
-    if (!access) {
-      return;
-    }
+    if (!access) return;
 
     const { allowedDisciplines } = access;
 
@@ -647,8 +589,7 @@ router.get("/", async (req, res) => {
       !hasAllAccess(allowedDisciplines) &&
       allowedDisciplines.length === 1
     ) {
-      effectiveDiscipline =
-        allowedDisciplines[0];
+      effectiveDiscipline = allowedDisciplines[0];
     }
 
     let disciplineFilter = "";
@@ -661,14 +602,12 @@ router.get("/", async (req, res) => {
     } else if (!hasAllAccess(allowedDisciplines)) {
       const allowedSql = allowedDisciplines
         .map(
-          (discipline) =>
-            `LOWER('${esc(norm(discipline))}')`
+          (discipline) => `LOWER('${esc(norm(discipline))}')`
         )
         .join(", ");
 
       disciplineFilter = `
-        AND ${normKeySql("Discipline")}
-          IN (${allowedSql})
+        AND ${normKeySql("Discipline")} IN (${allowedSql})
       `;
     }
 
@@ -734,22 +673,12 @@ router.get("/", async (req, res) => {
       ),
 
       all_keys AS (
-        SELECT
-          Discipline,
-          Role,
-          LevelKey,
-          SkillKey,
-          SubskillKey
+        SELECT Discipline, Role, LevelKey, SkillKey, SubskillKey
         FROM base
 
         UNION
 
-        SELECT
-          Discipline,
-          Role,
-          LevelKey,
-          SkillKey,
-          SubskillKey
+        SELECT Discipline, Role, LevelKey, SkillKey, SubskillKey
         FROM latest_history
       ),
 
@@ -759,23 +688,12 @@ router.get("/", async (req, res) => {
           keys.Role,
           keys.LevelKey,
 
-          COALESCE(
-            history.SkillDisp,
-            base.SkillDisp
-          ) AS Skill,
-
-          COALESCE(
-            history.SubskillDisp,
-            base.SubskillDisp
-          ) AS Subskill,
+          COALESCE(history.SkillDisp, base.SkillDisp) AS Skill,
+          COALESCE(history.SubskillDisp, base.SubskillDisp) AS Subskill,
 
           CASE
-            WHEN history.action = 'DELETE'
-              THEN NULL
-
-            WHEN history.new_value IS NOT NULL
-              THEN history.new_value
-
+            WHEN history.action = 'DELETE' THEN NULL
+            WHEN history.new_value IS NOT NULL THEN history.new_value
             ELSE base.Value
           END AS Value,
 
@@ -811,10 +729,7 @@ router.get("/", async (req, res) => {
 
       WHERE Value IS NOT NULL
 
-      ORDER BY
-        Skill,
-        Subskill,
-        LevelKey
+      ORDER BY Skill, Subskill, LevelKey
     `;
 
     const rows = await queryDatabricks(sql);
@@ -832,10 +747,7 @@ router.get("/", async (req, res) => {
     );
   } catch (err) {
     console.error("MATRIX ERROR:", err);
-    console.error(
-      "MATRIX ERROR DATA:",
-      err.response?.data
-    );
+    console.error("MATRIX ERROR DATA:", err.response?.data);
 
     return res.status(500).json({
       message: "Matrix fetch failed",
@@ -845,20 +757,16 @@ router.get("/", async (req, res) => {
 });
 
 /* =========================================================
-   SAVE / UPDATE / ADD
+   POST /api/skill-matrix/save
+   Save / Update / Add cells.
    ========================================================= */
 
 router.post("/save", async (req, res) => {
   try {
     const requestRows = req.body;
 
-    if (
-      !Array.isArray(requestRows) ||
-      requestRows.length === 0
-    ) {
-      return res.status(400).json({
-        message: "Invalid payload",
-      });
+    if (!Array.isArray(requestRows) || requestRows.length === 0) {
+      return res.status(400).json({ message: "Invalid payload" });
     }
 
     const cleanedRows = requestRows.map((row) => ({
@@ -884,27 +792,16 @@ router.post("/save", async (req, res) => {
       }
     }
 
-    const access = await requireDisciplineAccess(
-      req,
-      res,
-      ""
-    );
-
-    if (!access) {
-      return;
-    }
+    const access = await requireDisciplineAccess(req, res, "");
+    if (!access) return;
 
     for (const row of cleanedRows) {
       if (
-        !isDisciplineAllowed(
-          row.Discipline,
-          access.allowedDisciplines
-        )
+        !isDisciplineAllowed(row.Discipline, access.allowedDisciplines)
       ) {
         return res.status(403).json({
           message: `You do not have access to ${row.Discipline}.`,
-          allowedDisciplines:
-            access.allowedDisciplines,
+          allowedDisciplines: access.allowedDisciplines,
         });
       }
     }
@@ -915,20 +812,11 @@ router.post("/save", async (req, res) => {
       .map(
         (row) => `
           SELECT
-            '${esc(row.Discipline)}'
-              AS Discipline,
-
-            '${esc(row.Role)}'
-              AS Role,
-
-            '${esc(row.LevelKey)}'
-              AS LevelKey,
-
-            '${esc(row.Skill)}'
-              AS Skill,
-
-            '${esc(row.Subskill)}'
-              AS Subskill,
+            '${esc(row.Discipline)}' AS Discipline,
+            '${esc(row.Role)}' AS Role,
+            '${esc(row.LevelKey)}' AS LevelKey,
+            '${esc(row.Skill)}' AS Skill,
+            '${esc(row.Subskill)}' AS Subskill,
 
             (
               SELECT Value
@@ -938,19 +826,14 @@ router.post("/save", async (req, res) => {
                   FROM ${UPLOAD}
                   WHERE ${normKeySql("Discipline")}
                     = LOWER('${esc(row.Discipline)}')
-
                     AND ${normKeySql("Role")}
                     = LOWER('${esc(row.Role)}')
-
                     AND ${normKeySql("LevelKey")}
                     = LOWER('${esc(row.LevelKey)}')
-
                     AND ${normKeySql("Skill")}
                     = LOWER('${esc(row.Skill)}')
-
                     AND ${normKeySql("Subskill")}
                     = LOWER('${esc(row.Subskill)}')
-
                   LIMIT 1
                 ),
 
@@ -959,25 +842,18 @@ router.post("/save", async (req, res) => {
                     new_value,
                     action,
                     changed_at,
-
                     ROW_NUMBER() OVER (
                       ORDER BY changed_at DESC
                     ) AS rn
-
                   FROM ${HISTORY}
-
                   WHERE ${normKeySql("Discipline")}
                     = LOWER('${esc(row.Discipline)}')
-
                     AND ${normKeySql("Role")}
                     = LOWER('${esc(row.Role)}')
-
                     AND ${normKeySql("LevelKey")}
                     = LOWER('${esc(row.LevelKey)}')
-
                     AND ${normKeySql("Skill")}
                     = LOWER('${esc(row.Skill)}')
-
                     AND ${normKeySql("Subskill")}
                     = LOWER('${esc(row.Subskill)}')
                 ),
@@ -991,61 +867,42 @@ router.post("/save", async (req, res) => {
                 SELECT
                   CASE
                     WHEN (
-                      SELECT action
-                      FROM latest_history
-                    ) = 'DELETE'
-                      THEN NULL
+                      SELECT action FROM latest_history
+                    ) = 'DELETE' THEN NULL
 
                     WHEN (
-                      SELECT new_value
-                      FROM latest_history
+                      SELECT new_value FROM latest_history
                     ) IS NOT NULL
-                      THEN (
-                        SELECT new_value
-                        FROM latest_history
-                      )
+                      THEN (SELECT new_value FROM latest_history)
 
-                    ELSE (
-                      SELECT Value
-                      FROM base_value
-                    )
+                    ELSE (SELECT Value FROM base_value)
                   END AS Value
               )
             ) AS old_value,
 
-            '${esc(row.Value)}'
-              AS new_value,
+            '${esc(row.Value)}' AS new_value,
 
             CASE
               WHEN (
                 SELECT COUNT(*)
                 FROM ${UPLOAD}
-
                 WHERE ${normKeySql("Discipline")}
                   = LOWER('${esc(row.Discipline)}')
-
                   AND ${normKeySql("Role")}
                   = LOWER('${esc(row.Role)}')
-
                   AND ${normKeySql("LevelKey")}
                   = LOWER('${esc(row.LevelKey)}')
-
                   AND ${normKeySql("Skill")}
                   = LOWER('${esc(row.Skill)}')
-
                   AND ${normKeySql("Subskill")}
                   = LOWER('${esc(row.Subskill)}')
-              ) > 0
-                THEN 'UPDATE'
+              ) > 0 THEN 'UPDATE'
 
               ELSE 'INSERT'
             END AS action,
 
-            CURRENT_TIMESTAMP()
-              AS changed_at,
-
-            '${esc(changedBy)}'
-              AS changed_by
+            CURRENT_TIMESTAMP() AS changed_at,
+            '${esc(changedBy)}' AS changed_by
         `
       )
       .join("\nUNION ALL\n");
@@ -1077,10 +934,7 @@ router.post("/save", async (req, res) => {
     });
   } catch (err) {
     console.error("SAVE ERROR:", err);
-    console.error(
-      "SAVE ERROR DATA:",
-      err.response?.data
-    );
+    console.error("SAVE ERROR DATA:", err.response?.data);
 
     return res.status(500).json({
       message: "Save failed",
@@ -1090,29 +944,18 @@ router.post("/save", async (req, res) => {
 });
 
 /* =========================================================
-   DELETE FULL SUBSKILL ROW ACROSS ALL ROLE LEVELS
+   POST /api/skill-matrix/row/delete
+   Delete full subskill row across all role levels.
    ========================================================= */
 
 router.post("/row/delete", async (req, res) => {
   try {
-    const Discipline = norm(
-      req.body?.Discipline
-    );
-
+    const Discipline = norm(req.body?.Discipline);
     const Role = norm(req.body?.Role);
-
     const Skill = norm(req.body?.Skill);
+    const Subskill = norm(req.body?.Subskill);
 
-    const Subskill = norm(
-      req.body?.Subskill
-    );
-
-    if (
-      !Discipline ||
-      !Role ||
-      !Skill ||
-      !Subskill
-    ) {
+    if (!Discipline || !Role || !Skill || !Subskill) {
       return res.status(400).json({
         message: "Missing required fields",
       });
@@ -1123,48 +966,25 @@ router.post("/row/delete", async (req, res) => {
       res,
       Discipline
     );
-
-    if (!access) {
-      return;
-    }
+    if (!access) return;
 
     const changedBy = access.email;
-
     const roleLevels = levelsForRole(Role);
 
     const deleteRowsSql = roleLevels
       .map(
         (level) => `
           SELECT
-            '${esc(Discipline)}'
-              AS Discipline,
-
-            '${esc(Role)}'
-              AS Role,
-
-            '${esc(level)}'
-              AS LevelKey,
-
-            '${esc(Skill)}'
-              AS Skill,
-
-            '${esc(Subskill)}'
-              AS Subskill,
-
-            NULL
-              AS old_value,
-
-            NULL
-              AS new_value,
-
-            'DELETE'
-              AS action,
-
-            CURRENT_TIMESTAMP()
-              AS changed_at,
-
-            '${esc(changedBy)}'
-              AS changed_by
+            '${esc(Discipline)}' AS Discipline,
+            '${esc(Role)}' AS Role,
+            '${esc(level)}' AS LevelKey,
+            '${esc(Skill)}' AS Skill,
+            '${esc(Subskill)}' AS Subskill,
+            NULL AS old_value,
+            NULL AS new_value,
+            'DELETE' AS action,
+            CURRENT_TIMESTAMP() AS changed_at,
+            '${esc(changedBy)}' AS changed_by
         `
       )
       .join("\nUNION ALL\n");
@@ -1195,10 +1015,7 @@ router.post("/row/delete", async (req, res) => {
     });
   } catch (err) {
     console.error("DELETE ERROR:", err);
-    console.error(
-      "DELETE ERROR DATA:",
-      err.response?.data
-    );
+    console.error("DELETE ERROR DATA:", err.response?.data);
 
     return res.status(500).json({
       message: "Delete failed",
