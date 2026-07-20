@@ -67,36 +67,39 @@ function getEmailCandidates(email) {
 }
 
 async function getAllowedDisciplines(email) {
-  const candidates = getEmailCandidates(email);
+  const normalizedEmail = String(email || "")
+    .trim()
+    .toLowerCase();
 
-  console.log("AUTH ACCESS EMAIL RECEIVED:", email);
-  console.log("AUTH ACCESS EMAIL CANDIDATES:", candidates);
-
-  if (!candidates.length) {
-    return [];
+  if (!normalizedEmail) {
+    throw new Error("Email is missing");
   }
 
-  const candidateSql = candidates
-    .map((candidate) => `'${escSql(candidate)}'`)
-    .join(", ");
+  const escapedEmail = normalizedEmail.replaceAll("'", "''");
 
   const sql = `
     SELECT DISTINCT discipline
-    FROM ${ACCESS_TABLE}
-    WHERE LOWER(TRIM(email)) IN (${candidateSql})
+    FROM ogc_techdept_test.skill_matrix.user_discipline_access
+    WHERE LOWER(TRIM(email)) = LOWER('${escapedEmail}')
       AND is_active = true
       AND discipline IS NOT NULL
   `;
 
-  console.log("AUTH ACCESS SQL:", sql);
+  console.log("AUTH ACCESS EMAIL:", normalizedEmail);
 
   const rows = await queryDatabricks(sql);
 
   const disciplines = (rows || [])
-    .map((row) => norm(row?.[0]))
+    .map((row) => String(row?.[0] || "").trim())
     .filter(Boolean);
 
   console.log("AUTH ACCESS RESULT:", disciplines);
+
+  // Your business rule:
+  // No database row means access to every discipline.
+  if (disciplines.length === 0) {
+    return ["All"];
+  }
 
   return disciplines;
 }
@@ -196,19 +199,6 @@ router.post("/session", async(req, res) => {
 
 const allowedDisciplines = await getAllowedDisciplines(email);
 
-if (allowedDisciplines.length === 0) {
-  console.error("NO DISCIPLINE ACCESS FOUND FOR:", email);
-
-  return res.status(403).json({
-    ok: false,
-    authenticated: false,
-    email,
-    allowedDisciplines: [],
-    message:
-      "No active discipline access is assigned to this account.",
-  });
-}
-
 res.cookie("session_token", id_token, cookieOptions);
 res.cookie("user_email", email, cookieOptions);
 
@@ -258,16 +248,6 @@ const normalizedEmail = String(email)
 
 const allowedDisciplines =
   await getAllowedDisciplines(normalizedEmail);
-
-if (allowedDisciplines.length === 0) {
-  return res.status(403).json({
-    authenticated: false,
-    email: normalizedEmail,
-    allowedDisciplines: [],
-    message:
-      "No active discipline access is assigned to this account.",
-  });
-}
 
 return res.status(200).json({
   authenticated: true,

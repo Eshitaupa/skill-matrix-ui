@@ -458,28 +458,23 @@ function getEmailCandidates(email) {
 }
 
 async function getAllowedDisciplinesFromAccessTable(email) {
-  const candidates = getEmailCandidates(email);
+  const normalizedEmail = String(email || "")
+    .trim()
+    .toLowerCase();
 
-  console.log("MATRIX ACCESS EMAIL RECEIVED:", email);
-  console.log("MATRIX ACCESS EMAIL CANDIDATES:", candidates);
-
-  if (!candidates.length) {
+  if (!normalizedEmail) {
     return [];
   }
-
-  const candidateSql = candidates
-    .map((candidate) => `'${esc(candidate)}'`)
-    .join(", ");
 
   const sql = `
     SELECT DISTINCT discipline
     FROM ${ACCESS_TABLE}
-    WHERE LOWER(TRIM(email)) IN (${candidateSql})
+    WHERE LOWER(TRIM(email)) = LOWER('${esc(normalizedEmail)}')
       AND is_active = true
       AND discipline IS NOT NULL
   `;
 
-  console.log("MATRIX ACCESS SQL:", sql);
+  console.log("MATRIX ACCESS EMAIL:", normalizedEmail);
 
   const rows = await queryDatabricks(sql);
 
@@ -489,14 +484,13 @@ async function getAllowedDisciplinesFromAccessTable(email) {
 
   console.log("MATRIX ACCESS RESULT:", disciplines);
 
+  if (disciplines.length === 0) {
+    return ["All"];
+  }
+
   return disciplines;
 }
 
-function getNormalizedEmail(email) {
-  return String(email || "")
-    .trim()
-    .toLowerCase();
-}
 
 async function getAccessForRequest(req) {
   const email = getUserEmail(req);
@@ -541,15 +535,6 @@ async function requireDisciplineAccess(
     return null;
   }
 
-  if (allowedDisciplines.length === 0) {
-    res.status(403).json({
-      message:
-        "No active discipline access is assigned to this user.",
-    });
-
-    return null;
-  }
-
   if (
     requestedDiscipline &&
     !isDisciplineAllowed(
@@ -571,7 +556,6 @@ async function requireDisciplineAccess(
     allowedDisciplines,
   };
 }
-
 /* =========================================================
    META
    Returns only disciplines the current user can access.
