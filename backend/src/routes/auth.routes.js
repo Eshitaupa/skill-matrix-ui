@@ -1,5 +1,5 @@
 import express from "express";
-import { dbxQuery } from "../db/databricks.js";
+import { queryDatabricks } from "../db/databricks.js";
 const router = express.Router();
 
 // const USER_DISCIPLINE_ACCESS = {
@@ -42,17 +42,18 @@ async function getAllowedDisciplines(email) {
     const sql = `
       SELECT discipline
       FROM ogc_techdept_test.skill_matrix.user_discipline_access
-      WHERE lower(email) = lower(?)
+      WHERE lower(email) = lower('${email}')
         AND is_active = true
     `;
 
-    const rows = await dbxQuery(sql, [email]);
+    const rows = await queryDatabricks(sql);
 
     if (!rows || rows.length === 0) {
       return ["All"];
     }
 
-    return rows.map((r) => r.discipline);
+    return rows.map((r) => r[0]);
+
   } catch (err) {
     console.error("ACCESS LOOKUP ERROR:", err);
     return ["All"];
