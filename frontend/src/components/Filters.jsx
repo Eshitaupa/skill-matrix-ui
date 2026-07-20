@@ -190,8 +190,6 @@
 // export default Filters;
 
 
-
-
 const ROLE_LEVELS = {
   Engineer: [
     "L7",
@@ -228,6 +226,7 @@ function Filters({
   onExportPDF,
   canExport = false,
   disciplineOptions = [],
+  isDisciplineLocked = false,
 }) {
   const levelOptions = filters.role
     ? ROLE_LEVELS[filters.role] || []
@@ -649,9 +648,9 @@ function Filters({
   aria-label="Select discipline"
   value={filters.discipline || ""}
   onChange={handleDisciplineChange}
-  disabled={disciplineOptions.length === 1}
+  disabled={isDisciplineLocked}
 >
-        {disciplineOptions.length !== 1 && (
+        {!isDisciplineLocked && (
           <option value="">Discipline</option>
         )}
 

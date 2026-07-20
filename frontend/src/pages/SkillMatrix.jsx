@@ -633,6 +633,38 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
   const [modalLoading, setModalLoading] = useState(false);
   const [actionBusy, setActionBusy] = useState(false);
 
+  // The backend /meta response is the source of truth for discipline access.
+  const effectiveAllowedDisciplines = useMemo(() => {
+    if (
+      Array.isArray(meta.allowedDisciplines) &&
+      meta.allowedDisciplines.length > 0
+    ) {
+      return meta.allowedDisciplines.map(norm).filter(Boolean);
+    }
+
+    // Temporary fallback while /meta is loading.
+    return Array.isArray(allowedDisciplines)
+      ? allowedDisciplines.map(norm).filter(Boolean)
+      : [];
+  }, [meta.allowedDisciplines, allowedDisciplines]);
+
+  const disciplineOptions = useMemo(() => {
+    const hasAllAccess = effectiveAllowedDisciplines.some((item) => {
+      const value = keyOfText(item);
+      return value === "all" || value === "all disciplines";
+    });
+
+    if (hasAllAccess) {
+      return Array.isArray(meta.disciplines) ? meta.disciplines : [];
+    }
+
+    return effectiveAllowedDisciplines;
+  }, [meta.disciplines, effectiveAllowedDisciplines]);
+
+  const isDisciplineLocked =
+    disciplineOptions.length === 1 &&
+    !["all", "all disciplines"].includes(keyOfText(disciplineOptions[0]));
+
 useEffect(() => {
   let cancelled = false;
 
@@ -881,35 +913,6 @@ useEffect(() => {
     filters.discipline,
     filters.role,
   ]);
-const effectiveAllowedDisciplines = useMemo(() => {
-  if (
-    Array.isArray(meta.allowedDisciplines) &&
-    meta.allowedDisciplines.length > 0
-  ) {
-    return meta.allowedDisciplines;
-  }
-
-  if (Array.isArray(allowedDisciplines)) {
-    return allowedDisciplines.map(norm).filter(Boolean);
-  }
-
-  return [];
-}, [meta.allowedDisciplines, allowedDisciplines]);
-const disciplineOptions = useMemo(() => {
-  const hasAllAccess = effectiveAllowedDisciplines.some((item) => {
-    const value = keyOfText(item);
-
-    return value === "all" || value === "all disciplines";
-  });
-
-  if (hasAllAccess) {
-    return Array.isArray(meta.disciplines)
-      ? meta.disciplines
-      : [];
-  }
-
-  return effectiveAllowedDisciplines;
-}, [meta.disciplines, effectiveAllowedDisciplines]);
 
   const roleOptions = useMemo(() => {
     return meta.roles?.length ? meta.roles : ["Engineer", "Designer"];
@@ -1258,8 +1261,7 @@ const disciplineOptions = useMemo(() => {
             border: "1px solid #fde68a",
           }}
         >
-          Could not load the discipline list from the API. Showing the default
-          list.
+          Could not load your discipline access. Please log out and log in again.
         </div>
       )}
 
@@ -1270,6 +1272,7 @@ const disciplineOptions = useMemo(() => {
         onExportPDF={exportToPDF}
         canExport={matrixData.length > 0 && !loading}
         disciplineOptions={disciplineOptions}
+        isDisciplineLocked={isDisciplineLocked}
       />
 
       <div

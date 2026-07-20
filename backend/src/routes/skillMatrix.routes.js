@@ -318,63 +318,22 @@
 // });
 
 // export default router;
-
 import express from "express";
 import { queryDatabricks } from "../db/databricks.js";
 
-console.log("SKILL MATRIX ROUTES LOADED");
-
 const router = express.Router();
 
-const UPLOAD = "ogc_techdept_test.skill_matrix.skill_matrix_upload";
-const HISTORY = "ogc_techdept_test.skill_matrix.skill_matrix_history";
+console.log("SKILL MATRIX ROUTES LOADED");
+
+const UPLOAD =
+  "ogc_techdept_test.skill_matrix.skill_matrix_upload";
+
+const HISTORY =
+  "ogc_techdept_test.skill_matrix.skill_matrix_history";
+
 const ACCESS_TABLE =
   "ogc_techdept_test.skill_matrix.user_discipline_access";
 
-const escSql = (v) => String(v ?? "").replaceAll("'", "''");
-
-async function getAllowedDisciplinesFromAccessTable(email) {
-  const normalizedEmail = String(email || "").trim().toLowerCase();
-
-  if (!normalizedEmail) {
-    return [];
-  }
-
-  const sql = `
-    SELECT discipline
-    FROM ${ACCESS_TABLE}
-    WHERE lower(email) = lower('${escSql(normalizedEmail)}')
-      AND is_active = true
-  `;
-
-  const rows = await queryDatabricks(sql);
-
-  return rows
-    .map((row) => String(row[0] || "").trim())
-    .filter(Boolean);
-}
-
-async function getAllowedDisciplinesForRequest(req) {
-  const email = String(req.cookies?.user_email || "")
-    .trim()
-    .toLowerCase();
-
-  console.log("ACCESS CHECK EMAIL:", email);
-
-  if (!email) {
-    return [];
-  }
-
-  const allowedDisciplines =
-    await getAllowedDisciplinesFromAccessTable(email);
-
-  console.log(
-    "ACCESS CHECK DISCIPLINES:",
-    allowedDisciplines
-  );
-
-  return allowedDisciplines;
-}
 const DISCIPLINES = [
   "Project Management",
   "Process",
@@ -416,76 +375,207 @@ const DESIGNER_LEVELS = [
   "L15",
 ];
 
-const esc = (v) => String(v ?? "").replaceAll("'", "''");
-const norm = (v) => String(v ?? "").trim().replace(/\s+/g, " ");
+/* =========================================================
+   HELPERS
+   ========================================================= */
 
-const normDispSql = (col) => `TRIM(REGEXP_REPLACE(${col}, '\\\\s+', ' '))`;
-const normKeySql = (col) => `LOWER(TRIM(REGEXP_REPLACE(${col}, '\\\\s+', ' ')))`;
+const esc = (value) =>
+  String(value ?? "").replaceAll("'", "''");
+
+const norm = (value) =>
+  String(value ?? "")
+    .trim()
+    .replace(/\s+/g, " ");
+
+const keyOf = (value) =>
+  norm(value).toLowerCase();
+
+const normDispSql = (column) =>
+  `TRIM(REGEXP_REPLACE(${column}, '\\\\s+', ' '))`;
+
+const normKeySql = (column) =>
+  `LOWER(TRIM(REGEXP_REPLACE(${column}, '\\\\s+', ' ')))`;
+
+function getUserEmail(req) {
+  return String(req.cookies?.user_email || "")
+    .trim()
+    .toLowerCase();
+}
 
 function getChangedBy(req) {
-  return String(req.cookies?.user_email || "").trim().toLowerCase() || "unknown";
+  return getUserEmail(req) || "unknown";
 }
 
 function levelsForRole(role) {
-  return String(role || "").toLowerCase() === "designer"
+  return keyOf(role) === "designer"
     ? DESIGNER_LEVELS
     : ENGINEER_LEVELS;
 }
 
-// router.get("/meta", (req, res) => {
-//   console.log("META ROUTE HIT");
+function hasAllAccess(allowedDisciplines) {
+  return allowedDisciplines.some((discipline) => {
+    const value = keyOf(discipline);
 
-//   return res.status(200).json({
-//     disciplines: DISCIPLINES,
-//     roles: ROLES,
-//   });
-// });
+    return value === "all" || value === "all disciplines";
+  });
+}
+
+function isDisciplineAllowed(
+  requestedDiscipline,
+  allowedDisciplines
+) {
+  if (hasAllAccess(allowedDisciplines)) {
+    return true;
+  }
+
+  const requestedKey = keyOf(requestedDiscipline);
+
+  return allowedDisciplines.some(
+    (allowed) => keyOf(allowed) === requestedKey
+  );
+}
+
+/* =========================================================
+   ACCESS LOOKUP
+   ========================================================= */
+
+async function getAllowedDisciplinesFromAccessTable(email) {
+  const normalizedEmail = getNormalizedEmail(email);
+
+  if (!normalizedEmail) {
+    return [];
+  }
+
+  const sql = `
+    SELECT DISTINCT discipline
+    FROM ${ACCESS_TABLE}
+    WHERE LOWER(TRIM(email)) = LOWER('${esc(normalizedEmail)}')
+      AND is_active = true
+      AND discipline IS NOT NULL
+  `;
+
+  const rows = await queryDatabricks(sql);
+
+  return rows
+    .map((row) => norm(row?.[0]))
+    .filter(Boolean);
+}
+
+function getNormalizedEmail(email) {
+  return String(email || "")
+    .trim()
+    .toLowerCase();
+}
+
+async function getAccessForRequest(req) {
+  const email = getUserEmail(req);
+
+  console.log("ACCESS CHECK EMAIL:", email);
+
+  if (!email) {
+    return {
+      email: "",
+      allowedDisciplines: [],
+    };
+  }
+
+  const allowedDisciplines =
+    await getAllowedDisciplinesFromAccessTable(email);
+
+  console.log(
+    "ACCESS CHECK DISCIPLINES:",
+    allowedDisciplines
+  );
+
+  return {
+    email,
+    allowedDisciplines,
+  };
+}
+
+async function requireDisciplineAccess(
+  req,
+  res,
+  requestedDiscipline
+) {
+  const { email, allowedDisciplines } =
+    await getAccessForRequest(req);
+
+  if (!email) {
+    res.status(401).json({
+      message:
+        "User session email is missing. Please log out and log in again.",
+    });
+
+    return null;
+  }
+
+  if (allowedDisciplines.length === 0) {
+    res.status(403).json({
+      message:
+        "No active discipline access is assigned to this user.",
+    });
+
+    return null;
+  }
+
+  if (
+    requestedDiscipline &&
+    !isDisciplineAllowed(
+      requestedDiscipline,
+      allowedDisciplines
+    )
+  ) {
+    res.status(403).json({
+      message:
+        "You do not have access to this discipline.",
+      allowedDisciplines,
+    });
+
+    return null;
+  }
+
+  return {
+    email,
+    allowedDisciplines,
+  };
+}
+
+/* =========================================================
+   META
+   Returns only disciplines the current user can access.
+   ========================================================= */
+
 router.get("/meta", async (req, res) => {
   try {
     res.set({
-      "Cache-Control": "no-store, no-cache, must-revalidate",
+      "Cache-Control":
+        "no-store, no-cache, must-revalidate, proxy-revalidate",
       Pragma: "no-cache",
       Expires: "0",
+      SurrogateControl: "no-store",
     });
 
-    const email = String(req.cookies?.user_email || "")
-      .trim()
-      .toLowerCase();
+    const access = await requireDisciplineAccess(
+      req,
+      res,
+      ""
+    );
 
-    if (!email) {
-      return res.status(401).json({
-        message: "User session email is missing",
-        disciplines: [],
-        roles: ROLES,
-        allowedDisciplines: [],
-      });
+    if (!access) {
+      return;
     }
 
-    const allowedDisciplines =
-      await getAllowedDisciplinesForRequest(req);
+    const { email, allowedDisciplines } = access;
 
-    if (allowedDisciplines.length === 0) {
-      return res.status(403).json({
-        message: "No active discipline access is assigned to this user",
-        disciplines: [],
-        roles: ROLES,
-        allowedDisciplines: [],
-      });
-    }
-
-    const hasAllAccess = allowedDisciplines.some((item) => {
-      const value = norm(item).toLowerCase();
-
-      return value === "all" || value === "all disciplines";
-    });
-
-    const visibleDisciplines = hasAllAccess
+    const visibleDisciplines = hasAllAccess(
+      allowedDisciplines
+    )
       ? DISCIPLINES
       : DISCIPLINES.filter((discipline) =>
           allowedDisciplines.some(
             (allowed) =>
-              norm(allowed).toLowerCase() ===
-              norm(discipline).toLowerCase()
+              keyOf(allowed) === keyOf(discipline)
           )
         );
 
@@ -497,6 +587,10 @@ router.get("/meta", async (req, res) => {
     });
   } catch (err) {
     console.error("META ERROR:", err);
+    console.error(
+      "META ERROR DATA:",
+      err.response?.data
+    );
 
     return res.status(500).json({
       message: "Meta fetch failed",
@@ -507,152 +601,227 @@ router.get("/meta", async (req, res) => {
     });
   }
 });
+
+/* =========================================================
+   GET MATRIX DATA
+   ========================================================= */
+
 router.get("/", async (req, res) => {
   try {
-    // const discipline = norm(req.query.discipline);
-    // const role = norm(req.query.role);
+    const requestedDiscipline = norm(
+      req.query.discipline
+    );
 
-    // const dFilter = discipline
-    //   ? ` AND ${normKeySql("Discipline")} = LOWER('${esc(discipline)}') `
-    //   : "";
-const requestedDiscipline = norm(req.query.discipline);
-const role = norm(req.query.role);
+    const role = norm(req.query.role);
 
-const allowedDisciplines =
-  await getAllowedDisciplinesForRequest(req);
+    const access = await requireDisciplineAccess(
+      req,
+      res,
+      requestedDiscipline
+    );
 
-let effectiveDiscipline = requestedDiscipline;
+    if (!access) {
+      return;
+    }
 
-if (!allowedDisciplines.includes("All")) {
-  if (
-    requestedDiscipline &&
-    !allowedDisciplines.includes(requestedDiscipline)
-  ) {
-    return res.status(403).json({
-      message: "You do not have access to this discipline",
-      allowedDisciplines,
-    });
-  }
+    const { allowedDisciplines } = access;
 
-  if (!requestedDiscipline && allowedDisciplines.length === 1) {
-    effectiveDiscipline = allowedDisciplines[0];
-  }
-}
+    let effectiveDiscipline = requestedDiscipline;
 
-const dFilter = effectiveDiscipline
-  ? ` AND ${normKeySql("Discipline")} = LOWER('${esc(effectiveDiscipline)}') `
-  : !allowedDisciplines.includes("All")
-    ? ` AND ${normDispSql("Discipline")} IN (${allowedDisciplines
-        .map((d) => `'${esc(d)}'`)
-        .join(", ")}) `
-    : "";
+    if (
+      !effectiveDiscipline &&
+      !hasAllAccess(allowedDisciplines) &&
+      allowedDisciplines.length === 1
+    ) {
+      effectiveDiscipline =
+        allowedDisciplines[0];
+    }
 
-    const rFilter = role
-      ? ` AND ${normKeySql("Role")} = LOWER('${esc(role)}') `
+    let disciplineFilter = "";
+
+    if (effectiveDiscipline) {
+      disciplineFilter = `
+        AND ${normKeySql("Discipline")}
+          = LOWER('${esc(effectiveDiscipline)}')
+      `;
+    } else if (!hasAllAccess(allowedDisciplines)) {
+      const allowedSql = allowedDisciplines
+        .map(
+          (discipline) =>
+            `LOWER('${esc(norm(discipline))}')`
+        )
+        .join(", ");
+
+      disciplineFilter = `
+        AND ${normKeySql("Discipline")}
+          IN (${allowedSql})
+      `;
+    }
+
+    const roleFilter = role
+      ? `
+        AND ${normKeySql("Role")}
+          = LOWER('${esc(role)}')
+      `
       : "";
 
     const sql = `
-WITH base AS (
-  SELECT
-    ${normDispSql("Discipline")} AS Discipline,
-    ${normDispSql("Role")} AS Role,
-    ${normDispSql("LevelKey")} AS LevelKey,
-    ${normKeySql("Skill")} AS SkillKey,
-    ${normKeySql("Subskill")} AS SubskillKey,
-    ${normDispSql("Skill")} AS SkillDisp,
-    ${normDispSql("Subskill")} AS SubskillDisp,
-    Value
-  FROM ${UPLOAD}
-  WHERE 1=1
-  ${dFilter}
-  ${rFilter}
-),
-hist_ranked AS (
-  SELECT
-    ${normDispSql("Discipline")} AS Discipline,
-    ${normDispSql("Role")} AS Role,
-    ${normDispSql("LevelKey")} AS LevelKey,
-    ${normKeySql("Skill")} AS SkillKey,
-    ${normKeySql("Subskill")} AS SubskillKey,
-    ${normDispSql("Skill")} AS SkillDisp,
-    ${normDispSql("Subskill")} AS SubskillDisp,
-    old_value,
-    new_value,
-    action,
-    changed_at,
-    changed_by,
-    ROW_NUMBER() OVER (
-      PARTITION BY
-        ${normKeySql("Discipline")},
-        ${normKeySql("Role")},
-        ${normKeySql("LevelKey")},
-        ${normKeySql("Skill")},
-        ${normKeySql("Subskill")}
-      ORDER BY changed_at DESC
-    ) AS rn
-  FROM ${HISTORY}
-  WHERE 1=1
-  ${dFilter}
-  ${rFilter}
-),
-hl AS (
-  SELECT * FROM hist_ranked WHERE rn = 1
-),
-all_keys AS (
-  SELECT Discipline, Role, LevelKey, SkillKey, SubskillKey FROM base
-  UNION
-  SELECT Discipline, Role, LevelKey, SkillKey, SubskillKey FROM hl
-),
-final AS (
-  SELECT
-    k.Discipline,
-    k.Role,
-    k.LevelKey,
-    COALESCE(hl.SkillDisp, b.SkillDisp) AS Skill,
-    COALESCE(hl.SubskillDisp, b.SubskillDisp) AS Subskill,
-    CASE
-      WHEN hl.action = 'DELETE' THEN NULL
-      WHEN hl.new_value IS NOT NULL THEN hl.new_value
-      ELSE b.Value
-    END AS Value,
-    hl.changed_by
-  FROM all_keys k
-  LEFT JOIN base b
-    ON b.Discipline = k.Discipline
-   AND b.Role = k.Role
-   AND b.LevelKey = k.LevelKey
-   AND b.SkillKey = k.SkillKey
-   AND b.SubskillKey = k.SubskillKey
-  LEFT JOIN hl
-    ON hl.Discipline = k.Discipline
-   AND hl.Role = k.Role
-   AND hl.LevelKey = k.LevelKey
-   AND hl.SkillKey = k.SkillKey
-   AND hl.SubskillKey = k.SubskillKey
-)
-SELECT Discipline, Role, LevelKey, Skill, Subskill, Value, changed_by
-FROM final
-WHERE Value IS NOT NULL
-ORDER BY Skill, Subskill, LevelKey
-`;
+      WITH base AS (
+        SELECT
+          ${normDispSql("Discipline")} AS Discipline,
+          ${normDispSql("Role")} AS Role,
+          ${normDispSql("LevelKey")} AS LevelKey,
+          ${normKeySql("Skill")} AS SkillKey,
+          ${normKeySql("Subskill")} AS SubskillKey,
+          ${normDispSql("Skill")} AS SkillDisp,
+          ${normDispSql("Subskill")} AS SubskillDisp,
+          Value
+        FROM ${UPLOAD}
+        WHERE 1 = 1
+          ${disciplineFilter}
+          ${roleFilter}
+      ),
+
+      hist_ranked AS (
+        SELECT
+          ${normDispSql("Discipline")} AS Discipline,
+          ${normDispSql("Role")} AS Role,
+          ${normDispSql("LevelKey")} AS LevelKey,
+          ${normKeySql("Skill")} AS SkillKey,
+          ${normKeySql("Subskill")} AS SubskillKey,
+          ${normDispSql("Skill")} AS SkillDisp,
+          ${normDispSql("Subskill")} AS SubskillDisp,
+          old_value,
+          new_value,
+          action,
+          changed_at,
+          changed_by,
+
+          ROW_NUMBER() OVER (
+            PARTITION BY
+              ${normKeySql("Discipline")},
+              ${normKeySql("Role")},
+              ${normKeySql("LevelKey")},
+              ${normKeySql("Skill")},
+              ${normKeySql("Subskill")}
+            ORDER BY changed_at DESC
+          ) AS rn
+
+        FROM ${HISTORY}
+        WHERE 1 = 1
+          ${disciplineFilter}
+          ${roleFilter}
+      ),
+
+      latest_history AS (
+        SELECT *
+        FROM hist_ranked
+        WHERE rn = 1
+      ),
+
+      all_keys AS (
+        SELECT
+          Discipline,
+          Role,
+          LevelKey,
+          SkillKey,
+          SubskillKey
+        FROM base
+
+        UNION
+
+        SELECT
+          Discipline,
+          Role,
+          LevelKey,
+          SkillKey,
+          SubskillKey
+        FROM latest_history
+      ),
+
+      final_data AS (
+        SELECT
+          keys.Discipline,
+          keys.Role,
+          keys.LevelKey,
+
+          COALESCE(
+            history.SkillDisp,
+            base.SkillDisp
+          ) AS Skill,
+
+          COALESCE(
+            history.SubskillDisp,
+            base.SubskillDisp
+          ) AS Subskill,
+
+          CASE
+            WHEN history.action = 'DELETE'
+              THEN NULL
+
+            WHEN history.new_value IS NOT NULL
+              THEN history.new_value
+
+            ELSE base.Value
+          END AS Value,
+
+          history.changed_by
+
+        FROM all_keys keys
+
+        LEFT JOIN base
+          ON base.Discipline = keys.Discipline
+         AND base.Role = keys.Role
+         AND base.LevelKey = keys.LevelKey
+         AND base.SkillKey = keys.SkillKey
+         AND base.SubskillKey = keys.SubskillKey
+
+        LEFT JOIN latest_history history
+          ON history.Discipline = keys.Discipline
+         AND history.Role = keys.Role
+         AND history.LevelKey = keys.LevelKey
+         AND history.SkillKey = keys.SkillKey
+         AND history.SubskillKey = keys.SubskillKey
+      )
+
+      SELECT
+        Discipline,
+        Role,
+        LevelKey,
+        Skill,
+        Subskill,
+        Value,
+        changed_by
+
+      FROM final_data
+
+      WHERE Value IS NOT NULL
+
+      ORDER BY
+        Skill,
+        Subskill,
+        LevelKey
+    `;
 
     const rows = await queryDatabricks(sql);
 
-    return res.json(
-      rows.map((r) => ({
-        discipline: r[0],
-        role: r[1],
-        level: r[2],
-        category: r[3],
-        skill_name: r[4],
-        proficiency: r[5],
-        changed_by: r[6],
+    return res.status(200).json(
+      rows.map((row) => ({
+        discipline: row[0],
+        role: row[1],
+        level: row[2],
+        category: row[3],
+        skill_name: row[4],
+        proficiency: row[5],
+        changed_by: row[6],
       }))
     );
   } catch (err) {
-    console.error("MATRIX ERROR FULL:", err);
-    console.error("MATRIX ERROR DATA:", err.response?.data);
-    console.error("MATRIX ERROR MESSAGE:", err.message);
+    console.error("MATRIX ERROR:", err);
+    console.error(
+      "MATRIX ERROR DATA:",
+      err.response?.data
+    );
 
     return res.status(500).json({
       message: "Matrix fetch failed",
@@ -661,111 +830,243 @@ ORDER BY Skill, Subskill, LevelKey
   }
 });
 
-/**
- * SAVE / UPDATE / ADD ROW DATA
- */
+/* =========================================================
+   SAVE / UPDATE / ADD
+   ========================================================= */
+
 router.post("/save", async (req, res) => {
   try {
-    const rows = req.body;
-    const changedBy = getChangedBy(req);
+    const requestRows = req.body;
 
-    if (!Array.isArray(rows) || rows.length === 0) {
-      return res.status(400).json({ message: "Invalid payload" });
+    if (
+      !Array.isArray(requestRows) ||
+      requestRows.length === 0
+    ) {
+      return res.status(400).json({
+        message: "Invalid payload",
+      });
     }
 
-    const cleaned = rows.map((r) => ({
-      Discipline: norm(r.Discipline),
-      Role: norm(r.Role),
-      LevelKey: norm(r.LevelKey),
-      Skill: norm(r.Skill),
-      Subskill: norm(r.Subskill),
-      Value: norm(r.Value ?? "NA"),
+    const cleanedRows = requestRows.map((row) => ({
+      Discipline: norm(row.Discipline),
+      Role: norm(row.Role),
+      LevelKey: norm(row.LevelKey),
+      Skill: norm(row.Skill),
+      Subskill: norm(row.Subskill),
+      Value: norm(row.Value ?? "NA"),
     }));
 
-    for (const r of cleaned) {
-      if (!r.Discipline || !r.Role || !r.LevelKey || !r.Skill || !r.Subskill) {
-        return res.status(400).json({ message: "Missing required fields" });
+    for (const row of cleanedRows) {
+      if (
+        !row.Discipline ||
+        !row.Role ||
+        !row.LevelKey ||
+        !row.Skill ||
+        !row.Subskill
+      ) {
+        return res.status(400).json({
+          message: "Missing required fields",
+        });
       }
     }
 
-    const insertSql = cleaned
+    const access = await requireDisciplineAccess(
+      req,
+      res,
+      ""
+    );
+
+    if (!access) {
+      return;
+    }
+
+    for (const row of cleanedRows) {
+      if (
+        !isDisciplineAllowed(
+          row.Discipline,
+          access.allowedDisciplines
+        )
+      ) {
+        return res.status(403).json({
+          message: `You do not have access to ${row.Discipline}.`,
+          allowedDisciplines:
+            access.allowedDisciplines,
+        });
+      }
+    }
+
+    const changedBy = access.email;
+
+    const insertRowsSql = cleanedRows
       .map(
-        (r) => `
-SELECT
-  '${esc(r.Discipline)}' AS Discipline,
-  '${esc(r.Role)}' AS Role,
-  '${esc(r.LevelKey)}' AS LevelKey,
-  '${esc(r.Skill)}' AS Skill,
-  '${esc(r.Subskill)}' AS Subskill,
-  (
-    SELECT Value FROM (
-      WITH base AS (
-        SELECT Value
-        FROM ${UPLOAD}
-        WHERE ${normKeySql("Discipline")} = LOWER('${esc(r.Discipline)}')
-          AND ${normKeySql("Role")} = LOWER('${esc(r.Role)}')
-          AND ${normKeySql("LevelKey")} = LOWER('${esc(r.LevelKey)}')
-          AND ${normKeySql("Skill")} = LOWER('${esc(r.Skill)}')
-          AND ${normKeySql("Subskill")} = LOWER('${esc(r.Subskill)}')
-        LIMIT 1
-      ),
-      hist_ranked AS (
-        SELECT new_value, action, changed_at,
-          ROW_NUMBER() OVER (ORDER BY changed_at DESC) rn
-        FROM ${HISTORY}
-        WHERE ${normKeySql("Discipline")} = LOWER('${esc(r.Discipline)}')
-          AND ${normKeySql("Role")} = LOWER('${esc(r.Role)}')
-          AND ${normKeySql("LevelKey")} = LOWER('${esc(r.LevelKey)}')
-          AND ${normKeySql("Skill")} = LOWER('${esc(r.Skill)}')
-          AND ${normKeySql("Subskill")} = LOWER('${esc(r.Subskill)}')
-      ),
-      hist_latest AS (
-        SELECT * FROM hist_ranked WHERE rn = 1
-      )
-      SELECT
-        CASE
-          WHEN (SELECT action FROM hist_latest) = 'DELETE' THEN NULL
-          WHEN (SELECT new_value FROM hist_latest) IS NOT NULL THEN (SELECT new_value FROM hist_latest)
-          ELSE (SELECT Value FROM base)
-        END AS Value
-    )
-  ) AS old_value,
-  '${esc(r.Value)}' AS new_value,
-  CASE
-    WHEN (
-      SELECT COUNT(*)
-      FROM ${UPLOAD}
-      WHERE ${normKeySql("Discipline")} = LOWER('${esc(r.Discipline)}')
-        AND ${normKeySql("Role")} = LOWER('${esc(r.Role)}')
-        AND ${normKeySql("LevelKey")} = LOWER('${esc(r.LevelKey)}')
-        AND ${normKeySql("Skill")} = LOWER('${esc(r.Skill)}')
-        AND ${normKeySql("Subskill")} = LOWER('${esc(r.Subskill)}')
-    ) > 0 THEN 'UPDATE'
-    ELSE 'INSERT'
-  END AS action,
-  CURRENT_TIMESTAMP() AS changed_at,
-  '${esc(changedBy)}' AS changed_by
-`
+        (row) => `
+          SELECT
+            '${esc(row.Discipline)}'
+              AS Discipline,
+
+            '${esc(row.Role)}'
+              AS Role,
+
+            '${esc(row.LevelKey)}'
+              AS LevelKey,
+
+            '${esc(row.Skill)}'
+              AS Skill,
+
+            '${esc(row.Subskill)}'
+              AS Subskill,
+
+            (
+              SELECT Value
+              FROM (
+                WITH base_value AS (
+                  SELECT Value
+                  FROM ${UPLOAD}
+                  WHERE ${normKeySql("Discipline")}
+                    = LOWER('${esc(row.Discipline)}')
+
+                    AND ${normKeySql("Role")}
+                    = LOWER('${esc(row.Role)}')
+
+                    AND ${normKeySql("LevelKey")}
+                    = LOWER('${esc(row.LevelKey)}')
+
+                    AND ${normKeySql("Skill")}
+                    = LOWER('${esc(row.Skill)}')
+
+                    AND ${normKeySql("Subskill")}
+                    = LOWER('${esc(row.Subskill)}')
+
+                  LIMIT 1
+                ),
+
+                history_ranked AS (
+                  SELECT
+                    new_value,
+                    action,
+                    changed_at,
+
+                    ROW_NUMBER() OVER (
+                      ORDER BY changed_at DESC
+                    ) AS rn
+
+                  FROM ${HISTORY}
+
+                  WHERE ${normKeySql("Discipline")}
+                    = LOWER('${esc(row.Discipline)}')
+
+                    AND ${normKeySql("Role")}
+                    = LOWER('${esc(row.Role)}')
+
+                    AND ${normKeySql("LevelKey")}
+                    = LOWER('${esc(row.LevelKey)}')
+
+                    AND ${normKeySql("Skill")}
+                    = LOWER('${esc(row.Skill)}')
+
+                    AND ${normKeySql("Subskill")}
+                    = LOWER('${esc(row.Subskill)}')
+                ),
+
+                latest_history AS (
+                  SELECT *
+                  FROM history_ranked
+                  WHERE rn = 1
+                )
+
+                SELECT
+                  CASE
+                    WHEN (
+                      SELECT action
+                      FROM latest_history
+                    ) = 'DELETE'
+                      THEN NULL
+
+                    WHEN (
+                      SELECT new_value
+                      FROM latest_history
+                    ) IS NOT NULL
+                      THEN (
+                        SELECT new_value
+                        FROM latest_history
+                      )
+
+                    ELSE (
+                      SELECT Value
+                      FROM base_value
+                    )
+                  END AS Value
+              )
+            ) AS old_value,
+
+            '${esc(row.Value)}'
+              AS new_value,
+
+            CASE
+              WHEN (
+                SELECT COUNT(*)
+                FROM ${UPLOAD}
+
+                WHERE ${normKeySql("Discipline")}
+                  = LOWER('${esc(row.Discipline)}')
+
+                  AND ${normKeySql("Role")}
+                  = LOWER('${esc(row.Role)}')
+
+                  AND ${normKeySql("LevelKey")}
+                  = LOWER('${esc(row.LevelKey)}')
+
+                  AND ${normKeySql("Skill")}
+                  = LOWER('${esc(row.Skill)}')
+
+                  AND ${normKeySql("Subskill")}
+                  = LOWER('${esc(row.Subskill)}')
+              ) > 0
+                THEN 'UPDATE'
+
+              ELSE 'INSERT'
+            END AS action,
+
+            CURRENT_TIMESTAMP()
+              AS changed_at,
+
+            '${esc(changedBy)}'
+              AS changed_by
+        `
       )
       .join("\nUNION ALL\n");
 
-    const historyInsert = `
-INSERT INTO ${HISTORY}
-(Discipline, Role, LevelKey, Skill, Subskill, old_value, new_value, action, changed_at, changed_by)
-${insertSql}
-`;
+    const historyInsertSql = `
+      INSERT INTO ${HISTORY}
+      (
+        Discipline,
+        Role,
+        LevelKey,
+        Skill,
+        Subskill,
+        old_value,
+        new_value,
+        action,
+        changed_at,
+        changed_by
+      )
 
-    await queryDatabricks(historyInsert);
+      ${insertRowsSql}
+    `;
 
-    return res.json({
+    await queryDatabricks(historyInsertSql);
+
+    return res.status(200).json({
       success: true,
-      count: cleaned.length,
+      count: cleanedRows.length,
       changed_by: changedBy,
     });
   } catch (err) {
-    console.error("SAVE ERROR FULL:", err);
-    console.error("SAVE ERROR DATA:", err.response?.data);
-    console.error("SAVE ERROR MESSAGE:", err.message);
+    console.error("SAVE ERROR:", err);
+    console.error(
+      "SAVE ERROR DATA:",
+      err.response?.data
+    );
 
     return res.status(500).json({
       message: "Save failed",
@@ -774,58 +1075,116 @@ ${insertSql}
   }
 });
 
-/**
- * DELETE FULL ROW ACROSS LEVELS
- */
+/* =========================================================
+   DELETE FULL SUBSKILL ROW ACROSS ALL ROLE LEVELS
+   ========================================================= */
+
 router.post("/row/delete", async (req, res) => {
   try {
-    const changedBy = getChangedBy(req);
+    const Discipline = norm(
+      req.body?.Discipline
+    );
 
-    const Discipline = norm(req.body?.Discipline);
     const Role = norm(req.body?.Role);
-    const Skill = norm(req.body?.Skill);
-    const Subskill = norm(req.body?.Subskill);
 
-    if (!Discipline || !Role || !Skill || !Subskill) {
-      return res.status(400).json({ message: "Missing required fields" });
+    const Skill = norm(req.body?.Skill);
+
+    const Subskill = norm(
+      req.body?.Subskill
+    );
+
+    if (
+      !Discipline ||
+      !Role ||
+      !Skill ||
+      !Subskill
+    ) {
+      return res.status(400).json({
+        message: "Missing required fields",
+      });
     }
+
+    const access = await requireDisciplineAccess(
+      req,
+      res,
+      Discipline
+    );
+
+    if (!access) {
+      return;
+    }
+
+    const changedBy = access.email;
 
     const roleLevels = levelsForRole(Role);
 
-    const deleteUnion = roleLevels
+    const deleteRowsSql = roleLevels
       .map(
-        (lvl) => `
-SELECT
-  '${esc(Discipline)}' AS Discipline,
-  '${esc(Role)}' AS Role,
-  '${esc(lvl)}' AS LevelKey,
-  '${esc(Skill)}' AS Skill,
-  '${esc(Subskill)}' AS Subskill,
-  NULL AS old_value,
-  NULL AS new_value,
-  'DELETE' AS action,
-  CURRENT_TIMESTAMP() AS changed_at,
-  '${esc(changedBy)}' AS changed_by
-`
+        (level) => `
+          SELECT
+            '${esc(Discipline)}'
+              AS Discipline,
+
+            '${esc(Role)}'
+              AS Role,
+
+            '${esc(level)}'
+              AS LevelKey,
+
+            '${esc(Skill)}'
+              AS Skill,
+
+            '${esc(Subskill)}'
+              AS Subskill,
+
+            NULL
+              AS old_value,
+
+            NULL
+              AS new_value,
+
+            'DELETE'
+              AS action,
+
+            CURRENT_TIMESTAMP()
+              AS changed_at,
+
+            '${esc(changedBy)}'
+              AS changed_by
+        `
       )
       .join("\nUNION ALL\n");
 
-    const sql = `
-INSERT INTO ${HISTORY}
-(Discipline, Role, LevelKey, Skill, Subskill, old_value, new_value, action, changed_at, changed_by)
-${deleteUnion}
-`;
+    const deleteSql = `
+      INSERT INTO ${HISTORY}
+      (
+        Discipline,
+        Role,
+        LevelKey,
+        Skill,
+        Subskill,
+        old_value,
+        new_value,
+        action,
+        changed_at,
+        changed_by
+      )
 
-    await queryDatabricks(sql);
+      ${deleteRowsSql}
+    `;
 
-    return res.json({
+    await queryDatabricks(deleteSql);
+
+    return res.status(200).json({
       success: true,
       changed_by: changedBy,
     });
   } catch (err) {
-    console.error("DELETE ERROR FULL:", err);
-    console.error("DELETE ERROR DATA:", err.response?.data);
-    console.error("DELETE ERROR MESSAGE:", err.message);
+    console.error("DELETE ERROR:", err);
+    console.error(
+      "DELETE ERROR DATA:",
+      err.response?.data
+    );
 
     return res.status(500).json({
       message: "Delete failed",
