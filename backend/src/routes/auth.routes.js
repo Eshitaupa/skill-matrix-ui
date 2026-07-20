@@ -1,43 +1,63 @@
 import express from "express";
-
+import { dbxQuery } from "../db/databricks.js";
 const router = express.Router();
 
-const USER_DISCIPLINE_ACCESS = {
-  "pnshinde@burnsmcd.in": ["Project Management"],
-  "akdalal@burnsmcd.in": ["Process"],
-  "ndkhandale@burnsmcd.in": ["Process"],
-  "saharchandani@burnsmcd.in": ["Process"],
+// const USER_DISCIPLINE_ACCESS = {
+//   "pnshinde@burnsmcd.in": ["Project Management"],
+//   "akdalal@burnsmcd.in": ["Process"],
+//   "ndkhandale@burnsmcd.in": ["Process"],
+//   "saharchandani@burnsmcd.in": ["Process"],
 
-  "tvmahale@burnsmcd.in": ["Mechanical"],
-  "jssahoo@burnsmcd.in": ["Mechanical"],
+//   "tvmahale@burnsmcd.in": ["Mechanical"],
+//   "jssahoo@burnsmcd.in": ["Mechanical"],
 
-  "mjsawant@burnsmcd.in": ["CSA"],
-  "ptbhosale@burnsmcd.in": ["CSA"],
-  "ambane@burnsmcd.in": ["CSA"],
-  "sswale@burnsmcd.in": ["CSA"],
+//   "mjsawant@burnsmcd.in": ["CSA"],
+//   "ptbhosale@burnsmcd.in": ["CSA"],
+//   "ambane@burnsmcd.in": ["CSA"],
+//   "sswale@burnsmcd.in": ["CSA"],
 
-  "vatelkar@burnsmcd.in": ["Piping Design"],
-  "mringulkar@burnsmcd.in": ["Piping Design"],
-  "sbbabar@burnsmcd.in": ["Piping Design"],
+//   "vatelkar@burnsmcd.in": ["Piping Design"],
+//   "mringulkar@burnsmcd.in": ["Piping Design"],
+//   "sbbabar@burnsmcd.in": ["Piping Design"],
 
-  "hpdoshi@burnsmcd.in": ["Piping Engineering"],
-  "svboppa@burnsmcd.in": ["Piping Engineering"],
+//   "hpdoshi@burnsmcd.in": ["Piping Engineering"],
+//   "svboppa@burnsmcd.in": ["Piping Engineering"],
 
-  "jkshirodkar@burnsmcd.in": ["Instrumentation"],
-  "kpsave@burnsmcd.in": ["Instrumentation"],
+//   "jkshirodkar@burnsmcd.in": ["Instrumentation"],
+//   "kpsave@burnsmcd.in": ["Instrumentation"],
 
-  "mchakrabartti@burnsmcd.in": ["Electrical"],
-  "vsvyas@burnsmcd.in": ["Electrical"],
-  "dmpatil@burnsmcd.in": ["Electrical"],
+//   "mchakrabartti@burnsmcd.in": ["Electrical"],
+//   "vsvyas@burnsmcd.in": ["Electrical"],
+//   "dmpatil@burnsmcd.in": ["Electrical"],
 
-  // "esupadhyaya@burnsmcd.in": ["Electrical"],
-// "esupadhyaya@burnsmcd.com": ["Electrical"],
-};
+//   // "esupadhyaya@burnsmcd.in": ["Electrical"],
+// // "esupadhyaya@burnsmcd.com": ["Electrical"],
+// };
 
-function getAllowedDisciplines(email) {
-  return USER_DISCIPLINE_ACCESS[email] || ["All"];
+// function getAllowedDisciplines(email) {
+//   return USER_DISCIPLINE_ACCESS[email] || ["All"];
+// }
+async function getAllowedDisciplines(email) {
+  try {
+    const sql = `
+      SELECT discipline
+      FROM ogc_techdept_test.skill_matrix.user_discipline_access
+      WHERE lower(email) = lower(?)
+        AND is_active = true
+    `;
+
+    const rows = await dbxQuery(sql, [email]);
+
+    if (!rows || rows.length === 0) {
+      return ["All"];
+    }
+
+    return rows.map((r) => r.discipline);
+  } catch (err) {
+    console.error("ACCESS LOOKUP ERROR:", err);
+    return ["All"];
+  }
 }
-
 function decodeJwt(token) {
   try {
     const payload = token.split(".")[1];
@@ -100,7 +120,7 @@ const clearCookieOptions = {
   sameSite: "none",
 };
 
-router.post("/session", (req, res) => {
+router.post("/session", async(req, res) => {
   try {
     console.log("POST /api/auth/session");
 
@@ -132,7 +152,7 @@ router.post("/session", (req, res) => {
       });
     }
 
-    const allowedDisciplines = getAllowedDisciplines(email);
+    const allowedDisciplines = await getAllowedDisciplines(email);
 
     res.cookie("session_token", id_token, cookieOptions);
     res.cookie("user_email", email, cookieOptions);
@@ -154,7 +174,7 @@ router.post("/session", (req, res) => {
 });
 
 // Current User
-router.get("/me", (req, res) => {
+router.get("/me", async (req, res) => {
   const token = req.cookies.session_token;
   const email = req.cookies.user_email;
 
@@ -178,7 +198,7 @@ res.clearCookie("user_email", clearCookieOptions);
   }
 
   const normalizedEmail = String(email).trim().toLowerCase();
-  const allowedDisciplines = getAllowedDisciplines(normalizedEmail);
+  const allowedDisciplines = await getAllowedDisciplines(normalizedEmail);
 
   return res.json({
     authenticated: true,
