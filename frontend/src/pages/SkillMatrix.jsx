@@ -613,10 +613,11 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
   const [isEditMode, setIsEditMode] = useState(false);
   const [editedValues, setEditedValues] = useState({});
   const [showAddRow, setShowAddRow] = useState(false);
-  const [meta, setMeta] = useState({
-    disciplines: DEFAULT_DISCIPLINES,
-    roles: ["Engineer", "Designer"],
-  });
+ const [meta, setMeta] = useState({
+  disciplines: [],
+  roles: ["Engineer", "Designer"],
+  allowedDisciplines: [],
+});
   const [metaError, setMetaError] = useState(false);
 
   const [form, setForm] = useState({
@@ -632,73 +633,87 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
   const [modalLoading, setModalLoading] = useState(false);
   const [actionBusy, setActionBusy] = useState(false);
 
-  useEffect(() => {
-    let cancelled = false;
+useEffect(() => {
+  let cancelled = false;
 
-    async function loadMeta() {
-      try {
-        const res = await fetch(`${API_SKILL}/meta`, {
-  method: "GET",
-  credentials: "include",
-  cache: "no-store",
-  headers: {
-    Accept: "application/json",
-    "Cache-Control": "no-cache",
-  },
-});
+  async function loadMeta() {
+    try {
+      const res = await fetch(`${API_SKILL}/meta?t=${Date.now()}`, {
+        method: "GET",
+        credentials: "include",
+        cache: "no-store",
+        headers: {
+          Accept: "application/json",
+        },
+      });
 
-        if (!res.ok) {
-          console.error("META API FAILED:", res.status, await safeText(res));
+      const data = await safeJson(res);
 
-          if (!cancelled) {
-            setMeta({
-              disciplines: DEFAULT_DISCIPLINES,
-              roles: ["Engineer", "Designer"],
-            });
-            setMetaError(true);
-          }
+      if (!res.ok) {
+        throw new Error(
+          data?.message || `Meta request failed with status ${res.status}`
+        );
+      }
 
-          return;
-        }
+      if (cancelled) return;
 
-        const data = await safeJson(res);
+      const disciplines = Array.isArray(data?.disciplines)
+        ? data.disciplines.map(norm).filter(Boolean)
+        : [];
 
-        if (cancelled) return;
+      const backendAllowedDisciplines = Array.isArray(
+        data?.allowedDisciplines
+      )
+        ? data.allowedDisciplines.map(norm).filter(Boolean)
+        : [];
 
-        const disciplines =
-          Array.isArray(data?.disciplines) && data.disciplines.length
-            ? data.disciplines
-            : DEFAULT_DISCIPLINES;
+      const roles =
+        Array.isArray(data?.roles) && data.roles.length > 0
+          ? data.roles
+          : ["Engineer", "Designer"];
 
-        const roles =
-          Array.isArray(data?.roles) && data.roles.length
-            ? data.roles
-            : ["Engineer", "Designer"];
+      console.log("META RESPONSE:", data);
+      console.log("VISIBLE DISCIPLINES:", disciplines);
+      console.log(
+        "BACKEND ALLOWED DISCIPLINES:",
+        backendAllowedDisciplines
+      );
 
+      setMeta({
+        disciplines,
+        roles,
+        allowedDisciplines: backendAllowedDisciplines,
+      });
+
+      setMetaError(false);
+    } catch (err) {
+      console.error("META LOAD FAILED:", err);
+
+      if (!cancelled) {
+        // Security: do not show every discipline when access lookup fails.
         setMeta({
-          disciplines,
-          roles,
+          disciplines: [],
+          roles: ["Engineer", "Designer"],
+          allowedDisciplines: [],
         });
-        setMetaError(false);
-      } catch (err) {
-        console.error("META LOAD FAILED:", err);
 
-        if (!cancelled) {
-          setMeta({
-            disciplines: DEFAULT_DISCIPLINES,
-            roles: ["Engineer", "Designer"],
-          });
-          setMetaError(true);
-        }
+        setFilters({
+          discipline: "",
+          role: "",
+          level: "",
+        });
+
+        setMetaError(true);
       }
     }
+  }
 
-    loadMeta();
+  loadMeta();
 
-    return () => {
-      cancelled = true;
-    };
-  }, []);
+  return () => {
+    cancelled = true;
+  };
+}, []);
 
   useEffect(() => {
     if (!filters.discipline) {
@@ -730,20 +745,36 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
   }, [filters.discipline]);
 
   useEffect(() => {
-    const onlyDiscipline = allowedDisciplines[0];
+  if (disciplineOptions.length !== 1) {
+    return;
+  }
 
+  const onlyDiscipline = disciplineOptions[0];
+
+  if (
+    !onlyDiscipline ||
+    keyOfText(onlyDiscipline) === "all" ||
+    keyOfText(onlyDiscipline) === "all disciplines"
+  ) {
+    return;
+  }
+
+  setFilters((previous) => {
     if (
-      allowedDisciplines.length === 1 &&
-      onlyDiscipline &&
-      keyOfText(onlyDiscipline) !== "all" &&
-      !filters.discipline
+      keyOfText(previous.discipline) ===
+      keyOfText(onlyDiscipline)
     ) {
-      setFilters((prev) => ({
-        ...prev,
-        discipline: onlyDiscipline,
-      }));
+      return previous;
     }
-  }, [allowedDisciplines, filters.discipline]);
+
+    return {
+      ...previous,
+      discipline: onlyDiscipline,
+      role: "",
+      level: "",
+    };
+  });
+}, [disciplineOptions]);
 
   const fetchMatrix = useCallback(async () => {
     if (!filters.discipline || !filters.role) {
@@ -850,23 +881,35 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
     filters.discipline,
     filters.role,
   ]);
+const effectiveAllowedDisciplines = useMemo(() => {
+  if (
+    Array.isArray(meta.allowedDisciplines) &&
+    meta.allowedDisciplines.length > 0
+  ) {
+    return meta.allowedDisciplines;
+  }
 
+  if (Array.isArray(allowedDisciplines)) {
+    return allowedDisciplines.map(norm).filter(Boolean);
+  }
+
+  return [];
+}, [meta.allowedDisciplines, allowedDisciplines]);
 const disciplineOptions = useMemo(() => {
-const hasAllAccess = allowedDisciplines.some((item) => {
-  const value = keyOfText(item);
-  return value === "all" || value === "all disciplines";
-});
+  const hasAllAccess = effectiveAllowedDisciplines.some((item) => {
+    const value = keyOfText(item);
+
+    return value === "all" || value === "all disciplines";
+  });
 
   if (hasAllAccess) {
-    return meta.disciplines?.length ? meta.disciplines : DEFAULT_DISCIPLINES;
+    return Array.isArray(meta.disciplines)
+      ? meta.disciplines
+      : [];
   }
 
-  if (allowedDisciplines.length > 0) {
-    return allowedDisciplines;
-  }
-
-  return meta.disciplines?.length ? meta.disciplines : DEFAULT_DISCIPLINES;
-}, [meta.disciplines, allowedDisciplines]);
+  return effectiveAllowedDisciplines;
+}, [meta.disciplines, effectiveAllowedDisciplines]);
 
   const roleOptions = useMemo(() => {
     return meta.roles?.length ? meta.roles : ["Engineer", "Designer"];

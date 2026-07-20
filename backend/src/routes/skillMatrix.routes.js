@@ -359,12 +359,19 @@ async function getAllowedDisciplinesForRequest(req) {
     .trim()
     .toLowerCase();
 
+  console.log("ACCESS CHECK EMAIL:", email);
+
+  if (!email) {
+    return [];
+  }
+
   const allowedDisciplines =
     await getAllowedDisciplinesFromAccessTable(email);
 
-  if (!allowedDisciplines || allowedDisciplines.length === 0) {
-    return ["All"];
-  }
+  console.log(
+    "ACCESS CHECK DISCIPLINES:",
+    allowedDisciplines
+  );
 
   return allowedDisciplines;
 }
@@ -436,15 +443,43 @@ function levelsForRole(role) {
 router.get("/meta", async (req, res) => {
   try {
     res.set({
-      "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+      "Cache-Control": "no-store, no-cache, must-revalidate",
       Pragma: "no-cache",
       Expires: "0",
     });
 
+    const email = String(req.cookies?.user_email || "")
+      .trim()
+      .toLowerCase();
+
+    if (!email) {
+      return res.status(401).json({
+        message: "User session email is missing",
+        disciplines: [],
+        roles: ROLES,
+        allowedDisciplines: [],
+      });
+    }
+
     const allowedDisciplines =
       await getAllowedDisciplinesForRequest(req);
 
-    const visibleDisciplines = allowedDisciplines.includes("All")
+    if (allowedDisciplines.length === 0) {
+      return res.status(403).json({
+        message: "No active discipline access is assigned to this user",
+        disciplines: [],
+        roles: ROLES,
+        allowedDisciplines: [],
+      });
+    }
+
+    const hasAllAccess = allowedDisciplines.some((item) => {
+      const value = norm(item).toLowerCase();
+
+      return value === "all" || value === "all disciplines";
+    });
+
+    const visibleDisciplines = hasAllAccess
       ? DISCIPLINES
       : DISCIPLINES.filter((discipline) =>
           allowedDisciplines.some(
@@ -455,6 +490,7 @@ router.get("/meta", async (req, res) => {
         );
 
     return res.status(200).json({
+      email,
       disciplines: visibleDisciplines,
       roles: ROLES,
       allowedDisciplines,
@@ -464,6 +500,9 @@ router.get("/meta", async (req, res) => {
 
     return res.status(500).json({
       message: "Meta fetch failed",
+      disciplines: [],
+      roles: ROLES,
+      allowedDisciplines: [],
       error: err.response?.data || err.message,
     });
   }
