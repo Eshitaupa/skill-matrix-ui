@@ -162,7 +162,7 @@ color: var(--color-base-content);
 color: #9ca3af; cursor: not-allowed; }
   .smf-spacer { flex: 1; }
   .smf-export-group { display: flex; align-items: center; gap: 8px; margin-left: auto; flex-wrap: wrap; }
-  .smf-export-btn {
+  .smf-export-btn { background: #1d4ed8;
     display: inline-flex; align-items: center; justify-content: center; gap: 6px;
     padding: 9px 14px; border-radius: 999px; border: 1px solid var(--color-primary);
 background: var(--color-primary);
