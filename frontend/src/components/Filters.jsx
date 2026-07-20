@@ -113,10 +113,10 @@ function Filters({
     padding: 12px 16px;
     margin-bottom: 16px;
     background: var(--color-base-100);
-    border: 1px solid var(--color-base-300);
+    border-color: var(--color-primary);
+border: 1px solid var(--color-base-300);
     border-radius: 16px;
   }
-
   .smf-label {
     display: flex;
     align-items: center;
@@ -128,163 +128,90 @@ function Filters({
     color: var(--color-primary);
     white-space: nowrap;
   }
+ .smf-bar select {
+  appearance: none;
+  -webkit-appearance: none;
 
-  /* All three dropdowns always have the primary border */
-  .smf-bar select {
-    appearance: none;
-    -webkit-appearance: none;
-    min-width: 180px;
-    max-width: 240px;
-    width: 100%;
-    padding: 9px 36px 9px 14px;
+  min-width: 180px;
+  max-width: 240px;
+  width: 100%;
 
-    border: 1px solid var(--color-primary);
-    background-color: var(--color-base-100);
-    color: var(--color-base-content);
+  padding: 9px 36px 9px 14px;
 
-    border-radius: 999px;
-    font-size: 13px;
-    font-weight: 500;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-    cursor: pointer;
-    outline: none;
-  }
+  /* Border is now always visible on all 3 dropdowns */
+  border: 1px solid var(--color-primary);
+  border-radius: 999px;
 
-  .smf-bar select:hover {
-    border-color: var(--color-primary);
-  }
+  background: var(--color-base-100);
+  color: var(--color-base-content);
 
-  .smf-bar select:focus,
-  .smf-bar select:focus-visible {
-    border-color: var(--color-primary);
-    outline: none;
-    box-shadow: 0 0 0 3px
-      color-mix(in srgb, var(--color-primary) 18%, transparent);
-  }
+  font-size: 13px;
+  font-weight: 500;
 
-  /* Disabled role/level dropdowns also retain a visible border */
-  .smf-bar select:disabled {
-    border-color: var(--color-primary);
-    background: color-mix(
-      in srgb,
-      var(--color-base-300) 30%,
-      var(--color-base-100)
-    );
-    color: #9ca3af;
-    cursor: not-allowed;
-    opacity: 0.75;
-  }
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
 
-  .smf-spacer {
-    flex: 1;
-  }
+  cursor: pointer;
+  outline: none;
+}
 
-  .smf-export-group {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-left: auto;
-    flex-wrap: wrap;
-  }
+.smf-bar select:hover {
+  border-color: var(--color-primary);
+}
 
-  /* Excel has permanent blue color */
-  .smf-export-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    padding: 9px 14px;
-    border-radius: 999px;
+.smf-bar select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px
+    color-mix(in srgb, var(--color-primary) 18%, transparent);
+}
 
-    border: 1px solid var(--color-primary);
-    background-color: var(--color-primary);
-    color: var(--color-primary-content);
+.smf-bar select:disabled {
+  background: color-mix(
+    in srgb,
+    var(--color-base-300) 30%,
+    white
+  );
 
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
-    white-space: nowrap;
-  }
+  /* Keep border visible even when Role/Level is disabled */
+  border-color: var(--color-primary);
 
-  .smf-export-btn:hover:not(:disabled) {
-    background-color: #1d4ed8;
-    border-color: #1d4ed8;
-    color: #ffffff;
-  }
+  color: #9ca3af;
+  cursor: not-allowed;
+  opacity: 1;
+}
+  .smf-spacer { flex: 1; }
+.smf-export-group .smf-export-btn.excel {
+  background: #217346;
+  border-color: #217346;
+  color: #ffffff;
+}
 
-  /* PDF permanently purple */
-  .smf-export-btn.pdf {
-    background-color: #7c3aed;
-    border-color: #7c3aed;
-    color: #ffffff;
-  }
-
-  .smf-export-btn.pdf:hover:not(:disabled) {
-    background-color: #6d28d9;
-    border-color: #6d28d9;
-  }
-
-  .smf-export-btn:disabled {
-    background-color: #cbd5e1;
-    border-color: #cbd5e1;
-    color: #64748b;
-    cursor: not-allowed;
-  }
-
+.smf-export-group .smf-export-btn.excel:hover:not(:disabled) {
+  background: #185c37;
+  border-color: #185c37;
+  color: #ffffff;
+}
+  .smf-export-btn:hover:not(:disabled) { background: #1d4ed8; border-color: #1d4ed8; }
+  .smf-export-btn.pdf { background: #7c3aed; border-color: #7c3aed; }
+  .smf-export-btn.pdf:hover:not(:disabled) { background: #6d28d9; border-color: #6d28d9; }
+  .smf-export-btn:disabled { background: #cbd5e1; border-color: #cbd5e1; color: #64748b; cursor: not-allowed; }
   @media (max-width: 992px) {
-    .smf-bar {
-      gap: 10px;
-    }
-
-    .smf-export-group {
-      width: 100%;
-      margin-left: 0;
-      justify-content: flex-end;
-    }
+    .smf-bar { gap: 10px; }
+    .smf-export-group { width: 100%; margin-left: 0; justify-content: flex-end; }
   }
-
   @media (max-width: 768px) {
-    .smf-bar {
-      flex-direction: column;
-      align-items: stretch;
-      border-radius: 12px;
-      padding: 12px;
-    }
-
-    .smf-label {
-      justify-content: center;
-    }
-
-    .smf-bar select {
-      min-width: 100%;
-      max-width: 100%;
-    }
-
-    .smf-export-group {
-      width: 100%;
-      flex-direction: column;
-      align-items: stretch;
-    }
-
-    .smf-export-btn {
-      width: 100%;
-    }
+    .smf-bar { flex-direction: column; align-items: stretch; border-radius: 12px; padding: 12px; }
+    .smf-label { justify-content: center; }
+    .smf-bar select { min-width: 100%; max-width: 100%; }
+    .smf-export-group { width: 100%; flex-direction: column; align-items: stretch; }
+    .smf-export-btn { width: 100%; }
   }
-
   @media (max-width: 480px) {
-    .smf-bar {
-      padding: 10px;
-    }
-
-    .smf-label {
-      font-size: 11px;
-    }
-
-    .smf-export-btn {
-      font-size: 12px;
-      padding: 10px;
-    }
+    .smf-bar { padding: 10px; }
+    .smf-label { font-size: 11px; }
+    .smf-export-btn { font-size: 12px; padding: 10px; }
   }
 `}</style>
 
@@ -336,7 +263,7 @@ function Filters({
       <div className="smf-spacer" />
 
       <div className="smf-export-group">
-        <button type="button" className="smf-export-btn" onClick={onExportExcel} disabled={!canExport}>
+        <button type="button" className="smf-export-btn excel" onClick={onExportExcel} disabled={!canExport}>
           ⬇ Excel
         </button>
         <button type="button" className="smf-export-btn pdf" onClick={onExportPDF} disabled={!canExport}>
