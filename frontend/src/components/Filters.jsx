@@ -113,10 +113,10 @@ function Filters({
     padding: 12px 16px;
     margin-bottom: 16px;
     background: var(--color-base-100);
-    border-color: var(--color-primary);
-border: 1px solid var(--color-base-300);
+    border: 1px solid var(--color-base-300);
     border-radius: 16px;
   }
+
   .smf-label {
     display: flex;
     align-items: center;
@@ -128,66 +128,163 @@ border: 1px solid var(--color-base-300);
     color: var(--color-primary);
     white-space: nowrap;
   }
+
+  /* All three dropdowns always have the primary border */
   .smf-bar select {
-      border-color: var(--color-primary);
     appearance: none;
     -webkit-appearance: none;
     min-width: 180px;
     max-width: 240px;
     width: 100%;
     padding: 9px 36px 9px 14px;
-   border: 1px solid var(--color-base-300);
-background: var(--color-base-100);
-color: var(--color-base-content);
+
+    border: 1px solid var(--color-primary);
+    background-color: var(--color-base-100);
+    color: var(--color-base-content);
+
     border-radius: 999px;
-    // background:
-    //   #fff
-    //   url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'><path d='M5 7.5L10 12.5L15 7.5' stroke='%236b7280' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/></svg>")
-    //   no-repeat right 12px center;
-    background-size: 14px;
     font-size: 13px;
     font-weight: 500;
-    color: #1f2937;
-    transition: all 0.2s ease;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
     cursor: pointer;
+    outline: none;
   }
+
   .smf-bar select:hover {
     border-color: var(--color-primary);
-}
-.smf-bar select:focus {
+  }
+
+  .smf-bar select:focus,
+  .smf-bar select:focus-visible {
     border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 18%, transparent);
-}
-  .smf-bar select:disabled {background: color-mix(in srgb, var(--color-base-300) 30%, white);
-color: #9ca3af; cursor: not-allowed; }
-  .smf-spacer { flex: 1; }
-  .smf-export-group { display: flex; align-items: center; gap: 8px; margin-left: auto; flex-wrap: wrap; }
+    outline: none;
+    box-shadow: 0 0 0 3px
+      color-mix(in srgb, var(--color-primary) 18%, transparent);
+  }
+
+  /* Disabled role/level dropdowns also retain a visible border */
+  .smf-bar select:disabled {
+    border-color: var(--color-primary);
+    background: color-mix(
+      in srgb,
+      var(--color-base-300) 30%,
+      var(--color-base-100)
+    );
+    color: #9ca3af;
+    cursor: not-allowed;
+    opacity: 0.75;
+  }
+
+  .smf-spacer {
+    flex: 1;
+  }
+
+  .smf-export-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+    flex-wrap: wrap;
+  }
+
+  /* Excel has permanent blue color */
   .smf-export-btn {
-    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-    padding: 9px 14px; border-radius: 999px; border: 1px solid var(--color-primary);
-background: var(--color-primary);
-color: var(--color-primary-content); font-size: 13px; font-weight: 600;
-    cursor: pointer; transition: all 0.2s ease; white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 9px 14px;
+    border-radius: 999px;
+
+    border: 1px solid var(--color-primary);
+    background-color: var(--color-primary);
+    color: var(--color-primary-content);
+
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    white-space: nowrap;
   }
-  .smf-export-btn:hover:not(:disabled) { background: #1d4ed8; border-color: #1d4ed8; }
-  .smf-export-btn.pdf { background: #7c3aed; border-color: #7c3aed; }
-  .smf-export-btn.pdf:hover:not(:disabled) { background: #6d28d9; border-color: #6d28d9; }
-  .smf-export-btn:disabled { background: #cbd5e1; border-color: #cbd5e1; color: #64748b; cursor: not-allowed; }
+
+  .smf-export-btn:hover:not(:disabled) {
+    background-color: #1d4ed8;
+    border-color: #1d4ed8;
+    color: #ffffff;
+  }
+
+  /* PDF permanently purple */
+  .smf-export-btn.pdf {
+    background-color: #7c3aed;
+    border-color: #7c3aed;
+    color: #ffffff;
+  }
+
+  .smf-export-btn.pdf:hover:not(:disabled) {
+    background-color: #6d28d9;
+    border-color: #6d28d9;
+  }
+
+  .smf-export-btn:disabled {
+    background-color: #cbd5e1;
+    border-color: #cbd5e1;
+    color: #64748b;
+    cursor: not-allowed;
+  }
+
   @media (max-width: 992px) {
-    .smf-bar { gap: 10px; }
-    .smf-export-group { width: 100%; margin-left: 0; justify-content: flex-end; }
+    .smf-bar {
+      gap: 10px;
+    }
+
+    .smf-export-group {
+      width: 100%;
+      margin-left: 0;
+      justify-content: flex-end;
+    }
   }
+
   @media (max-width: 768px) {
-    .smf-bar { flex-direction: column; align-items: stretch; border-radius: 12px; padding: 12px; }
-    .smf-label { justify-content: center; }
-    .smf-bar select { min-width: 100%; max-width: 100%; }
-    .smf-export-group { width: 100%; flex-direction: column; align-items: stretch; }
-    .smf-export-btn { width: 100%; }
+    .smf-bar {
+      flex-direction: column;
+      align-items: stretch;
+      border-radius: 12px;
+      padding: 12px;
+    }
+
+    .smf-label {
+      justify-content: center;
+    }
+
+    .smf-bar select {
+      min-width: 100%;
+      max-width: 100%;
+    }
+
+    .smf-export-group {
+      width: 100%;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .smf-export-btn {
+      width: 100%;
+    }
   }
+
   @media (max-width: 480px) {
-    .smf-bar { padding: 10px; }
-    .smf-label { font-size: 11px; }
-    .smf-export-btn { font-size: 12px; padding: 10px; }
+    .smf-bar {
+      padding: 10px;
+    }
+
+    .smf-label {
+      font-size: 11px;
+    }
+
+    .smf-export-btn {
+      font-size: 12px;
+      padding: 10px;
+    }
   }
 `}</style>
 
