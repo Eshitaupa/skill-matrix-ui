@@ -439,26 +439,57 @@ function isDisciplineAllowed(
    ACCESS LOOKUP
    ========================================================= */
 
-async function getAllowedDisciplinesFromAccessTable(email) {
-  const normalizedEmail = getNormalizedEmail(email);
+function getEmailCandidates(email) {
+  const normalizedEmail = String(email || "")
+    .trim()
+    .toLowerCase();
 
-  if (!normalizedEmail) {
+  if (!normalizedEmail || !normalizedEmail.includes("@")) {
     return [];
   }
+
+  const [username] = normalizedEmail.split("@");
+
+  return [
+    normalizedEmail,
+    `${username}@burnsmcd.in`,
+    `${username}@burnsmcd.com`,
+  ].filter((value, index, array) => array.indexOf(value) === index);
+}
+
+async function getAllowedDisciplinesFromAccessTable(email) {
+  const candidates = getEmailCandidates(email);
+
+  console.log("MATRIX ACCESS EMAIL RECEIVED:", email);
+  console.log("MATRIX ACCESS EMAIL CANDIDATES:", candidates);
+
+  if (!candidates.length) {
+    return [];
+  }
+
+  const candidateSql = candidates
+    .map((candidate) => `'${esc(candidate)}'`)
+    .join(", ");
 
   const sql = `
     SELECT DISTINCT discipline
     FROM ${ACCESS_TABLE}
-    WHERE LOWER(TRIM(email)) = LOWER('${esc(normalizedEmail)}')
+    WHERE LOWER(TRIM(email)) IN (${candidateSql})
       AND is_active = true
       AND discipline IS NOT NULL
   `;
 
+  console.log("MATRIX ACCESS SQL:", sql);
+
   const rows = await queryDatabricks(sql);
 
-  return rows
+  const disciplines = (rows || [])
     .map((row) => norm(row?.[0]))
     .filter(Boolean);
+
+  console.log("MATRIX ACCESS RESULT:", disciplines);
+
+  return disciplines;
 }
 
 function getNormalizedEmail(email) {

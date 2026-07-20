@@ -173,13 +173,19 @@ const checkSession = useCallback(async () => {
       },
     });
 
-    if (res.status === 401) {
-      setAuthed(false);
-      setAllowedDisciplines([]);
-      setUserEmail("");
-      setCheckError(false);
-      return;
-    }
+if (res.status === 401 || res.status === 403) {
+  const errorData = await res.json().catch(() => ({}));
+
+  console.error("SESSION ACCESS DENIED:", errorData);
+
+  setAuthed(false);
+  setAllowedDisciplines([]);
+  setUserEmail("");
+  setCheckError(false);
+
+  sessionStorage.clear();
+  return;
+}
 
     if (!res.ok) {
       throw new Error(`Session check failed: HTTP ${res.status}`);

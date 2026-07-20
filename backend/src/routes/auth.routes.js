@@ -37,27 +37,68 @@ const router = express.Router();
 // function getAllowedDisciplines(email) {
 //   return USER_DISCIPLINE_ACCESS[email] || ["All"];
 // }
-async function getAllowedDisciplines(email) {
-  try {
-    const sql = `
-      SELECT discipline
-      FROM ogc_techdept_test.skill_matrix.user_discipline_access
-      WHERE lower(email) = lower('${email}')
-        AND is_active = true
-    `;
+const ACCESS_TABLE =
+  "ogc_techdept_test.skill_matrix.user_discipline_access";
 
-    const rows = await queryDatabricks(sql);
+const escSql = (value) =>
+  String(value ?? "").replaceAll("'", "''");
 
-    if (!rows || rows.length === 0) {
-      return ["All"];
-    }
+const norm = (value) =>
+  String(value ?? "")
+    .trim()
+    .replace(/\s+/g, " ");
 
-    return rows.map((r) => r[0]);
+function getEmailCandidates(email) {
+  const normalizedEmail = String(email || "")
+    .trim()
+    .toLowerCase();
 
-  } catch (err) {
-    console.error("ACCESS LOOKUP ERROR:", err);
-    return ["All"];
+  if (!normalizedEmail || !normalizedEmail.includes("@")) {
+    return [];
   }
+
+  const [username] = normalizedEmail.split("@");
+
+  return [
+    normalizedEmail,
+    `${username}@burnsmcd.in`,
+    `${username}@burnsmcd.com`,
+  ].filter((value, index, array) => array.indexOf(value) === index);
+}
+
+async function getAllowedDisciplines(email) {
+  const candidates = getEmailCandidates(email);
+
+  console.log("AUTH ACCESS EMAIL RECEIVED:", email);
+  console.log("AUTH ACCESS EMAIL CANDIDATES:", candidates);
+
+  if (!candidates.length) {
+    return [];
+  }
+
+  const candidateSql = candidates
+    .map((candidate) => `'${escSql(candidate)}'`)
+    .join(", ");
+
+  const sql = `
+    SELECT DISTINCT discipline
+    FROM ${ACCESS_TABLE}
+    WHERE LOWER(TRIM(email)) IN (${candidateSql})
+      AND is_active = true
+      AND discipline IS NOT NULL
+  `;
+
+  console.log("AUTH ACCESS SQL:", sql);
+
+  const rows = await queryDatabricks(sql);
+
+  const disciplines = (rows || [])
+    .map((row) => norm(row?.[0]))
+    .filter(Boolean);
+
+  console.log("AUTH ACCESS RESULT:", disciplines);
+
+  return disciplines;
 }
 function decodeJwt(token) {
   try {
@@ -153,17 +194,30 @@ router.post("/session", async(req, res) => {
       });
     }
 
-    const allowedDisciplines = await getAllowedDisciplines(email);
+const allowedDisciplines = await getAllowedDisciplines(email);
 
-    res.cookie("session_token", id_token, cookieOptions);
-    res.cookie("user_email", email, cookieOptions);
+if (allowedDisciplines.length === 0) {
+  console.error("NO DISCIPLINE ACCESS FOUND FOR:", email);
 
-    return res.json({
-      ok: true,
-      authenticated: true,
-      email,
-      allowedDisciplines,
-    });
+  return res.status(403).json({
+    ok: false,
+    authenticated: false,
+    email,
+    allowedDisciplines: [],
+    message:
+      "No active discipline access is assigned to this account.",
+  });
+}
+
+res.cookie("session_token", id_token, cookieOptions);
+res.cookie("user_email", email, cookieOptions);
+
+return res.json({
+  ok: true,
+  authenticated: true,
+  email,
+  allowedDisciplines,
+});
   } catch (err) {
     console.error("SESSION ERROR:", err);
 
@@ -198,14 +252,28 @@ res.clearCookie("user_email", clearCookieOptions);
     });
   }
 
-  const normalizedEmail = String(email).trim().toLowerCase();
-  const allowedDisciplines = await getAllowedDisciplines(normalizedEmail);
+const normalizedEmail = String(email)
+  .trim()
+  .toLowerCase();
 
-  return res.json({
-    authenticated: true,
+const allowedDisciplines =
+  await getAllowedDisciplines(normalizedEmail);
+
+if (allowedDisciplines.length === 0) {
+  return res.status(403).json({
+    authenticated: false,
     email: normalizedEmail,
-    allowedDisciplines,
+    allowedDisciplines: [],
+    message:
+      "No active discipline access is assigned to this account.",
   });
+}
+
+return res.status(200).json({
+  authenticated: true,
+  email: normalizedEmail,
+  allowedDisciplines,
+});
 });
 
 // Logout
