@@ -456,25 +456,26 @@ function getEmailCandidates(email) {
     `${username}@burnsmcd.com`,
   ].filter((value, index, array) => array.indexOf(value) === index);
 }
-
 async function getAllowedDisciplinesFromAccessTable(email) {
-  const normalizedEmail = String(email || "")
-    .trim()
-    .toLowerCase();
+  const candidates = getEmailCandidates(email);
 
-  if (!normalizedEmail) {
-    return [];
+  if (candidates.length === 0) {
+    return ["All"];
   }
+
+  const inClause = candidates
+    .map((e) => `LOWER('${esc(e)}')`)
+    .join(", ");
 
   const sql = `
     SELECT DISTINCT discipline
     FROM ${ACCESS_TABLE}
-    WHERE LOWER(TRIM(email)) = LOWER('${esc(normalizedEmail)}')
+    WHERE LOWER(TRIM(email)) IN (${inClause})
       AND is_active = true
       AND discipline IS NOT NULL
   `;
 
-  console.log("MATRIX ACCESS EMAIL:", normalizedEmail);
+  console.log("MATRIX ACCESS CANDIDATES:", candidates);
 
   const rows = await queryDatabricks(sql);
 
@@ -490,8 +491,6 @@ async function getAllowedDisciplinesFromAccessTable(email) {
 
   return disciplines;
 }
-
-
 async function getAccessForRequest(req) {
   const email = getUserEmail(req);
 

@@ -48,29 +48,33 @@ const norm = (value) =>
     .trim()
     .replace(/\s+/g, " ");
 
+function getEmailCandidates(email) {
+  const normalizedEmail = String(email || "").trim().toLowerCase();
+  if (!normalizedEmail || !normalizedEmail.includes("@")) return [];
+  const [username] = normalizedEmail.split("@");
+  return [
+    normalizedEmail,
+    `${username}@burnsmcd.in`,
+    `${username}@burnsmcd.com`,
+  ].filter((v, i, a) => a.indexOf(v) === i);
+}
+
 async function getAllowedDisciplines(email) {
-  const normalizedEmail = String(email || "")
-    .trim()
-    .toLowerCase();
+  const candidates = getEmailCandidates(email);
+  if (candidates.length === 0) throw new Error("Email is missing");
 
-  if (!normalizedEmail) {
-    throw new Error("Email is missing");
-  }
-
-  const escapedEmail = normalizedEmail.replaceAll("'", "''");
+  const inClause = candidates.map((e) => `'${e.replaceAll("'", "''")}'`).join(", ");
 
   const sql = `
     SELECT DISTINCT discipline
     FROM ${ACCESS_TABLE}
-    WHERE LOWER(TRIM(email)) = '${escapedEmail}'
+    WHERE LOWER(TRIM(email)) IN (${inClause})
       AND is_active = true
       AND discipline IS NOT NULL
   `;
 
-  console.log("LOOKING UP ACCESS FOR:", normalizedEmail);
-
+  console.log("LOOKING UP ACCESS FOR:", candidates);
   const rows = await queryDatabricks(sql);
-
   console.log("RAW ACCESS ROWS:", rows);
 
   const disciplines = (rows || [])
@@ -79,10 +83,7 @@ async function getAllowedDisciplines(email) {
 
   console.log("FINAL DISCIPLINES:", disciplines);
 
-  if (disciplines.length === 0) {
-    return ["All"];
-  }
-
+  if (disciplines.length === 0) return ["All"];
   return disciplines;
 }
 function decodeJwt(token) {
