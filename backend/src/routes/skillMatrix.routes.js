@@ -689,6 +689,7 @@ router.get("/", async (req, res) => {
       FROM final_data
 
       WHERE Value IS NOT NULL
+      ORDER BY Skill, Subskill, LevelKey
     `;
 
     const rows = await queryDatabricks(sql);
