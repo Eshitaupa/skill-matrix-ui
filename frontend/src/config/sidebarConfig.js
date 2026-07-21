@@ -1,22 +1,26 @@
 export const sidebarItems = [
   {
     id: "level-matrix",
-    label: "Level Wise required Skills Proficiency Matrix",
+    shortLabel: "Level Matrix",
+    label: "Level Wise Required Skills Proficiency Matrix",
+    icon: "LW",
     route: "/matrix",
     enabled: true,
   },
   {
     id: "assessment",
+    shortLabel: "Skills Assessment",
     label: "Skills Validation & Assessment",
+    icon: "SVA",
     route: "/assessment",
     enabled: true,
   },
   {
     id: "gap-analysis",
-    label: "Analytics",
+    shortLabel: "Gap Analytics",
+    label: "Gap Analytics",
+    icon: "GA",
     route: "/gap",
-    enabled: false,
+    enabled: true,
   },
 ];
-
-
