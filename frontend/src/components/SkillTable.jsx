@@ -111,12 +111,11 @@ const DEFAULT_LEVEL_LABELS = {};
 const TINT_COUNT = 6;
 
 const PROFICIENCY_LABELS = {
-  NA: "Not Applicable",
+  "NA": "Not Applicable",
   "1": "Familiar",
   "2": "Working Level",
   "3": "Extensive",
   "4": "Authoritative",
-  "5": "Expert",
 };
 
 const getProficiencyText = (value) => {
@@ -224,12 +223,30 @@ function SkillTable({
           min-width: 30px; height: 28px; padding: 0 6px; border-radius: 8px;
           font-weight: 700; font-size: 13px;
         }
-        .smx-level-1 { background: #e5e7eb; color: #374151; }
-        .smx-level-2 { background: #d1fae5; color: #065f46; }
-        .smx-level-3 { background: #bfdbfe; color: #1e40af; }
-        .smx-level-4 { background: #ddd6fe; color: #5b21b6; }
-        .smx-level-5 { background: #fde68a; color: #92400e; }
-        .smx-na { color: #cbd5e1; font-size: 16px; line-height: 1; }
+     .smx-level-1 {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.smx-level-2 {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.smx-level-3 {
+  background: #bfdbfe;
+  color: #1e40af;
+}
+
+.smx-level-4 {
+  background: #ddd6fe;
+  color: #5b21b6;
+}
+
+.smx-na-badge {
+  background: #fde68a;
+  color: #92400e;
+}
 
         .smx-table select { padding: 5px 6px; border-radius: 6px; border: 1px solid #d1d5db; background: #ffffff; font-size: 13px; }
         .smx-changed { background: #fff3cd; border-radius: 6px; }
@@ -337,11 +354,11 @@ function SkillTable({
   </select>
 ) : String(value) === "NA" ? (
   <span
-    className="smx-na smx-tip"
+    className="smx-badge smx-level-1 smx-tip"
     title="NA - Not Applicable"
     data-tip="NA - Not Applicable"
   >
-    •
+    NA
   </span>
 ) : (
   <span

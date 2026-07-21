@@ -324,11 +324,6 @@ import { queryDatabricks } from "../db/databricks.js";
 const router = express.Router();
 
 console.log("SKILL MATRIX ROUTES LOADED");
-
-/* =========================================================
-   CONSTANTS
-   ========================================================= */
-
 const UPLOAD =
   "ogc_techdept_test.skill_matrix.skill_matrix_upload";
 
@@ -352,18 +347,13 @@ const DISCIPLINES = [
 const ROLES = ["Engineer", "Designer"];
 
 const ENGINEER_LEVELS = [
-  "L7", "L8", "L9", "L10", "L11",
-  "L12", "L13", "L14", "L15", "L16", "L17",
+  "L7", "L8", "L9", "L10", "L11","L12", "L13", "L14", "L15", "L16", "L17",
 ];
 
 const DESIGNER_LEVELS = [
-  "L5", "L6", "L7", "L8", "L9",
-  "L10", "L11", "L12", "L13", "L14", "L15",
+  "L5", "L6", "L7", "L8", "L9","L10", "L11", "L12", "L13", "L14", "L15",
 ];
 
-/* =========================================================
-   HELPERS
-   ========================================================= */
 
 const esc = (value) =>
   String(value ?? "").replaceAll("'", "''");
@@ -408,12 +398,6 @@ function isDisciplineAllowed(requestedDiscipline, allowedDisciplines) {
   );
 }
 
-/* =========================================================
-   ACCESS LOOKUP
-   No row in DB = user sees ALL disciplines (login gate
-   is handled by Azure, not this table).
-   ========================================================= */
-
 function getEmailCandidates(email) {
   const normalizedEmail = String(email || "").trim().toLowerCase();
 
@@ -457,7 +441,6 @@ async function getAllowedDisciplinesFromAccessTable(email) {
 
   console.log("MATRIX ACCESS RESULT:", disciplines);
 
-  // No row = full access
   if (disciplines.length === 0) return ["All"];
 
   return disciplines;
@@ -505,9 +488,6 @@ async function requireDisciplineAccess(req, res, requestedDiscipline) {
   return { email, allowedDisciplines };
 }
 
-/* =========================================================
-   GET /api/skill-matrix/meta
-   ========================================================= */
 
 router.get("/meta", async (req, res) => {
   try {
@@ -552,9 +532,6 @@ router.get("/meta", async (req, res) => {
   }
 });
 
-/* =========================================================
-   GET /api/skill-matrix
-   ========================================================= */
 
 router.get("/", async (req, res) => {
   try {
@@ -740,9 +717,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-/* =========================================================
-   POST /api/skill-matrix/save
-   ========================================================= */
+
 
 router.post("/save", async (req, res) => {
   try {
@@ -921,9 +896,7 @@ router.post("/save", async (req, res) => {
   }
 });
 
-/* =========================================================
-   POST /api/skill-matrix/row/delete
-   ========================================================= */
+
 
 router.post("/row/delete", async (req, res) => {
   try {
