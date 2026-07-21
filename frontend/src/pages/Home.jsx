@@ -47,8 +47,8 @@ export default function Home() {
   ];
 
   const roadmap = [
-    { phase: "Phase 1", title: "Foundation",  desc: "Taxonomy, templates, and governed skill library",          color: "#6d5fc7" },
-    { phase: "Phase 2", title: "Assessment",  desc: "Manager-led rating cycles and employee profiles",           color: "#2a9d8f" },
+    { phase: "Phase 1", title: "Skills Standardization",  desc: "Taxonomy, templates, and governed skill library",          color: "#6d5fc7" },
+    { phase: "Phase 2", title: "Skills Validation",  desc: "Manager-led rating cycles and employee profiles",           color: "#2a9d8f" },
     { phase: "Phase 3", title: "Coaching",    desc: "Development plans, role readiness, and gap actions",        color: "#e9a84c" },
     { phase: "Phase 4", title: "Analytics",   desc: "Workforce planning signals and capability dashboards",      color: "#e07070" },
   ];
@@ -70,7 +70,7 @@ export default function Home() {
       {/* ── Hero ── */}
       <section className="hp-hero">
         <h1 className="hp-hero__title">Project Meridian</h1>
-        <p className="hp-hero__sub">Phase 1 through 4 · Manager-led capability development</p>
+        <p className="hp-hero__sub">Phase 1 through 3 · Manager-led capability development</p>
         <p className="hp-hero__desc">
           A single, structured foundation for how we understand, develop, and grow capability
           across disciplines. Skill data moves from scattered, discipline-specific artifacts into a
@@ -78,13 +78,13 @@ export default function Home() {
         </p>
 
         <div className="hp-pills">
-          {["Phase 1 · Foundation","Phase 2 · Assessment","Phase 3 · Review cycles","Phase 4 · Analytics"].map(p => (
+          {["Phase 1 · Skills Standardization","Phase 2 · Skills Validation","Phase 3 · Gap Analytics",].map(p => (
             <span key={p} className="hp-pill">{p}</span>
           ))}
         </div>
 
         <div className="hp-stats">
-          {[["4","Delivery phases"],["1","Governed system"],["∞","Growth potential"]].map(([n,l]) => (
+          {[["3","Delivery phases"],["1","Governed system"],["∞","Growth potential"]].map(([n,l]) => (
             <div key={l} className="hp-stat">
               <span className="hp-stat__n">{n}</span>
               <span className="hp-stat__l">{l}</span>
@@ -114,36 +114,26 @@ export default function Home() {
 
             {card.expandable && showProjectInfo && (
               <div className="hp-expand" onClick={e => e.stopPropagation()}>
-                <h2>Skill Matrix Tool (Phase 1–4)</h2>
+                <h2>Skill Matrix Tool (Phase 1–3)</h2>
                 <p>The Skill Matrix Tool establishes a single, structured foundation for how we understand, develop, and grow capability across disciplines. It moves skill data from scattered, discipline-specific artifacts into a central, governed system that supports consistent coaching, role readiness, and workforce planning.</p>
                 <p>Phases 1 through 3 are manager-led by design. The intent is to equip managers with a clear, practical tool for coaching and development, supported by structured data and consistent expectations.</p>
 
                 {[
-                  ["Phase 1 – Centralize and standardize", [
-                    "Consolidate all discipline skill matrices into a single SharePoint-based location.",
-                    "Establish common structure, ownership, and update procedures.",
-                    "Enable metadata access so skills can be queried and reused.",
-                    "Remove ambiguity around ownership and maintenance.",
+                  ["Phase 1 –  Skills Standardization (Completed)", [
+                    "A centralized Skills Repository has been established for all Engineering and Project Management disciplines.",
+                    "The minimum proficiency level required for each skill, based on employee grade, has been defined by the respective Discipline Managers.",
+                    "Discipline Managers can add new skills or modify proficiency requirements at any time to ensure the repository remains current and relevant.",
+                    "The repository is exclusively manager-owned and manager-controlled. Access is restricted to GP Managers, EMs, AEMs, Discipline Managers (DMs), and SMs. Employee Owners will not have access to this repository.",
                   ]],
-                  ["Phase 2 – Connect skills to job descriptions", [
-                    "Link the centralized skill matrix to standardized job descriptions.",
-                    "Make role expectations explicit by discipline and level.",
-                    "Create a bridge between competencies and progression readiness.",
-                    "Align capability definitions with evaluation processes.",
+                  ["Phase 2 – Skills Validation (Future)", [
+                    "Skills Assessment: Employee Owners will perform a self-assessment by rating their proficiency against the skills defined in Phase 1.",
+                    "Manager Review: After the self-assessment is completed, Managers will review the ratings and provide feedback.",
+                    "Upon completion of the Manager Review, Employee Owners will be able to view: ○ Their self-assessed proficiency level ○ The required proficiency level defined in Phase 1 ○ The proficiency level assigned by their Manager",
+                    "The output from this phase will serve as the foundation for Phase 3.",
                   ]],
-                  ["Phase 3 – Enable AI-assisted coaching", [
-                    "Bring together skill matrix, job descriptions and development plans.",
-                    "Identify strengths and growth areas.",
-                    "Recommend training and stretch assignments.",
-                    "Build competency-based growth plans.",
-                    "Support managers without replacing their judgment.",
-                  ]],
-                  ["Phase 4 – Employee-facing guidance experience", [
-                    "Self-service role-aware guidance.",
-                    "Personalized development pathways.",
-                    "Preparation for higher-quality manager conversations.",
-                    "Governed and consistent messaging.",
-                    "Improved employee agency while maintaining a single source of truth.",
+                  ["Phase 3 – Gap Analytics (Future)", [
+                    "Power BI or similar analytics tools will be used to identify gaps between the required skill levels defined in Phase 1 and the available skill proficiency levels captured in Phase 2 for each Employee Owner.",
+                    "Data from the above analytics will be used by Managers to prepare Career Development Plans & assign appropriate trainings to Employee Owners.",
                   ]],
                   ["Why this matters", [
                     "Builds a consistent coaching toolset.",
@@ -159,18 +149,6 @@ export default function Home() {
                 ))}
               </div>
             )}
-          </div>
-        ))}
-      </div>
-
-      {/* ── Roadmap ── */}
-      <p className="hp-label">ROADMAP AT A GLANCE</p>
-      <div className="hp-roadmap">
-        {roadmap.map(r => (
-          <div key={r.phase} className="hp-rm" style={{ "--accent": r.color }}>
-            <span className="hp-rm__phase" style={{ color: r.color }}>{r.phase}</span>
-            <strong className="hp-rm__title">{r.title}</strong>
-            <p className="hp-rm__desc">{r.desc}</p>
           </div>
         ))}
       </div>

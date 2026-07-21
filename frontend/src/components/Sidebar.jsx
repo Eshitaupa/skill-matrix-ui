@@ -371,7 +371,7 @@ backdrop-filter: blur(8px)
               title={collapsed ? item.label : ""}
             >
             <span className="sb-icon">
-  {item.label === "Level Wise required Skills Proficiency Matrix" ? "LW" : "AR"}
+  {item.label === "Level Wise required Skills Proficiency Matrix" ? "LW" : "SVA"}
 </span>
 
 <span className="sb-label">{item.label}</span>
