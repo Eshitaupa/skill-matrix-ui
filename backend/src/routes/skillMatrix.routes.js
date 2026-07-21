@@ -15,14 +15,14 @@ const ACCESS_TABLE =
   "ogc_techdept_test.skill_matrix.user_discipline_access";
 
 const DISCIPLINES = [
-  "Project Management",
-  "Process",
-  "Mechanical",
   "CSA",
+  "Electrical",
+  "Instrumentation",
+  "Mechanical",
   "Piping Design",
   "Piping Engineering",
-  "Instrumentation",
-  "Electrical",
+  "Process",
+  "Project Management",
 ];
 
 const ROLES = ["Engineer", "Designer"];
@@ -405,7 +405,7 @@ ORDER BY
                                WHEN LOWER(Discipline) = 'electrical'
              AND LOWER(Skill) = '3D modelling' THEN 3
                                WHEN LOWER(Discipline) = 'electrical'
-             AND LOWER(Skill) = 'software capabilities' THEN 4
+             AND LOWER(Skill) = 'software Capabilities' THEN 4
 
         ELSE 99
     END,
