@@ -475,7 +475,7 @@ const ROLE_LEVELS = {
 const DISCIPLINE_ROLE_MAP = {
   "Project Management": "Engineer",
   "Piping Engineering": "Engineer",
-  Instrumentation: "Designer",
+  "Mechanical": "Engineer",
 };
 
 const DEFAULT_DISCIPLINES = [
