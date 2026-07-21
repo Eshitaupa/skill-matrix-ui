@@ -1,7 +1,7 @@
 export const sidebarItems = [
   {
     id: "level-matrix",
-    shortLabel: "Level Matrix",
+    shortLabel: "Level Wise Required Skills Proficiency Matrix",
     label: "Level Wise Required Skills Proficiency Matrix",
     icon: "LW",
     route: "/matrix",
@@ -9,7 +9,7 @@ export const sidebarItems = [
   },
   {
     id: "assessment",
-    shortLabel: "Skills Assessment",
+    shortLabel: "Skills Validation & Assessment",
     label: "Skills Validation & Assessment",
     icon: "SVA",
     route: "/assessment",
