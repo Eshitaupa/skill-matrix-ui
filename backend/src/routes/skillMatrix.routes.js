@@ -386,6 +386,17 @@ ORDER BY
         WHEN LOWER(Discipline) = 'mechanical'
              AND LOWER(Skill) = 'software skills' THEN 3
 
+                    WHEN LOWER(Discipline) = 'piping design'
+             AND LOWER(Skill) = 'arrangements' THEN 1
+        WHEN LOWER(Discipline) = 'piping design'
+             AND LOWER(Skill) = 'fixed equipment' THEN 2
+        WHEN LOWER(Discipline) = 'piping design'
+             AND LOWER(Skill) = 'rotary equipments' THEN 3
+                WHEN LOWER(Discipline) = 'piping design'
+             AND LOWER(Skill) = 'piping' THEN 4
+                WHEN LOWER(Discipline) = 'piping design'
+             AND LOWER(Skill) = 'softwares' THEN 5
+
         ELSE 99
     END,
     Skill,
