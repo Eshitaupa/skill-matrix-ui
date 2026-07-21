@@ -223,25 +223,29 @@ function SkillTable({
           min-width: 30px; height: 28px; padding: 0 6px; border-radius: 8px;
           font-weight: 700; font-size: 13px;
         }
-     .smx-level-1 {
-  background: #e5e7eb;
-    color: #065f46;}
+.smx-level-1 {
+  background: #d1fae5;
+  color: #065f46;
+}
 
 .smx-level-2 {
-  background: #d1fae5;
-    color: #1e40af;}
+  background: #bfdbfe;
+  color: #1e40af;
+}
 
 .smx-level-3 {
-  background: #bfdbfe;
-    color: #5b21b6;}
+  background: #ddd6fe;
+  color: #5b21b6;
+}
 
 .smx-level-4 {
-  background: #ddd6fe;
-    color: #92400e;}
+  background: #fde68a;
+  color: #92400e;
+}
 
 .smx-na-badge {
-  background: #fde68a;
-    color: #374151;
+  background: #e5e7eb;
+  color: #374151;
 }
 
         .smx-table select { padding: 5px 6px; border-radius: 6px; border: 1px solid #d1d5db; background: #ffffff; font-size: 13px; }
@@ -350,7 +354,7 @@ function SkillTable({
   </select>
 ) : String(value) === "NA" ? (
   <span
-    className="smx-badge smx-level-1 smx-tip"
+    className="smx-badge smx-na-badge smx-tip"
     title="NA - Not Applicable"
     data-tip="NA - Not Applicable"
   >
