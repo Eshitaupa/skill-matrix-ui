@@ -1,19 +1,19 @@
 export const sidebarItems = [
   {
     id: "level-matrix",
-    label: "Level Wise Matrix",
+    label: "Level Wise required Skills Proficiency Matrix",
     route: "/matrix",
     enabled: true,
   },
   {
     id: "assessment",
-    label: "Assessment Review",
+    label: "Skills Validation & Assessment",
     route: "/assessment",
     enabled: true,
   },
   {
     id: "gap-analysis",
-    label: "Gap Analysis",
+    label: "Analytics",
     route: "/gap",
     enabled: false,
   },
