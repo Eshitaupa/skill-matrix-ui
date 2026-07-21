@@ -550,15 +550,16 @@ function transformApiToMatrix(rows, roleLevels) {
     });
   });
 
-  const output = Object.values(groups).sort((a, b) =>
-    a.category.localeCompare(b.category)
-  );
+  // const output = Object.values(groups).sort((a, b) =>
+  //   a.category.localeCompare(b.category)
+  // );
 
-  output.forEach((group) => {
-    group.skills.sort((a, b) => a.name.localeCompare(b.name));
-  });
+  // output.forEach((group) => {
+  //   group.skills.sort((a, b) => a.name.localeCompare(b.name));
+  // });
 
-  return output;
+  // return output;
+  return Object.values(groups);
 }
 
 async function safeJson(res) {
