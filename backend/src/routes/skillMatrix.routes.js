@@ -397,6 +397,16 @@ ORDER BY
                 WHEN LOWER(Discipline) = 'piping design'
              AND LOWER(Skill) = 'softwares' THEN 5
 
+             
+                    WHEN LOWER(Discipline) = 'electrical'
+             AND LOWER(Skill) = 'engineering' THEN 1
+                               WHEN LOWER(Discipline) = 'electrical'
+             AND LOWER(Skill) = 'drafting 2D layouts' THEN 2
+                               WHEN LOWER(Discipline) = 'electrical'
+             AND LOWER(Skill) = '3D modelling' THEN 3
+                               WHEN LOWER(Discipline) = 'electrical'
+             AND LOWER(Skill) = 'software capabilities' THEN 4
+
         ELSE 99
     END,
     Skill,
