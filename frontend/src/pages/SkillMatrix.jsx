@@ -479,14 +479,14 @@ const DISCIPLINE_ROLE_MAP = {
 };
 
 const DEFAULT_DISCIPLINES = [
-  "Project Management",
-  "Process",
-  "Mechanical",
   "CSA",
+  "Electrical",
+  "Instrumentation",
+  "Mechanical",
   "Piping Design",
   "Piping Engineering",
-  "Instrumentation",
-  "Electrical",
+  "Process",
+  "Project Management",
 ];
 
 const API_BASE =
