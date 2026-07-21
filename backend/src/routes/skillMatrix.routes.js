@@ -678,18 +678,25 @@ router.get("/", async (req, res) => {
       )
 
       SELECT
-        Discipline,
-        Role,
-        LevelKey,
-        Skill,
-        Subskill,
-        Value,
-        changed_by
-
-      FROM final_data
-
-      WHERE Value IS NOT NULL
-      ORDER BY Skill, Subskill, LevelKey
+    Discipline,
+    Role,
+    LevelKey,
+    Skill,
+    Subskill,
+    Value,
+    changed_by
+FROM final_data
+WHERE Value IS NOT NULL
+ORDER BY
+    CASE Skill
+        WHEN 'Deliverables' THEN 1
+        WHEN 'Activities' THEN 2
+        WHEN 'Software Skills' THEN 3
+        ELSE 99
+    END,
+    Subskill,
+    Role,
+    CAST(REPLACE(LevelKey, 'L', '') AS INT);
     `;
 
     const rows = await queryDatabricks(sql);
