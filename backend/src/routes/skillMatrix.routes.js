@@ -397,6 +397,19 @@ ORDER BY
                 WHEN LOWER(Discipline) = 'piping design'
              AND LOWER(Skill) = 'softwares' THEN 5
 
+
+                      WHEN LOWER(Discipline) = 'piping engineering'
+             AND LOWER(Skill) = 'analysis' THEN 1
+        WHEN LOWER(Discipline) = 'piping engineering'
+             AND LOWER(Skill) = 'fixed equipments' THEN 2
+        WHEN LOWER(Discipline) = 'piping engineering'
+             AND LOWER(Skill) = 'rotating equipments' THEN 3
+                WHEN LOWER(Discipline) = 'piping engineering'
+             AND LOWER(Skill) = 'materials' THEN 4
+                WHEN LOWER(Discipline) = 'piping engineering'
+             AND LOWER(Skill) = 'piping materials' THEN 5
+                            WHEN LOWER(Discipline) = 'piping engineering'
+             AND LOWER(Skill) = 'softwares' THEN 6
              
                     WHEN LOWER(Discipline) = 'electrical'
              AND LOWER(Skill) = 'engineering' THEN 1
@@ -407,8 +420,29 @@ ORDER BY
                                WHEN LOWER(Discipline) = 'electrical'
              AND LOWER(Skill) = 'software capabilities' THEN 4
 
+       WHEN LOWER(Discipline) = 'instrumentation'
+             AND LOWER(Skill) = 'lists' THEN 1
 
-             
+       WHEN LOWER(Discipline) = 'instrumentation'
+                    AND LOWER(Skill) = 'analyzers' THEN 2
+
+       WHEN LOWER(Discipline) = 'instrumentation'
+                    AND LOWER(Skill) = 'flow' THEN 3
+
+       WHEN LOWER(Discipline) = 'instrumentation'
+                    AND LOWER(Skill) = 'valves' THEN 4
+
+       WHEN LOWER(Discipline) = 'instrumentation'
+                    AND LOWER(Skill) = 'control & automation' THEN 5
+
+       WHEN LOWER(Discipline) = 'instrumentation'
+                    AND LOWER(Skill) = 'modelling' THEN 6
+
+       WHEN LOWER(Discipline) = 'instrumentation'
+                    AND LOWER(Skill) = 'wiring/loops' THEN 7
+               WHEN LOWER(Discipline) = 'instrumentation'
+                    AND LOWER(Skill) = 'general' THEN 7
+
                     WHEN LOWER(Discipline) = 'project management'
              AND LOWER(Skill) = 'personal effectiveness & leadership' THEN 1
                                WHEN LOWER(Discipline) = 'project management'

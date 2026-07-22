@@ -947,7 +947,7 @@ useEffect(() => {
     const keys = Object.keys(editedValues || {});
 
     if (!keys.length) {
-      alert("No changes to save");
+      // alert("No changes to save");
       setIsEditMode(false);
       return;
     }
