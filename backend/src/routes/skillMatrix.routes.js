@@ -405,7 +405,24 @@ ORDER BY
                                WHEN LOWER(Discipline) = 'electrical'
              AND LOWER(Skill) = '3D modelling' THEN 3
                                WHEN LOWER(Discipline) = 'electrical'
-             AND LOWER(Skill) = 'software Capabilities' THEN 4
+             AND LOWER(Skill) = 'software capabilities' THEN 4
+
+
+             
+                    WHEN LOWER(Discipline) = 'project management'
+             AND LOWER(Skill) = 'personal effectiveness & leadership' THEN 1
+                               WHEN LOWER(Discipline) = 'project management'
+             AND LOWER(Skill) = 'communication & collaboration' THEN 2
+                               WHEN LOWER(Discipline) = 'project management'
+             AND LOWER(Skill) = 'engineering management' THEN 3
+                               WHEN LOWER(Discipline) = 'project management'
+             AND LOWER(Skill) = 'project planning & control' THEN 4
+                 WHEN LOWER(Discipline) = 'project management'
+             AND LOWER(Skill) = 'commercial & cost' THEN 5
+                 WHEN LOWER(Discipline) = 'project management'
+             AND LOWER(Skill) = 'risk & construction' THEN 6
+                 WHEN LOWER(Discipline) = 'project management'
+             AND LOWER(Skill) = 'business & knowledge' THEN 7
 
         ELSE 99
     END,
