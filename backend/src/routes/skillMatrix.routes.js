@@ -439,9 +439,9 @@ ORDER BY
                     AND LOWER(Skill) = 'modelling' THEN 6
 
        WHEN LOWER(Discipline) = 'instrumentation'
-                    AND LOWER(Skill) = 'wiring/loops' THEN 7
+                    AND LOWER(Skill) = 'wiring / loops' THEN 7
                WHEN LOWER(Discipline) = 'instrumentation'
-                    AND LOWER(Skill) = 'general' THEN 7
+                    AND LOWER(Skill) = 'general' THEN 8
 
                     WHEN LOWER(Discipline) = 'project management'
              AND LOWER(Skill) = 'personal effectiveness & leadership' THEN 1
