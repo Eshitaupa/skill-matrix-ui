@@ -1,4 +1,9 @@
 
+// import React from "react";
+
+// /* =========================================================
+//    AVAILABLE LEVELS BY ROLE
+//    ========================================================= */
 
 // const ROLE_LEVELS = {
 //   Engineer: [
@@ -14,6 +19,7 @@
 //     "L16",
 //     "L17",
 //   ],
+
 //   Designer: [
 //     "L5",
 //     "L6",
@@ -29,6 +35,125 @@
 //   ],
 // };
 
+// /* =========================================================
+//    COMMON DESIGNATIONS
+//    ========================================================= */
+
+// const STANDARD_ENGINEER_DESIGNATIONS = {
+//   L7: "Trainee",
+//   L8: "Engineer",
+//   L9: "Associate Sr. Engineer",
+//   L10: "Sr. Engineer",
+//   L11: "Principal Engineer",
+//   L12: "Sr. Principal Engineer / Asst. Manager",
+//   L13: "Asst. Chief Engineer / Manager",
+//   L14: "Deputy Chief Engineer / Sr. Manager (Dy. Chief)",
+//   L15: "Chief Engineer / AGM",
+//   L16: "Sr. Chief Engineer / DGM (Sr. Chief Engineer)",
+//   L17: "General Manager",
+// };
+
+// const STANDARD_DESIGNER_DESIGNATIONS = {
+//   L5: "General Office Staff",
+//   L6: "Technician or Trainee Designer",
+//   L7: "Jr. Draftsman or Jr. Designer or Trainee Design Engineer",
+//   L8: "Designer or Draftsman or Design Engineer",
+//   L9:
+//     "Asso. Sr. Designer or Asso. Sr. Draftsman or Asso. Sr. Design Engineer",
+//   L10: "Sr. Designer or Sr. Draftsman or Sr. Design Engineer",
+//   L11:
+//     "Principal Designer or Principal Detailer or Principal Design Engineer",
+//   L12:
+//     "Sr. Prin. Designer or Sr. Prin. Detailer or Sr. Prin. Design Engineer",
+//   L13: "Asst. Chief Designer or Asst. Chief Design Engineer",
+//   L14:
+//     "Dept Chief Designer or Dept Chief Detailer or Dept Chief Design Engineer",
+//   L15: "Chief Designer or Chief Detailer or Chief Design Engineer",
+// };
+
+// /* =========================================================
+//    DESIGNATIONS BY DISCIPLINE AND ROLE
+//    ========================================================= */
+
+// const LEVEL_DESIGNATIONS = {
+//   Instrumentation: {
+//     Engineer: STANDARD_ENGINEER_DESIGNATIONS,
+//     Designer: STANDARD_DESIGNER_DESIGNATIONS,
+//   },
+
+//   Process: {
+//     Engineer: STANDARD_ENGINEER_DESIGNATIONS,
+//     Designer: STANDARD_DESIGNER_DESIGNATIONS,
+//   },
+
+//   Mechanical: {
+//     Engineer: {
+//       L7: "Trainee",
+//       L8: "Engineer (1 yr)",
+//       L9: "Associate Sr. Engineer (3 yrs)",
+//       L10: "Sr. Engineer (6 yrs)",
+//       L11: "Principal Engineer (9 yrs)",
+//       L12: "Sr. Principal Engineer / Asst. Manager (12 yrs)",
+//       L13: "Asst. Chief Engineer / Manager (15 yrs)",
+//       L14:
+//         "Deputy Chief Engineer / Sr. Manager (Dy. Chief) (18 yrs)",
+//       L15: "Chief Engineer / AGM (21 yrs)",
+//       L16:
+//         "Sr. Chief Engineer / DGM (Sr. Chief Engineer) (26 yrs)",
+//       L17: "General Manager (30 yrs)",
+//     },
+
+//     // No Mechanical Designer titles were provided.
+//     // The dropdown will show only L5, L6, L7, etc. for Designer.
+//     Designer: {},
+//   },
+
+//   "Piping Engineering": {
+//     Engineer: STANDARD_ENGINEER_DESIGNATIONS,
+
+//     // No Piping Engineering Designer titles were provided.
+//     Designer: {},
+//   },
+
+//   "Piping Design": {
+//     Engineer: STANDARD_ENGINEER_DESIGNATIONS,
+//     Designer: STANDARD_DESIGNER_DESIGNATIONS,
+//   },
+
+//   CSA: {
+//     Engineer: STANDARD_ENGINEER_DESIGNATIONS,
+//     Designer: STANDARD_DESIGNER_DESIGNATIONS,
+//   },
+
+//   Electrical: {
+//     Engineer: STANDARD_ENGINEER_DESIGNATIONS,
+//     Designer: STANDARD_DESIGNER_DESIGNATIONS,
+//   },
+
+//   "Project Management": {
+//     Engineer: {
+//       L7: "Trainee",
+//       L8: "Project Engineer",
+//       L9: "Associate Sr. Project Engineer",
+//       L10: "Sr. Project Engineer",
+//       L11: "Principal Project Engineer",
+//       L12: "Sr. Principal Project Engineer",
+//       L13: "Asst. Project Manager",
+//       L14: "Project Manager",
+//       L15: "Asst. General Manager",
+//       L16: "Deputy General Manager",
+//       L17: "General Manager",
+//     },
+
+//     // No Project Management Designer titles were provided.
+//     Designer: {},
+//   },
+// };
+
+// /* =========================================================
+//    FILTER COMPONENT
+//    ========================================================= */
+
 // function Filters({
 //   filters,
 //   setFilters,
@@ -41,6 +166,16 @@
 //   const levelOptions = filters.role
 //     ? ROLE_LEVELS[filters.role] || []
 //     : [];
+
+//   const getLevelLabel = (level) => {
+//     const discipline = filters.discipline;
+//     const role = filters.role;
+
+//     const designation =
+//       LEVEL_DESIGNATIONS?.[discipline]?.[role]?.[level];
+
+//     return designation ? `${level} - ${designation}` : level;
+//   };
 
 //   const handleDisciplineChange = (event) => {
 //     const discipline = event.target.value;
@@ -76,31 +211,34 @@
 //     <div className="smf-bar">
 //       <style>
 //         {`
-//           /* ========================================
+//           /* =====================================================
 //              FILTER CONTAINER
-//              ======================================== */
+//              ===================================================== */
 
 //           .smf-bar {
-//             display: flex;
-//             align-items: center;
-//             flex-wrap: wrap;
-//             gap: 12px;
+//   display: flex;
+//   align-items: center;
+//   flex-wrap: wrap;
+//   gap: 12px;
 
-//             width: 100%;
-//             box-sizing: border-box;
+//   width: 100%;
+//   box-sizing: border-box;
 
-//             padding: 12px 16px;
-//             margin-bottom: 16px;
+//   padding: 12px 16px;
+//   margin-bottom: 16px;
 
-//             background-color: #ffffff;
-//             border: 1px solid #e5e7eb;
-//             border-radius: 16px;
-//           }
+//   background-color: #ffffff;
+//   border: 1px solid #e5e7eb;
+//   border-radius: 16px;
 
+//   position: sticky;
+//   top: 0;
+//   z-index: 999;
+// }
 
-//           /* ========================================
+//           /* =====================================================
 //              FILTER LABEL
-//              ======================================== */
+//              ===================================================== */
 
 //           .smf-label {
 //             display: inline-flex;
@@ -116,10 +254,9 @@
 //             white-space: nowrap;
 //           }
 
-
-//           /* ========================================
-//              ALL THREE DROPDOWNS
-//              ======================================== */
+//           /* =====================================================
+//              DROPDOWNS
+//              ===================================================== */
 
 //           .smf-bar select.smf-select {
 //             appearance: none !important;
@@ -129,14 +266,13 @@
 //             box-sizing: border-box !important;
 
 //             min-width: 180px !important;
-//             max-width: 240px !important;
+//             max-width: 360px !important;
 //             width: 180px !important;
 //             height: 38px !important;
 
 //             margin: 0 !important;
 //             padding: 8px 36px 8px 14px !important;
 
-//             /* Permanent blue border */
 //             border-width: 1px !important;
 //             border-style: solid !important;
 //             border-color: #2563eb !important;
@@ -163,34 +299,33 @@
 //             opacity: 1 !important;
 
 //             transition:
+//               width 0.2s ease,
 //               border-color 0.2s ease,
 //               box-shadow 0.2s ease,
 //               background-color 0.2s ease !important;
 //           }
 
+//           /* Wider level dropdown because designations are long */
 
-//           /* Dropdown hover */
+//           .smf-bar select.smf-level-select {
+//             width: 280px !important;
+//             max-width: 420px !important;
+//           }
+
 //           .smf-bar select.smf-select:hover:not(:disabled) {
 //             border-color: #1d4ed8 !important;
 //             background-color: #f8fafc !important;
 //           }
 
-
-//           /* Dropdown focus */
 //           .smf-bar select.smf-select:focus,
 //           .smf-bar select.smf-select:focus-visible {
 //             border-color: #2563eb !important;
-
 //             box-shadow:
 //               0 0 0 3px rgba(37, 99, 235, 0.18) !important;
-
 //             outline: none !important;
 //           }
 
-
-//           /* Disabled Role and Level dropdowns */
 //           .smf-bar select.smf-select:disabled {
-//             /* Border remains visible */
 //             border-width: 1px !important;
 //             border-style: solid !important;
 //             border-color: #2563eb !important;
@@ -202,19 +337,17 @@
 //             opacity: 1 !important;
 //           }
 
-
-//           /* ========================================
+//           /* =====================================================
 //              SPACER
-//              ======================================== */
+//              ===================================================== */
 
 //           .smf-spacer {
 //             flex: 1;
 //           }
 
-
-//           /* ========================================
+//           /* =====================================================
 //              EXPORT BUTTON CONTAINER
-//              ======================================== */
+//              ===================================================== */
 
 //           .smf-export-group {
 //             display: flex;
@@ -225,10 +358,9 @@
 //             flex-wrap: wrap;
 //           }
 
-
-//           /* ========================================
+//           /* =====================================================
 //              BASE EXPORT BUTTON
-//              ======================================== */
+//              ===================================================== */
 
 //           .smf-export-group button.smf-export-btn {
 //             appearance: none !important;
@@ -272,10 +404,9 @@
 //               transform 0.2s ease !important;
 //           }
 
-
-//           /* ========================================
-//              EXCEL BUTTON — ALWAYS GREEN
-//              ======================================== */
+//           /* =====================================================
+//              EXCEL BUTTON
+//              ===================================================== */
 
 //           .smf-export-group button.smf-export-btn.excel {
 //             background: #217346 !important;
@@ -300,10 +431,9 @@
 //               0 0 0 3px rgba(33, 115, 70, 0.22) !important;
 //           }
 
-
-//           /* ========================================
-//              PDF BUTTON — ALWAYS PURPLE
-//              ======================================== */
+//           /* =====================================================
+//              PDF BUTTON
+//              ===================================================== */
 
 //           .smf-export-group button.smf-export-btn.pdf {
 //             background: #7c3aed !important;
@@ -328,13 +458,9 @@
 //               0 0 0 3px rgba(124, 58, 237, 0.22) !important;
 //           }
 
-
-//           /* ========================================
+//           /* =====================================================
 //              DISABLED EXPORT BUTTONS
-
-//              Keep original colors, but show that the
-//              buttons are temporarily unavailable.
-//              ======================================== */
+//              ===================================================== */
 
 //           .smf-export-group button.smf-export-btn:disabled {
 //             cursor: not-allowed !important;
@@ -357,10 +483,16 @@
 //             color: #ffffff !important;
 //           }
 
+//           /* =====================================================
+//              TABLET
+//              ===================================================== */
 
-//           /* ========================================
-//              TABLET RESPONSIVENESS
-//              ======================================== */
+//           @media (max-width: 1200px) {
+//             .smf-bar select.smf-level-select {
+//               width: 230px !important;
+//               max-width: 300px !important;
+//             }
+//           }
 
 //           @media (max-width: 992px) {
 //             .smf-bar {
@@ -374,10 +506,9 @@
 //             }
 //           }
 
-
-//           /* ========================================
-//              MOBILE RESPONSIVENESS
-//              ======================================== */
+//           /* =====================================================
+//              MOBILE
+//              ===================================================== */
 
 //           @media (max-width: 768px) {
 //             .smf-bar {
@@ -392,7 +523,8 @@
 //               justify-content: center;
 //             }
 
-//             .smf-bar select.smf-select {
+//             .smf-bar select.smf-select,
+//             .smf-bar select.smf-level-select {
 //               min-width: 100% !important;
 //               max-width: 100% !important;
 //               width: 100% !important;
@@ -414,7 +546,6 @@
 //               width: 100% !important;
 //             }
 //           }
-
 
 //           @media (max-width: 480px) {
 //             .smf-bar {
@@ -452,17 +583,21 @@
 //         Filters
 //       </span>
 
-//       {/* Discipline */}
-//  <select
-//   className="smf-select"
-//   aria-label="Select discipline"
-//   value={filters.discipline || ""}
-//   onChange={handleDisciplineChange}
-//   disabled={isDisciplineLocked}
-// >
-//         {!isDisciplineLocked && (
-//           <option value="">Discipline</option>
-//         )}
+//       {/* Discipline dropdown */}
+
+//       <select
+//         className="smf-select"
+//         aria-label="Select discipline"
+//         value={filters.discipline || ""}
+//         onChange={handleDisciplineChange}
+//         disabled={isDisciplineLocked}
+//       >
+//         {/* {!isDisciplineLocked && (
+//           <option value="">Select Discipline</option>
+//         )} */}
+//         <option value="" disabled hidden>
+//   Select Discipline
+// </option>
 
 //         {disciplineOptions.map((discipline) => (
 //           <option key={discipline} value={discipline}>
@@ -471,7 +606,8 @@
 //         ))}
 //       </select>
 
-//       {/* Role */}
+//       {/* Role dropdown */}
+
 //       <select
 //         className="smf-select"
 //         aria-label="Select role"
@@ -479,31 +615,51 @@
 //         onChange={handleRoleChange}
 //         disabled={!filters.discipline}
 //       >
-//         <option value="">Role</option>
+//         <option value="" disabled hidden>
+//   Select Role
+// </option>
 //         <option value="Engineer">Engineer</option>
 //         <option value="Designer">Designer</option>
 //       </select>
 
-//       {/* Level */}
-//       <select
-//         className="smf-select"
+//       {/* Level dropdown */}
+
+//       {/* <select
+//         className="smf-select smf-level-select"
 //         aria-label="Select level"
 //         value={filters.level || ""}
 //         onChange={handleLevelChange}
 //         disabled={!filters.role}
-//       >
-//         <option value="">
-//           {filters.role ? "Select Level" : "Select Role first"}
-//         </option>
-
+//         title={
+//           filters.level
+//             ? getLevelLabel(filters.level)
+//             : "Select level"
+//         }
+//       > */}
+//       <select
+//   className="smf-select"
+//   aria-label="Select role"
+//   value={filters.role || ""}
+//   onChange={handleRoleChange}
+//   disabled={
+//     !filters.discipline ||
+//     ["Mechanical", "Piping Engineering", "Project Management"]
+//       .includes(filters.discipline)
+//   }
+// >
+//        <option value="" disabled hidden>
+//   {filters.role ? "Select Level" : "Select Role First"}
+// </option>
 //         {levelOptions.map((level) => (
 //           <option key={level} value={level}>
-//             {level}
+//             {getLevelLabel(level)}
 //           </option>
 //         ))}
 //       </select>
 
 //       <div className="smf-spacer" />
+
+//       {/* Export buttons */}
 
 //       <div className="smf-export-group">
 //         <button
@@ -543,7 +699,6 @@
 // export default Filters;
 
 
-
 import React from "react";
 
 /* =========================================================
@@ -581,6 +736,17 @@ const ROLE_LEVELS = {
 };
 
 /* =========================================================
+   ENGINEER ONLY DISCIPLINES
+   ========================================================= */
+
+const ENGINEER_ONLY_DISCIPLINES = [
+  "Mechanical",
+  "Piping Engineering",
+  "Project Management",
+  "Project Engineering",
+];
+
+/* =========================================================
    COMMON DESIGNATIONS
    ========================================================= */
 
@@ -603,16 +769,12 @@ const STANDARD_DESIGNER_DESIGNATIONS = {
   L6: "Technician or Trainee Designer",
   L7: "Jr. Draftsman or Jr. Designer or Trainee Design Engineer",
   L8: "Designer or Draftsman or Design Engineer",
-  L9:
-    "Asso. Sr. Designer or Asso. Sr. Draftsman or Asso. Sr. Design Engineer",
+  L9: "Asso. Sr. Designer or Asso. Sr. Draftsman or Asso. Sr. Design Engineer",
   L10: "Sr. Designer or Sr. Draftsman or Sr. Design Engineer",
-  L11:
-    "Principal Designer or Principal Detailer or Principal Design Engineer",
-  L12:
-    "Sr. Prin. Designer or Sr. Prin. Detailer or Sr. Prin. Design Engineer",
+  L11: "Principal Designer or Principal Detailer or Principal Design Engineer",
+  L12: "Sr. Prin. Designer or Sr. Prin. Detailer or Sr. Prin. Design Engineer",
   L13: "Asst. Chief Designer or Asst. Chief Design Engineer",
-  L14:
-    "Dept Chief Designer or Dept Chief Detailer or Dept Chief Design Engineer",
+  L14: "Dept Chief Designer or Dept Chief Detailer or Dept Chief Design Engineer",
   L15: "Chief Designer or Chief Detailer or Chief Design Engineer",
 };
 
@@ -640,23 +802,16 @@ const LEVEL_DESIGNATIONS = {
       L11: "Principal Engineer (9 yrs)",
       L12: "Sr. Principal Engineer / Asst. Manager (12 yrs)",
       L13: "Asst. Chief Engineer / Manager (15 yrs)",
-      L14:
-        "Deputy Chief Engineer / Sr. Manager (Dy. Chief) (18 yrs)",
+      L14: "Deputy Chief Engineer / Sr. Manager (Dy. Chief) (18 yrs)",
       L15: "Chief Engineer / AGM (21 yrs)",
-      L16:
-        "Sr. Chief Engineer / DGM (Sr. Chief Engineer) (26 yrs)",
+      L16: "Sr. Chief Engineer / DGM (Sr. Chief Engineer) (26 yrs)",
       L17: "General Manager (30 yrs)",
     },
-
-    // No Mechanical Designer titles were provided.
-    // The dropdown will show only L5, L6, L7, etc. for Designer.
     Designer: {},
   },
 
   "Piping Engineering": {
     Engineer: STANDARD_ENGINEER_DESIGNATIONS,
-
-    // No Piping Engineering Designer titles were provided.
     Designer: {},
   },
 
@@ -689,8 +844,11 @@ const LEVEL_DESIGNATIONS = {
       L16: "Deputy General Manager",
       L17: "General Manager",
     },
+    Designer: {},
+  },
 
-    // No Project Management Designer titles were provided.
+  "Project Engineering": {
+    Engineer: STANDARD_ENGINEER_DESIGNATIONS,
     Designer: {},
   },
 };
@@ -708,16 +866,17 @@ function Filters({
   disciplineOptions = [],
   isDisciplineLocked = false,
 }) {
-  const levelOptions = filters.role
-    ? ROLE_LEVELS[filters.role] || []
-    : [];
+  const isEngineerOnlyDiscipline = ENGINEER_ONLY_DISCIPLINES.includes(
+    filters.discipline
+  );
+
+  const levelOptions = filters.role ? ROLE_LEVELS[filters.role] || [] : [];
 
   const getLevelLabel = (level) => {
     const discipline = filters.discipline;
     const role = filters.role;
 
-    const designation =
-      LEVEL_DESIGNATIONS?.[discipline]?.[role]?.[level];
+    const designation = LEVEL_DESIGNATIONS?.[discipline]?.[role]?.[level];
 
     return designation ? `${level} - ${designation}` : level;
   };
@@ -725,10 +884,13 @@ function Filters({
   const handleDisciplineChange = (event) => {
     const discipline = event.target.value;
 
+    const shouldFreezeRole =
+      ENGINEER_ONLY_DISCIPLINES.includes(discipline);
+
     setFilters((previous) => ({
       ...previous,
       discipline,
-      role: "",
+      role: shouldFreezeRole ? "Engineer" : "",
       level: "",
     }));
   };
@@ -761,25 +923,21 @@ function Filters({
              ===================================================== */
 
           .smf-bar {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
 
-  width: 100%;
-  box-sizing: border-box;
+            width: 100%;
+            box-sizing: border-box;
 
-  padding: 12px 16px;
-  margin-bottom: 16px;
+            padding: 12px 16px;
+            margin-bottom: 16px;
 
-  background-color: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 16px;
-
-  position: sticky;
-  top: 0;
-  z-index: 999;
-}
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+          }
 
           /* =====================================================
              FILTER LABEL
@@ -849,8 +1007,6 @@ function Filters({
               box-shadow 0.2s ease,
               background-color 0.2s ease !important;
           }
-
-          /* Wider level dropdown because designations are long */
 
           .smf-bar select.smf-level-select {
             width: 280px !important;
@@ -949,10 +1105,6 @@ function Filters({
               transform 0.2s ease !important;
           }
 
-          /* =====================================================
-             EXCEL BUTTON
-             ===================================================== */
-
           .smf-export-group button.smf-export-btn.excel {
             background: #217346 !important;
             background-color: #217346 !important;
@@ -964,21 +1116,13 @@ function Filters({
             background: #185c37 !important;
             background-color: #185c37 !important;
             border-color: #185c37 !important;
-
-            box-shadow:
-              0 4px 10px rgba(33, 115, 70, 0.25) !important;
-
+            box-shadow: 0 4px 10px rgba(33, 115, 70, 0.25) !important;
             transform: translateY(-1px);
           }
 
           .smf-export-group button.smf-export-btn.excel:focus-visible {
-            box-shadow:
-              0 0 0 3px rgba(33, 115, 70, 0.22) !important;
+            box-shadow: 0 0 0 3px rgba(33, 115, 70, 0.22) !important;
           }
-
-          /* =====================================================
-             PDF BUTTON
-             ===================================================== */
 
           .smf-export-group button.smf-export-btn.pdf {
             background: #7c3aed !important;
@@ -991,21 +1135,13 @@ function Filters({
             background: #6d28d9 !important;
             background-color: #6d28d9 !important;
             border-color: #6d28d9 !important;
-
-            box-shadow:
-              0 4px 10px rgba(124, 58, 237, 0.25) !important;
-
+            box-shadow: 0 4px 10px rgba(124, 58, 237, 0.25) !important;
             transform: translateY(-1px);
           }
 
           .smf-export-group button.smf-export-btn.pdf:focus-visible {
-            box-shadow:
-              0 0 0 3px rgba(124, 58, 237, 0.22) !important;
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.22) !important;
           }
-
-          /* =====================================================
-             DISABLED EXPORT BUTTONS
-             ===================================================== */
 
           .smf-export-group button.smf-export-btn:disabled {
             cursor: not-allowed !important;
@@ -1028,10 +1164,6 @@ function Filters({
             color: #ffffff !important;
           }
 
-          /* =====================================================
-             TABLET
-             ===================================================== */
-
           @media (max-width: 1200px) {
             .smf-bar select.smf-level-select {
               width: 230px !important;
@@ -1050,10 +1182,6 @@ function Filters({
               justify-content: flex-end;
             }
           }
-
-          /* =====================================================
-             MOBILE
-             ===================================================== */
 
           @media (max-width: 768px) {
             .smf-bar {
@@ -1129,7 +1257,6 @@ function Filters({
       </span>
 
       {/* Discipline dropdown */}
-
       <select
         className="smf-select"
         aria-label="Select discipline"
@@ -1137,12 +1264,9 @@ function Filters({
         onChange={handleDisciplineChange}
         disabled={isDisciplineLocked}
       >
-        {/* {!isDisciplineLocked && (
-          <option value="">Select Discipline</option>
-        )} */}
         <option value="" disabled hidden>
-  Select Discipline
-</option>
+          Select Discipline
+        </option>
 
         {disciplineOptions.map((discipline) => (
           <option key={discipline} value={discipline}>
@@ -1152,49 +1276,37 @@ function Filters({
       </select>
 
       {/* Role dropdown */}
-
       <select
         className="smf-select"
         aria-label="Select role"
         value={filters.role || ""}
         onChange={handleRoleChange}
-        disabled={!filters.discipline}
+        disabled={!filters.discipline || isEngineerOnlyDiscipline}
       >
         <option value="" disabled hidden>
-  Select Role
-</option>
+          Select Role
+        </option>
+
         <option value="Engineer">Engineer</option>
-        <option value="Designer">Designer</option>
+
+        {!isEngineerOnlyDiscipline && (
+          <option value="Designer">Designer</option>
+        )}
       </select>
 
       {/* Level dropdown */}
-
-      {/* <select
+      <select
         className="smf-select smf-level-select"
         aria-label="Select level"
         value={filters.level || ""}
         onChange={handleLevelChange}
         disabled={!filters.role}
-        title={
-          filters.level
-            ? getLevelLabel(filters.level)
-            : "Select level"
-        }
-      > */}
-      <select
-  className="smf-select"
-  aria-label="Select role"
-  value={filters.role || ""}
-  onChange={handleRoleChange}
-  disabled={
-    !filters.discipline ||
-    ["Mechanical", "Piping Engineering", "Project Management"]
-      .includes(filters.discipline)
-  }
->
-       <option value="" disabled hidden>
-  {filters.role ? "Select Level" : "Select Role First"}
-</option>
+        title={filters.level ? getLevelLabel(filters.level) : "Select Level"}
+      >
+        <option value="" disabled hidden>
+          Select Level
+        </option>
+
         {levelOptions.map((level) => (
           <option key={level} value={level}>
             {getLevelLabel(level)}
@@ -1205,7 +1317,6 @@ function Filters({
       <div className="smf-spacer" />
 
       {/* Export buttons */}
-
       <div className="smf-export-group">
         <button
           type="button"
