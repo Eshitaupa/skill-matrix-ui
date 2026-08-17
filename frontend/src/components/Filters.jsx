@@ -1295,24 +1295,23 @@ function Filters({
       </select>
 
       {/* Level dropdown */}
-      <select
-        className="smf-select smf-level-select"
-        aria-label="Select level"
-        value={filters.level || ""}
-        onChange={handleLevelChange}
-        disabled={!filters.role}
-        title={filters.level ? getLevelLabel(filters.level) : "Select Level"}
-      >
-        <option value="" disabled hidden>
-          Select Level
-        </option>
+<select
+  className="smf-select smf-level-select"
+  aria-label="Select level"
+  value={filters.level || ""}
+  onChange={handleLevelChange}
+  disabled={!filters.role}
+>
+  <option value="">
+    All Levels
+  </option>
 
-        {levelOptions.map((level) => (
-          <option key={level} value={level}>
-            {getLevelLabel(level)}
-          </option>
-        ))}
-      </select>
+  {levelOptions.map((level) => (
+    <option key={level} value={level}>
+      {getLevelLabel(level)}
+    </option>
+  ))}
+</select>
 
       <div className="smf-spacer" />
 
