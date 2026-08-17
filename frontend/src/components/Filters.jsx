@@ -1137,9 +1137,12 @@ function Filters({
         onChange={handleDisciplineChange}
         disabled={isDisciplineLocked}
       >
-        {!isDisciplineLocked && (
-          <option value=""></option>
-        )}
+        {/* {!isDisciplineLocked && (
+          <option value="">Select Discipline</option>
+        )} */}
+        <option value="" disabled hidden>
+  Select Discipline
+</option>
 
         {disciplineOptions.map((discipline) => (
           <option key={discipline} value={discipline}>
@@ -1157,7 +1160,9 @@ function Filters({
         onChange={handleRoleChange}
         disabled={!filters.discipline}
       >
-        <option value=""></option>
+        <option value="" disabled hidden>
+  Select Role
+</option>
         <option value="Engineer">Engineer</option>
         <option value="Designer">Designer</option>
       </select>
@@ -1166,20 +1171,19 @@ function Filters({
 
       <select
         className="smf-select smf-level-select"
-        aria-label=""
+        aria-label="Select level"
         value={filters.level || ""}
         onChange={handleLevelChange}
         disabled={!filters.role}
         title={
           filters.level
             ? getLevelLabel(filters.level)
-            : ""
+            : "Select level"
         }
       >
-        <option value="">
-          {filters.role ? "" : "Select Role first"}
-        </option>
-
+       <option value="" disabled hidden>
+  {filters.role ? "Select Level" : "Select Role First"}
+</option>
         {levelOptions.map((level) => (
           <option key={level} value={level}>
             {getLevelLabel(level)}
