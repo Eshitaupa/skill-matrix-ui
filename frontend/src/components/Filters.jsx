@@ -760,7 +760,7 @@ function Filters({
              FILTER CONTAINER
              ===================================================== */
 
-.smf-bar {
+          .smf-bar {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -775,7 +775,12 @@ function Filters({
   background-color: #ffffff;
   border: 1px solid #e5e7eb;
   border-radius: 16px;
+
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
+
           /* =====================================================
              FILTER LABEL
              ===================================================== */
@@ -1132,9 +1137,9 @@ function Filters({
         onChange={handleDisciplineChange}
         disabled={isDisciplineLocked}
       >
-        {/* {!isDisciplineLocked && (
-          <option value="">Discipline</option>
-        )} */}
+        {!isDisciplineLocked && (
+          <option value=""></option>
+        )}
 
         {disciplineOptions.map((discipline) => (
           <option key={discipline} value={discipline}>
@@ -1152,6 +1157,7 @@ function Filters({
         onChange={handleRoleChange}
         disabled={!filters.discipline}
       >
+        <option value=""></option>
         <option value="Engineer">Engineer</option>
         <option value="Designer">Designer</option>
       </select>
@@ -1160,18 +1166,18 @@ function Filters({
 
       <select
         className="smf-select smf-level-select"
-        aria-label="Select level"
+        aria-label=""
         value={filters.level || ""}
         onChange={handleLevelChange}
         disabled={!filters.role}
         title={
           filters.level
             ? getLevelLabel(filters.level)
-            : "Select level"
+            : ""
         }
       >
         <option value="">
-          {filters.role ? "Select Level" : "Select Role first"}
+          {filters.role ? "" : "Select Role first"}
         </option>
 
         {levelOptions.map((level) => (
