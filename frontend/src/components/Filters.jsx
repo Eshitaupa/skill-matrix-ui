@@ -1132,9 +1132,9 @@ function Filters({
         onChange={handleDisciplineChange}
         disabled={isDisciplineLocked}
       >
-        {!isDisciplineLocked && (
+        {/* {!isDisciplineLocked && (
           <option value="">Discipline</option>
-        )}
+        )} */}
 
         {disciplineOptions.map((discipline) => (
           <option key={discipline} value={discipline}>
@@ -1152,7 +1152,6 @@ function Filters({
         onChange={handleRoleChange}
         disabled={!filters.discipline}
       >
-        <option value="">Role</option>
         <option value="Engineer">Engineer</option>
         <option value="Designer">Designer</option>
       </select>
