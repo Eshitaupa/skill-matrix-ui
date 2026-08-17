@@ -760,25 +760,13 @@ function Filters({
              FILTER CONTAINER
              ===================================================== */
 
-          .smf-bar {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-
-  width: 100%;
-  box-sizing: border-box;
-
-  padding: 12px 16px;
-  margin-bottom: 16px;
-
-  background-color: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 16px;
-
-  position: sticky;
+  .smf-bar {
+  position: fixed;
   top: 0;
-  z-index: 999;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: white;
 }
 
           /* =====================================================
