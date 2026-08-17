@@ -1169,7 +1169,7 @@ function Filters({
 
       {/* Level dropdown */}
 
-      <select
+      {/* <select
         className="smf-select smf-level-select"
         aria-label="Select level"
         value={filters.level || ""}
@@ -1180,7 +1180,18 @@ function Filters({
             ? getLevelLabel(filters.level)
             : "Select level"
         }
-      >
+      > */}
+      <select
+  className="smf-select"
+  aria-label="Select role"
+  value={filters.role || ""}
+  onChange={handleRoleChange}
+  disabled={
+    !filters.discipline ||
+    ["Mechanical", "Piping Engineering", "Project Management"]
+      .includes(filters.discipline)
+  }
+>
        <option value="" disabled hidden>
   {filters.role ? "Select Level" : "Select Role First"}
 </option>
