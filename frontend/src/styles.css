@@ -369,9 +369,9 @@ font-weight: 600;
 .sticky-filters {
   position: sticky;
   top: 0;
-  z-index: 1000;
-  background: #f8fafc;
-  padding-top: 8px;
+  z-index: 9999;
+  background: white;
+  padding: 8px 0;
 }
 .l1 { background:#e5e7eb; color:#374151; }
 .l2 { background:#d1fae5; color:#065f46; }
