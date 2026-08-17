@@ -1266,7 +1266,7 @@ useEffect(() => {
         </div>
       )}
 
-      <Filters
+      {/* <Filters
         filters={filters}
         setFilters={setFilters}
         onExportExcel={exportToExcel}
@@ -1274,7 +1274,18 @@ useEffect(() => {
         canExport={matrixData.length > 0 && !loading}
         disciplineOptions={disciplineOptions}
         isDisciplineLocked={isDisciplineLocked}
-      />
+      /> */}
+      <div className="sticky-filters">
+  <Filters
+    filters={filters}
+    setFilters={setFilters}
+    onExportExcel={exportToExcel}
+    onExportPDF={exportToPDF}
+    canExport={matrixData.length > 0 && !loading}
+    disciplineOptions={disciplineOptions}
+    isDisciplineLocked={isDisciplineLocked}
+  />
+</div>
 
       <div
         style={{
