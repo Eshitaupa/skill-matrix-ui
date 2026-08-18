@@ -1799,7 +1799,6 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
     discipline: "",
     role: "",
     level: "",
-    skillCategory: "",
     skillSearch: "",
   });
 
@@ -1928,7 +1927,6 @@ useEffect(() => {
   discipline: "",
   role: "",
   level: "",
-  skillCategory: "",
   skillSearch: "",
 });
         setMetaError(true);
@@ -1952,7 +1950,6 @@ useEffect(() => {
           ...prev,
           role: "",
           level: "",
-          skillCategory: "",
           skillSearch: "",
         };
       });
@@ -1970,7 +1967,6 @@ useEffect(() => {
         ...prev,
         role: autoRole,
         level: "",
-        skillCategory: "",
         skillSearch: "",
       };
     });
@@ -2004,7 +2000,6 @@ useEffect(() => {
       discipline: onlyDiscipline,
       role: "",
       level: "",
-      skillCategory: "",
       skillSearch:"",
     };
   });
@@ -2346,50 +2341,28 @@ const skillOptions = useMemo(() => {
 // to whatever discipline + role is currently loaded in matrixData. No
 // extra Databricks round trip is needed — the categories already live
 // inside the rows fetched for the selected discipline/role.
-const skillCategoryOptions = useMemo(() => {
-  const categories = (matrixData || [])
-    .map((group) => group.category)
-    .filter(Boolean);
 
-  return [...new Set(categories)];
-}, [matrixData]);
 
 const filteredMatrixData = useMemo(() => {
   const query = keyOfText(filters.skillSearch);
-  const categoryFilter = keyOfText(filters.skillCategory);
 
   return (matrixData || [])
-    .filter((group) => {
-      if (!categoryFilter) return true;
-      return keyOfText(group.category) === categoryFilter;
-    })
     .map((group) => {
-      if (!query) {
-        return group;
-      }
+      if (!query) return group;
 
       const categoryMatch = keyOfText(group.category).includes(query);
-
-      if (categoryMatch) {
-        return group;
-      }
+      if (categoryMatch) return group;
 
       const matchingSkills = (group.skills || []).filter((skill) =>
         keyOfText(skill.name).includes(query)
       );
 
-      if (!matchingSkills.length) {
-        return null;
-      }
+      if (!matchingSkills.length) return null;
 
-      return {
-        ...group,
-        skills: matchingSkills,
-      };
+      return { ...group, skills: matchingSkills };
     })
     .filter(Boolean);
-}, [matrixData, filters.skillSearch, filters.skillCategory]);
-
+}, [matrixData, filters.skillSearch]);
   function exportToExcel() {
 if (!filteredMatrixData.length) {
       alert("No data to export");
@@ -2552,7 +2525,7 @@ if (!filteredMatrixData.length) {
   disciplineOptions={disciplineOptions}
   isDisciplineLocked={isDisciplineLocked}
   skillOptions={skillOptions}
-  skillCategoryOptions={skillCategoryOptions}
+  // skillCategoryOptions={skillCategoryOptions}
 />
 </div>
 
