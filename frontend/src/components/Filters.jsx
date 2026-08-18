@@ -1024,13 +1024,15 @@ function Filters({
             width: 280px !important;
             max-width: 420px !important;
           }
-            .smf-bar input.smf-skill-search {
+
+.smf-bar input.smf-skill-search {
   display: block !important;
   box-sizing: border-box !important;
 
-  min-width: 220px !important;
+  flex: 0 0 260px !important;
+  min-width: 240px !important;
   max-width: 420px !important;
-  width: 240px !important;
+  width: 260px !important;
   height: 38px !important;
 
   margin: 0 !important;
@@ -1051,11 +1053,6 @@ function Filters({
 
   outline: none !important;
   opacity: 1 !important;
-
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease,
-    background-color 0.2s ease !important;
 }
 
 .smf-bar input.smf-skill-search:hover:not(:disabled) {
@@ -1261,12 +1258,13 @@ function Filters({
             }
 
             .smf-bar select.smf-select,
-            .smf-bar select.smf-level-select {
-              min-width: 100% !important;
-              max-width: 100% !important;
-              width: 100% !important;
-            }
-
+.smf-bar select.smf-level-select,
+.smf-bar input.smf-skill-search {
+  min-width: 100% !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  flex: 0 0 auto !important;
+}
             .smf-spacer {
               display: none;
             }
@@ -1364,6 +1362,7 @@ function Filters({
       </select>
 
       {/* Level dropdown */}
+{/* Level dropdown */}
 <select
   className="smf-select smf-level-select"
   aria-label="Select level"
@@ -1380,6 +1379,7 @@ function Filters({
   ))}
 </select>
 
+{/* Skill / Subskill searchable filter */}
 <input
   className="smf-skill-search"
   type="search"
@@ -1396,7 +1396,6 @@ function Filters({
     <option key={skill} value={skill} />
   ))}
 </datalist>
-
       <div className="smf-spacer" />
 
       {/* Export buttons */}

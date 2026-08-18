@@ -732,11 +732,11 @@ useEffect(() => {
         });
 
         setFilters({
-          discipline: "",
-          role: "",
-          level: "",
-        });
-
+  discipline: "",
+  role: "",
+  level: "",
+  skillSearch: "",
+});
         setMetaError(true);
       }
     }
