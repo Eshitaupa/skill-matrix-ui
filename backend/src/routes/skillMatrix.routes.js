@@ -340,7 +340,7 @@ router.get("/", async (req, res) => {
           END AS Value,
 
           history.changed_by
-
+         COALESCE(base.SortOrder, 999999) AS SortOrder
         FROM all_keys keys
 
         LEFT JOIN base
