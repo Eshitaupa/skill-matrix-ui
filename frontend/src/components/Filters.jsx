@@ -1104,7 +1104,7 @@ function Filters({
              ===================================================== */
 
           .smf-spacer {
-            flex: 1;
+            flex: 0;
           }
 
           /* =====================================================
@@ -1380,7 +1380,7 @@ function Filters({
 </select>
 
 {/* Skill / Subskill searchable filter */}
-<input
+{/* <input
   className="smf-skill-search"
   type="search"
   list="skill-category-options"
@@ -1389,8 +1389,15 @@ function Filters({
   value={filters.skillSearch || ""}
   onChange={handleSkillSearchChange}
   disabled={!filters.discipline || !filters.role}
-/>
-
+/> */}
+<input
+  className="smf-skill-search"
+  style={{
+    width: "280px",
+    minWidth: "280px",
+    border: "3px solid red",
+    background: "yellow"
+  }}
 <datalist id="skill-category-options">
   {skillOptions.map((skill) => (
     <option key={skill} value={skill} />
