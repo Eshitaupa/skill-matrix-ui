@@ -724,7 +724,6 @@ useEffect(() => {
       console.error("META LOAD FAILED:", err);
 
       if (!cancelled) {
-        // Security: do not show every discipline when access lookup fails.
         setMeta({
           disciplines: [],
           roles: ["Engineer", "Designer"],
