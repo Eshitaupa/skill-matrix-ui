@@ -370,7 +370,7 @@ font-weight: 600;
   position: sticky;
   top: 0;
   z-index: 30;
-  background: #f8fafc; /* match your page background */
+  background: #f8fafc; 
   padding-top: 6px;
   padding-bottom: 6px;
 }
