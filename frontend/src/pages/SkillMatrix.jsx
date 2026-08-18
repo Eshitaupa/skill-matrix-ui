@@ -1329,7 +1329,6 @@ if (!filteredMatrixData.length) {
   isDisciplineLocked={isDisciplineLocked}
   skillOptions={skillOptions}
 />
-
 </div>
 
       <div
