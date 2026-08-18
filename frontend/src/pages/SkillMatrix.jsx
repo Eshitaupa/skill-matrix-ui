@@ -1117,10 +1117,22 @@ useEffect(() => {
       setActionBusy(false);
     }
   }
-  const skillOptions = useMemo(() => {
-  return (matrixData || [])
-    .map((group) => group.category)
-    .filter(Boolean);
+const skillOptions = useMemo(() => {
+  const options = [];
+
+  (matrixData || []).forEach((group) => {
+    if (group.category) {
+      options.push(group.category);
+    }
+
+    (group.skills || []).forEach((skill) => {
+      if (skill.name) {
+        options.push(skill.name);
+      }
+    });
+  });
+
+  return [...new Set(options)];
 }, [matrixData]);
 
 const filteredMatrixData = useMemo(() => {
