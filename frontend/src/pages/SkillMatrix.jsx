@@ -478,16 +478,16 @@ const DISCIPLINE_ROLE_MAP = {
   "Mechanical": "Engineer",
 };
 
-const DEFAULT_DISCIPLINES = [
-  "CSA",
-  "Electrical",
-  "Instrumentation",
-  "Mechanical",
-  "Piping Design",
-  "Piping Engineering",
-  "Process",
-  "Project Management",
-];
+// const DEFAULT_DISCIPLINES = [
+//   "CSA",
+//   "Electrical",
+//   "Instrumentation",
+//   "Mechanical",
+//   "Piping Design",
+//   "Piping Engineering",
+//   "Process",
+//   "Project Management",
+// ];
 
 const API_BASE =
   process.env.REACT_APP_API_BASE ||
