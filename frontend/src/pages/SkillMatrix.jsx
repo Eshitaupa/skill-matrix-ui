@@ -2005,7 +2005,7 @@ useEffect(() => {
   });
 }, [disciplineOptions]);
 
-  const fetchMatrix = useCallback(async () => {
+const fetchMatrix = useCallback(async () => {
     if (!filters.discipline || !filters.role) {
       setMatrixData([]);
       return;
@@ -2016,11 +2016,12 @@ useEffect(() => {
     try {
       const url = `${API_SKILL}?discipline=${encodeURIComponent(
         filters.discipline
-      )}&role=${encodeURIComponent(filters.role)}`;
+      )}&role=${encodeURIComponent(filters.role)}&t=${Date.now()}`;
 
       const res = await fetch(url, {
         method: "GET",
         credentials: "include",
+        cache: "no-store",
         headers: {
           Accept: "application/json",
         },
