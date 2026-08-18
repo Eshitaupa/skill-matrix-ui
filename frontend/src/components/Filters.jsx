@@ -865,6 +865,7 @@ function Filters({
   canExport = false,
   disciplineOptions = [],
   isDisciplineLocked = false,
+  skillOptions = [],
 }) {
   const isEngineerOnlyDiscipline = ENGINEER_ONLY_DISCIPLINES.includes(
     filters.discipline
@@ -892,6 +893,7 @@ function Filters({
       discipline,
       role: shouldFreezeRole ? "Engineer" : "",
       level: "",
+      skillSearch:"",
     }));
   };
 
@@ -902,6 +904,7 @@ function Filters({
       ...previous,
       role,
       level: "",
+      skillSearch:"",
     }));
   };
 
@@ -913,6 +916,15 @@ function Filters({
       level,
     }));
   };
+
+  const handleSkillSearchChange = (event) => {
+  const skillSearch = event.target.value;
+
+  setFilters((previous) => ({
+    ...previous,
+    skillSearch,
+  }));
+};
 
   return (
     <div className="smf-bar">
@@ -1012,6 +1024,58 @@ function Filters({
             width: 280px !important;
             max-width: 420px !important;
           }
+            .smf-bar input.smf-skill-search {
+  display: block !important;
+  box-sizing: border-box !important;
+
+  min-width: 220px !important;
+  max-width: 420px !important;
+  width: 240px !important;
+  height: 38px !important;
+
+  margin: 0 !important;
+  padding: 8px 14px !important;
+
+  border-width: 1px !important;
+  border-style: solid !important;
+  border-color: #2563eb !important;
+  border-radius: 999px !important;
+
+  background-color: #ffffff !important;
+  color: #1f2937 !important;
+
+  font-family: inherit !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  line-height: 1.2 !important;
+
+  outline: none !important;
+  opacity: 1 !important;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease !important;
+}
+
+.smf-bar input.smf-skill-search:hover:not(:disabled) {
+  border-color: #1d4ed8 !important;
+  background-color: #f8fafc !important;
+}
+
+.smf-bar input.smf-skill-search:focus,
+.smf-bar input.smf-skill-search:focus-visible {
+  border-color: #2563eb !important;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18) !important;
+  outline: none !important;
+}
+
+.smf-bar input.smf-skill-search:disabled {
+  border-color: #2563eb !important;
+  background-color: #f8fafc !important;
+  color: #94a3b8 !important;
+  cursor: not-allowed !important;
+}
 
           .smf-bar select.smf-select:hover:not(:disabled) {
             border-color: #1d4ed8 !important;
@@ -1233,6 +1297,11 @@ function Filters({
               padding: 10px 14px !important;
               font-size: 12px !important;
             }
+              .smf-bar input.smf-skill-search {
+  min-width: 100% !important;
+  max-width: 100% !important;
+  width: 100% !important;
+}
           }
         `}
       </style>
@@ -1302,9 +1371,7 @@ function Filters({
   onChange={handleLevelChange}
   disabled={!filters.role}
 >
-  <option value="">
-    All Levels
-  </option>
+  <option value="">All Levels</option>
 
   {levelOptions.map((level) => (
     <option key={level} value={level}>
@@ -1312,6 +1379,23 @@ function Filters({
     </option>
   ))}
 </select>
+
+<input
+  className="smf-skill-search"
+  type="search"
+  list="skill-category-options"
+  aria-label="Search skill or subskill"
+  placeholder="Search Skill / Subskill"
+  value={filters.skillSearch || ""}
+  onChange={handleSkillSearchChange}
+  disabled={!filters.discipline || !filters.role}
+/>
+
+<datalist id="skill-category-options">
+  {skillOptions.map((skill) => (
+    <option key={skill} value={skill} />
+  ))}
+</datalist>
 
       <div className="smf-spacer" />
 

@@ -606,6 +606,7 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
     discipline: "",
     role: "",
     level: "",
+    skillSearch: "",
   });
 
   const [refreshKey, setRefreshKey] = useState(0);
@@ -757,6 +758,7 @@ useEffect(() => {
           ...prev,
           role: "",
           level: "",
+          skillSearch: "",
         };
       });
 
@@ -773,6 +775,7 @@ useEffect(() => {
         ...prev,
         role: autoRole,
         level: "",
+        skillSearch: "",
       };
     });
   }, [filters.discipline]);
@@ -805,6 +808,7 @@ useEffect(() => {
       discipline: onlyDiscipline,
       role: "",
       level: "",
+      skillSearch:"",
     };
   });
 }, [disciplineOptions]);
@@ -1122,15 +1126,51 @@ useEffect(() => {
       setActionBusy(false);
     }
   }
+  const skillOptions = useMemo(() => {
+  return (matrixData || [])
+    .map((group) => group.category)
+    .filter(Boolean);
+}, [matrixData]);
+
+const filteredMatrixData = useMemo(() => {
+  const query = keyOfText(filters.skillSearch);
+
+  if (!query) {
+    return matrixData;
+  }
+
+  return (matrixData || [])
+    .map((group) => {
+      const categoryMatch = keyOfText(group.category).includes(query);
+
+      if (categoryMatch) {
+        return group;
+      }
+
+      const matchingSkills = (group.skills || []).filter((skill) =>
+        keyOfText(skill.name).includes(query)
+      );
+
+      if (!matchingSkills.length) {
+        return null;
+      }
+
+      return {
+        ...group,
+        skills: matchingSkills,
+      };
+    })
+    .filter(Boolean);
+}, [matrixData, filters.skillSearch]);
 
   function exportToExcel() {
-    if (!matrixData.length) {
+if (!filteredMatrixData.length) {
       alert("No data to export");
       return;
     }
 
     const levelPart = filters.level ? `_${filters.level}` : "_ALLLEVELS";
-    const rows = buildExportRows(matrixData, filters.role, filters.level);
+    const rows = buildExportRows(filteredMatrixData, filters.role, filters.level);
 
     const headerRows = [
       ["Project Meridian Export"],
@@ -1183,7 +1223,7 @@ useEffect(() => {
   }
 
   function exportToPDF() {
-    if (!matrixData.length) {
+    if (!filteredMatrixData.length) {
       alert("No data to export");
       return;
     }
@@ -1219,7 +1259,7 @@ useEffect(() => {
       tableWidth: "wrap",
     });
 
-    const rows = buildExportRows(matrixData, filters.role, filters.level);
+    const rows = buildExportRows(filteredMatrixData, filters.role, filters.level);
 
     const columns = Object.keys(rows[0]).map((key) => ({
       header: key,
@@ -1276,15 +1316,17 @@ useEffect(() => {
         isDisciplineLocked={isDisciplineLocked}
       /> */}
       <div className="sticky-filters">
-  <Filters
-    filters={filters}
-    setFilters={setFilters}
-    onExportExcel={exportToExcel}
-    onExportPDF={exportToPDF}
-    canExport={matrixData.length > 0 && !loading}
-    disciplineOptions={disciplineOptions}
-    isDisciplineLocked={isDisciplineLocked}
-  />
+<Filters
+  filters={filters}
+  setFilters={setFilters}
+  onExportExcel={exportToExcel}
+  onExportPDF={exportToPDF}
+  canExport={filteredMatrixData.length > 0 && !loading}
+  disciplineOptions={disciplineOptions}
+  isDisciplineLocked={isDisciplineLocked}
+  skillOptions={skillOptions}
+/>
+
 </div>
 
       <div
@@ -1350,7 +1392,7 @@ useEffect(() => {
             <div>Loading...</div>
           ) : (
             <SkillTable
-              data={matrixData}
+              data={filteredMatrixData}
               role={filters.role}
               selectedLevel={filters.level}
               editable={isEditMode}
