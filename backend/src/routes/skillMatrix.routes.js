@@ -272,6 +272,7 @@ router.get("/", async (req, res) => {
           ${normKeySql("Subskill")} AS SubskillKey,
           ${normDispSql("Skill")} AS SkillDisp,
           ${normDispSql("Subskill")} AS SubskillDisp,
+          SortOrder,
           Value
         FROM ${UPLOAD}
         WHERE 1 = 1
@@ -339,7 +340,7 @@ router.get("/", async (req, res) => {
             ELSE base.Value
           END AS Value,
 
-          history.changed_by
+          history.changed_by,
          COALESCE(base.SortOrder, 999999) AS SortOrder
         FROM all_keys keys
 
@@ -365,6 +366,7 @@ router.get("/", async (req, res) => {
     Skill,
     Subskill,
     Value,
+    SortOrder,
     changed_by
 FROM final_data
 WHERE Value IS NOT NULL
@@ -468,17 +470,18 @@ ORDER BY
 
     const rows = await queryDatabricks(sql);
 
-    return res.status(200).json(
-      rows.map((row) => ({
-        discipline: row[0],
-        role: row[1],
-        level: row[2],
-        category: row[3],
-        skill_name: row[4],
-        proficiency: row[5],
-        changed_by: row[6],
-      }))
-    );
+  return res.status(200).json(
+  rows.map((row) => ({
+    discipline: row[0],
+    role: row[1],
+    level: row[2],
+    category: row[3],
+    skill_name: row[4],
+    proficiency: row[5],
+    sort_order: row[6],
+    changed_by: row[7],
+  }))
+);
   } catch (err) {
     console.error("MATRIX ERROR:", err);
     console.error("MATRIX ERROR DATA:", err.response?.data);
