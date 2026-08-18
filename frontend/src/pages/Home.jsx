@@ -46,12 +46,12 @@ export default function Home() {
     },
   ];
 
-  // const roadmap = [
-  //   { phase: "Phase 1", title: "Skills Standardization",  desc: "Taxonomy, templates, and governed skill library",          color: "#6d5fc7" },
-  //   { phase: "Phase 2", title: "Skills Validation",  desc: "Manager-led rating cycles and employee profiles",           color: "#2a9d8f" },
-  //   { phase: "Phase 3", title: "Coaching",    desc: "Development plans, role readiness, and gap actions",        color: "#e9a84c" },
-  //   { phase: "Phase 4", title: "Analytics",   desc: "Workforce planning signals and capability dashboards",      color: "#e07070" },
-  // ];
+  const roadmap = [
+    { phase: "Phase 1", title: "Skills Standardization",  desc: "Taxonomy, templates, and governed skill library",          color: "#6d5fc7" },
+    { phase: "Phase 2", title: "Skills Validation",  desc: "Manager-led rating cycles and employee profiles",           color: "#2a9d8f" },
+    { phase: "Phase 3", title: "Coaching",    desc: "Development plans, role readiness, and gap actions",        color: "#e9a84c" },
+    { phase: "Phase 4", title: "Analytics",   desc: "Workforce planning signals and capability dashboards",      color: "#e07070" },
+  ];
 
   const principles = [
     { title: "Manager-led by design",       desc: "Phases 1–3 equip managers with practical tools backed by structured data.",        color: "#6d5fc7" },
