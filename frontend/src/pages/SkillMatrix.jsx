@@ -2874,115 +2874,6 @@ const API_SKILL = `${API_BASE}/api/skill-matrix`;
 
 const norm = (v) => String(v ?? "").trim().replace(/\s+/g, " ");
 const keyOfText = (v) => norm(v).toLowerCase();
-
-function transformApiToMatrix(rows, roleLevels) {
-  const groups = {};
-
-  (rows || []).forEach((r) => {
-    const categoryRaw = r.Skill || r.category;
-    const subskillRaw = r.Subskill || r.skill_name;
-
-    const category = norm(categoryRaw);
-    const subskill = norm(subskillRaw);
-    const level = norm(r.LevelKey || r.level);
-    const value = r.Value ?? r.proficiency ?? "NA";
-    const sortOrder = Number(r.SortOrder ?? r.sort_order ?? 999999);
-
-    if (!category || !subskill || !level) return;
-
-    const catKey = keyOfText(category);
-
-    if (!groups[catKey]) {
-      groups[catKey] = {
-        category,
-        skills: [],
-      };
-    }
-
-    let rowObj = groups[catKey].skills.find(
-      (s) => keyOfText(s.name) === keyOfText(subskill)
-    );
-
-    if (!rowObj) {
-      rowObj = {
-        name: subskill,
-        sortOrder,
-        levels: {},
-      };
-      groups[catKey].skills.push(rowObj);
-    }
-
-    if (sortOrder < (rowObj.sortOrder ?? 999999)) {
-      rowObj.sortOrder = sortOrder;
-    }
-
-    rowObj.levels[level] = value;
-  });
-
-  Object.values(groups).forEach((group) => {
-    group.skills.sort((a, b) => {
-      const ao = Number(a.sortOrder ?? 999999);
-      const bo = Number(b.sortOrder ?? 999999);
-
-      if (ao !== bo) return ao - bo;
-      return String(a.name).localeCompare(String(b.name));
-    });
-
-    group.skills.forEach((skill) => {
-      roleLevels.forEach((level) => {
-        if (
-          skill.levels[level] === undefined ||
-          skill.levels[level] === null ||
-          skill.levels[level] === ""
-        ) {
-          skill.levels[level] = "NA";
-        }
-      });
-    });
-  });
-
-  return Object.values(groups);
-}
-
-async function safeJson(res) {
-  try {
-    return await res.json();
-  } catch {
-    return null;
-  }
-}
-
-async function safeText(res) {
-  try {
-    return await res.text();
-  } catch {
-    return "";
-  }
-}
-
-function buildExportRows(matrixData, role, selectedLevel) {
-  const allLevels = ROLE_LEVELS[role] || [];
-  const levels = selectedLevel ? [selectedLevel] : allLevels;
-  const rows = [];
-
-  matrixData.forEach((group) => {
-    group.skills.forEach((skill) => {
-      const row = {
-        Skill: group.category,
-        Subskill: skill.name,
-      };
-
-      levels.forEach((level) => {
-        row[level] = skill.levels?.[level] ?? "NA";
-      });
-
-      rows.push(row);
-    });
-  });
-
-  return rows;
-}
-
 export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" }) {
   const [filters, setFilters] = useState({
     discipline: "",
@@ -4580,6 +4471,115 @@ async function confirmDeleteRows() {
     </div>
   );
 }
+function transformApiToMatrix(rows, roleLevels) {
+  const groups = {};
+
+  (rows || []).forEach((r) => {
+    const categoryRaw = r.Skill || r.category;
+    const subskillRaw = r.Subskill || r.skill_name;
+
+    const category = norm(categoryRaw);
+    const subskill = norm(subskillRaw);
+    const level = norm(r.LevelKey || r.level);
+    const value = r.Value ?? r.proficiency ?? "NA";
+    const sortOrder = Number(r.SortOrder ?? r.sort_order ?? 999999);
+
+    if (!category || !subskill || !level) return;
+
+    const catKey = keyOfText(category);
+
+    if (!groups[catKey]) {
+      groups[catKey] = {
+        category,
+        skills: [],
+      };
+    }
+
+    let rowObj = groups[catKey].skills.find(
+      (s) => keyOfText(s.name) === keyOfText(subskill)
+    );
+
+    if (!rowObj) {
+      rowObj = {
+        name: subskill,
+        sortOrder,
+        levels: {},
+      };
+      groups[catKey].skills.push(rowObj);
+    }
+
+    if (sortOrder < (rowObj.sortOrder ?? 999999)) {
+      rowObj.sortOrder = sortOrder;
+    }
+
+    rowObj.levels[level] = value;
+  });
+
+  Object.values(groups).forEach((group) => {
+    group.skills.sort((a, b) => {
+      const ao = Number(a.sortOrder ?? 999999);
+      const bo = Number(b.sortOrder ?? 999999);
+
+      if (ao !== bo) return ao - bo;
+      return String(a.name).localeCompare(String(b.name));
+    });
+
+    group.skills.forEach((skill) => {
+      roleLevels.forEach((level) => {
+        if (
+          skill.levels[level] === undefined ||
+          skill.levels[level] === null ||
+          skill.levels[level] === ""
+        ) {
+          skill.levels[level] = "NA";
+        }
+      });
+    });
+  });
+
+  return Object.values(groups);
+}
+
+async function safeJson(res) {
+  try {
+    return await res.json();
+  } catch {
+    return null;
+  }
+}
+
+async function safeText(res) {
+  try {
+    return await res.text();
+  } catch {
+    return "";
+  }
+}
+
+function buildExportRows(matrixData, role, selectedLevel) {
+  const allLevels = ROLE_LEVELS[role] || [];
+  const levels = selectedLevel ? [selectedLevel] : allLevels;
+  const rows = [];
+
+  matrixData.forEach((group) => {
+    group.skills.forEach((skill) => {
+      const row = {
+        Skill: group.category,
+        Subskill: skill.name,
+      };
+
+      levels.forEach((level) => {
+        row[level] = skill.levels?.[level] ?? "NA";
+      });
+
+      rows.push(row);
+    });
+  });
+
+  return rows;
+}
+
+
 // import { useEffect, useCallback, useMemo, useState } from "react";
 // import Filters from "../components/Filters";
 // import SkillTable from "../components/SkillTable";
