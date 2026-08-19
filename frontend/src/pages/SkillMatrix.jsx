@@ -2874,6 +2874,29 @@ const API_SKILL = `${API_BASE}/api/skill-matrix`;
 
 const norm = (v) => String(v ?? "").trim().replace(/\s+/g, " ");
 const keyOfText = (v) => norm(v).toLowerCase();
+
+function rowKey(category, subskillName) {
+  return `${norm(category)}|${norm(subskillName)}`;
+}
+
+function rowKeyLower(category, subskillName) {
+  return rowKey(category, subskillName).toLowerCase();
+}
+
+function filterOutDeletedRows(base, deletedKeySet) {
+  if (!deletedKeySet || deletedKeySet.size === 0) return base;
+
+  return (base || [])
+    .map((group) => ({
+      ...group,
+      skills: (group.skills || []).filter((skill) => {
+        const key = rowKeyLower(group.category, skill.name);
+        return !deletedKeySet.has(key);
+      }),
+    }))
+    .filter((group) => group.skills.length > 0);
+}
+
 export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" }) {
   const [filters, setFilters] = useState({
     discipline: "",
@@ -3470,11 +3493,6 @@ const fetchMatrix = useCallback(
       setActionBusy(false);
     }
   }
-
-  function rowKey(category, subskillName) {
-    return `${category}|${subskillName}`;
-  }
-
   function toggleSelectedRow(category, subskillName) {
     const key = rowKey(category, subskillName);
 
@@ -3545,27 +3563,6 @@ const fetchMatrix = useCallback(
       rows,
     });
   }
-function rowKey(category, subskillName) {
-  return `${norm(category)}|${norm(subskillName)}`;
-}
-
-function rowKeyLower(category, subskillName) {
-  return rowKey(category, subskillName).toLowerCase();
-}
-
-function filterOutDeletedRows(base, deletedKeySet) {
-  if (!deletedKeySet || deletedKeySet.size === 0) return base;
-
-  return (base || [])
-    .map((group) => ({
-      ...group,
-      skills: (group.skills || []).filter((skill) => {
-        const key = rowKeyLower(group.category, skill.name);
-        return !deletedKeySet.has(key);
-      }),
-    }))
-    .filter((group) => group.skills.length > 0);
-}
 function removeRowsLocally(base, rowsToRemove) {
   const removeSet = new Set(
     rowsToRemove.map((row) => rowKeyLower(row.category, row.subskillName))
