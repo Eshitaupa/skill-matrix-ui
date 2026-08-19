@@ -2856,14 +2856,14 @@ import { jsPDF } from "jspdf";
 import autoTable from "jspdf-autotable";
 
 const ROLE_LEVELS = {
-  Engineer: ["L7","L8","L9","L10","L11","L12","L13","L14","L15","L16","L17"],
-  Designer: ["L5","L6","L7","L8","L9","L10","L11","L12","L13","L14","L15"],
+  Engineer: ["L7", "L8", "L9", "L10", "L11", "L12", "L13", "L14", "L15", "L16", "L17"],
+  Designer: ["L5", "L6", "L7", "L8", "L9", "L10", "L11", "L12", "L13", "L14", "L15"],
 };
 
 const DISCIPLINE_ROLE_MAP = {
   "Project Management": "Engineer",
   "Piping Engineering": "Engineer",
-  "Mechanical": "Engineer",
+  Mechanical: "Engineer",
 };
 
 const API_BASE =
@@ -2886,13 +2886,17 @@ function transformApiToMatrix(rows, roleLevels) {
     const subskill = norm(subskillRaw);
     const level = norm(r.LevelKey || r.level);
     const value = r.Value ?? r.proficiency ?? "NA";
+    const sortOrder = Number(r.SortOrder ?? r.sort_order ?? 999999);
 
     if (!category || !subskill || !level) return;
 
     const catKey = keyOfText(category);
 
     if (!groups[catKey]) {
-      groups[catKey] = { category, skills: [] };
+      groups[catKey] = {
+        category,
+        skills: [],
+      };
     }
 
     let rowObj = groups[catKey].skills.find(
@@ -2900,14 +2904,30 @@ function transformApiToMatrix(rows, roleLevels) {
     );
 
     if (!rowObj) {
-      rowObj = { name: subskill, levels: {} };
+      rowObj = {
+        name: subskill,
+        sortOrder,
+        levels: {},
+      };
       groups[catKey].skills.push(rowObj);
+    }
+
+    if (sortOrder < (rowObj.sortOrder ?? 999999)) {
+      rowObj.sortOrder = sortOrder;
     }
 
     rowObj.levels[level] = value;
   });
 
   Object.values(groups).forEach((group) => {
+    group.skills.sort((a, b) => {
+      const ao = Number(a.sortOrder ?? 999999);
+      const bo = Number(b.sortOrder ?? 999999);
+
+      if (ao !== bo) return ao - bo;
+      return String(a.name).localeCompare(String(b.name));
+    });
+
     group.skills.forEach((skill) => {
       roleLevels.forEach((level) => {
         if (
@@ -2925,11 +2945,19 @@ function transformApiToMatrix(rows, roleLevels) {
 }
 
 async function safeJson(res) {
-  try { return await res.json(); } catch { return null; }
+  try {
+    return await res.json();
+  } catch {
+    return null;
+  }
 }
 
 async function safeText(res) {
-  try { return await res.text(); } catch { return ""; }
+  try {
+    return await res.text();
+  } catch {
+    return "";
+  }
 }
 
 function buildExportRows(matrixData, role, selectedLevel) {
@@ -2939,10 +2967,15 @@ function buildExportRows(matrixData, role, selectedLevel) {
 
   matrixData.forEach((group) => {
     group.skills.forEach((skill) => {
-      const row = { Skill: group.category, Subskill: skill.name };
+      const row = {
+        Skill: group.category,
+        Subskill: skill.name,
+      };
+
       levels.forEach((level) => {
         row[level] = skill.levels?.[level] ?? "NA";
       });
+
       rows.push(row);
     });
   });
@@ -2959,34 +2992,33 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
   });
 
   const [matrixData, setMatrixData] = useState([]);
-  const [initialLoading, setInitialLoading] = useState(false); // only true-first-load
+  const [initialLoading, setInitialLoading] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
   const [editedValues, setEditedValues] = useState({});
   const [showAddRow, setShowAddRow] = useState(false);
+
   const [meta, setMeta] = useState({
     disciplines: [],
     roles: ["Engineer", "Designer"],
     allowedDisciplines: [],
   });
+
   const [metaError, setMetaError] = useState(false);
   const [actionBusy, setActionBusy] = useState(false);
 
-  // Inline toast (replaces alert())
-  const [toast, setToast] = useState(null); // { message, tone } | null
+  const [toast, setToast] = useState(null);
   const toastTimerRef = useRef(null);
 
-  const showToast = useCallback((message, tone = "error") => {
-    setToast({ message, tone });
-    if (toastTimerRef.current) clearTimeout(toastTimerRef.current);
-    toastTimerRef.current = setTimeout(() => setToast(null), 3500);
-  }, []);
-
-  useEffect(() => () => {
-    if (toastTimerRef.current) clearTimeout(toastTimerRef.current);
-  }, []);
-
-  // Inline delete confirmation (replaces window.confirm — only used for delete)
-  const [confirmDelete, setConfirmDelete] = useState(null); // { category, subskillName } | null
+  const [selectedRows, setSelectedRows] = useState([]);
+  const [confirmDelete, setConfirmDelete] = useState(null);
+  /*
+    confirmDelete shape:
+    {
+      rows: [
+        { category: "Static Equipment", subskillName: "Pressure Vessels" }
+      ]
+    }
+  */
 
   const [form, setForm] = useState({
     discipline: "",
@@ -3000,10 +3032,31 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
   const [modalMatrix, setModalMatrix] = useState([]);
   const [modalLoading, setModalLoading] = useState(false);
 
+  const showToast = useCallback((message, tone = "error") => {
+    setToast({ message, tone });
+
+    if (toastTimerRef.current) {
+      clearTimeout(toastTimerRef.current);
+    }
+
+    toastTimerRef.current = setTimeout(() => {
+      setToast(null);
+    }, 3500);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (toastTimerRef.current) {
+        clearTimeout(toastTimerRef.current);
+      }
+    };
+  }, []);
+
   const effectiveAllowedDisciplines = useMemo(() => {
     if (Array.isArray(meta.allowedDisciplines) && meta.allowedDisciplines.length > 0) {
       return meta.allowedDisciplines.map(norm).filter(Boolean);
     }
+
     return Array.isArray(allowedDisciplines)
       ? allowedDisciplines.map(norm).filter(Boolean)
       : [];
@@ -3014,7 +3067,11 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
       const value = keyOfText(item);
       return value === "all" || value === "all disciplines";
     });
-    if (hasAll) return Array.isArray(meta.disciplines) ? meta.disciplines : [];
+
+    if (hasAll) {
+      return Array.isArray(meta.disciplines) ? meta.disciplines : [];
+    }
+
     return effectiveAllowedDisciplines;
   }, [meta.disciplines, effectiveAllowedDisciplines]);
 
@@ -3031,7 +3088,9 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
           method: "GET",
           credentials: "include",
           cache: "no-store",
-          headers: { Accept: "application/json" },
+          headers: {
+            Accept: "application/json",
+          },
         });
 
         const data = await safeJson(res);
@@ -3055,37 +3114,73 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
             ? data.roles
             : ["Engineer", "Designer"];
 
-        setMeta({ disciplines, roles, allowedDisciplines: backendAllowedDisciplines });
+        setMeta({
+          disciplines,
+          roles,
+          allowedDisciplines: backendAllowedDisciplines,
+        });
+
         setMetaError(false);
       } catch (err) {
         console.error("META LOAD FAILED:", err);
+
         if (!cancelled) {
-          setMeta({ disciplines: [], roles: ["Engineer", "Designer"], allowedDisciplines: [] });
-          setFilters({ discipline: "", role: "", level: "", skillSearch: "" });
+          setMeta({
+            disciplines: [],
+            roles: ["Engineer", "Designer"],
+            allowedDisciplines: [],
+          });
+
+          setFilters({
+            discipline: "",
+            role: "",
+            level: "",
+            skillSearch: "",
+          });
+
           setMetaError(true);
         }
       }
     }
 
     loadMeta();
-    return () => { cancelled = true; };
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   useEffect(() => {
     if (!filters.discipline) {
       setFilters((prev) => {
-        if (!prev.role && !prev.level) return prev;
-        return { ...prev, role: "", level: "", skillSearch: "" };
+        if (!prev.role && !prev.level && !prev.skillSearch) return prev;
+
+        return {
+          ...prev,
+          role: "",
+          level: "",
+          skillSearch: "",
+        };
       });
+
       setMatrixData([]);
+      setSelectedRows([]);
       return;
     }
 
     const autoRole = DISCIPLINE_ROLE_MAP[filters.discipline] || "";
 
     setFilters((prev) => {
-      if (prev.role === autoRole && prev.level === "") return prev;
-      return { ...prev, role: autoRole, level: "", skillSearch: "" };
+      if (prev.role === autoRole && prev.level === "" && prev.skillSearch === "") {
+        return prev;
+      }
+
+      return {
+        ...prev,
+        role: autoRole,
+        level: "",
+        skillSearch: "",
+      };
     });
   }, [filters.discipline]);
 
@@ -3103,12 +3198,20 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
     }
 
     setFilters((previous) => {
-      if (keyOfText(previous.discipline) === keyOfText(onlyDiscipline)) return previous;
-      return { ...previous, discipline: onlyDiscipline, role: "", level: "", skillSearch: "" };
+      if (keyOfText(previous.discipline) === keyOfText(onlyDiscipline)) {
+        return previous;
+      }
+
+      return {
+        ...previous,
+        discipline: onlyDiscipline,
+        role: "",
+        level: "",
+        skillSearch: "",
+      };
     });
   }, [disciplineOptions]);
 
-  // silent = true => background refresh, table stays visible the whole time
   const fetchMatrix = useCallback(
     async ({ silent = false } = {}) => {
       if (!filters.discipline || !filters.role) {
@@ -3117,7 +3220,10 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
       }
 
       const isFirstLoad = !silent && matrixData.length === 0;
-      if (isFirstLoad) setInitialLoading(true);
+
+      if (isFirstLoad) {
+        setInitialLoading(true);
+      }
 
       try {
         const url = `${API_SKILL}?discipline=${encodeURIComponent(
@@ -3128,7 +3234,9 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
           method: "GET",
           credentials: "include",
           cache: "no-store",
-          headers: { Accept: "application/json" },
+          headers: {
+            Accept: "application/json",
+          },
         });
 
         if (!res.ok) {
@@ -3143,7 +3251,9 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
       } catch (err) {
         console.error("FETCH MATRIX FAILED:", err);
       } finally {
-        if (isFirstLoad) setInitialLoading(false);
+        if (isFirstLoad) {
+          setInitialLoading(false);
+        }
       }
     },
     [filters.discipline, filters.role, matrixData.length]
@@ -3154,20 +3264,22 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
 
   useEffect(() => {
     fetchMatrix();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filters.discipline, filters.role]);
+    setSelectedRows([]);
+    setEditedValues({});
+    setConfirmDelete(null);
+  }, [fetchMatrix]);
 
-  // Live sync: SSE connection pushes an event the instant ANY user
-  // saves/deletes; if it matches what we're currently viewing, refetch
-  // silently (table never disappears) so changes land in <1s.
   useEffect(() => {
     if (!filters.discipline || !filters.role) return;
 
-    const source = new EventSource(`${API_SKILL}/stream`, { withCredentials: true });
+    const source = new EventSource(`${API_SKILL}/stream`, {
+      withCredentials: true,
+    });
 
     source.onmessage = (event) => {
       try {
         const payload = JSON.parse(event.data);
+
         if (
           payload.discipline === keyOfText(filters.discipline) &&
           payload.role === keyOfText(filters.role)
@@ -3175,12 +3287,12 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
           fetchMatrixRef.current({ silent: true });
         }
       } catch {
-        // ignore malformed pings
+        // Ignore malformed event payload
       }
     };
 
     source.onerror = () => {
-      // EventSource auto-reconnects; nothing to do here
+      // Browser auto reconnects EventSource
     };
 
     return () => source.close();
@@ -3201,31 +3313,51 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
 
     async function loadModalMatrix() {
       setModalLoading(true);
+
       try {
-        const url = `${API_SKILL}?discipline=${encodeURIComponent(discipline)}&role=${encodeURIComponent(role)}`;
+        const url = `${API_SKILL}?discipline=${encodeURIComponent(
+          discipline
+        )}&role=${encodeURIComponent(role)}&t=${Date.now()}`;
+
         const res = await fetch(url, {
           method: "GET",
           credentials: "include",
-          headers: { Accept: "application/json" },
+          headers: {
+            Accept: "application/json",
+          },
         });
 
         if (!res.ok) {
-          if (alive) setModalMatrix([]);
+          if (alive) {
+            setModalMatrix([]);
+          }
+
           return;
         }
 
         const data = await safeJson(res);
-        if (alive) setModalMatrix(transformApiToMatrix(data || [], ROLE_LEVELS[role] || []));
+
+        if (alive) {
+          setModalMatrix(transformApiToMatrix(data || [], ROLE_LEVELS[role] || []));
+        }
       } catch (err) {
         console.error("MODAL MATRIX LOAD FAILED:", err);
-        if (alive) setModalMatrix([]);
+
+        if (alive) {
+          setModalMatrix([]);
+        }
       } finally {
-        if (alive) setModalLoading(false);
+        if (alive) {
+          setModalLoading(false);
+        }
       }
     }
 
     loadModalMatrix();
-    return () => { alive = false; };
+
+    return () => {
+      alive = false;
+    };
   }, [showAddRow, form.discipline, form.role, filters.discipline, filters.role]);
 
   const roleOptions = useMemo(() => {
@@ -3238,50 +3370,68 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
 
   const modalSubskillOptions = useMemo(() => {
     if (!form.skill) return [];
-    const group = (modalMatrix || []).find((g) => keyOfText(g.category) === keyOfText(form.skill));
+
+    const group = (modalMatrix || []).find(
+      (g) => keyOfText(g.category) === keyOfText(form.skill)
+    );
+
     return (group?.skills || []).map((skill) => skill.name).filter(Boolean);
   }, [modalMatrix, form.skill]);
 
-  function startEditMode() { setIsEditMode(true); }
+  function startEditMode() {
+    setIsEditMode(true);
+  }
 
   function cancelEdit() {
     setEditedValues({});
+    setSelectedRows([]);
     setIsEditMode(false);
     setShowAddRow(false);
+    setConfirmDelete(null);
   }
 
-  // Merge edited cell values into a matrix snapshot immediately —
-  // used for the optimistic UI so the table never blanks on save.
   function applyEditsLocally(base, edits) {
     return base.map((group) => ({
       ...group,
       skills: group.skills.map((skill) => {
-        const levels = { ...skill.levels };
+        const levels = {
+          ...skill.levels,
+        };
+
         let changed = false;
 
         Object.entries(edits).forEach(([key, value]) => {
           const [cat, sub, lvl] = key.split("|");
-          if (keyOfText(cat) === keyOfText(group.category) && keyOfText(sub) === keyOfText(skill.name)) {
+
+          if (
+            keyOfText(cat) === keyOfText(group.category) &&
+            keyOfText(sub) === keyOfText(skill.name)
+          ) {
             levels[lvl] = value;
             changed = true;
           }
         });
 
-        return changed ? { ...skill, levels } : skill;
+        return changed
+          ? {
+              ...skill,
+              levels,
+            }
+          : skill;
       }),
     }));
   }
 
   async function saveChanges() {
     const keys = Object.keys(editedValues || {});
+
     if (!keys.length) {
       setIsEditMode(false);
       return;
     }
 
-    // Optimistic: apply changes to the table instantly, exit edit mode
-    // right away — no confirmation, no blank/loading state.
     const optimisticSnapshot = applyEditsLocally(matrixData, editedValues);
+
     setMatrixData(optimisticSnapshot);
     setIsEditMode(false);
     setActionBusy(true);
@@ -3292,6 +3442,7 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
     try {
       const payload = Object.entries(pendingEdits).map(([key, value]) => {
         const [Skill, Subskill, LevelKey] = key.split("|");
+
         return {
           Discipline: norm(filters.discipline),
           Role: norm(filters.role),
@@ -3304,7 +3455,9 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
 
       const res = await fetch(`${API_SKILL}/save`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         credentials: "include",
         body: JSON.stringify(payload),
       });
@@ -3312,7 +3465,7 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
       if (!res.ok) {
         const msg = (await safeText(res)) || "Save failed";
         showToast(msg, "error");
-        fetchMatrix({ silent: true }); // revert to real state
+        fetchMatrix({ silent: true });
         return;
       }
 
@@ -3328,7 +3481,10 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
   }
 
   function openAddModal() {
-    if (!isEditMode) startEditMode();
+    if (!isEditMode) {
+      startEditMode();
+    }
+
     setForm({
       discipline: filters.discipline || "",
       role: filters.role || "",
@@ -3337,6 +3493,7 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
       isNewSkill: false,
       isNewSubskill: false,
     });
+
     setShowAddRow(true);
   }
 
@@ -3344,7 +3501,7 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
     const discipline = norm(form.discipline || filters.discipline);
     const role = norm(form.role || filters.role);
     let category = norm(form.skill);
-    let subskill = norm(form.subskill);
+    const subskill = norm(form.subskill);
 
     if (!discipline || !role || !category || !subskill) {
       showToast("Please fill Discipline, Role, Skill Category and Subskill.");
@@ -3355,7 +3512,9 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
       (group) => keyOfText(group.category) === keyOfText(category)
     );
 
-    if (existingCategory) category = existingCategory.category;
+    if (existingCategory) {
+      category = existingCategory.category;
+    }
 
     const subskillAlreadyExists = !!existingCategory?.skills?.some(
       (skill) => keyOfText(skill.name) === keyOfText(subskill)
@@ -3367,19 +3526,22 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
     }
 
     const levels = ROLE_LEVELS[role] || [];
+
     if (!levels.length) {
       showToast("Invalid role levels");
       return;
     }
 
-    const payload = [{
-      Discipline: discipline,
-      Role: role,
-      Skill: category,
-      Subskill: subskill,
-      LevelKey: levels[0],
-      Value: "NA",
-    }];
+    const payload = [
+      {
+        Discipline: discipline,
+        Role: role,
+        Skill: category,
+        Subskill: subskill,
+        LevelKey: levels[0],
+        Value: "NA",
+      },
+    ];
 
     setActionBusy(true);
     setShowAddRow(false);
@@ -3387,7 +3549,9 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
     try {
       const res = await fetch(`${API_SKILL}/save`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         credentials: "include",
         body: JSON.stringify(payload),
       });
@@ -3407,57 +3571,135 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
     }
   }
 
-  // Delete: this is the ONLY action that asks for confirmation,
-  // shown as an inline in-page banner — not window.confirm.
-  function requestDeleteRow(category, subskillName) {
-    setConfirmDelete({ category, subskillName });
+  function rowKey(category, subskillName) {
+    return `${category}|${subskillName}`;
   }
 
-  async function confirmDeleteRow() {
-    if (!confirmDelete) return;
-    const { category, subskillName } = confirmDelete;
-    setConfirmDelete(null);
+  function toggleSelectedRow(category, subskillName) {
+    const key = rowKey(category, subskillName);
 
-    // Optimistic removal — row disappears instantly
-    const previousSnapshot = matrixData;
-    setMatrixData((prev) =>
-      prev
-        .map((group) => {
-          if (keyOfText(group.category) !== keyOfText(category)) return group;
-          return {
-            ...group,
-            skills: group.skills.filter((s) => keyOfText(s.name) !== keyOfText(subskillName)),
-          };
-        })
-        .filter((group) => group.skills.length > 0)
-    );
-
-    setActionBusy(true);
-
-    try {
-      const res = await fetch(`${API_SKILL}/row/delete`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({
-          Discipline: norm(filters.discipline),
-          Role: norm(filters.role),
-          Skill: norm(category),
-          Subskill: norm(subskillName),
-        }),
-      });
-
-      if (!res.ok) {
-        showToast((await safeText(res)) || "Delete failed", "error");
-        setMatrixData(previousSnapshot); // revert
-        return;
+    setSelectedRows((prev) => {
+      if (prev.includes(key)) {
+        return prev.filter((item) => item !== key);
       }
 
-      showToast("Deleted.", "success");
+      return [...prev, key];
+    });
+  }
+
+  function clearSelectedRows() {
+    setSelectedRows([]);
+  }
+
+  function requestDeleteRow(category, subskillName) {
+    setConfirmDelete({
+      rows: [
+        {
+          category,
+          subskillName,
+        },
+      ],
+    });
+  }
+
+  function requestDeleteSelectedRows() {
+    if (!selectedRows.length) {
+      showToast("Select at least one subskill to delete.");
+      return;
+    }
+
+    const rows = selectedRows
+      .map((key) => {
+        const [category, subskillName] = key.split("|");
+
+        return {
+          category,
+          subskillName,
+        };
+      })
+      .filter((row) => row.category && row.subskillName);
+
+    if (!rows.length) {
+      showToast("No valid rows selected.");
+      return;
+    }
+
+    setConfirmDelete({
+      rows,
+    });
+  }
+
+  function removeRowsLocally(base, rowsToRemove) {
+    const removeSet = new Set(
+      rowsToRemove.map((row) => rowKey(row.category, row.subskillName).toLowerCase())
+    );
+
+    return base
+      .map((group) => ({
+        ...group,
+        skills: group.skills.filter((skill) => {
+          const key = rowKey(group.category, skill.name).toLowerCase();
+          return !removeSet.has(key);
+        }),
+      }))
+      .filter((group) => group.skills.length > 0);
+  }
+
+  async function confirmDeleteRows() {
+    if (!confirmDelete?.rows?.length) return;
+
+    const rowsToDelete = confirmDelete.rows;
+
+    setConfirmDelete(null);
+    setActionBusy(true);
+
+    const previousSnapshot = matrixData;
+
+    setMatrixData((prev) => removeRowsLocally(prev, rowsToDelete));
+
+    setSelectedRows((prev) => {
+      const deleteSet = new Set(
+        rowsToDelete.map((row) => rowKey(row.category, row.subskillName).toLowerCase())
+      );
+
+      return prev.filter((key) => !deleteSet.has(key.toLowerCase()));
+    });
+
+    try {
+      for (const row of rowsToDelete) {
+        const res = await fetch(`${API_SKILL}/row/delete`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify({
+            Discipline: norm(filters.discipline),
+            Role: norm(filters.role),
+            Skill: norm(row.category),
+            Subskill: norm(row.subskillName),
+          }),
+        });
+
+        if (!res.ok) {
+          const msg = (await safeText(res)) || "Delete failed";
+          throw new Error(msg);
+        }
+      }
+
+      showToast(
+        rowsToDelete.length === 1
+          ? "Deleted."
+          : `${rowsToDelete.length} subskills deleted.`,
+        "success"
+      );
+
+      fetchMatrix({ silent: true });
     } catch (err) {
       console.error("DELETE FAILED:", err);
-      showToast("Delete failed", "error");
+      showToast("Delete failed. Reverting table.", "error");
       setMatrixData(previousSnapshot);
+      fetchMatrix({ silent: true });
     } finally {
       setActionBusy(false);
     }
@@ -3465,12 +3707,19 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
 
   const skillOptions = useMemo(() => {
     const options = [];
+
     (matrixData || []).forEach((group) => {
-      if (group.category) options.push(group.category);
+      if (group.category) {
+        options.push(group.category);
+      }
+
       (group.skills || []).forEach((skill) => {
-        if (skill.name) options.push(skill.name);
+        if (skill.name) {
+          options.push(skill.name);
+        }
       });
     });
+
     return [...new Set(options)];
   }, [matrixData]);
 
@@ -3480,13 +3729,21 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
     return (matrixData || [])
       .map((group) => {
         if (!query) return group;
+
         const categoryMatch = keyOfText(group.category).includes(query);
+
         if (categoryMatch) return group;
+
         const matchingSkills = (group.skills || []).filter((skill) =>
           keyOfText(skill.name).includes(query)
         );
+
         if (!matchingSkills.length) return null;
-        return { ...group, skills: matchingSkills };
+
+        return {
+          ...group,
+          skills: matchingSkills,
+        };
       })
       .filter(Boolean);
   }, [matrixData, filters.skillSearch]);
@@ -3501,13 +3758,19 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
     const rows = buildExportRows(filteredMatrixData, filters.role, filters.level);
 
     const headerRows = [
-      ["Project Meridian Export"], [],
+      ["Project Meridian Export"],
+      [],
       ["Discipline", filters.discipline || "-"],
       ["Role", filters.role || "-"],
-      ["Level", filters.level || "All levels"], [],
+      ["Level", filters.level || "All levels"],
+      [],
       ["Proficiency", "Meaning"],
-      ["NA", "Not Applicable"], ["1", "Familiar"], ["2", "Working Level"],
-      ["3", "Extensive"], ["4", "Authoritative"], [],
+      ["NA", "Not Applicable"],
+      ["1", "Familiar"],
+      ["2", "Working Level"],
+      ["3", "Extensive"],
+      ["4", "Authoritative"],
+      [],
     ];
 
     const tableHeader = Object.keys(rows[0] || { Skill: "", Subskill: "" });
@@ -3515,14 +3778,31 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
     const sheetAOA = [...headerRows, tableHeader, ...tableData];
     const ws = XLSX.utils.aoa_to_sheet(sheetAOA);
 
-    ws["!cols"] = [{ wch: 22 }, { wch: 28 }, ...tableHeader.slice(2).map(() => ({ wch: 10 }))];
+    ws["!cols"] = [
+      {
+        wch: 22,
+      },
+      {
+        wch: 28,
+      },
+      ...tableHeader.slice(2).map(() => ({
+        wch: 10,
+      })),
+    ];
 
     const wb = XLSX.utils.book_new();
+
     XLSX.utils.book_append_sheet(wb, ws, "Project Meridian");
-    const buffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
+
+    const buffer = XLSX.write(wb, {
+      bookType: "xlsx",
+      type: "array",
+    });
 
     saveAs(
-      new Blob([buffer], { type: "application/octet-stream" }),
+      new Blob([buffer], {
+        type: "application/octet-stream",
+      }),
       `Skill_Matrix_${filters.discipline}_${filters.role}${levelPart}.xlsx`
     );
   }
@@ -3538,6 +3818,7 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
 
     doc.setFontSize(16);
     doc.text("Project Meridian", 14, 12);
+
     doc.setFontSize(10);
     doc.text(`Discipline: ${filters.discipline || "-"}`, 14, 18);
     doc.text(`Role: ${filters.role || "-"}`, 14, 23);
@@ -3547,24 +3828,39 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
       startY: 32,
       head: [["Proficiency", "Meaning"]],
       body: [
-        ["NA", "Not Applicable"], ["1", "Familiar"], ["2", "Working Level"],
-        ["3", "Extensive"], ["4", "Authoritative"],
+        ["NA", "Not Applicable"],
+        ["1", "Familiar"],
+        ["2", "Working Level"],
+        ["3", "Extensive"],
+        ["4", "Authoritative"],
       ],
-      styles: { fontSize: 9 },
-      headStyles: { fillColor: [40, 40, 40] },
+      styles: {
+        fontSize: 9,
+      },
+      headStyles: {
+        fillColor: [40, 40, 40],
+      },
       theme: "grid",
       tableWidth: "wrap",
     });
 
     const rows = buildExportRows(filteredMatrixData, filters.role, filters.level);
-    const columns = Object.keys(rows[0]).map((key) => ({ header: key, dataKey: key }));
+
+    const columns = Object.keys(rows[0]).map((key) => ({
+      header: key,
+      dataKey: key,
+    }));
 
     autoTable(doc, {
       startY: doc.lastAutoTable.finalY + 6,
       columns,
       body: rows,
-      headStyles: { fillColor: [40, 40, 40] },
-      styles: { fontSize: 8 },
+      headStyles: {
+        fillColor: [40, 40, 40],
+      },
+      styles: {
+        fontSize: 8,
+      },
       theme: "grid",
       didDrawPage: () => {
         doc.setFontSize(8);
@@ -3575,73 +3871,250 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
     doc.save(`Skill_Matrix_${filters.discipline}_${filters.role}${levelPart}.pdf`);
   }
 
+  const selectedCount = selectedRows.length;
+
   return (
     <div className="page-container">
       <style>{`
         .sticky-filters {
-          position: sticky; top: 0; z-index: 30;
-          background: #f8fafc; padding-top: 6px; padding-bottom: 6px;
-        }
-        .smf-toolbar-row {
-          display: flex; justify-content: flex-end; align-items: center;
-          gap: 8px; margin: 10px 0 12px 0; flex-wrap: wrap;
+          position: sticky;
+          top: 0;
+          z-index: 30;
+          background: #f8fafc;
+          padding-top: 6px;
+          padding-bottom: 6px;
         }
 
-        /* Inline delete-confirm banner (no browser dialog) */
-        .smf-confirm-banner {
-          display: flex; align-items: center; justify-content: space-between;
-          gap: 12px; flex-wrap: wrap;
-          background: #fff1f2; border: 1px solid #fecdd3;
-          color: #9f1239; border-radius: 12px;
-          padding: 10px 16px; margin-bottom: 12px;
+        .smf-toolbar-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 8px;
+          margin: 10px 0 12px 0;
+          flex-wrap: wrap;
+        }
+
+        .smf-toolbar-left,
+        .smf-toolbar-right {
+          display: flex;
+          gap: 8px;
+          align-items: center;
+          flex-wrap: wrap;
+        }
+
+        .smf-selected-pill {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          background: #eef2ff;
+          color: #3730a3;
+          border: 1px solid #c7d2fe;
+          border-radius: 999px;
+          padding: 6px 12px;
+          font-size: 12.5px;
+          font-weight: 700;
+        }
+
+        .smf-danger-btn {
+          background: #dc2626;
+          color: #ffffff;
+          border: none;
+          border-radius: 999px;
+          padding: 8px 16px;
+          font-size: 13px;
+          font-weight: 700;
+          cursor: pointer;
+        }
+
+        .smf-danger-btn:hover {
+          background: #b91c1c;
+        }
+
+        .smf-danger-btn:disabled,
+        .btn-edit:disabled,
+        .btn-save:disabled {
+          opacity: 0.55;
+          cursor: not-allowed;
+        }
+
+        .smf-clear-btn {
+          background: #f3f4f6;
+          color: #374151;
+          border: 1px solid #d1d5db;
+          border-radius: 999px;
+          padding: 8px 14px;
+          font-size: 13px;
+          font-weight: 700;
+          cursor: pointer;
+        }
+
+        .smf-clear-btn:hover {
+          background: #e5e7eb;
+        }
+
+        .smf-modal-overlay {
+          position: fixed;
+          inset: 0;
+          background: rgba(15, 23, 42, 0.45);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 2500;
+          padding: 18px;
+        }
+
+        .smf-delete-card {
+          width: min(520px, 94vw);
+          background: #ffffff;
+          border-radius: 18px;
+          box-shadow: 0 24px 80px rgba(15, 23, 42, 0.35);
+          border: 1px solid #e5e7eb;
+          overflow: hidden;
+        }
+
+        .smf-delete-card-header {
+          padding: 18px 20px;
+          background: #fff1f2;
+          border-bottom: 1px solid #fecdd3;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
+
+        .smf-delete-icon {
+          width: 38px;
+          height: 38px;
+          border-radius: 999px;
+          background: #dc2626;
+          color: #ffffff;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 18px;
+          flex: 0 0 auto;
+        }
+
+        .smf-delete-title {
+          margin: 0;
+          font-size: 17px;
+          font-weight: 800;
+          color: #9f1239;
+        }
+
+        .smf-delete-subtitle {
+          margin: 3px 0 0 0;
+          color: #9f1239;
           font-size: 13px;
         }
-        .smf-confirm-banner .btns { display: flex; gap: 8px; }
-        .smf-confirm-banner button {
-          border: none; border-radius: 999px; padding: 6px 16px;
-          font-size: 12.5px; font-weight: 600; cursor: pointer;
-        }
-        .smf-confirm-banner .btn-cancel { background: #f3f4f6; color: #374151; }
-        .smf-confirm-banner .btn-cancel:hover { background: #e5e7eb; }
-        .smf-confirm-banner .btn-danger { background: #dc2626; color: #fff; }
-        .smf-confirm-banner .btn-danger:hover { background: #b91c1c; }
 
-        /* Inline toast (no window.alert) */
-        .smf-toast {
-          position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
-          padding: 10px 18px; border-radius: 999px;
-          font-size: 13px; font-weight: 600; color: #fff;
-          box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-          z-index: 3000; max-width: 90vw;
+        .smf-delete-card-body {
+          padding: 18px 20px;
         }
-        .smf-toast.error { background: #dc2626; }
-        .smf-toast.success { background: #16a34a; }
+
+        .smf-delete-list {
+          margin-top: 12px;
+          max-height: 260px;
+          overflow-y: auto;
+          border: 1px solid #e5e7eb;
+          border-radius: 12px;
+          background: #f9fafb;
+        }
+
+        .smf-delete-list-item {
+          padding: 10px 12px;
+          border-bottom: 1px solid #e5e7eb;
+          font-size: 13px;
+        }
+
+        .smf-delete-list-item:last-child {
+          border-bottom: none;
+        }
+
+        .smf-delete-category {
+          font-weight: 800;
+          color: #111827;
+        }
+
+        .smf-delete-subskill {
+          color: #374151;
+          margin-top: 2px;
+        }
+
+        .smf-delete-card-footer {
+          padding: 14px 20px 18px 20px;
+          display: flex;
+          justify-content: flex-end;
+          gap: 10px;
+          border-top: 1px solid #f1f5f9;
+        }
+
+        .smf-modal-cancel {
+          border: none;
+          background: #f3f4f6;
+          color: #374151;
+          border-radius: 999px;
+          padding: 8px 18px;
+          font-size: 13px;
+          font-weight: 700;
+          cursor: pointer;
+        }
+
+        .smf-modal-cancel:hover {
+          background: #e5e7eb;
+        }
+
+        .smf-modal-delete {
+          border: none;
+          background: #dc2626;
+          color: #ffffff;
+          border-radius: 999px;
+          padding: 8px 18px;
+          font-size: 13px;
+          font-weight: 800;
+          cursor: pointer;
+        }
+
+        .smf-modal-delete:hover {
+          background: #b91c1c;
+        }
+
+        .smf-toast {
+          position: fixed;
+          bottom: 24px;
+          left: 50%;
+          transform: translateX(-50%);
+          padding: 10px 18px;
+          border-radius: 999px;
+          font-size: 13px;
+          font-weight: 700;
+          color: #ffffff;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+          z-index: 3000;
+          max-width: 90vw;
+        }
+
+        .smf-toast.error {
+          background: #dc2626;
+        }
+
+        .smf-toast.success {
+          background: #16a34a;
+        }
       `}</style>
 
       {metaError && (
-        <div style={{
-          background: "#fef3c7", color: "#92400e", padding: "8px 14px",
-          fontSize: "12.5px", borderRadius: "10px", marginBottom: "10px",
-          border: "1px solid #fde68a",
-        }}>
+        <div
+          style={{
+            background: "#fef3c7",
+            color: "#92400e",
+            padding: "8px 14px",
+            fontSize: "12.5px",
+            borderRadius: "10px",
+            marginBottom: "10px",
+            border: "1px solid #fde68a",
+          }}
+        >
           Could not load your discipline access. Please log out and log in again.
-        </div>
-      )}
-
-      {confirmDelete && (
-        <div className="smf-confirm-banner">
-          <span>
-            Delete <strong>"{confirmDelete.subskillName}"</strong> from{" "}
-            <strong>"{confirmDelete.category}"</strong>? This removes it for everyone.
-          </span>
-          <div className="btns">
-            <button className="btn-cancel" onClick={() => setConfirmDelete(null)}>
-              Cancel
-            </button>
-            <button className="btn-danger" onClick={confirmDeleteRow}>
-              Delete
-            </button>
-          </div>
         </div>
       )}
 
@@ -3659,10 +4132,12 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
       </div>
 
       <div className="smf-toolbar-row">
-        <div style={{ display: "flex", gap: "8px" }}>
+        <div className="smf-toolbar-left">
           <button
             className="btn-edit"
-            onClick={() => { if (!isEditMode) startEditMode(); }}
+            onClick={() => {
+              if (!isEditMode) startEditMode();
+            }}
             disabled={actionBusy || !filters.discipline || !filters.role}
           >
             ✏ Edit
@@ -3681,12 +4156,41 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
               <button className="btn-save" onClick={saveChanges} disabled={actionBusy}>
                 💾 Save
               </button>
+
               <button className="btn-edit" onClick={cancelEdit} disabled={actionBusy}>
                 ✖ Cancel
               </button>
             </>
           )}
         </div>
+
+        {isEditMode && (
+          <div className="smf-toolbar-right">
+            {selectedCount > 0 && (
+              <span className="smf-selected-pill">
+                {selectedCount} selected
+              </span>
+            )}
+
+            <button
+              className="smf-clear-btn"
+              onClick={clearSelectedRows}
+              disabled={actionBusy || selectedCount === 0}
+              type="button"
+            >
+              Clear
+            </button>
+
+            <button
+              className="smf-danger-btn"
+              onClick={requestDeleteSelectedRows}
+              disabled={actionBusy || selectedCount === 0}
+              type="button"
+            >
+              🗑 Delete Selected
+            </button>
+          </div>
+        )}
       </div>
 
       <div className="table-hover-wrapper">
@@ -3700,8 +4204,13 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
               selectedLevel={filters.level}
               editable={isEditMode}
               editedValues={editedValues}
+              selectedRows={selectedRows}
+              onToggleRow={toggleSelectedRow}
               onEdit={(key, value) =>
-                setEditedValues((prev) => ({ ...prev, [key]: value }))
+                setEditedValues((prev) => ({
+                  ...prev,
+                  value,
+                }))
               }
               onDeleteRow={requestDeleteRow}
             />
@@ -3729,16 +4238,24 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
               onChange={(event) => {
                 const selectedDiscipline = event.target.value;
                 const selectedRole = DISCIPLINE_ROLE_MAP[selectedDiscipline] || "";
+
                 setForm((prev) => ({
-                  ...prev, discipline: selectedDiscipline, role: selectedRole,
-                  skill: "", subskill: "", isNewSkill: false, isNewSubskill: false,
+                  ...prev,
+                  discipline: selectedDiscipline,
+                  role: selectedRole,
+                  skill: "",
+                  subskill: "",
+                  isNewSkill: false,
+                  isNewSubskill: false,
                 }));
               }}
               disabled={actionBusy}
             >
               <option value="">Select Discipline</option>
               {disciplineOptions.map((discipline) => (
-                <option key={discipline} value={discipline}>{discipline}</option>
+                <option key={discipline} value={discipline}>
+                  {discipline}
+                </option>
               ))}
             </select>
 
@@ -3747,15 +4264,21 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
               value={form.role}
               onChange={(event) =>
                 setForm((prev) => ({
-                  ...prev, role: event.target.value,
-                  skill: "", subskill: "", isNewSkill: false, isNewSubskill: false,
+                  ...prev,
+                  role: event.target.value,
+                  skill: "",
+                  subskill: "",
+                  isNewSkill: false,
+                  isNewSubskill: false,
                 }))
               }
               disabled={actionBusy}
             >
               <option value="">Select Role</option>
               {roleOptions.map((role) => (
-                <option key={role} value={role}>{role}</option>
+                <option key={role} value={role}>
+                  {role}
+                </option>
               ))}
             </select>
 
@@ -3766,17 +4289,37 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
                 disabled={modalLoading || actionBusy}
                 onChange={(event) => {
                   const value = event.target.value;
+
                   if (value === "__new__") {
-                    setForm((prev) => ({ ...prev, isNewSkill: true, skill: "", subskill: "", isNewSubskill: false }));
+                    setForm((prev) => ({
+                      ...prev,
+                      isNewSkill: true,
+                      skill: "",
+                      subskill: "",
+                      isNewSubskill: false,
+                    }));
+
                     return;
                   }
-                  setForm((prev) => ({ ...prev, skill: value, subskill: "", isNewSubskill: false }));
+
+                  setForm((prev) => ({
+                    ...prev,
+                    skill: value,
+                    subskill: "",
+                    isNewSubskill: false,
+                  }));
                 }}
               >
-                <option value="">{modalLoading ? "Loading categories..." : "Select Category"}</option>
+                <option value="">
+                  {modalLoading ? "Loading categories..." : "Select Category"}
+                </option>
+
                 {modalSkillOptions.map((category) => (
-                  <option key={category} value={category}>{category}</option>
+                  <option key={category} value={category}>
+                    {category}
+                  </option>
                 ))}
+
                 <option value="__new__">+ Create new category</option>
               </select>
             ) : (
@@ -3784,13 +4327,26 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
                 <input
                   placeholder="Enter new category"
                   value={form.skill}
-                  onChange={(event) => setForm((prev) => ({ ...prev, skill: event.target.value }))}
+                  onChange={(event) =>
+                    setForm((prev) => ({
+                      ...prev,
+                      skill: event.target.value,
+                    }))
+                  }
                   disabled={actionBusy}
                 />
+
                 <button
                   type="button"
                   className="link-btn"
-                  onClick={() => setForm((prev) => ({ ...prev, isNewSkill: false, skill: "", subskill: "" }))}
+                  onClick={() =>
+                    setForm((prev) => ({
+                      ...prev,
+                      isNewSkill: false,
+                      skill: "",
+                      subskill: "",
+                    }))
+                  }
                   disabled={actionBusy}
                 >
                   Use existing category list
@@ -3803,7 +4359,12 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
               <input
                 placeholder="Enter new subskill"
                 value={form.subskill}
-                onChange={(event) => setForm((prev) => ({ ...prev, subskill: event.target.value }))}
+                onChange={(event) =>
+                  setForm((prev) => ({
+                    ...prev,
+                    subskill: event.target.value,
+                  }))
+                }
                 disabled={actionBusy}
               />
             ) : !form.isNewSubskill ? (
@@ -3812,17 +4373,33 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
                 disabled={modalLoading || !form.skill || actionBusy}
                 onChange={(event) => {
                   const value = event.target.value;
+
                   if (value === "__new__") {
-                    setForm((prev) => ({ ...prev, isNewSubskill: true, subskill: "" }));
+                    setForm((prev) => ({
+                      ...prev,
+                      isNewSubskill: true,
+                      subskill: "",
+                    }));
+
                     return;
                   }
-                  setForm((prev) => ({ ...prev, subskill: value }));
+
+                  setForm((prev) => ({
+                    ...prev,
+                    subskill: value,
+                  }));
                 }}
               >
-                <option value="">{modalLoading ? "Loading subskills..." : "Select Subskill"}</option>
+                <option value="">
+                  {modalLoading ? "Loading subskills..." : "Select Subskill"}
+                </option>
+
                 {modalSubskillOptions.map((subskill) => (
-                  <option key={subskill} value={subskill}>{subskill}</option>
+                  <option key={subskill} value={subskill}>
+                    {subskill}
+                  </option>
                 ))}
+
                 <option value="__new__">+ Create new subskill</option>
               </select>
             ) : (
@@ -3830,13 +4407,25 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
                 <input
                   placeholder="Enter new subskill"
                   value={form.subskill}
-                  onChange={(event) => setForm((prev) => ({ ...prev, subskill: event.target.value }))}
+                  onChange={(event) =>
+                    setForm((prev) => ({
+                      ...prev,
+                      subskill: event.target.value,
+                    }))
+                  }
                   disabled={actionBusy}
                 />
+
                 <button
                   type="button"
                   className="link-btn"
-                  onClick={() => setForm((prev) => ({ ...prev, isNewSubskill: false, subskill: "" }))}
+                  onClick={() =>
+                    setForm((prev) => ({
+                      ...prev,
+                      isNewSubskill: false,
+                      subskill: "",
+                    }))
+                  }
                   disabled={actionBusy}
                 >
                   Use existing subskill list
@@ -3844,9 +4433,84 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
               </>
             )}
 
-            <div style={{ marginTop: 12, display: "flex", gap: 8, justifyContent: "flex-end" }}>
-              <button onClick={() => setShowAddRow(false)} disabled={actionBusy}>Cancel</button>
-              <button onClick={handleAddRow} disabled={actionBusy}>Add</button>
+            <div
+              style={{
+                marginTop: 12,
+                display: "flex",
+                gap: 8,
+                justifyContent: "flex-end",
+              }}
+            >
+              <button onClick={() => setShowAddRow(false)} disabled={actionBusy}>
+                Cancel
+              </button>
+
+              <button onClick={handleAddRow} disabled={actionBusy}>
+                Add
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {confirmDelete && (
+        <div className="smf-modal-overlay">
+          <div className="smf-delete-card">
+            <div className="smf-delete-card-header">
+              <div className="smf-delete-icon">🗑</div>
+
+              <div>
+                <h3 className="smf-delete-title">Confirm Delete</h3>
+                <p className="smf-delete-subtitle">
+                  This will remove selected subskill rows for everyone.
+                </p>
+              </div>
+            </div>
+
+            <div className="smf-delete-card-body">
+              <div>
+                Delete{" "}
+                <strong>
+                  {confirmDelete.rows.length}
+                </strong>{" "}
+                subskill{confirmDelete.rows.length > 1 ? "s" : ""}?
+              </div>
+
+              <div className="smf-delete-list">
+                {confirmDelete.rows.map((row) => (
+                  <div
+                    className="smf-delete-list-item"
+                    key={`${row.category}|${row.subskillName}`}
+                  >
+                    <div className="smf-delete-category">
+                      {row.category}
+                    </div>
+                    <div className="smf-delete-subskill">
+                      {row.subskillName}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="smf-delete-card-footer">
+              <button
+                type="button"
+                className="smf-modal-cancel"
+                onClick={() => setConfirmDelete(null)}
+                disabled={actionBusy}
+              >
+                Cancel
+              </button>
+
+              <button
+                type="button"
+                className="smf-modal-delete"
+                onClick={confirmDeleteRows}
+                disabled={actionBusy}
+              >
+                Delete
+              </button>
             </div>
           </div>
         </div>
