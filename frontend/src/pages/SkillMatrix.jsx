@@ -4282,7 +4282,6 @@ export default function SkillMatrix({
 
     setConfirmDelete(null);
     setSelectedRows([]);
-    setActionBusy(true);
 
     rowsToDelete.forEach(
       (row) => {
@@ -4296,7 +4295,11 @@ export default function SkillMatrix({
     );
 
     /*
-     * Instant visual delete.
+     * Instant visual delete, and drop out of edit
+     * mode right away instead of making the user
+     * press Save or Cancel afterwards just to get
+     * back to the normal view. The delete is already
+     * saved to the backend below.
      */
     setMatrixData(
       (previous) =>
@@ -4305,6 +4308,17 @@ export default function SkillMatrix({
           rowsToDelete
         )
     );
+
+    setIsEditMode(false);
+
+    showToast(
+      rowsToDelete.length === 1
+        ? "Deleted and saved."
+        : `${rowsToDelete.length} subskills deleted and saved.`,
+      "success"
+    );
+
+    setActionBusy(true);
 
     try {
       suppressRealtimeUntilRef.current =
@@ -4361,13 +4375,6 @@ export default function SkillMatrix({
         );
       }
 
-      showToast(
-        rowsToDelete.length === 1
-          ? "Deleted and saved."
-          : `${rowsToDelete.length} subskills deleted and saved.`,
-        "success"
-      );
-
       /*
        * IMPORTANT:
        * No fetchMatrix here.
@@ -4397,6 +4404,7 @@ export default function SkillMatrix({
       );
 
       setMatrixData(snapshot);
+      setIsEditMode(true);
 
       showToast(
         error.message ||
@@ -4664,6 +4672,12 @@ export default function SkillMatrix({
     );
 
     setShowAddRow(false);
+
+    showToast(
+      "Skill added and saved.",
+      "success"
+    );
+
     setActionBusy(true);
 
     try {
@@ -4701,11 +4715,6 @@ export default function SkillMatrix({
             "Add failed"
         );
       }
-
-      showToast(
-        "Skill added and saved.",
-        "success"
-      );
 
       /*
        * Do NOT refetch.
