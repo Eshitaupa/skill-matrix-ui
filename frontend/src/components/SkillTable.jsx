@@ -116,66 +116,30 @@ const PROFICIENCY_LABELS = {
   "4": "Authoritative",
 };
 
-const ROLE_LEVELS = {
-  Engineer: [
-    "L7",
-    "L8",
-    "L9",
-    "L10",
-    "L11",
-    "L12",
-    "L13",
-    "L14",
-    "L15",
-    "L16",
-    "L17",
-  ],
-
-  Designer: [
-    "L5",
-    "L6",
-    "L7",
-    "L8",
-    "L9",
-    "L10",
-    "L11",
-    "L12",
-    "L13",
-    "L14",
-    "L15",
-  ],
-};
-
 const getProficiencyText = (value) => {
   const v = String(value ?? "NA");
   return `${v} - ${PROFICIENCY_LABELS[v] || ""}`;
 };
-
-const norm = (value) =>
-  String(value ?? "")
-    .trim()
-    .replace(/\s+/g, " ");
-
-const rowKey = (cat, sub) => `${norm(cat)}|${norm(sub)}`;
-
-const rowKeyLower = (cat, sub) => rowKey(cat, sub).toLowerCase();
 
 function SkillTable({
   data = [],
   role,
   selectedLevel,
   editable,
-  editedValues = [],
+  editedValues = {},
   selectedRows = [],
   onToggleRow,
-  onToggleCategory,
+  onToggleGroup,
   onEdit,
   onDeleteRow,
   levelLabels = DEFAULT_LEVEL_LABELS,
 }) {
-  if (!role) {
-    return null;
-  }
+  const ROLE_LEVELS = {
+    Engineer: ["L7", "L8", "L9", "L10", "L11", "L12", "L13", "L14", "L15", "L16", "L17"],
+    Designer: ["L5", "L6", "L7", "L8", "L9", "L10", "L11", "L12", "L13", "L14", "L15"],
+  };
+
+  if (!role) return null;
 
   const levels = ROLE_LEVELS[role] || [];
 
@@ -186,45 +150,31 @@ function SkillTable({
     : levels;
 
   const cellKey = (cat, sub, lvl) => `${cat}|${sub}|${lvl}`;
+  const rowKey = (cat, sub) => `${cat}|${sub}`;
 
-  const selectedLowerSet = new Set(
-    (selectedRows || []).map((item) => String(item).toLowerCase())
-  );
+  const getValue = (g, s, l) =>
+    editedValues[cellKey(g.category, s.name, l)] ?? s.levels?.[l] ?? "NA";
 
-  const getValue = (group, skill, level) =>
-    editedValues[cellKey(group.category, skill.name, level)] ??
-    skill.levels?.[level] ??
-    "NA";
-
-  const isChanged = (group, skill, level) =>
-    editedValues[cellKey(group.category, skill.name, level)] !== undefined;
+  const isChanged = (g, s, l) =>
+    editedValues[cellKey(g.category, s.name, l)] !== undefined;
 
   const isRowSelected = (category, subskillName) =>
-    selectedLowerSet.has(rowKeyLower(category, subskillName));
+    selectedRows.includes(rowKey(category, subskillName));
 
   const isGroupSelected = (group) => {
     const skills = group?.skills || [];
-
-    if (!skills.length) {
-      return false;
-    }
+    if (!skills.length) return false;
 
     return skills.every((skill) =>
-      selectedLowerSet.has(rowKeyLower(group.category, skill.name))
+      selectedRows.includes(rowKey(group.category, skill.name))
     );
-  };
-
-  const toggleWholeCategory = (group) => {
-    const names = (group?.skills || []).map((skill) => skill.name);
-
-    onToggleCategory?.(group.category, names);
   };
 
   return (
     <Fragment>
       <style>{`
         .smx-wrap {
-          border-radius: 8px;
+          border-radius: 12px;
           overflow: auto;
           background: #ffffff;
           border: 1px solid #e5e7eb;
@@ -265,14 +215,12 @@ function SkillTable({
           display: flex;
           flex-direction: column;
           align-items: center;
-          justify-content: center;
           gap: 2px;
         }
 
         .smx-code {
-          font-size: 13px;
+          font-size: 15px;
           font-weight: 700;
-          color: #374151;
         }
 
         .smx-role {
@@ -290,18 +238,20 @@ function SkillTable({
           font-size: 12px;
           letter-spacing: 0.04em;
           padding: 10px 14px;
+          border-left: 4px solid #3b82f6;
           color: #1e3a8a;
           cursor: pointer;
           user-select: none;
         }
 
         .smx-category-row:hover td {
-          background: #e5efff;
+          background: #dfeaff;
         }
 
         .smx-category-select-cell {
           text-align: center !important;
           width: 70px;
+          border-left: 4px solid #3b82f6;
         }
 
         .smx-category-name-cell {
@@ -374,6 +324,7 @@ function SkillTable({
 
         .smx-delete:hover {
           background: #fee2e2;
+          transform: scale(1.08);
         }
 
         .smx-badge {
@@ -471,15 +422,14 @@ function SkillTable({
             <tr>
               {editable && <th className="smx-select-head">Select</th>}
 
-              <th className="smx-skill-head">Skill / Subskill</th>
+              <th className="smx-skill-head">Skill</th>
 
-              {visibleCols.map((level) => (
-                <th key={level}>
+              {visibleCols.map((l) => (
+                <th key={l}>
                   <div className="smx-head">
-                    <span className="smx-code">{level}</span>
-
-                    {levelLabels[level] && (
-                      <span className="smx-role">{levelLabels[level]}</span>
+                    <span className="smx-code">{l}</span>
+                    {levelLabels[l] && (
+                      <span className="smx-role">{levelLabels[l]}</span>
                     )}
                   </div>
                 </th>
@@ -488,14 +438,14 @@ function SkillTable({
           </thead>
 
           <tbody>
-            {(data || []).map((group, index) => {
+            {(data || []).map((group, i) => {
               const groupSelected = isGroupSelected(group);
 
               return (
-                <Fragment key={group.category || index}>
+                <Fragment key={group.category || i}>
                   <tr
                     className="smx-category-row"
-                    onClick={() => editable && toggleWholeCategory(group)}
+                    onClick={() => editable && onToggleGroup?.(group.category)}
                     title={
                       editable
                         ? "Click category to select or unselect all subskills"
@@ -509,7 +459,7 @@ function SkillTable({
                           className="smx-group-check"
                           checked={groupSelected}
                           onClick={(event) => event.stopPropagation()}
-                          onChange={() => toggleWholeCategory(group)}
+                          onChange={() => onToggleGroup?.(group.category)}
                           title="Select all subskills under this category"
                         />
                       </td>
@@ -523,15 +473,13 @@ function SkillTable({
                     </td>
                   </tr>
 
-                  {(group?.skills || []).map((skill, skillIndex) => {
+                  {(group?.skills || []).map((skill, j) => {
                     const selected = isRowSelected(group.category, skill.name);
 
                     return (
                       <tr
-                        key={`${group.category}-${skill.name}-${skillIndex}`}
-                        className={`smx-row ${
-                          selected ? "smx-row-selected" : ""
-                        }`}
+                        key={`${skill?.name}-${j}`}
+                        className={`smx-row ${selected ? "smx-row-selected" : ""}`}
                       >
                         {editable && (
                           <td className="smx-select-cell">
@@ -562,20 +510,18 @@ function SkillTable({
 
                         <td className="smx-skill-cell">{skill?.name}</td>
 
-                        {visibleCols.map((level) => {
-                          const key = cellKey(group.category, skill.name, level);
-                          const changed = isChanged(group, skill, level);
-                          const value = getValue(group, skill, level);
+                        {visibleCols.map((l) => {
+                          const k = cellKey(group.category, skill.name, l);
+                          const changed = isChanged(group, skill, l);
+                          const value = getValue(group, skill, l);
 
                           return (
-                            <td key={key} className={changed ? "smx-changed" : ""}>
+                            <td key={k} className={changed ? "smx-changed" : ""}>
                               {editable ? (
                                 <select
                                   value={value}
                                   title={getProficiencyText(value)}
-                                  onChange={(event) =>
-                                    onEdit?.(key, event.target.value)
-                                  }
+                                  onChange={(e) => onEdit?.(k, e.target.value)}
                                 >
                                   <option value="NA">NA</option>
                                   <option value="1">1</option>

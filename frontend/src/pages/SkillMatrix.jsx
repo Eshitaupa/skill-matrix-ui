@@ -2845,6 +2845,7 @@
 //     </div>
 //   );
 // }
+
 import {
   useCallback,
   useEffect,
@@ -3705,20 +3706,25 @@ export default function SkillMatrix({
             levels
           );
 
-        if (forceServerTruth) {
-          deletedRowKeysRef.current.clear();
-
-          setMatrixData(
-            transformed
-          );
-        } else {
-          setMatrixData(
-            filterOutDeletedRows(
-              transformed,
-              deletedRowKeysRef.current
-            )
-          );
-        }
+        /*
+         * NOTE: previously, a "forceServerTruth" refresh
+         * cleared deletedRowKeysRef and trusted the server
+         * completely. That caused rows that had just been
+         * deleted (but not yet fully committed/visible on
+         * the backend) to reappear after clicking Refresh.
+         *
+         * We now always hide anything the user has already
+         * deleted locally, even on a forced refresh. The
+         * tombstone is only cleared when a row is explicitly
+         * re-added (see handleAddRow) or when the component
+         * is reset for a new discipline/role.
+         */
+        setMatrixData(
+          filterOutDeletedRows(
+            transformed,
+            deletedRowKeysRef.current
+          )
+        );
 
         matrixLoadedRef.current =
           true;
@@ -3785,52 +3791,76 @@ export default function SkillMatrix({
     filters.role,
   ]);
 
-/* ---------------------------------------------------------
-   REAL-TIME REFRESH
---------------------------------------------------------- */
+  /* ---------------------------------------------------------
+     REAL-TIME REFRESH
+  --------------------------------------------------------- */
 
-useEffect(() => {
-  if (!filters.discipline || !filters.role) {
-    return;
-  }
-
-  const source = new EventSource(`${API_SKILL}/stream`, {
-    withCredentials: true,
-  });
-
-  source.onmessage = (event) => {
-    try {
-      if (actionBusy || isEditMode) {
-        return;
-      }
-
-      if (Date.now() < suppressRealtimeUntilRef.current) {
-        return;
-      }
-
-      const payload = JSON.parse(event.data);
-
-      if (
-        keyOfText(payload.discipline) === keyOfText(filters.discipline) &&
-        keyOfText(payload.role) === keyOfText(filters.role)
-      ) {
-        fetchMatrixRef.current?.({
-          silent: true,
-        });
-      }
-    } catch {
-      // Ignore malformed events
+  useEffect(() => {
+    if (
+      !filters.discipline ||
+      !filters.role
+    ) {
+      return;
     }
-  };
 
-  source.onerror = () => {
-    // EventSource reconnects automatically.
-  };
+    const source =
+      new EventSource(
+        `${API_SKILL}/stream`,
+        {
+          withCredentials: true,
+        }
+      );
 
-  return () => {
-    source.close();
-  };
-}, [filters.discipline, filters.role, actionBusy, isEditMode]);
+    source.onmessage = (
+      event
+    ) => {
+      try {
+        if (
+          Date.now() <
+          suppressRealtimeUntilRef.current
+        ) {
+          return;
+        }
+
+        const payload =
+          JSON.parse(
+            event.data
+          );
+
+        if (
+          keyOfText(
+            payload.discipline
+          ) ===
+            keyOfText(
+              filters.discipline
+            ) &&
+          keyOfText(
+            payload.role
+          ) ===
+            keyOfText(
+              filters.role
+            )
+        ) {
+          fetchMatrixRef.current?.({
+            silent: true,
+          });
+        }
+      } catch {
+        // Ignore malformed events
+      }
+    };
+
+    source.onerror = () => {
+      // EventSource reconnects automatically.
+    };
+
+    return () => {
+      source.close();
+    };
+  }, [
+    filters.discipline,
+    filters.role,
+  ]);
 
   /* ---------------------------------------------------------
      MANUAL REFRESH
@@ -3891,80 +3921,151 @@ useEffect(() => {
   /* ---------------------------------------------------------
      PROFICIENCY EDIT SAVE
   --------------------------------------------------------- */
-async function saveChanges() {
-  if (actionBusy) {
-    return;
-  }
 
-  const entries = Object.entries(editedValues || {});
-
-  if (!entries.length) {
-    setIsEditMode(false);
-
-    showToast("No proficiency changes to save.", "success");
-
-    return;
-  }
-
-  const snapshot = matrixData;
-
-  const pendingEdits = {
-    ...editedValues,
-  };
-
-  const optimistic = applyEditsLocally(matrixData, pendingEdits);
-
-  setMatrixData(optimistic);
-  setEditedValues({});
-  setSelectedRows([]);
-  setConfirmDelete(null);
-  setIsEditMode(false);
-  setActionBusy(true);
-
-  try {
-    const payload = Object.entries(pendingEdits).map(([key, value]) => {
-      const [Skill, Subskill, LevelKey] = key.split("|");
-
-      return {
-        Discipline: norm(filters.discipline),
-        Role: norm(filters.role),
-        Skill: norm(Skill),
-        Subskill: norm(Subskill),
-        LevelKey: norm(LevelKey),
-        Value: String(value ?? "NA"),
-      };
-    });
-
-    suppressRealtimeUntilRef.current = Date.now() + 30000;
-
-    const response = await fetch(`${API_SKILL}/save`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-      body: JSON.stringify(payload),
-    });
-
-    if (!response.ok) {
-      const message = await safeText(response);
-
-      throw new Error(message || "Save failed");
+  async function saveChanges() {
+    if (actionBusy) {
+      return;
     }
 
-    showToast("Changes saved.", "success");
-  } catch (error) {
-    console.error("SAVE FAILED:", error);
+    const entries =
+      Object.entries(
+        editedValues || {}
+      );
 
-    setMatrixData(snapshot);
-    setEditedValues(pendingEdits);
-    setIsEditMode(true);
+    if (!entries.length) {
+      setIsEditMode(false);
 
-    showToast(error.message || "Save failed.", "error");
-  } finally {
-    setActionBusy(false);
+      showToast(
+        "No proficiency changes to save.",
+        "success"
+      );
+
+      return;
+    }
+
+    const snapshot =
+      matrixData;
+
+    const optimistic =
+      applyEditsLocally(
+        matrixData,
+        editedValues
+      );
+
+    /*
+     * Reflect the save immediately: update the table,
+     * leave edit mode, and confirm to the user right away
+     * instead of waiting on the network round trip. This
+     * means clicking "Edit" again straight after "Save"
+     * shows the saved values, not the stale/unsaved ones.
+     */
+    setMatrixData(optimistic);
+
+    const pendingEdits = {
+      ...editedValues,
+    };
+
+    setEditedValues({});
+    setIsEditMode(false);
+
+    showToast(
+      "Changes saved.",
+      "success"
+    );
+
+    setActionBusy(true);
+
+    try {
+      const payload =
+        Object.entries(
+          pendingEdits
+        ).map(
+          ([key, value]) => {
+            const [
+              Skill,
+              Subskill,
+              LevelKey,
+            ] = key.split("|");
+
+            return {
+              Discipline: norm(
+                filters.discipline
+              ),
+
+              Role: norm(
+                filters.role
+              ),
+
+              Skill: norm(Skill),
+
+              Subskill:
+                norm(Subskill),
+
+              LevelKey:
+                norm(LevelKey),
+
+              Value: String(
+                value ?? "NA"
+              ),
+            };
+          }
+        );
+
+      suppressRealtimeUntilRef.current =
+        Date.now() + 3000;
+
+      const response =
+        await fetch(
+          `${API_SKILL}/save`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type":
+                "application/json",
+            },
+            credentials:
+              "include",
+            body: JSON.stringify(
+              payload
+            ),
+          }
+        );
+
+      if (!response.ok) {
+        const message =
+          await safeText(
+            response
+          );
+
+        throw new Error(
+          message ||
+            "Save failed"
+        );
+      }
+    } catch (error) {
+      console.error(
+        "SAVE FAILED:",
+        error
+      );
+
+      setMatrixData(snapshot);
+
+      setEditedValues(
+        pendingEdits
+      );
+
+      setIsEditMode(true);
+
+      showToast(
+        error.message ||
+          "Save failed. Changes restored.",
+        "error"
+      );
+    } finally {
+      setActionBusy(false);
+    }
   }
-}
+
   /* ---------------------------------------------------------
      SELECTION
   --------------------------------------------------------- */
@@ -4165,79 +4266,148 @@ async function saveChanges() {
      DELETE AND AUTO SAVE
   --------------------------------------------------------- */
 
-async function confirmDeleteRows() {
-  if (actionBusy || !confirmDelete?.rows?.length) {
-    return;
-  }
-
-  const rowsToDelete = confirmDelete.rows;
-
-  const snapshot = matrixData;
-
-  setConfirmDelete(null);
-  setSelectedRows([]);
-  setEditedValues({});
-  setActionBusy(true);
-
-  rowsToDelete.forEach((row) => {
-    deletedRowKeysRef.current.add(
-      rowKeyLower(row.category, row.subskillName)
-    );
-  });
-
-  setMatrixData((previous) => removeRowsLocally(previous, rowsToDelete));
-
-  try {
-    suppressRealtimeUntilRef.current = Date.now() + 30000;
-
-    const response = await fetch(`${API_SKILL}/rows/delete`, {
-      method: "POST",
-
-      headers: {
-        "Content-Type": "application/json",
-      },
-
-      credentials: "include",
-
-      body: JSON.stringify({
-        Discipline: norm(filters.discipline),
-        Role: norm(filters.role),
-
-        rows: rowsToDelete.map((row) => ({
-          Skill: norm(row.category),
-          Subskill: norm(row.subskillName),
-        })),
-      }),
-    });
-
-    if (!response.ok) {
-      const message = await safeText(response);
-
-      throw new Error(message || "Delete failed");
+  async function confirmDeleteRows() {
+    if (
+      actionBusy ||
+      !confirmDelete?.rows?.length
+    ) {
+      return;
     }
 
-    showToast(
-      rowsToDelete.length === 1
-        ? "Deleted and saved."
-        : `${rowsToDelete.length} subskills deleted and saved.`,
-      "success"
+    const rowsToDelete =
+      confirmDelete.rows;
+
+    const snapshot =
+      matrixData;
+
+    setConfirmDelete(null);
+    setSelectedRows([]);
+    setActionBusy(true);
+
+    rowsToDelete.forEach(
+      (row) => {
+        deletedRowKeysRef.current.add(
+          rowKeyLower(
+            row.category,
+            row.subskillName
+          )
+        );
+      }
     );
-  } catch (error) {
-    console.error("DELETE FAILED:", error);
 
-    rowsToDelete.forEach((row) => {
-      deletedRowKeysRef.current.delete(
-        rowKeyLower(row.category, row.subskillName)
+    /*
+     * Instant visual delete.
+     */
+    setMatrixData(
+      (previous) =>
+        removeRowsLocally(
+          previous,
+          rowsToDelete
+        )
+    );
+
+    try {
+      suppressRealtimeUntilRef.current =
+        Date.now() + 3000;
+
+      const response =
+        await fetch(
+          `${API_SKILL}/rows/delete`,
+          {
+            method: "POST",
+
+            headers: {
+              "Content-Type":
+                "application/json",
+            },
+
+            credentials:
+              "include",
+
+            body: JSON.stringify({
+              Discipline: norm(
+                filters.discipline
+              ),
+
+              Role: norm(
+                filters.role
+              ),
+
+              rows:
+                rowsToDelete.map(
+                  (row) => ({
+                    Skill: norm(
+                      row.category
+                    ),
+
+                    Subskill: norm(
+                      row.subskillName
+                    ),
+                  })
+                ),
+            }),
+          }
+        );
+
+      if (!response.ok) {
+        const message =
+          await safeText(
+            response
+          );
+
+        throw new Error(
+          message ||
+            "Delete failed"
+        );
+      }
+
+      showToast(
+        rowsToDelete.length === 1
+          ? "Deleted and saved."
+          : `${rowsToDelete.length} subskills deleted and saved.`,
+        "success"
       );
-    });
 
-    setMatrixData(snapshot);
+      /*
+       * IMPORTANT:
+       * No fetchMatrix here.
+       *
+       * The POST succeeded and the local table
+       * already represents the desired state.
+       * The tombstones added above (deletedRowKeysRef)
+       * also make sure this row stays hidden even if the
+       * user hits Refresh before the backend write is
+       * fully visible on read.
+       */
+    } catch (error) {
+      console.error(
+        "DELETE FAILED:",
+        error
+      );
 
-    showToast(error.message || "Delete failed. Table restored.", "error");
-  } finally {
-    setActionBusy(false);
+      rowsToDelete.forEach(
+        (row) => {
+          deletedRowKeysRef.current.delete(
+            rowKeyLower(
+              row.category,
+              row.subskillName
+            )
+          );
+        }
+      );
+
+      setMatrixData(snapshot);
+
+      showToast(
+        error.message ||
+          "Delete failed. Table restored.",
+        "error"
+      );
+    } finally {
+      setActionBusy(false);
+    }
   }
-}
+
   /* ---------------------------------------------------------
      ADD ROW
   --------------------------------------------------------- */
@@ -4957,88 +5127,110 @@ async function confirmDeleteRows() {
            TOOLBAR
         ========================= */
 
-.smf-toolbar-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-  margin: 10px 0 12px;
-  flex-wrap: wrap;
-}
+        .smf-toolbar-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
 
-.smf-toolbar-left,
-.smf-toolbar-right {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-}
+          gap: 10px;
 
-.smf-toolbar-right {
-  margin-left: auto;
-}
+          margin: 10px 0 12px;
 
-.smf-selected-pill {
-  display: inline-flex;
-  align-items: center;
-  background: #eef2ff;
-  color: #3730a3;
-  border: 1px solid #c7d2fe;
-  border-radius: 999px;
-  padding: 7px 12px;
-  font-size: 12px;
-  font-weight: 700;
-}
+          flex-wrap: wrap;
+        }
 
-.smf-refresh-btn {
-  border: 1px solid #d1d5db;
-  background: #ffffff;
-  color: #374151;
-  border-radius: 4px;
-  padding: 6px 12px;
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-}
+        .smf-toolbar-left,
+        .smf-toolbar-right {
+          display: flex;
+          align-items: center;
 
-.smf-refresh-btn:hover:not(:disabled) {
-  background: #f9fafb;
-}
+          gap: 8px;
 
-.smf-clear-btn {
-  background: #ffffff;
-  color: #374151;
-  border: 1px solid #d1d5db;
-  border-radius: 4px;
-  padding: 6px 12px;
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-}
+          flex-wrap: wrap;
+        }
 
-.smf-danger-btn {
-  background: #dc2626;
-  color: #ffffff;
-  border: none;
-  border-radius: 4px;
-  padding: 6px 12px;
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-}
+        .smf-selected-pill {
+          display: inline-flex;
+          align-items: center;
 
-.smf-danger-btn:hover:not(:disabled) {
-  background: #b91c1c;
-}
+          background: #eef2ff;
+          color: #3730a3;
 
-.smf-refresh-btn:disabled,
-.smf-danger-btn:disabled,
-.smf-clear-btn:disabled,
-.btn-edit:disabled,
-.btn-save:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
+          border: 1px solid #c7d2fe;
+          border-radius: 999px;
+
+          padding: 7px 12px;
+
+          font-size: 12px;
+          font-weight: 700;
+        }
+
+        .smf-refresh-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+
+          border: 1px solid #cbd5e1;
+
+          background: #ffffff;
+          color: #334155;
+
+          border-radius: 999px;
+
+          padding: 8px 16px;
+
+          font-size: 13px;
+          font-weight: 700;
+
+          cursor: pointer;
+        }
+
+        .smf-refresh-btn:hover:not(:disabled) {
+          background: #f1f5f9;
+        }
+
+        .smf-clear-btn {
+          background: #f3f4f6;
+          color: #374151;
+
+          border: 1px solid #d1d5db;
+          border-radius: 999px;
+
+          padding: 8px 14px;
+
+          font-size: 13px;
+          font-weight: 700;
+
+          cursor: pointer;
+        }
+
+        .smf-danger-btn {
+          background: #dc2626;
+          color: #ffffff;
+
+          border: none;
+          border-radius: 999px;
+
+          padding: 8px 16px;
+
+          font-size: 13px;
+          font-weight: 700;
+
+          cursor: pointer;
+        }
+
+        .smf-danger-btn:hover:not(:disabled) {
+          background: #b91c1c;
+        }
+
+        .smf-refresh-btn:disabled,
+        .smf-danger-btn:disabled,
+        .smf-clear-btn:disabled,
+        .btn-edit:disabled,
+        .btn-save:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
 
 
         /* =========================
@@ -5573,97 +5765,137 @@ async function confirmDeleteRows() {
       </div>
 
       {/* TOOLBAR */}
-<div className="smf-toolbar-row">
-  <div className="smf-toolbar-left">
-    <button
-      className="btn-edit"
-      onClick={() => {
-        if (!isEditMode) {
-          startEditMode();
-        }
-      }}
-      disabled={actionBusy || !filters.discipline || !filters.role || isEditMode}
-      type="button"
-    >
-      ✏ Edit
-    </button>
 
-    <button
-      className="btn-edit"
-      onClick={openAddModal}
-      disabled={actionBusy || !filters.discipline || !filters.role}
-      type="button"
-    >
-      ➕ Add Row
-    </button>
+      <div className="smf-toolbar-row">
+        <div className="smf-toolbar-left">
 
-    {isEditMode && (
-      <>
-        <button
-          className="btn-save"
-          onClick={saveChanges}
-          disabled={actionBusy}
-          type="button"
-        >
-          {actionBusy ? "Saving..." : "💾 Save"}
-        </button>
+          <button
+            className="btn-edit"
+            onClick={() => {
+              if (!isEditMode) {
+                startEditMode();
+              }
+            }}
+            disabled={
+              !filters.discipline ||
+              !filters.role
+            }
+            type="button"
+          >
+            ✏ Edit
+          </button>
 
-        <button
-          className="btn-edit"
-          onClick={cancelEdit}
-          disabled={actionBusy}
-          type="button"
-        >
-          ✖ Cancel
-        </button>
-      </>
-    )}
-  </div>
+          <button
+            className="btn-edit"
+            onClick={
+              openAddModal
+            }
+            disabled={
+              actionBusy ||
+              !filters.discipline ||
+              !filters.role
+            }
+            type="button"
+          >
+            ➕ Add Row
+          </button>
 
-  <div className="smf-toolbar-right">
-    {isEditMode && selectedCount > 0 && (
-      <span className="smf-selected-pill">
-        {selectedCount} selected
-      </span>
-    )}
+          {isEditMode && (
+            <>
+              <button
+                className="btn-save"
+                onClick={
+                  saveChanges
+                }
+                disabled={
+                  actionBusy
+                }
+                type="button"
+              >
+                💾 Save
+              </button>
 
-    {isEditMode && (
-      <>
-        <button
-          className="smf-clear-btn"
-          onClick={clearSelectedRows}
-          disabled={actionBusy || selectedCount === 0}
-          type="button"
-        >
-          Clear
-        </button>
+              <button
+                className="btn-edit"
+                onClick={
+                  cancelEdit
+                }
+                disabled={
+                  actionBusy
+                }
+                type="button"
+              >
+                ✖ Cancel
+              </button>
+            </>
+          )}
+        </div>
 
-        <button
-          className="smf-danger-btn"
-          onClick={requestDeleteSelectedRows}
-          disabled={actionBusy || selectedCount === 0}
-          type="button"
-        >
-          🗑 Delete Selected
-        </button>
-      </>
-    )}
+        <div className="smf-toolbar-right">
 
-    <button
-      className="smf-refresh-btn"
-      onClick={handleRefresh}
-      disabled={
-        actionBusy ||
-        refreshLoading ||
-        !filters.discipline ||
-        !filters.role
-      }
-      type="button"
-    >
-      {refreshLoading ? "⟳ Refreshing..." : "⟳ Refresh"}
-    </button>
-  </div>
-</div>
+          {isEditMode &&
+            selectedCount >
+              0 && (
+              <span className="smf-selected-pill">
+                {selectedCount}{" "}
+                selected
+              </span>
+            )}
+
+          {isEditMode && (
+            <>
+              <button
+                className="smf-clear-btn"
+                onClick={
+                  clearSelectedRows
+                }
+                disabled={
+                  actionBusy ||
+                  selectedCount ===
+                    0
+                }
+                type="button"
+              >
+                Clear
+              </button>
+
+              <button
+                className="smf-danger-btn"
+                onClick={
+                  requestDeleteSelectedRows
+                }
+                disabled={
+                  actionBusy ||
+                  selectedCount ===
+                    0
+                }
+                type="button"
+              >
+                🗑 Delete Selected
+              </button>
+            </>
+          )}
+
+          <button
+            className="smf-refresh-btn"
+            onClick={
+              handleRefresh
+            }
+            disabled={
+              actionBusy ||
+              refreshLoading ||
+              !filters.discipline ||
+              !filters.role
+            }
+            type="button"
+          >
+            {refreshLoading
+              ? "⟳ Refreshing..."
+              : "⟳ Refresh"}
+          </button>
+
+        </div>
+      </div>
 
       {/* MATRIX */}
 
@@ -6387,7 +6619,6 @@ async function confirmDeleteRows() {
     </div>
   );
 }
-
 
 // import { useEffect, useCallback, useMemo, useState } from "react";
 // import Filters from "../components/Filters";
