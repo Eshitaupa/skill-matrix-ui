@@ -750,6 +750,7 @@
 // export default router;
 
 import express from "express";
+import { EventEmitter } from "events";
 import { queryDatabricks } from "../db/databricks.js";
 
 const router = express.Router();
@@ -782,9 +783,7 @@ const DESIGNER_LEVELS = [
 ];
 
 const esc = (value) => String(value ?? "").replaceAll("'", "''");
-
 const norm = (value) => String(value ?? "").trim().replace(/\s+/g, " ");
-
 const keyOf = (value) => norm(value).toLowerCase();
 
 const normDispSql = (column) =>
@@ -810,9 +809,7 @@ function hasAllAccess(allowedDisciplines) {
 
 function isDisciplineAllowed(requestedDiscipline, allowedDisciplines) {
   if (hasAllAccess(allowedDisciplines)) return true;
-
   const requestedKey = keyOf(requestedDiscipline);
-
   return (allowedDisciplines || []).some(
     (allowed) => keyOf(allowed) === requestedKey
   );
@@ -820,13 +817,8 @@ function isDisciplineAllowed(requestedDiscipline, allowedDisciplines) {
 
 function getEmailCandidates(email) {
   const normalizedEmail = String(email || "").trim().toLowerCase();
-
-  if (!normalizedEmail || !normalizedEmail.includes("@")) {
-    return [];
-  }
-
+  if (!normalizedEmail || !normalizedEmail.includes("@")) return [];
   const [username] = normalizedEmail.split("@");
-
   return [
     normalizedEmail,
     `${username}@burnsmcd.in`,
@@ -836,7 +828,6 @@ function getEmailCandidates(email) {
 
 async function getAllowedDisciplinesFromAccessTable(email) {
   const candidates = getEmailCandidates(email);
-
   if (candidates.length === 0) return ["All"];
 
   const inClause = candidates.map((e) => `LOWER('${esc(e)}')`).join(", ");
@@ -849,34 +840,16 @@ async function getAllowedDisciplinesFromAccessTable(email) {
       AND discipline IS NOT NULL
   `;
 
-  console.log("MATRIX ACCESS CANDIDATES:", candidates);
-
   const rows = await queryDatabricks(sql);
+  const disciplines = (rows || []).map((row) => norm(row?.[0])).filter(Boolean);
 
-  const disciplines = (rows || [])
-    .map((row) => norm(row?.[0]))
-    .filter(Boolean);
-
-  console.log("MATRIX ACCESS RESULT:", disciplines);
-
-  if (disciplines.length === 0) return ["All"];
-
-  return disciplines;
+  return disciplines.length ? disciplines : ["All"];
 }
 
 async function getAccessForRequest(req) {
   const email = getUserEmail(req);
-
-  console.log("ACCESS CHECK EMAIL:", email);
-
-  if (!email) {
-    return { email: "", allowedDisciplines: [] };
-  }
-
+  if (!email) return { email: "", allowedDisciplines: [] };
   const allowedDisciplines = await getAllowedDisciplinesFromAccessTable(email);
-
-  console.log("ACCESS CHECK DISCIPLINES:", allowedDisciplines);
-
   return { email, allowedDisciplines };
 }
 
@@ -905,25 +878,17 @@ async function requireDisciplineAccess(req, res, requestedDiscipline) {
 }
 
 /* =========================================================
-   LIGHTWEIGHT RESPONSE CACHE
-   The GET / route is read constantly (every filter change).
-   Cache per discipline+role for a short TTL and invalidate
-   immediately on any write (save/delete) that touches it.
+   RESPONSE CACHE (per discipline+role), invalidated on write
    ========================================================= */
 
-const matrixCache = new Map(); // key -> { data, expiresAt }
+const matrixCache = new Map();
 const CACHE_TTL_MS = 20_000;
 
-function cacheKey(discipline, role) {
-  return `${keyOf(discipline)}|${keyOf(role)}`;
-}
+const cacheKey = (discipline, role) => `${keyOf(discipline)}|${keyOf(role)}`;
 
 function getCachedMatrix(discipline, role) {
   const entry = matrixCache.get(cacheKey(discipline, role));
-  if (entry && entry.expiresAt > Date.now()) {
-    return entry.data;
-  }
-  return null;
+  return entry && entry.expiresAt > Date.now() ? entry.data : null;
 }
 
 function setCachedMatrix(discipline, role, data) {
@@ -937,34 +902,72 @@ function invalidateMatrixCache(discipline, role) {
   matrixCache.delete(cacheKey(discipline, role));
 }
 
-function invalidateAllMatrixCache() {
-  matrixCache.clear();
+/* =========================================================
+   LIVE UPDATE BROADCAST (Server-Sent Events)
+   The instant a save/delete succeeds, every connected
+   browser gets a tiny push and silently refetches — this is
+   what gets User B updated in under a second.
+   ========================================================= */
+
+const changeEmitter = new EventEmitter();
+changeEmitter.setMaxListeners(0);
+
+function broadcastChange(discipline, role) {
+  changeEmitter.emit("change", {
+    discipline: keyOf(discipline),
+    role: keyOf(role),
+    ts: Date.now(),
+  });
 }
 
+router.get("/stream", (req, res) => {
+  res.set({
+    "Content-Type": "text/event-stream",
+    "Cache-Control": "no-cache, no-transform",
+    Connection: "keep-alive",
+    "X-Accel-Buffering": "no",
+  });
+  res.flushHeaders?.();
+
+  res.write(`event: ready\ndata: {}\n\n`);
+
+  const onChange = (payload) => {
+    res.write(`data: ${JSON.stringify(payload)}\n\n`);
+  };
+
+  // heartbeat keeps proxies/load balancers from closing the idle connection
+  const heartbeat = setInterval(() => {
+    res.write(`: ping\n\n`);
+  }, 25000);
+
+  changeEmitter.on("change", onChange);
+
+  req.on("close", () => {
+    clearInterval(heartbeat);
+    changeEmitter.off("change", onChange);
+  });
+});
+
 /* =========================================================
-   SKILL ORDER CASE BLOCK (shared by GET /)
+   SKILL ORDER CASE BLOCK
    ========================================================= */
 
 const SKILL_ORDER_CASE = `
     CASE
-        -- Process
         WHEN LOWER(Discipline) = 'process' AND LOWER(Skill) = 'deliverables' THEN 1
         WHEN LOWER(Discipline) = 'process' AND LOWER(Skill) = 'activities' THEN 2
         WHEN LOWER(Discipline) = 'process' AND LOWER(Skill) = 'software skills' THEN 3
 
-        -- Mechanical
         WHEN LOWER(Discipline) = 'mechanical' AND LOWER(Skill) = 'static equipment' THEN 1
         WHEN LOWER(Discipline) = 'mechanical' AND LOWER(Skill) = 'rotary & packaged equipment' THEN 2
         WHEN LOWER(Discipline) = 'mechanical' AND LOWER(Skill) = 'software skills' THEN 3
 
-        -- Piping Design
         WHEN LOWER(Discipline) = 'piping design' AND LOWER(Skill) = 'arrangements' THEN 1
         WHEN LOWER(Discipline) = 'piping design' AND LOWER(Skill) = 'fixed equipment' THEN 2
         WHEN LOWER(Discipline) = 'piping design' AND LOWER(Skill) = 'rotary equipments' THEN 3
         WHEN LOWER(Discipline) = 'piping design' AND LOWER(Skill) = 'piping' THEN 4
         WHEN LOWER(Discipline) = 'piping design' AND LOWER(Skill) = 'softwares' THEN 5
 
-        -- Piping Engineering
         WHEN LOWER(Discipline) = 'piping engineering' AND LOWER(Skill) = 'analysis' THEN 1
         WHEN LOWER(Discipline) = 'piping engineering' AND LOWER(Skill) = 'fixed equipments' THEN 2
         WHEN LOWER(Discipline) = 'piping engineering' AND LOWER(Skill) = 'rotating equipments' THEN 3
@@ -972,13 +975,11 @@ const SKILL_ORDER_CASE = `
         WHEN LOWER(Discipline) = 'piping engineering' AND LOWER(Skill) = 'piping materials' THEN 5
         WHEN LOWER(Discipline) = 'piping engineering' AND LOWER(Skill) = 'softwares' THEN 6
 
-        -- Electrical
         WHEN LOWER(Discipline) = 'electrical' AND LOWER(Skill) = 'engineering' THEN 1
         WHEN LOWER(Discipline) = 'electrical' AND LOWER(Skill) = 'drafting 2D layouts' THEN 2
         WHEN LOWER(Discipline) = 'electrical' AND LOWER(Skill) = '3D modelling' THEN 3
         WHEN LOWER(Discipline) = 'electrical' AND LOWER(Skill) = 'software capabilities' THEN 4
 
-        -- Instrumentation
         WHEN LOWER(Discipline) = 'instrumentation' AND LOWER(Skill) = 'lists' THEN 1
         WHEN LOWER(Discipline) = 'instrumentation' AND LOWER(Skill) = 'analyzers' THEN 2
         WHEN LOWER(Discipline) = 'instrumentation' AND LOWER(Skill) = 'flow' THEN 3
@@ -988,7 +989,6 @@ const SKILL_ORDER_CASE = `
         WHEN LOWER(Discipline) = 'instrumentation' AND LOWER(Skill) = 'wiring / loops' THEN 7
         WHEN LOWER(Discipline) = 'instrumentation' AND LOWER(Skill) = 'general' THEN 8
 
-        -- Project Management
         WHEN LOWER(Discipline) = 'project management' AND LOWER(Skill) = 'personal effectiveness & leadership' THEN 1
         WHEN LOWER(Discipline) = 'project management' AND LOWER(Skill) = 'communication & collaboration' THEN 2
         WHEN LOWER(Discipline) = 'project management' AND LOWER(Skill) = 'engineering management' THEN 3
@@ -1011,7 +1011,6 @@ router.get("/meta", async (req, res) => {
       "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
       Pragma: "no-cache",
       Expires: "0",
-      SurrogateControl: "no-store",
     });
 
     const access = await requireDisciplineAccess(req, res, "");
@@ -1033,8 +1032,6 @@ router.get("/meta", async (req, res) => {
     });
   } catch (err) {
     console.error("META ERROR:", err);
-    console.error("META ERROR DATA:", err.response?.data);
-
     return res.status(500).json({
       message: "Meta fetch failed",
       disciplines: [],
@@ -1046,16 +1043,14 @@ router.get("/meta", async (req, res) => {
 });
 
 /* =========================================================
-   GET /
-   Reads directly from UPLOAD (current state). No history
-   replay at read time — HISTORY is write-only audit log.
+   GET /  — reads UPLOAD directly, cached
    ========================================================= */
 
 router.get("/", async (req, res) => {
   try {
     const requestedDiscipline = norm(req.query.discipline);
     const role = norm(req.query.role);
-    const forceRefresh = req.query.t !== undefined; // cache-busting param from frontend
+    const forceRefresh = req.query.silent === undefined && req.query.t !== undefined;
 
     const access = await requireDisciplineAccess(req, res, requestedDiscipline);
     if (!access) return;
@@ -1072,32 +1067,22 @@ router.get("/", async (req, res) => {
       effectiveDiscipline = allowedDisciplines[0];
     }
 
-    // Only use the response cache for a single, specific discipline+role —
-    // multi-discipline "All access" queries aren't cached (rare path, and
-    // caching key would be unbounded).
     const cacheable = Boolean(effectiveDiscipline) && Boolean(role);
 
     if (cacheable && !forceRefresh) {
       const cached = getCachedMatrix(effectiveDiscipline, role);
-      if (cached) {
-        return res.status(200).json(cached);
-      }
+      if (cached) return res.status(200).json(cached);
     }
 
     let disciplineFilter = "";
 
     if (effectiveDiscipline) {
-      disciplineFilter = `
-        AND ${normKeySql("Discipline")} = LOWER('${esc(effectiveDiscipline)}')
-      `;
+      disciplineFilter = `AND ${normKeySql("Discipline")} = LOWER('${esc(effectiveDiscipline)}')`;
     } else if (!hasAllAccess(allowedDisciplines)) {
       const allowedSql = allowedDisciplines
         .map((discipline) => `LOWER('${esc(norm(discipline))}')`)
         .join(", ");
-
-      disciplineFilter = `
-        AND ${normKeySql("Discipline")} IN (${allowedSql})
-      `;
+      disciplineFilter = `AND ${normKeySql("Discipline")} IN (${allowedSql})`;
     }
 
     const roleFilter = role
@@ -1138,15 +1123,11 @@ router.get("/", async (req, res) => {
       sort_order: row[6],
     }));
 
-    if (cacheable) {
-      setCachedMatrix(effectiveDiscipline, role, payload);
-    }
+    if (cacheable) setCachedMatrix(effectiveDiscipline, role, payload);
 
     return res.status(200).json(payload);
   } catch (err) {
     console.error("MATRIX ERROR:", err);
-    console.error("MATRIX ERROR DATA:", err.response?.data);
-
     return res.status(500).json({
       message: "Matrix fetch failed",
       error: err.response?.data || err.message,
@@ -1156,9 +1137,8 @@ router.get("/", async (req, res) => {
 
 /* =========================================================
    POST /save
-   Upserts directly into UPLOAD via MERGE (single source of
-   truth). HISTORY insert is fire-and-forget audit logging —
-   it never blocks or gates the response.
+   ONE batched MERGE for the whole edited set — not one call
+   per cell. This is the main speed fix.
    ========================================================= */
 
 router.post("/save", async (req, res) => {
@@ -1198,13 +1178,10 @@ router.post("/save", async (req, res) => {
 
     const changedBy = access.email;
 
-    // One MERGE statement per row (Databricks MERGE doesn't take a
-    // multi-row VALUES source cleanly here, so we loop). These are
-    // fast point-lookups by key, not the old history-replay join.
-    for (const row of cleanedRows) {
-      const mergeSql = `
-        MERGE INTO ${UPLOAD} AS target
-        USING (
+    // One MERGE, many source rows via UNION ALL — single round-trip
+    const sourceRowsSql = cleanedRows
+      .map(
+        (row) => `
           SELECT
             '${esc(row.Discipline)}' AS Discipline,
             '${esc(row.Role)}' AS Role,
@@ -1212,27 +1189,35 @@ router.post("/save", async (req, res) => {
             '${esc(row.Skill)}' AS Skill,
             '${esc(row.Subskill)}' AS Subskill,
             '${esc(row.Value)}' AS Value
-        ) AS source
-        ON  ${normKeySql("target.Discipline")} = LOWER(source.Discipline)
-        AND ${normKeySql("target.Role")}       = LOWER(source.Role)
-        AND ${normKeySql("target.LevelKey")}   = LOWER(source.LevelKey)
-        AND ${normKeySql("target.Skill")}      = LOWER(source.Skill)
-        AND ${normKeySql("target.Subskill")}   = LOWER(source.Subskill)
-        WHEN MATCHED THEN
-          UPDATE SET target.Value = source.Value
-        WHEN NOT MATCHED THEN
-          INSERT (Discipline, Role, LevelKey, Skill, Subskill, Value, SortOrder)
-          VALUES (source.Discipline, source.Role, source.LevelKey, source.Skill, source.Subskill, source.Value, 999999)
-      `;
+        `
+      )
+      .join("\nUNION ALL\n");
 
-      await queryDatabricks(mergeSql);
-    }
+    const mergeSql = `
+      MERGE INTO ${UPLOAD} AS target
+      USING (
+        ${sourceRowsSql}
+      ) AS source
+      ON  ${normKeySql("target.Discipline")} = LOWER(source.Discipline)
+      AND ${normKeySql("target.Role")}       = LOWER(source.Role)
+      AND ${normKeySql("target.LevelKey")}   = LOWER(source.LevelKey)
+      AND ${normKeySql("target.Skill")}      = LOWER(source.Skill)
+      AND ${normKeySql("target.Subskill")}   = LOWER(source.Subskill)
+      WHEN MATCHED THEN
+        UPDATE SET target.Value = source.Value
+      WHEN NOT MATCHED THEN
+        INSERT (Discipline, Role, LevelKey, Skill, Subskill, Value, SortOrder)
+        VALUES (source.Discipline, source.Role, source.LevelKey, source.Skill, source.Subskill, source.Value, 999999)
+    `;
 
-    // Invalidate the read cache for every discipline+role combo touched
+    await queryDatabricks(mergeSql);
+
     const touched = new Set(cleanedRows.map((r) => cacheKey(r.Discipline, r.Role)));
     touched.forEach((key) => matrixCache.delete(key));
 
-    // Audit log — never blocks the response, failures are non-fatal
+    cleanedRows.forEach((r) => broadcastChange(r.Discipline, r.Role));
+
+    // Audit log — fire-and-forget, never blocks the response
     const insertRowsSql = cleanedRows
       .map(
         (row) => `
@@ -1264,8 +1249,6 @@ router.post("/save", async (req, res) => {
     });
   } catch (err) {
     console.error("SAVE ERROR:", err);
-    console.error("SAVE ERROR DATA:", err.response?.data);
-
     return res.status(500).json({
       message: "Save failed",
       error: err.response?.data || err.message,
@@ -1275,8 +1258,9 @@ router.post("/save", async (req, res) => {
 
 /* =========================================================
    POST /row/delete
-   Checks existence first so concurrent double-deletes return
-   a clear 409 instead of a confusing failure/late-success.
+   Single DELETE call — no pre-check round trip. Deleting a
+   row that's already gone is a harmless no-op, so we don't
+   pay for a second query just to detect that.
    ========================================================= */
 
 router.post("/row/delete", async (req, res) => {
@@ -1295,27 +1279,6 @@ router.post("/row/delete", async (req, res) => {
 
     const changedBy = access.email;
 
-    const existsSql = `
-      SELECT COUNT(*) FROM ${UPLOAD}
-      WHERE ${normKeySql("Discipline")} = LOWER('${esc(Discipline)}')
-        AND ${normKeySql("Role")}       = LOWER('${esc(Role)}')
-        AND ${normKeySql("Skill")}      = LOWER('${esc(Skill)}')
-        AND ${normKeySql("Subskill")}   = LOWER('${esc(Subskill)}')
-    `;
-
-    const existsRows = await queryDatabricks(existsSql);
-    const count = Number(existsRows?.[0]?.[0] || 0);
-
-    if (count === 0) {
-      // Already gone — most likely another user deleted it first.
-      invalidateMatrixCache(Discipline, Role);
-
-      return res.status(409).json({
-        message: `"${Subskill}" was already removed (likely by another user). Refreshing the latest data.`,
-        alreadyDeleted: true,
-      });
-    }
-
     const deleteSql = `
       DELETE FROM ${UPLOAD}
       WHERE ${normKeySql("Discipline")} = LOWER('${esc(Discipline)}')
@@ -1327,8 +1290,8 @@ router.post("/row/delete", async (req, res) => {
     await queryDatabricks(deleteSql);
 
     invalidateMatrixCache(Discipline, Role);
+    broadcastChange(Discipline, Role);
 
-    // Audit log — non-fatal
     const roleLevels = levelsForRole(Role);
     const deleteRowsSql = roleLevels
       .map(
@@ -1354,14 +1317,9 @@ router.post("/row/delete", async (req, res) => {
       ${deleteRowsSql}
     `).catch((err) => console.error("AUDIT LOG FAILED (non-fatal):", err.message));
 
-    return res.status(200).json({
-      success: true,
-      changed_by: changedBy,
-    });
+    return res.status(200).json({ success: true, changed_by: changedBy });
   } catch (err) {
     console.error("DELETE ERROR:", err);
-    console.error("DELETE ERROR DATA:", err.response?.data);
-
     return res.status(500).json({
       message: "Delete failed",
       error: err.response?.data || err.message,
