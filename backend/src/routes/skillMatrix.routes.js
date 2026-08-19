@@ -216,6 +216,12 @@ router.get("/meta", async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
+    res.set({
+  "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+  Pragma: "no-cache",
+  Expires: "0",
+  SurrogateControl: "no-store",
+});
     const requestedDiscipline = norm(req.query.discipline);
     const role = norm(req.query.role);
 
@@ -485,7 +491,8 @@ ORDER BY
     changed_by: row[7],
   }))
 );
-  } catch (err) {
+  }
+   catch (err) {
     console.error("MATRIX ERROR:", err);
     console.error("MATRIX ERROR DATA:", err.response?.data);
 

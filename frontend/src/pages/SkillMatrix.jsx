@@ -3785,76 +3785,52 @@ export default function SkillMatrix({
     filters.role,
   ]);
 
-  /* ---------------------------------------------------------
-     REAL-TIME REFRESH
-  --------------------------------------------------------- */
+/* ---------------------------------------------------------
+   REAL-TIME REFRESH
+--------------------------------------------------------- */
 
-  useEffect(() => {
-    if (
-      !filters.discipline ||
-      !filters.role
-    ) {
-      return;
-    }
+useEffect(() => {
+  if (!filters.discipline || !filters.role) {
+    return;
+  }
 
-    const source =
-      new EventSource(
-        `${API_SKILL}/stream`,
-        {
-          withCredentials: true,
-        }
-      );
+  const source = new EventSource(`${API_SKILL}/stream`, {
+    withCredentials: true,
+  });
 
-    source.onmessage = (
-      event
-    ) => {
-      try {
-        if (
-          Date.now() <
-          suppressRealtimeUntilRef.current
-        ) {
-          return;
-        }
-
-        const payload =
-          JSON.parse(
-            event.data
-          );
-
-        if (
-          keyOfText(
-            payload.discipline
-          ) ===
-            keyOfText(
-              filters.discipline
-            ) &&
-          keyOfText(
-            payload.role
-          ) ===
-            keyOfText(
-              filters.role
-            )
-        ) {
-          fetchMatrixRef.current?.({
-            silent: true,
-          });
-        }
-      } catch {
-        // Ignore malformed events
+  source.onmessage = (event) => {
+    try {
+      if (actionBusy || isEditMode) {
+        return;
       }
-    };
 
-    source.onerror = () => {
-      // EventSource reconnects automatically.
-    };
+      if (Date.now() < suppressRealtimeUntilRef.current) {
+        return;
+      }
 
-    return () => {
-      source.close();
-    };
-  }, [
-    filters.discipline,
-    filters.role,
-  ]);
+      const payload = JSON.parse(event.data);
+
+      if (
+        keyOfText(payload.discipline) === keyOfText(filters.discipline) &&
+        keyOfText(payload.role) === keyOfText(filters.role)
+      ) {
+        fetchMatrixRef.current?.({
+          silent: true,
+        });
+      }
+    } catch {
+      // Ignore malformed events
+    }
+  };
+
+  source.onerror = () => {
+    // EventSource reconnects automatically.
+  };
+
+  return () => {
+    source.close();
+  };
+}, [filters.discipline, filters.role, actionBusy, isEditMode]);
 
   /* ---------------------------------------------------------
      MANUAL REFRESH
@@ -3915,142 +3891,80 @@ export default function SkillMatrix({
   /* ---------------------------------------------------------
      PROFICIENCY EDIT SAVE
   --------------------------------------------------------- */
-
-  async function saveChanges() {
-    if (actionBusy) {
-      return;
-    }
-
-    const entries =
-      Object.entries(
-        editedValues || {}
-      );
-
-    if (!entries.length) {
-      setIsEditMode(false);
-
-      showToast(
-        "No proficiency changes to save.",
-        "success"
-      );
-
-      return;
-    }
-
-    const snapshot =
-      matrixData;
-
-    const optimistic =
-      applyEditsLocally(
-        matrixData,
-        editedValues
-      );
-
-    setMatrixData(optimistic);
-
-    const pendingEdits = {
-      ...editedValues,
-    };
-
-    setEditedValues({});
-    setActionBusy(true);
-
-    try {
-      const payload =
-        Object.entries(
-          pendingEdits
-        ).map(
-          ([key, value]) => {
-            const [
-              Skill,
-              Subskill,
-              LevelKey,
-            ] = key.split("|");
-
-            return {
-              Discipline: norm(
-                filters.discipline
-              ),
-
-              Role: norm(
-                filters.role
-              ),
-
-              Skill: norm(Skill),
-
-              Subskill:
-                norm(Subskill),
-
-              LevelKey:
-                norm(LevelKey),
-
-              Value: String(
-                value ?? "NA"
-              ),
-            };
-          }
-        );
-
-      suppressRealtimeUntilRef.current =
-        Date.now() + 3000;
-
-      const response =
-        await fetch(
-          `${API_SKILL}/save`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type":
-                "application/json",
-            },
-            credentials:
-              "include",
-            body: JSON.stringify(
-              payload
-            ),
-          }
-        );
-
-      if (!response.ok) {
-        const message =
-          await safeText(
-            response
-          );
-
-        throw new Error(
-          message ||
-            "Save failed"
-        );
-      }
-
-      setIsEditMode(false);
-
-      showToast(
-        "Changes saved.",
-        "success"
-      );
-    } catch (error) {
-      console.error(
-        "SAVE FAILED:",
-        error
-      );
-
-      setMatrixData(snapshot);
-
-      setEditedValues(
-        pendingEdits
-      );
-
-      showToast(
-        error.message ||
-          "Save failed.",
-        "error"
-      );
-    } finally {
-      setActionBusy(false);
-    }
+async function saveChanges() {
+  if (actionBusy) {
+    return;
   }
 
+  const entries = Object.entries(editedValues || {});
+
+  if (!entries.length) {
+    setIsEditMode(false);
+
+    showToast("No proficiency changes to save.", "success");
+
+    return;
+  }
+
+  const snapshot = matrixData;
+
+  const pendingEdits = {
+    ...editedValues,
+  };
+
+  const optimistic = applyEditsLocally(matrixData, pendingEdits);
+
+  setMatrixData(optimistic);
+  setEditedValues({});
+  setSelectedRows([]);
+  setConfirmDelete(null);
+  setIsEditMode(false);
+  setActionBusy(true);
+
+  try {
+    const payload = Object.entries(pendingEdits).map(([key, value]) => {
+      const [Skill, Subskill, LevelKey] = key.split("|");
+
+      return {
+        Discipline: norm(filters.discipline),
+        Role: norm(filters.role),
+        Skill: norm(Skill),
+        Subskill: norm(Subskill),
+        LevelKey: norm(LevelKey),
+        Value: String(value ?? "NA"),
+      };
+    });
+
+    suppressRealtimeUntilRef.current = Date.now() + 30000;
+
+    const response = await fetch(`${API_SKILL}/save`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify(payload),
+    });
+
+    if (!response.ok) {
+      const message = await safeText(response);
+
+      throw new Error(message || "Save failed");
+    }
+
+    showToast("Changes saved.", "success");
+  } catch (error) {
+    console.error("SAVE FAILED:", error);
+
+    setMatrixData(snapshot);
+    setEditedValues(pendingEdits);
+    setIsEditMode(true);
+
+    showToast(error.message || "Save failed.", "error");
+  } finally {
+    setActionBusy(false);
+  }
+}
   /* ---------------------------------------------------------
      SELECTION
   --------------------------------------------------------- */
@@ -4251,144 +4165,79 @@ export default function SkillMatrix({
      DELETE AND AUTO SAVE
   --------------------------------------------------------- */
 
-  async function confirmDeleteRows() {
-    if (
-      actionBusy ||
-      !confirmDelete?.rows?.length
-    ) {
-      return;
-    }
-
-    const rowsToDelete =
-      confirmDelete.rows;
-
-    const snapshot =
-      matrixData;
-
-    setConfirmDelete(null);
-    setSelectedRows([]);
-    setActionBusy(true);
-
-    rowsToDelete.forEach(
-      (row) => {
-        deletedRowKeysRef.current.add(
-          rowKeyLower(
-            row.category,
-            row.subskillName
-          )
-        );
-      }
-    );
-
-    /*
-     * Instant visual delete.
-     */
-    setMatrixData(
-      (previous) =>
-        removeRowsLocally(
-          previous,
-          rowsToDelete
-        )
-    );
-
-    try {
-      suppressRealtimeUntilRef.current =
-        Date.now() + 3000;
-
-      const response =
-        await fetch(
-          `${API_SKILL}/rows/delete`,
-          {
-            method: "POST",
-
-            headers: {
-              "Content-Type":
-                "application/json",
-            },
-
-            credentials:
-              "include",
-
-            body: JSON.stringify({
-              Discipline: norm(
-                filters.discipline
-              ),
-
-              Role: norm(
-                filters.role
-              ),
-
-              rows:
-                rowsToDelete.map(
-                  (row) => ({
-                    Skill: norm(
-                      row.category
-                    ),
-
-                    Subskill: norm(
-                      row.subskillName
-                    ),
-                  })
-                ),
-            }),
-          }
-        );
-
-      if (!response.ok) {
-        const message =
-          await safeText(
-            response
-          );
-
-        throw new Error(
-          message ||
-            "Delete failed"
-        );
-      }
-
-      showToast(
-        rowsToDelete.length === 1
-          ? "Deleted and saved."
-          : `${rowsToDelete.length} subskills deleted and saved.`,
-        "success"
-      );
-
-      /*
-       * IMPORTANT:
-       * No fetchMatrix here.
-       *
-       * The POST succeeded and the local table
-       * already represents the desired state.
-       */
-    } catch (error) {
-      console.error(
-        "DELETE FAILED:",
-        error
-      );
-
-      rowsToDelete.forEach(
-        (row) => {
-          deletedRowKeysRef.current.delete(
-            rowKeyLower(
-              row.category,
-              row.subskillName
-            )
-          );
-        }
-      );
-
-      setMatrixData(snapshot);
-
-      showToast(
-        error.message ||
-          "Delete failed. Table restored.",
-        "error"
-      );
-    } finally {
-      setActionBusy(false);
-    }
+async function confirmDeleteRows() {
+  if (actionBusy || !confirmDelete?.rows?.length) {
+    return;
   }
 
+  const rowsToDelete = confirmDelete.rows;
+
+  const snapshot = matrixData;
+
+  setConfirmDelete(null);
+  setSelectedRows([]);
+  setEditedValues({});
+  setActionBusy(true);
+
+  rowsToDelete.forEach((row) => {
+    deletedRowKeysRef.current.add(
+      rowKeyLower(row.category, row.subskillName)
+    );
+  });
+
+  setMatrixData((previous) => removeRowsLocally(previous, rowsToDelete));
+
+  try {
+    suppressRealtimeUntilRef.current = Date.now() + 30000;
+
+    const response = await fetch(`${API_SKILL}/rows/delete`, {
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      credentials: "include",
+
+      body: JSON.stringify({
+        Discipline: norm(filters.discipline),
+        Role: norm(filters.role),
+
+        rows: rowsToDelete.map((row) => ({
+          Skill: norm(row.category),
+          Subskill: norm(row.subskillName),
+        })),
+      }),
+    });
+
+    if (!response.ok) {
+      const message = await safeText(response);
+
+      throw new Error(message || "Delete failed");
+    }
+
+    showToast(
+      rowsToDelete.length === 1
+        ? "Deleted and saved."
+        : `${rowsToDelete.length} subskills deleted and saved.`,
+      "success"
+    );
+  } catch (error) {
+    console.error("DELETE FAILED:", error);
+
+    rowsToDelete.forEach((row) => {
+      deletedRowKeysRef.current.delete(
+        rowKeyLower(row.category, row.subskillName)
+      );
+    });
+
+    setMatrixData(snapshot);
+
+    showToast(error.message || "Delete failed. Table restored.", "error");
+  } finally {
+    setActionBusy(false);
+  }
+}
   /* ---------------------------------------------------------
      ADD ROW
   --------------------------------------------------------- */
@@ -5108,106 +4957,88 @@ export default function SkillMatrix({
            TOOLBAR
         ========================= */
 
-        .smf-toolbar-row {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
+.smf-toolbar-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0 12px;
+  flex-wrap: wrap;
+}
 
-          gap: 10px;
+.smf-toolbar-left,
+.smf-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
 
-          margin: 10px 0 12px;
+.smf-toolbar-right {
+  margin-left: auto;
+}
 
-          flex-wrap: wrap;
-        }
+.smf-selected-pill {
+  display: inline-flex;
+  align-items: center;
+  background: #eef2ff;
+  color: #3730a3;
+  border: 1px solid #c7d2fe;
+  border-radius: 999px;
+  padding: 7px 12px;
+  font-size: 12px;
+  font-weight: 700;
+}
 
-        .smf-toolbar-left,
-        .smf-toolbar-right {
-          display: flex;
-          align-items: center;
+.smf-refresh-btn {
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  color: #374151;
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
 
-          gap: 8px;
+.smf-refresh-btn:hover:not(:disabled) {
+  background: #f9fafb;
+}
 
-          flex-wrap: wrap;
-        }
+.smf-clear-btn {
+  background: #ffffff;
+  color: #374151;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
 
-        .smf-selected-pill {
-          display: inline-flex;
-          align-items: center;
+.smf-danger-btn {
+  background: #dc2626;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
 
-          background: #eef2ff;
-          color: #3730a3;
+.smf-danger-btn:hover:not(:disabled) {
+  background: #b91c1c;
+}
 
-          border: 1px solid #c7d2fe;
-          border-radius: 999px;
-
-          padding: 7px 12px;
-
-          font-size: 12px;
-          font-weight: 700;
-        }
-
-        .smf-refresh-btn {
-          border: 1px solid #cbd5e1;
-
-          background: #ffffff;
-          color: #334155;
-
-          border-radius: 8px;
-
-          padding: 8px 14px;
-
-          font-size: 13px;
-          font-weight: 700;
-
-          cursor: pointer;
-        }
-
-        .smf-refresh-btn:hover:not(:disabled) {
-          background: #f1f5f9;
-        }
-
-        .smf-clear-btn {
-          background: #f3f4f6;
-          color: #374151;
-
-          border: 1px solid #d1d5db;
-          border-radius: 999px;
-
-          padding: 8px 14px;
-
-          font-size: 13px;
-          font-weight: 700;
-
-          cursor: pointer;
-        }
-
-        .smf-danger-btn {
-          background: #dc2626;
-          color: #ffffff;
-
-          border: none;
-          border-radius: 999px;
-
-          padding: 8px 16px;
-
-          font-size: 13px;
-          font-weight: 700;
-
-          cursor: pointer;
-        }
-
-        .smf-danger-btn:hover:not(:disabled) {
-          background: #b91c1c;
-        }
-
-        .smf-refresh-btn:disabled,
-        .smf-danger-btn:disabled,
-        .smf-clear-btn:disabled,
-        .btn-edit:disabled,
-        .btn-save:disabled {
-          opacity: 0.5;
-          cursor: not-allowed;
-        }
+.smf-refresh-btn:disabled,
+.smf-danger-btn:disabled,
+.smf-clear-btn:disabled,
+.btn-edit:disabled,
+.btn-save:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 
 
         /* =========================
@@ -5742,135 +5573,97 @@ export default function SkillMatrix({
       </div>
 
       {/* TOOLBAR */}
+<div className="smf-toolbar-row">
+  <div className="smf-toolbar-left">
+    <button
+      className="btn-edit"
+      onClick={() => {
+        if (!isEditMode) {
+          startEditMode();
+        }
+      }}
+      disabled={actionBusy || !filters.discipline || !filters.role || isEditMode}
+      type="button"
+    >
+      ✏ Edit
+    </button>
 
-      <div className="smf-toolbar-row">
-        <div className="smf-toolbar-left">
+    <button
+      className="btn-edit"
+      onClick={openAddModal}
+      disabled={actionBusy || !filters.discipline || !filters.role}
+      type="button"
+    >
+      ➕ Add Row
+    </button>
 
-          <button
-            className="btn-edit"
-            onClick={() => {
-              if (!isEditMode) {
-                startEditMode();
-              }
-            }}
-            disabled={
-              actionBusy ||
-              !filters.discipline ||
-              !filters.role
-            }
-            type="button"
-          >
-            ✏ Edit
-          </button>
+    {isEditMode && (
+      <>
+        <button
+          className="btn-save"
+          onClick={saveChanges}
+          disabled={actionBusy}
+          type="button"
+        >
+          {actionBusy ? "Saving..." : "💾 Save"}
+        </button>
 
-          <button
-            className="btn-edit"
-            onClick={
-              openAddModal
-            }
-            disabled={
-              actionBusy ||
-              !filters.discipline ||
-              !filters.role
-            }
-            type="button"
-          >
-            ➕ Add Row
-          </button>
+        <button
+          className="btn-edit"
+          onClick={cancelEdit}
+          disabled={actionBusy}
+          type="button"
+        >
+          ✖ Cancel
+        </button>
+      </>
+    )}
+  </div>
 
-          <button
-            className="smf-refresh-btn"
-            onClick={
-              handleRefresh
-            }
-            disabled={
-              actionBusy ||
-              refreshLoading ||
-              !filters.discipline ||
-              !filters.role
-            }
-            type="button"
-          >
-            {refreshLoading
-              ? "⟳ Refreshing..."
-              : "⟳ Refresh"}
-          </button>
+  <div className="smf-toolbar-right">
+    {isEditMode && selectedCount > 0 && (
+      <span className="smf-selected-pill">
+        {selectedCount} selected
+      </span>
+    )}
 
-          {isEditMode && (
-            <>
-              <button
-                className="btn-save"
-                onClick={
-                  saveChanges
-                }
-                disabled={
-                  actionBusy
-                }
-                type="button"
-              >
-                💾 Save
-              </button>
+    {isEditMode && (
+      <>
+        <button
+          className="smf-clear-btn"
+          onClick={clearSelectedRows}
+          disabled={actionBusy || selectedCount === 0}
+          type="button"
+        >
+          Clear
+        </button>
 
-              <button
-                className="btn-edit"
-                onClick={
-                  cancelEdit
-                }
-                disabled={
-                  actionBusy
-                }
-                type="button"
-              >
-                ✖ Cancel
-              </button>
-            </>
-          )}
-        </div>
+        <button
+          className="smf-danger-btn"
+          onClick={requestDeleteSelectedRows}
+          disabled={actionBusy || selectedCount === 0}
+          type="button"
+        >
+          🗑 Delete Selected
+        </button>
+      </>
+    )}
 
-        {isEditMode && (
-          <div className="smf-toolbar-right">
-
-            {selectedCount >
-              0 && (
-              <span className="smf-selected-pill">
-                {selectedCount}{" "}
-                selected
-              </span>
-            )}
-
-            <button
-              className="smf-clear-btn"
-              onClick={
-                clearSelectedRows
-              }
-              disabled={
-                actionBusy ||
-                selectedCount ===
-                  0
-              }
-              type="button"
-            >
-              Clear
-            </button>
-
-            <button
-              className="smf-danger-btn"
-              onClick={
-                requestDeleteSelectedRows
-              }
-              disabled={
-                actionBusy ||
-                selectedCount ===
-                  0
-              }
-              type="button"
-            >
-              🗑 Delete Selected
-            </button>
-
-          </div>
-        )}
-      </div>
+    <button
+      className="smf-refresh-btn"
+      onClick={handleRefresh}
+      disabled={
+        actionBusy ||
+        refreshLoading ||
+        !filters.discipline ||
+        !filters.role
+      }
+      type="button"
+    >
+      {refreshLoading ? "⟳ Refreshing..." : "⟳ Refresh"}
+    </button>
+  </div>
+</div>
 
       {/* MATRIX */}
 

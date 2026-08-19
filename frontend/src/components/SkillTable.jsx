@@ -107,7 +107,6 @@
 import { Fragment } from "react";
 
 const DEFAULT_LEVEL_LABELS = {};
-const TINT_COUNT = 6;
 
 const PROFICIENCY_LABELS = {
   NA: "Not Applicable",
@@ -117,17 +116,56 @@ const PROFICIENCY_LABELS = {
   "4": "Authoritative",
 };
 
+const ROLE_LEVELS = {
+  Engineer: [
+    "L7",
+    "L8",
+    "L9",
+    "L10",
+    "L11",
+    "L12",
+    "L13",
+    "L14",
+    "L15",
+    "L16",
+    "L17",
+  ],
+
+  Designer: [
+    "L5",
+    "L6",
+    "L7",
+    "L8",
+    "L9",
+    "L10",
+    "L11",
+    "L12",
+    "L13",
+    "L14",
+    "L15",
+  ],
+};
+
 const getProficiencyText = (value) => {
   const v = String(value ?? "NA");
   return `${v} - ${PROFICIENCY_LABELS[v] || ""}`;
 };
+
+const norm = (value) =>
+  String(value ?? "")
+    .trim()
+    .replace(/\s+/g, " ");
+
+const rowKey = (cat, sub) => `${norm(cat)}|${norm(sub)}`;
+
+const rowKeyLower = (cat, sub) => rowKey(cat, sub).toLowerCase();
 
 function SkillTable({
   data = [],
   role,
   selectedLevel,
   editable,
-  editedValues = {},
+  editedValues = [],
   selectedRows = [],
   onToggleRow,
   onToggleCategory,
@@ -135,18 +173,9 @@ function SkillTable({
   onDeleteRow,
   levelLabels = DEFAULT_LEVEL_LABELS,
 }) {
-  const ROLE_LEVELS = {
-    Engineer: [
-      "L7", "L8", "L9", "L10", "L11", "L12",
-      "L13", "L14", "L15", "L16", "L17",
-    ],
-    Designer: [
-      "L5", "L6", "L7", "L8", "L9", "L10",
-      "L11", "L12", "L13", "L14", "L15",
-    ],
-  };
-
-  if (!role) return null;
+  if (!role) {
+    return null;
+  }
 
   const levels = ROLE_LEVELS[role] || [];
 
@@ -156,50 +185,53 @@ function SkillTable({
       : []
     : levels;
 
-  const keyOf = (cat, sub, lvl) => `${cat}|${sub}|${lvl}`;
-  const rowKey = (cat, sub) => `${cat}|${sub}`;
+  const cellKey = (cat, sub, lvl) => `${cat}|${sub}|${lvl}`;
+
+  const selectedLowerSet = new Set(
+    (selectedRows || []).map((item) => String(item).toLowerCase())
+  );
 
   const getValue = (group, skill, level) =>
-    editedValues[keyOf(group.category, skill.name, level)] ??
+    editedValues[cellKey(group.category, skill.name, level)] ??
     skill.levels?.[level] ??
     "NA";
 
   const isChanged = (group, skill, level) =>
-    editedValues[keyOf(group.category, skill.name, level)] !== undefined;
+    editedValues[cellKey(group.category, skill.name, level)] !== undefined;
 
   const isRowSelected = (category, subskillName) =>
-    selectedRows.includes(rowKey(category, subskillName));
+    selectedLowerSet.has(rowKeyLower(category, subskillName));
 
-  const getCategoryCheckState = (group) => {
+  const isGroupSelected = (group) => {
+    const skills = group?.skills || [];
+
+    if (!skills.length) {
+      return false;
+    }
+
+    return skills.every((skill) =>
+      selectedLowerSet.has(rowKeyLower(group.category, skill.name))
+    );
+  };
+
+  const toggleWholeCategory = (group) => {
     const names = (group?.skills || []).map((skill) => skill.name);
 
-    if (!names.length) return "none";
-
-    const selectedCount = names.filter((name) =>
-      isRowSelected(group.category, name)
-    ).length;
-
-    if (selectedCount === 0) return "none";
-    if (selectedCount === names.length) return "all";
-
-    return "some";
+    onToggleCategory?.(group.category, names);
   };
 
   return (
     <Fragment>
       <style>{`
         .smx-wrap {
-          width: 100%;
-          border-radius: 12px;
-          overflow-x: auto;
-          overflow-y: visible;
+          border-radius: 8px;
+          overflow: auto;
           background: #ffffff;
           border: 1px solid #e5e7eb;
         }
 
         .smx-table {
           width: 100%;
-          min-width: 1000px;
           border-collapse: separate;
           border-spacing: 0;
           font-family: "Segoe UI", system-ui, sans-serif;
@@ -218,27 +250,29 @@ function SkillTable({
           color: #374151;
         }
 
-        .smx-action-head {
-          width: 88px;
-          min-width: 88px;
-          text-align: center !important;
+        .smx-select-head {
+          width: 70px;
+          min-width: 70px;
+          text-align: center;
         }
 
         .smx-skill-head {
-          min-width: 280px;
-          text-align: center !important;
+          text-align: center;
+          min-width: 240px;
         }
 
         .smx-head {
           display: flex;
           flex-direction: column;
           align-items: center;
+          justify-content: center;
           gap: 2px;
         }
 
         .smx-code {
-          font-size: 15px;
+          font-size: 13px;
           font-weight: 700;
+          color: #374151;
         }
 
         .smx-role {
@@ -249,56 +283,34 @@ function SkillTable({
           color: #6b7280;
         }
 
-        .smx-tint-0 { background: #fef6e0 !important; }
-        .smx-tint-0 .smx-code { color: #b45309; }
-
-        .smx-tint-1 { background: #e3f8ee !important; }
-        .smx-tint-1 .smx-code { color: #047857; }
-
-        .smx-tint-2 { background: #e6f0ff !important; }
-        .smx-tint-2 .smx-code { color: #1d4ed8; }
-
-        .smx-tint-3 { background: #f1ebfe !important; }
-        .smx-tint-3 .smx-code { color: #6d28d9; }
-
-        .smx-tint-4 { background: #fef3e2 !important; }
-        .smx-tint-4 .smx-code { color: #b45309; }
-
-        .smx-tint-5 { background: #fde8e8 !important; }
-        .smx-tint-5 .smx-code { color: #b91c1c; }
-
         .smx-category-row td {
           background: #eef4ff;
-          font-weight: 700;
+          font-weight: 800;
           text-transform: uppercase;
           font-size: 12px;
           letter-spacing: 0.04em;
-          padding: 10px 12px;
+          padding: 10px 14px;
           color: #1e3a8a;
-        }
-
-        .smx-category-actions {
-          width: 88px;
-          min-width: 88px;
-          text-align: center !important;
-          border-left: 4px solid #3b82f6;
-        }
-
-        .smx-category-name {
-          text-align: center !important;
-        }
-
-        .smx-category-check {
-          width: 17px;
-          height: 17px;
           cursor: pointer;
-          accent-color: #2563eb;
-          vertical-align: middle;
+          user-select: none;
+        }
+
+        .smx-category-row:hover td {
+          background: #e5efff;
+        }
+
+        .smx-category-select-cell {
+          text-align: center !important;
+          width: 70px;
+        }
+
+        .smx-category-name-cell {
+          text-align: center !important;
         }
 
         .smx-table tbody tr.smx-row {
           background: #ffffff;
-          transition: background 0.12s ease;
+          transition: background 0.15s ease;
         }
 
         .smx-table tbody tr.smx-row:hover {
@@ -321,53 +333,47 @@ function SkillTable({
         }
 
         .smx-select-cell {
-          width: 88px;
-          min-width: 88px;
+          width: 70px;
+          min-width: 70px;
+          text-align: center;
           white-space: nowrap;
-          text-align: center !important;
+        }
+
+        .smx-skill-cell {
+          text-align: center;
+          font-weight: 600;
+          color: #111827;
+          min-width: 240px;
         }
 
         .smx-action-wrap {
-          width: 100%;
-          display: flex;
+          display: inline-flex;
           align-items: center;
           justify-content: center;
-          gap: 10px;
+          gap: 8px;
         }
 
-        .smx-row-check {
+        .smx-row-check,
+        .smx-group-check {
           width: 17px;
           height: 17px;
           cursor: pointer;
           accent-color: #2563eb;
-          flex: 0 0 auto;
         }
 
         .smx-delete {
-          width: 28px;
-          height: 28px;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
           border: none;
           background: transparent;
           color: #dc2626;
           font-size: 15px;
           cursor: pointer;
           line-height: 1;
-          padding: 0;
-          border-radius: 7px;
+          padding: 3px;
+          border-radius: 6px;
         }
 
         .smx-delete:hover {
           background: #fee2e2;
-        }
-
-        .smx-skill-cell {
-          text-align: center !important;
-          font-weight: 600;
-          color: #111827;
-          min-width: 280px;
         }
 
         .smx-badge {
@@ -382,11 +388,30 @@ function SkillTable({
           font-size: 13px;
         }
 
-        .smx-level-1 { background: #d1fae5; color: #065f46; }
-        .smx-level-2 { background: #bfdbfe; color: #1e40af; }
-        .smx-level-3 { background: #ddd6fe; color: #5b21b6; }
-        .smx-level-4 { background: #fde68a; color: #92400e; }
-        .smx-na-badge { background: #e5e7eb; color: #374151; }
+        .smx-level-1 {
+          background: #d1fae5;
+          color: #065f46;
+        }
+
+        .smx-level-2 {
+          background: #bfdbfe;
+          color: #1e40af;
+        }
+
+        .smx-level-3 {
+          background: #ddd6fe;
+          color: #5b21b6;
+        }
+
+        .smx-level-4 {
+          background: #fde68a;
+          color: #92400e;
+        }
+
+        .smx-na-badge {
+          background: #e5e7eb;
+          color: #374151;
+        }
 
         .smx-table select {
           padding: 5px 6px;
@@ -398,6 +423,7 @@ function SkillTable({
 
         .smx-changed {
           background: #fff3cd;
+          border-radius: 6px;
         }
 
         .smx-changed select {
@@ -409,22 +435,33 @@ function SkillTable({
           cursor: help;
         }
 
-        @media (max-width: 768px) {
-          .smx-table {
-            min-width: 950px;
-          }
+        .smx-tip:hover::after {
+          content: attr(data-tip);
+          position: absolute;
+          left: 50%;
+          bottom: calc(100% + 8px);
+          transform: translateX(-50%);
+          background: #111827;
+          color: #ffffff;
+          padding: 6px 10px;
+          border-radius: 8px;
+          font-size: 12px;
+          font-weight: 700;
+          white-space: nowrap;
+          z-index: 9999;
+          box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+        }
 
-          .smx-action-head,
-          .smx-select-cell,
-          .smx-category-actions {
-            width: 72px;
-            min-width: 72px;
-          }
-
-          .smx-skill-head,
-          .smx-skill-cell {
-            min-width: 220px;
-          }
+        .smx-tip:hover::before {
+          content: "";
+          position: absolute;
+          left: 50%;
+          bottom: calc(100% + 2px);
+          transform: translateX(-50%);
+          border-width: 6px 6px 0 6px;
+          border-style: solid;
+          border-color: #111827 transparent transparent transparent;
+          z-index: 9999;
         }
       `}</style>
 
@@ -432,28 +469,17 @@ function SkillTable({
         <table className="smx-table">
           <thead>
             <tr>
-              {editable && (
-                <th className="smx-action-head">
-                  Select
-                </th>
-              )}
+              {editable && <th className="smx-select-head">Select</th>}
 
-              <th className="smx-skill-head">
-                Skill / Subskill
-              </th>
+              <th className="smx-skill-head">Skill / Subskill</th>
 
-              {visibleCols.map((level, index) => (
-                <th
-                  key={level}
-                  className={`smx-tint-${index % TINT_COUNT}`}
-                >
+              {visibleCols.map((level) => (
+                <th key={level}>
                   <div className="smx-head">
                     <span className="smx-code">{level}</span>
 
                     {levelLabels[level] && (
-                      <span className="smx-role">
-                        {levelLabels[level]}
-                      </span>
+                      <span className="smx-role">{levelLabels[level]}</span>
                     )}
                   </div>
                 </th>
@@ -462,57 +488,47 @@ function SkillTable({
           </thead>
 
           <tbody>
-            {(data || []).map((group, groupIndex) => {
-              const categoryState = editable
-                ? getCategoryCheckState(group)
-                : "none";
-
-              const subskillNames = (group?.skills || []).map(
-                (skill) => skill.name
-              );
+            {(data || []).map((group, index) => {
+              const groupSelected = isGroupSelected(group);
 
               return (
-                <Fragment key={group.category || groupIndex}>
-                  <tr className="smx-category-row">
+                <Fragment key={group.category || index}>
+                  <tr
+                    className="smx-category-row"
+                    onClick={() => editable && toggleWholeCategory(group)}
+                    title={
+                      editable
+                        ? "Click category to select or unselect all subskills"
+                        : ""
+                    }
+                  >
                     {editable && (
-                      <td className="smx-category-actions">
+                      <td className="smx-category-select-cell">
                         <input
                           type="checkbox"
-                          className="smx-category-check"
-                          checked={categoryState === "all"}
-                          ref={(element) => {
-                            if (element) {
-                              element.indeterminate =
-                                categoryState === "some";
-                            }
-                          }}
-                          onChange={() =>
-                            onToggleCategory?.(
-                              group.category,
-                              subskillNames
-                            )
-                          }
-                          title="Select all subskills in this category"
+                          className="smx-group-check"
+                          checked={groupSelected}
+                          onClick={(event) => event.stopPropagation()}
+                          onChange={() => toggleWholeCategory(group)}
+                          title="Select all subskills under this category"
                         />
                       </td>
                     )}
 
-                    <td className="smx-category-name">
-                      {group.category}
+                    <td
+                      className="smx-category-name-cell"
+                      colSpan={visibleCols.length + 1}
+                    >
+                      {group?.category}
                     </td>
-
-                    <td colSpan={visibleCols.length} />
                   </tr>
 
-                  {(group?.skills || []).map((skill) => {
-                    const selected = isRowSelected(
-                      group.category,
-                      skill.name
-                    );
+                  {(group?.skills || []).map((skill, skillIndex) => {
+                    const selected = isRowSelected(group.category, skill.name);
 
                     return (
                       <tr
-                        key={`${group.category}|${skill.name}`}
+                        key={`${group.category}-${skill.name}-${skillIndex}`}
                         className={`smx-row ${
                           selected ? "smx-row-selected" : ""
                         }`}
@@ -525,24 +541,18 @@ function SkillTable({
                                 className="smx-row-check"
                                 checked={selected}
                                 onChange={() =>
-                                  onToggleRow?.(
-                                    group.category,
-                                    skill.name
-                                  )
+                                  onToggleRow?.(group.category, skill.name)
                                 }
-                                title="Select for delete"
+                                title="Select for bulk delete"
                               />
 
                               <button
                                 className="smx-delete"
                                 type="button"
                                 onClick={() =>
-                                  onDeleteRow?.(
-                                    group.category,
-                                    skill.name
-                                  )
+                                  onDeleteRow?.(group.category, skill.name)
                                 }
-                                title="Delete row"
+                                title="Delete this row"
                               >
                                 🗑
                               </button>
@@ -550,45 +560,21 @@ function SkillTable({
                           </td>
                         )}
 
-                        <td className="smx-skill-cell">
-                          {skill.name}
-                        </td>
+                        <td className="smx-skill-cell">{skill?.name}</td>
 
                         {visibleCols.map((level) => {
-                          const key = keyOf(
-                            group.category,
-                            skill.name,
-                            level
-                          );
-
-                          const changed = isChanged(
-                            group,
-                            skill,
-                            level
-                          );
-
-                          const value = getValue(
-                            group,
-                            skill,
-                            level
-                          );
+                          const key = cellKey(group.category, skill.name, level);
+                          const changed = isChanged(group, skill, level);
+                          const value = getValue(group, skill, level);
 
                           return (
-                            <td
-                              key={key}
-                              className={
-                                changed ? "smx-changed" : ""
-                              }
-                            >
+                            <td key={key} className={changed ? "smx-changed" : ""}>
                               {editable ? (
                                 <select
                                   value={value}
                                   title={getProficiencyText(value)}
                                   onChange={(event) =>
-                                    onEdit?.(
-                                      key,
-                                      event.target.value
-                                    )
+                                    onEdit?.(key, event.target.value)
                                   }
                                 >
                                   <option value="NA">NA</option>
@@ -601,6 +587,7 @@ function SkillTable({
                                 <span
                                   className="smx-badge smx-na-badge smx-tip"
                                   title="NA - Not Applicable"
+                                  data-tip="NA - Not Applicable"
                                 >
                                   NA
                                 </span>
@@ -608,6 +595,7 @@ function SkillTable({
                                 <span
                                   className={`smx-badge smx-level-${value} smx-tip`}
                                   title={getProficiencyText(value)}
+                                  data-tip={getProficiencyText(value)}
                                 >
                                   {value}
                                 </span>
