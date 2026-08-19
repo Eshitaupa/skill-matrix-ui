@@ -3008,7 +3008,8 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
 
   const [toast, setToast] = useState(null);
   const toastTimerRef = useRef(null);
-
+  const deletedRowKeysRef = useRef(new Set());
+const matrixLoadedRef = useRef(false);
   const [selectedRows, setSelectedRows] = useState([]);
   const [confirmDelete, setConfirmDelete] = useState(null);
   /*
@@ -3211,53 +3212,61 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
       };
     });
   }, [disciplineOptions]);
+useEffect(() => {
+  deletedRowKeysRef.current.clear();
+  matrixLoadedRef.current = false;
+}, [filters.discipline, filters.role]);
+const fetchMatrix = useCallback(
+  async ({ silent = false } = {}) => {
+    if (!filters.discipline || !filters.role) {
+      setMatrixData([]);
+      matrixLoadedRef.current = false;
+      return;
+    }
 
-  const fetchMatrix = useCallback(
-    async ({ silent = false } = {}) => {
-      if (!filters.discipline || !filters.role) {
-        setMatrixData([]);
+    const isFirstLoad = !silent && !matrixLoadedRef.current;
+
+    if (isFirstLoad) {
+      setInitialLoading(true);
+    }
+
+    try {
+      const url = `${API_SKILL}?discipline=${encodeURIComponent(
+        filters.discipline
+      )}&role=${encodeURIComponent(filters.role)}&t=${Date.now()}`;
+
+      const res = await fetch(url, {
+        method: "GET",
+        credentials: "include",
+        cache: "no-store",
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      if (!res.ok) {
+        console.error("MATRIX API FAILED:", res.status, await safeText(res));
         return;
       }
 
-      const isFirstLoad = !silent && matrixData.length === 0;
+      const data = await safeJson(res);
+      const levels = ROLE_LEVELS[filters.role] || [];
+      const transformed = transformApiToMatrix(data || [], levels);
 
+      const cleaned = filterOutDeletedRows(transformed, deletedRowKeysRef.current);
+
+      setMatrixData(cleaned);
+      matrixLoadedRef.current = true;
+    } catch (err) {
+      console.error("FETCH MATRIX FAILED:", err);
+    } finally {
       if (isFirstLoad) {
-        setInitialLoading(true);
+        setInitialLoading(false);
       }
-
-      try {
-        const url = `${API_SKILL}?discipline=${encodeURIComponent(
-          filters.discipline
-        )}&role=${encodeURIComponent(filters.role)}&t=${Date.now()}`;
-
-        const res = await fetch(url, {
-          method: "GET",
-          credentials: "include",
-          cache: "no-store",
-          headers: {
-            Accept: "application/json",
-          },
-        });
-
-        if (!res.ok) {
-          console.error("MATRIX API FAILED:", res.status, await safeText(res));
-          return;
-        }
-
-        const data = await safeJson(res);
-        const levels = ROLE_LEVELS[filters.role] || [];
-
-        setMatrixData(transformApiToMatrix(data || [], levels));
-      } catch (err) {
-        console.error("FETCH MATRIX FAILED:", err);
-      } finally {
-        if (isFirstLoad) {
-          setInitialLoading(false);
-        }
-      }
-    },
-    [filters.discipline, filters.role, matrixData.length]
-  );
+    }
+  },
+  [filters.discipline, filters.role]
+);
 
   const fetchMatrixRef = useRef(fetchMatrix);
   fetchMatrixRef.current = fetchMatrix;
@@ -3645,90 +3654,111 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
       rows,
     });
   }
+function rowKey(category, subskillName) {
+  return `${norm(category)}|${norm(subskillName)}`;
+}
 
-  function removeRowsLocally(base, rowsToRemove) {
-    const removeSet = new Set(
-      rowsToRemove.map((row) => rowKey(row.category, row.subskillName).toLowerCase())
+function rowKeyLower(category, subskillName) {
+  return rowKey(category, subskillName).toLowerCase();
+}
+
+function filterOutDeletedRows(base, deletedKeySet) {
+  if (!deletedKeySet || deletedKeySet.size === 0) return base;
+
+  return (base || [])
+    .map((group) => ({
+      ...group,
+      skills: (group.skills || []).filter((skill) => {
+        const key = rowKeyLower(group.category, skill.name);
+        return !deletedKeySet.has(key);
+      }),
+    }))
+    .filter((group) => group.skills.length > 0);
+}
+function removeRowsLocally(base, rowsToRemove) {
+  const removeSet = new Set(
+    rowsToRemove.map((row) => rowKeyLower(row.category, row.subskillName))
+  );
+
+  return (base || [])
+    .map((group) => ({
+      ...group,
+      skills: (group.skills || []).filter((skill) => {
+        const key = rowKeyLower(group.category, skill.name);
+        return !removeSet.has(key);
+      }),
+    }))
+    .filter((group) => group.skills.length > 0);
+}
+
+async function confirmDeleteRows() {
+  if (!confirmDelete?.rows?.length) return;
+
+  const rowsToDelete = confirmDelete.rows;
+
+  setConfirmDelete(null);
+  setActionBusy(true);
+
+  const previousSnapshot = matrixData;
+
+  rowsToDelete.forEach((row) => {
+    deletedRowKeysRef.current.add(rowKeyLower(row.category, row.subskillName));
+  });
+
+  setMatrixData((prev) => removeRowsLocally(prev, rowsToDelete));
+
+  setSelectedRows((prev) => {
+    const deleteSet = new Set(
+      rowsToDelete.map((row) => rowKeyLower(row.category, row.subskillName))
     );
 
-    return base
-      .map((group) => ({
-        ...group,
-        skills: group.skills.filter((skill) => {
-          const key = rowKey(group.category, skill.name).toLowerCase();
-          return !removeSet.has(key);
-        }),
-      }))
-      .filter((group) => group.skills.length > 0);
-  }
+    return prev.filter((key) => !deleteSet.has(key.toLowerCase()));
+  });
 
-  async function confirmDeleteRows() {
-    if (!confirmDelete?.rows?.length) return;
-
-    const rowsToDelete = confirmDelete.rows;
-
-    setConfirmDelete(null);
-    setActionBusy(true);
-
-    const previousSnapshot = matrixData;
-
-    // Optimistic local removal so the UI updates instantly, before the
-    // network calls even resolve.
-    setMatrixData((prev) => removeRowsLocally(prev, rowsToDelete));
-
-    setSelectedRows((prev) => {
-      const deleteSet = new Set(
-        rowsToDelete.map((row) => rowKey(row.category, row.subskillName).toLowerCase())
-      );
-
-      return prev.filter((key) => !deleteSet.has(key.toLowerCase()));
+  try {
+    const res = await fetch(`${API_SKILL}/rows/delete`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({
+        Discipline: norm(filters.discipline),
+        Role: norm(filters.role),
+        rows: rowsToDelete.map((row) => ({
+          Skill: norm(row.category),
+          Subskill: norm(row.subskillName),
+        })),
+      }),
     });
 
-    try {
-      // Fire all delete requests in parallel instead of one-at-a-time.
-      // This is the main fix for "deleting multiple rows feels slow".
-      const responses = await Promise.all(
-        rowsToDelete.map((row) =>
-          fetch(`${API_SKILL}/row/delete`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            credentials: "include",
-            body: JSON.stringify({
-              Discipline: norm(filters.discipline),
-              Role: norm(filters.role),
-              Skill: norm(row.category),
-              Subskill: norm(row.subskillName),
-            }),
-          })
-        )
-      );
-
-      const failedResponse = responses.find((res) => !res.ok);
-
-      if (failedResponse) {
-        const msg = (await safeText(failedResponse)) || "Delete failed";
-        throw new Error(msg);
-      }
-
-      showToast(
-        rowsToDelete.length === 1
-          ? "Deleted."
-          : `${rowsToDelete.length} subskills deleted.`,
-        "success"
-      );
-
-      fetchMatrix({ silent: true });
-    } catch (err) {
-      console.error("DELETE FAILED:", err);
-      showToast("Delete failed. Reverting table.", "error");
-      setMatrixData(previousSnapshot);
-      fetchMatrix({ silent: true });
-    } finally {
-      setActionBusy(false);
+    if (!res.ok) {
+      const msg = (await safeText(res)) || "Delete failed";
+      throw new Error(msg);
     }
+
+    showToast(
+      rowsToDelete.length === 1
+        ? "Deleted and saved."
+        : `${rowsToDelete.length} subskills deleted and saved.`,
+      "success"
+    );
+
+    fetchMatrix({ silent: true });
+  } catch (err) {
+    console.error("DELETE FAILED:", err);
+
+    rowsToDelete.forEach((row) => {
+      deletedRowKeysRef.current.delete(rowKeyLower(row.category, row.subskillName));
+    });
+
+    showToast("Delete failed. Reverting table.", "error");
+    setMatrixData(previousSnapshot);
+    fetchMatrix({ silent: true });
+  } finally {
+    setActionBusy(false);
   }
+}
 
   const skillOptions = useMemo(() => {
     const options = [];

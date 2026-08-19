@@ -302,7 +302,9 @@ router.get("/", async (req, res) => {
               ${normKeySql("LevelKey")},
               ${normKeySql("Skill")},
               ${normKeySql("Subskill")}
-            ORDER BY changed_at DESC
+            ORDER BY
+  changed_at DESC,
+  CASE WHEN action = 'DELETE' THEN 1 ELSE 0 END DESC
           ) AS rn
 
         FROM ${HISTORY}
@@ -578,8 +580,10 @@ router.post("/save", async (req, res) => {
                     action,
                     changed_at,
                     ROW_NUMBER() OVER (
-                      ORDER BY changed_at DESC
-                    ) AS rn
+  ORDER BY
+    changed_at DESC,
+    CASE WHEN action = 'DELETE' THEN 1 ELSE 0 END DESC
+) AS rn
                   FROM ${HISTORY}
                   WHERE ${normKeySql("Discipline")}
                     = LOWER('${esc(row.Discipline)}')
@@ -674,7 +678,92 @@ router.post("/save", async (req, res) => {
 });
 
 
+router.post("/rows/delete", async (req, res) => {
+  try {
+    const Discipline = norm(req.body?.Discipline);
+    const Role = norm(req.body?.Role);
+    const rows = Array.isArray(req.body?.rows) ? req.body.rows : [];
 
+    if (!Discipline || !Role || rows.length === 0) {
+      return res.status(400).json({
+        message: "Missing required fields",
+      });
+    }
+
+    const cleanedRows = rows
+      .map((row) => ({
+        Skill: norm(row.Skill),
+        Subskill: norm(row.Subskill),
+      }))
+      .filter((row) => row.Skill && row.Subskill);
+
+    if (cleanedRows.length === 0) {
+      return res.status(400).json({
+        message: "No valid rows to delete",
+      });
+    }
+
+    const access = await requireDisciplineAccess(req, res, Discipline);
+    if (!access) return;
+
+    const changedBy = access.email;
+    const roleLevels = levelsForRole(Role);
+
+    const deleteRowsSql = cleanedRows
+      .flatMap((row) =>
+        roleLevels.map(
+          (level) => `
+            SELECT
+              '${esc(Discipline)}' AS Discipline,
+              '${esc(Role)}' AS Role,
+              '${esc(level)}' AS LevelKey,
+              '${esc(row.Skill)}' AS Skill,
+              '${esc(row.Subskill)}' AS Subskill,
+              NULL AS old_value,
+              NULL AS new_value,
+              'DELETE' AS action,
+              CURRENT_TIMESTAMP() AS changed_at,
+              '${esc(changedBy)}' AS changed_by
+          `
+        )
+      )
+      .join("\nUNION ALL\n");
+
+    const deleteSql = `
+      INSERT INTO ${HISTORY}
+      (
+        Discipline,
+        Role,
+        LevelKey,
+        Skill,
+        Subskill,
+        old_value,
+        new_value,
+        action,
+        changed_at,
+        changed_by
+      )
+
+      ${deleteRowsSql}
+    `;
+
+    await queryDatabricks(deleteSql);
+
+    return res.status(200).json({
+      success: true,
+      count: cleanedRows.length,
+      changed_by: changedBy,
+    });
+  } catch (err) {
+    console.error("BULK DELETE ERROR:", err);
+    console.error("BULK DELETE ERROR DATA:", err.response?.data);
+
+    return res.status(500).json({
+      message: "Bulk delete failed",
+      error: err.response?.data || err.message,
+    });
+  }
+});
 router.post("/row/delete", async (req, res) => {
   try {
     const Discipline = norm(req.body?.Discipline);
