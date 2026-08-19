@@ -2845,6 +2845,9 @@
 //     </div>
 //   );
 // }
+
+
+
 import {
   useCallback,
   useEffect,
@@ -3241,6 +3244,18 @@ export default function SkillMatrix({
     setActionBusy,
   ] = useState(false);
 
+  /*
+   * IMPORTANT:
+   * Add Row has its own loading state.
+   *
+   * This prevents the entire toolbar from becoming
+   * disabled while the Add API request is running.
+   */
+  const [
+    addRowBusy,
+    setAddRowBusy,
+  ] = useState(false);
+
   const [
     showAddRow,
     setShowAddRow,
@@ -3629,10 +3644,6 @@ export default function SkillMatrix({
         return;
       }
 
-      /*
-       * Cancel an older request if the
-       * user rapidly changes discipline.
-       */
       if (fetchAbortRef.current) {
         fetchAbortRef.current.abort();
       }
@@ -3785,52 +3796,82 @@ export default function SkillMatrix({
     filters.role,
   ]);
 
-/* ---------------------------------------------------------
-   REAL-TIME REFRESH
---------------------------------------------------------- */
+  /* ---------------------------------------------------------
+     REAL-TIME REFRESH
+  --------------------------------------------------------- */
 
-useEffect(() => {
-  if (!filters.discipline || !filters.role) {
-    return;
-  }
-
-  const source = new EventSource(`${API_SKILL}/stream`, {
-    withCredentials: true,
-  });
-
-  source.onmessage = (event) => {
-    try {
-      if (actionBusy || isEditMode) {
-        return;
-      }
-
-      if (Date.now() < suppressRealtimeUntilRef.current) {
-        return;
-      }
-
-      const payload = JSON.parse(event.data);
-
-      if (
-        keyOfText(payload.discipline) === keyOfText(filters.discipline) &&
-        keyOfText(payload.role) === keyOfText(filters.role)
-      ) {
-        fetchMatrixRef.current?.({
-          silent: true,
-        });
-      }
-    } catch {
-      // Ignore malformed events
+  useEffect(() => {
+    if (
+      !filters.discipline ||
+      !filters.role
+    ) {
+      return;
     }
-  };
 
-  source.onerror = () => {
-    // EventSource reconnects automatically.
-  };
+    const source = new EventSource(
+      `${API_SKILL}/stream`,
+      {
+        withCredentials: true,
+      }
+    );
 
-  return () => {
-    source.close();
-  };
-}, [filters.discipline, filters.role, actionBusy, isEditMode]);
+    source.onmessage = (event) => {
+      try {
+        if (
+          actionBusy ||
+          isEditMode ||
+          addRowBusy
+        ) {
+          return;
+        }
+
+        if (
+          Date.now() <
+          suppressRealtimeUntilRef.current
+        ) {
+          return;
+        }
+
+        const payload =
+          JSON.parse(event.data);
+
+        if (
+          keyOfText(
+            payload.discipline
+          ) ===
+            keyOfText(
+              filters.discipline
+            ) &&
+          keyOfText(
+            payload.role
+          ) ===
+            keyOfText(
+              filters.role
+            )
+        ) {
+          fetchMatrixRef.current?.({
+            silent: true,
+          });
+        }
+      } catch {
+        // Ignore malformed events
+      }
+    };
+
+    source.onerror = () => {
+      // EventSource reconnects automatically.
+    };
+
+    return () => {
+      source.close();
+    };
+  }, [
+    filters.discipline,
+    filters.role,
+    actionBusy,
+    isEditMode,
+    addRowBusy,
+  ]);
 
   /* ---------------------------------------------------------
      MANUAL REFRESH
@@ -3841,6 +3882,7 @@ useEffect(() => {
       if (
         actionBusy ||
         refreshLoading ||
+        addRowBusy ||
         !filters.discipline ||
         !filters.role
       ) {
@@ -3867,6 +3909,7 @@ useEffect(() => {
     }, [
       actionBusy,
       refreshLoading,
+      addRowBusy,
       filters.discipline,
       filters.role,
       fetchMatrix,
@@ -3891,80 +3934,135 @@ useEffect(() => {
   /* ---------------------------------------------------------
      PROFICIENCY EDIT SAVE
   --------------------------------------------------------- */
-async function saveChanges() {
-  if (actionBusy) {
-    return;
-  }
 
-  const entries = Object.entries(editedValues || {});
-
-  if (!entries.length) {
-    setIsEditMode(false);
-
-    showToast("No proficiency changes to save.", "success");
-
-    return;
-  }
-
-  const snapshot = matrixData;
-
-  const pendingEdits = {
-    ...editedValues,
-  };
-
-  const optimistic = applyEditsLocally(matrixData, pendingEdits);
-
-  setMatrixData(optimistic);
-  setEditedValues({});
-  setSelectedRows([]);
-  setConfirmDelete(null);
-  setIsEditMode(false);
-  setActionBusy(true);
-
-  try {
-    const payload = Object.entries(pendingEdits).map(([key, value]) => {
-      const [Skill, Subskill, LevelKey] = key.split("|");
-
-      return {
-        Discipline: norm(filters.discipline),
-        Role: norm(filters.role),
-        Skill: norm(Skill),
-        Subskill: norm(Subskill),
-        LevelKey: norm(LevelKey),
-        Value: String(value ?? "NA"),
-      };
-    });
-
-    suppressRealtimeUntilRef.current = Date.now() + 30000;
-
-    const response = await fetch(`${API_SKILL}/save`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-      body: JSON.stringify(payload),
-    });
-
-    if (!response.ok) {
-      const message = await safeText(response);
-
-      throw new Error(message || "Save failed");
+  async function saveChanges() {
+    if (actionBusy) {
+      return;
     }
 
-    showToast("Changes saved.", "success");
-  } catch (error) {
-    console.error("SAVE FAILED:", error);
+    const entries =
+      Object.entries(
+        editedValues || {}
+      );
 
-    setMatrixData(snapshot);
-    setEditedValues(pendingEdits);
-    setIsEditMode(true);
+    if (!entries.length) {
+      setIsEditMode(false);
 
-    showToast(error.message || "Save failed.", "error");
-  } finally {
-    setActionBusy(false);
+      showToast(
+        "No proficiency changes to save.",
+        "success"
+      );
+
+      return;
+    }
+
+    const snapshot = matrixData;
+
+    const pendingEdits = {
+      ...editedValues,
+    };
+
+    const optimistic =
+      applyEditsLocally(
+        matrixData,
+        pendingEdits
+      );
+
+    setMatrixData(optimistic);
+    setEditedValues({});
+    setSelectedRows([]);
+    setConfirmDelete(null);
+    setIsEditMode(false);
+    setActionBusy(true);
+
+    try {
+      const payload =
+        Object.entries(
+          pendingEdits
+        ).map(
+          ([key, value]) => {
+            const [
+              Skill,
+              Subskill,
+              LevelKey,
+            ] = key.split("|");
+
+            return {
+              Discipline: norm(
+                filters.discipline
+              ),
+              Role: norm(
+                filters.role
+              ),
+              Skill: norm(Skill),
+              Subskill:
+                norm(Subskill),
+              LevelKey:
+                norm(LevelKey),
+              Value: String(
+                value ?? "NA"
+              ),
+            };
+          }
+        );
+
+      suppressRealtimeUntilRef.current =
+        Date.now() + 30000;
+
+      const response =
+        await fetch(
+          `${API_SKILL}/save`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type":
+                "application/json",
+            },
+            credentials:
+              "include",
+            body: JSON.stringify(
+              payload
+            ),
+          }
+        );
+
+      if (!response.ok) {
+        const message =
+          await safeText(
+            response
+          );
+
+        throw new Error(
+          message || "Save failed"
+        );
+      }
+
+      showToast(
+        "Changes saved.",
+        "success"
+      );
+    } catch (error) {
+      console.error(
+        "SAVE FAILED:",
+        error
+      );
+
+      setMatrixData(snapshot);
+      setEditedValues(
+        pendingEdits
+      );
+      setIsEditMode(true);
+
+      showToast(
+        error.message ||
+          "Save failed.",
+        "error"
+      );
+    } finally {
+      setActionBusy(false);
+    }
   }
-}
+
   /* ---------------------------------------------------------
      SELECTION
   --------------------------------------------------------- */
@@ -4110,12 +4208,6 @@ async function saveChanges() {
     const rows =
       selectedRows
         .map((key) => {
-          /*
-           * Category/subskill fields in the current
-           * data should be used where possible,
-           * rather than assuming arbitrary "|" chars
-           * never occur inside names.
-           */
           for (
             const group of matrixData
           ) {
@@ -4135,7 +4227,6 @@ async function saveChanges() {
                 return {
                   category:
                     group.category,
-
                   subskillName:
                     skill.name,
                 };
@@ -4165,100 +4256,173 @@ async function saveChanges() {
      DELETE AND AUTO SAVE
   --------------------------------------------------------- */
 
-async function confirmDeleteRows() {
-  if (actionBusy || !confirmDelete?.rows?.length) {
-    return;
-  }
-
-  const rowsToDelete = confirmDelete.rows;
-
-  const snapshot = matrixData;
-
-  setConfirmDelete(null);
-  setSelectedRows([]);
-  setEditedValues({});
-  setActionBusy(true);
-
-  rowsToDelete.forEach((row) => {
-    deletedRowKeysRef.current.add(
-      rowKeyLower(row.category, row.subskillName)
-    );
-  });
-
-  setMatrixData((previous) => removeRowsLocally(previous, rowsToDelete));
-
-  try {
-    suppressRealtimeUntilRef.current = Date.now() + 30000;
-
-    const response = await fetch(`${API_SKILL}/rows/delete`, {
-      method: "POST",
-
-      headers: {
-        "Content-Type": "application/json",
-      },
-
-      credentials: "include",
-
-      body: JSON.stringify({
-        Discipline: norm(filters.discipline),
-        Role: norm(filters.role),
-
-        rows: rowsToDelete.map((row) => ({
-          Skill: norm(row.category),
-          Subskill: norm(row.subskillName),
-        })),
-      }),
-    });
-
-    if (!response.ok) {
-      const message = await safeText(response);
-
-      throw new Error(message || "Delete failed");
+  async function confirmDeleteRows() {
+    if (
+      actionBusy ||
+      !confirmDelete?.rows?.length
+    ) {
+      return;
     }
 
-    showToast(
-      rowsToDelete.length === 1
-        ? "Deleted and saved."
-        : `${rowsToDelete.length} subskills deleted and saved.`,
-      "success"
-    );
-  } catch (error) {
-    console.error("DELETE FAILED:", error);
+    const rowsToDelete =
+      confirmDelete.rows;
+
+    const snapshot = matrixData;
+
+    setConfirmDelete(null);
+    setSelectedRows([]);
+    setEditedValues({});
+    setActionBusy(true);
 
     rowsToDelete.forEach((row) => {
-      deletedRowKeysRef.current.delete(
-        rowKeyLower(row.category, row.subskillName)
+      deletedRowKeysRef.current.add(
+        rowKeyLower(
+          row.category,
+          row.subskillName
+        )
       );
     });
 
-    setMatrixData(snapshot);
+    setMatrixData(
+      (previous) =>
+        removeRowsLocally(
+          previous,
+          rowsToDelete
+        )
+    );
 
-    showToast(error.message || "Delete failed. Table restored.", "error");
-  } finally {
-    setActionBusy(false);
+    try {
+      suppressRealtimeUntilRef.current =
+        Date.now() + 30000;
+
+      const response =
+        await fetch(
+          `${API_SKILL}/rows/delete`,
+          {
+            method: "POST",
+
+            headers: {
+              "Content-Type":
+                "application/json",
+            },
+
+            credentials:
+              "include",
+
+            body: JSON.stringify({
+              Discipline: norm(
+                filters.discipline
+              ),
+
+              Role: norm(
+                filters.role
+              ),
+
+              rows:
+                rowsToDelete.map(
+                  (row) => ({
+                    Skill: norm(
+                      row.category
+                    ),
+                    Subskill: norm(
+                      row.subskillName
+                    ),
+                  })
+                ),
+            }),
+          }
+        );
+
+      if (!response.ok) {
+        const message =
+          await safeText(
+            response
+          );
+
+        throw new Error(
+          message ||
+            "Delete failed"
+        );
+      }
+
+      showToast(
+        rowsToDelete.length === 1
+          ? "Deleted and saved."
+          : `${rowsToDelete.length} subskills deleted and saved.`,
+        "success"
+      );
+    } catch (error) {
+      console.error(
+        "DELETE FAILED:",
+        error
+      );
+
+      rowsToDelete.forEach(
+        (row) => {
+          deletedRowKeysRef.current.delete(
+            rowKeyLower(
+              row.category,
+              row.subskillName
+            )
+          );
+        }
+      );
+
+      setMatrixData(snapshot);
+
+      showToast(
+        error.message ||
+          "Delete failed. Table restored.",
+        "error"
+      );
+    } finally {
+      setActionBusy(false);
+    }
   }
-}
+
   /* ---------------------------------------------------------
      ADD ROW
   --------------------------------------------------------- */
 
   function openAddModal() {
+    const discipline =
+      filters.discipline || "";
+
+    /*
+     * If this discipline has a fixed role,
+     * always use the mapped role.
+     *
+     * Otherwise use the currently selected role.
+     */
+    const mappedRole =
+      DISCIPLINE_ROLE_MAP[
+        discipline
+      ] ||
+      filters.role ||
+      "";
+
     setForm({
-      discipline:
-        filters.discipline || "",
-
-      role:
-        filters.role || "",
-
+      discipline,
+      role: mappedRole,
       skill: "",
       subskill: "",
-
       isNewSkill: false,
       isNewSubskill: false,
     });
 
     setShowAddRow(true);
   }
+
+  /*
+   * Role is frozen when the discipline exists
+   * in DISCIPLINE_ROLE_MAP.
+   */
+  const isFormRoleLocked =
+    Boolean(
+      DISCIPLINE_ROLE_MAP[
+        form.discipline
+      ]
+    );
 
   const modalSkillOptions =
     useMemo(() => {
@@ -4301,7 +4465,12 @@ async function confirmDeleteRows() {
     ]);
 
   async function handleAddRow() {
-    if (actionBusy) {
+    /*
+     * Only Add Row checks addRowBusy.
+     *
+     * This is the important fix.
+     */
+    if (addRowBusy) {
       return;
     }
 
@@ -4310,10 +4479,17 @@ async function confirmDeleteRows() {
         filters.discipline
     );
 
-    const role = norm(
-      form.role ||
-        filters.role
-    );
+    /*
+     * Always honor the fixed role mapping.
+     */
+    const role =
+      DISCIPLINE_ROLE_MAP[
+        discipline
+      ] ||
+      norm(
+        form.role ||
+          filters.role
+      );
 
     let category =
       norm(form.skill);
@@ -4384,7 +4560,7 @@ async function confirmDeleteRows() {
     }
 
     /*
-     * Add ALL levels immediately.
+     * Create all role levels.
      */
     const payload =
       levels.map((level) => ({
@@ -4425,8 +4601,8 @@ async function confirmDeleteRows() {
       matrixData;
 
     /*
-     * Remove old delete tombstone if the
-     * same row is intentionally added again.
+     * Remove tombstone if the user intentionally
+     * adds a row that was previously deleted.
      */
     deletedRowKeysRef.current.delete(
       rowKeyLower(
@@ -4436,7 +4612,7 @@ async function confirmDeleteRows() {
     );
 
     /*
-     * Put new row on screen immediately.
+     * Optimistically show the row immediately.
      */
     setMatrixData(
       (previous) => {
@@ -4493,8 +4669,18 @@ async function confirmDeleteRows() {
       }
     );
 
+    /*
+     * Close the modal immediately.
+     *
+     * The row is already visible.
+     */
     setShowAddRow(false);
-    setActionBusy(true);
+
+    /*
+     * Only the Add operation is busy.
+     * The rest of the toolbar remains available.
+     */
+    setAddRowBusy(true);
 
     try {
       suppressRealtimeUntilRef.current =
@@ -4539,7 +4725,9 @@ async function confirmDeleteRows() {
 
       /*
        * Do NOT refetch.
-       * UI already contains the new row.
+       *
+       * The optimistic UI already contains
+       * the newly added row.
        */
     } catch (error) {
       console.error(
@@ -4547,6 +4735,9 @@ async function confirmDeleteRows() {
         error
       );
 
+      /*
+       * Restore table if backend save failed.
+       */
       setMatrixData(snapshot);
 
       showToast(
@@ -4555,7 +4746,7 @@ async function confirmDeleteRows() {
         "error"
       );
     } finally {
-      setActionBusy(false);
+      setAddRowBusy(false);
     }
   }
 
@@ -4676,7 +4867,7 @@ async function confirmDeleteRows() {
         : "_ALLLEVELS";
 
     const headerRows = [
-      ["Project Meridian Export"],
+      ["Project Meridian"],
       [],
       [
         "Discipline",
@@ -4811,8 +5002,7 @@ async function confirmDeleteRows() {
 
     document.text(
       `Discipline: ${
-        filters.discipline ||
-        "-"
+        filters.discipline || "-"
       }`,
       14,
       18
@@ -4951,24 +5141,6 @@ async function confirmDeleteRows() {
           padding-top: 6px;
           padding-bottom: 6px;
         }
-
-
-        /* =========================
-           TOOLBAR
-        ========================= */
-
-        .smf-toolbar-row {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-
-          gap: 10px;
-
-          margin: 10px 0 12px;
-
-          flex-wrap: wrap;
-        }
-
 
 
         /* =========================
@@ -5112,6 +5284,12 @@ async function confirmDeleteRows() {
           font-size: 14px;
         }
 
+        .sm-add-modal select:disabled {
+          background: #f1f5f9;
+          color: #475569;
+          cursor: not-allowed;
+        }
+
         .sm-add-modal select:focus,
         .sm-add-modal input:focus {
           outline: none;
@@ -5158,6 +5336,12 @@ async function confirmDeleteRows() {
         .sm-add-submit {
           background: #2563eb;
           color: #ffffff;
+        }
+
+        .sm-add-cancel:disabled,
+        .sm-add-submit:disabled {
+          opacity: 0.55;
+          cursor: not-allowed;
         }
 
         .link-btn {
@@ -5507,6 +5691,8 @@ async function confirmDeleteRows() {
       <div className="smf-toolbar-row">
         <div className="smf-toolbar-left">
 
+          {/* EDIT */}
+
           <button
             className="btn-edit"
             onClick={() => {
@@ -5516,6 +5702,7 @@ async function confirmDeleteRows() {
             }}
             disabled={
               actionBusy ||
+              addRowBusy ||
               !filters.discipline ||
               !filters.role
             }
@@ -5524,6 +5711,8 @@ async function confirmDeleteRows() {
             ✏ Edit
           </button>
 
+          {/* ADD ROW */}
+
           <button
             className="btn-edit"
             onClick={
@@ -5531,13 +5720,18 @@ async function confirmDeleteRows() {
             }
             disabled={
               actionBusy ||
+              addRowBusy ||
               !filters.discipline ||
               !filters.role
             }
             type="button"
           >
-            ➕ Add Row
+            {addRowBusy
+              ? "⏳ Adding..."
+              : "➕ Add Row"}
           </button>
+
+          {/* REFRESH */}
 
           <button
             className="smf-refresh-btn"
@@ -5547,6 +5741,7 @@ async function confirmDeleteRows() {
             disabled={
               actionBusy ||
               refreshLoading ||
+              addRowBusy ||
               !filters.discipline ||
               !filters.role
             }
@@ -5556,6 +5751,8 @@ async function confirmDeleteRows() {
               ? "⟳ Refreshing..."
               : "⟳ Refresh"}
           </button>
+
+          {/* EDIT MODE ACTIONS */}
 
           {isEditMode && (
             <>
@@ -5628,7 +5825,6 @@ async function confirmDeleteRows() {
             >
               🗑 Delete Selected
             </button>
-
           </div>
         )}
       </div>
@@ -5729,7 +5925,9 @@ async function confirmDeleteRows() {
         </div>
       </div>
 
-      {/* ADD ROW MODAL */}
+      {/* =====================================================
+          ADD ROW MODAL
+      ===================================================== */}
 
       {showAddRow && (
         <div className="sm-add-overlay">
@@ -5740,7 +5938,7 @@ async function confirmDeleteRows() {
               Add Skill / Subskill
             </h3>
 
-            {/* Discipline */}
+            {/* DISCIPLINE */}
 
             <label>
               Discipline
@@ -5763,15 +5961,22 @@ async function confirmDeleteRows() {
                   ] || "";
 
                 setForm(
-                  (previous) => ({
+                  (
+                    previous
+                  ) => ({
                     ...previous,
 
                     discipline,
 
-                    role,
+                    /*
+                     * Automatically force
+                     * Engineer for mapped disciplines.
+                     */
+                    role:
+                      role ||
+                      previous.role,
 
                     skill: "",
-
                     subskill:
                       "",
 
@@ -5784,7 +5989,8 @@ async function confirmDeleteRows() {
                 );
               }}
               disabled={
-                actionBusy
+                addRowBusy ||
+                isDisciplineLocked
               }
             >
               <option value="">
@@ -5793,7 +5999,9 @@ async function confirmDeleteRows() {
               </option>
 
               {disciplineOptions.map(
-                (discipline) => (
+                (
+                  discipline
+                ) => (
                   <option
                     key={
                       discipline
@@ -5810,7 +6018,7 @@ async function confirmDeleteRows() {
               )}
             </select>
 
-            {/* Role */}
+            {/* ROLE */}
 
             <label>
               Role
@@ -5824,7 +6032,9 @@ async function confirmDeleteRows() {
                 event
               ) =>
                 setForm(
-                  (previous) => ({
+                  (
+                    previous
+                  ) => ({
                     ...previous,
 
                     role:
@@ -5833,7 +6043,6 @@ async function confirmDeleteRows() {
                         .value,
 
                     skill: "",
-
                     subskill:
                       "",
 
@@ -5846,7 +6055,8 @@ async function confirmDeleteRows() {
                 )
               }
               disabled={
-                actionBusy
+                addRowBusy ||
+                isFormRoleLocked
               }
             >
               <option value="">
@@ -5865,7 +6075,33 @@ async function confirmDeleteRows() {
               )}
             </select>
 
-            {/* Skill Category */}
+            {/* ROLE LOCK MESSAGE */}
+
+            {isFormRoleLocked && (
+              <div
+                style={{
+                  marginTop:
+                    "5px",
+                  fontSize:
+                    "11.5px",
+                  color:
+                    "#64748b",
+                }}
+              >
+                Role is fixed to{" "}
+                <strong>
+                  {
+                    DISCIPLINE_ROLE_MAP[
+                      form.discipline
+                    ]
+                  }
+                </strong>{" "}
+                for this
+                discipline.
+              </div>
+            )}
+
+            {/* SKILL CATEGORY */}
 
             <label>
               Skill Category
@@ -5877,7 +6113,7 @@ async function confirmDeleteRows() {
                   form.skill
                 }
                 disabled={
-                  actionBusy
+                  addRowBusy
                 }
                 onChange={(
                   event
@@ -5901,7 +6137,6 @@ async function confirmDeleteRows() {
                           true,
 
                         skill: "",
-
                         subskill:
                           "",
 
@@ -5984,7 +6219,7 @@ async function confirmDeleteRows() {
                     )
                   }
                   disabled={
-                    actionBusy
+                    addRowBusy
                   }
                 />
 
@@ -6002,11 +6237,13 @@ async function confirmDeleteRows() {
                           false,
 
                         skill: "",
-
                         subskill:
                           "",
                       })
                     )
+                  }
+                  disabled={
+                    addRowBusy
                   }
                 >
                   Use existing
@@ -6015,7 +6252,7 @@ async function confirmDeleteRows() {
               </>
             )}
 
-            {/* Subskill */}
+            {/* SUBSKILL */}
 
             <label>
               Subskill
@@ -6044,7 +6281,7 @@ async function confirmDeleteRows() {
                   )
                 }
                 disabled={
-                  actionBusy
+                  addRowBusy
                 }
               />
             ) : !form.isNewSubskill ? (
@@ -6054,7 +6291,7 @@ async function confirmDeleteRows() {
                 }
                 disabled={
                   !form.skill ||
-                  actionBusy
+                  addRowBusy
                 }
                 onChange={(
                   event
@@ -6150,7 +6387,7 @@ async function confirmDeleteRows() {
                     )
                   }
                   disabled={
-                    actionBusy
+                    addRowBusy
                   }
                 />
 
@@ -6172,6 +6409,9 @@ async function confirmDeleteRows() {
                       })
                     )
                   }
+                  disabled={
+                    addRowBusy
+                  }
                 >
                   Use existing
                   subskill
@@ -6179,7 +6419,7 @@ async function confirmDeleteRows() {
               </>
             )}
 
-            {/* Buttons */}
+            {/* BUTTONS */}
 
             <div className="sm-add-actions">
 
@@ -6191,7 +6431,7 @@ async function confirmDeleteRows() {
                   )
                 }
                 disabled={
-                  actionBusy
+                  addRowBusy
                 }
                 type="button"
               >
@@ -6204,11 +6444,11 @@ async function confirmDeleteRows() {
                   handleAddRow
                 }
                 disabled={
-                  actionBusy
+                  addRowBusy
                 }
                 type="button"
               >
-                {actionBusy
+                {addRowBusy
                   ? "Adding..."
                   : "Add & Save"}
               </button>
@@ -6219,7 +6459,9 @@ async function confirmDeleteRows() {
         </div>
       )}
 
-      {/* DELETE CONFIRM */}
+      {/* =====================================================
+          DELETE CONFIRM
+      ===================================================== */}
 
       {confirmDelete && (
         <div className="smf-modal-overlay">
@@ -6265,7 +6507,7 @@ async function confirmDeleteRows() {
                   .rows
                   .length > 1
                   ? "s"
-                  : ""}
+                  : ""}{" "}
                 ?
               </div>
 
@@ -6275,7 +6517,6 @@ async function confirmDeleteRows() {
                   (row) => (
                     <div
                       className="smf-delete-list-item"
-
                       key={rowKey(
                         row.category,
                         row.subskillName
@@ -6305,13 +6546,11 @@ async function confirmDeleteRows() {
               <button
                 type="button"
                 className="smf-modal-cancel"
-
                 onClick={() =>
                   setConfirmDelete(
                     null
                   )
                 }
-
                 disabled={
                   actionBusy
                 }
@@ -6322,11 +6561,9 @@ async function confirmDeleteRows() {
               <button
                 type="button"
                 className="smf-modal-delete"
-
                 onClick={
                   confirmDeleteRows
                 }
-
                 disabled={
                   actionBusy
                 }
@@ -6351,1057 +6588,6 @@ async function confirmDeleteRows() {
           {toast.message}
         </div>
       )}
-
     </div>
   );
 }
-
-
-// import { useEffect, useCallback, useMemo, useState } from "react";
-// import Filters from "../components/Filters";
-// import SkillTable from "../components/SkillTable";
-// import * as XLSX from "xlsx";
-// import { saveAs } from "file-saver";
-// import { jsPDF } from "jspdf";
-// import autoTable from "jspdf-autotable";
-
-// const ROLE_LEVELS = {
-//   Engineer: ["L7", "L8", "L9", "L10", "L11", "L12", "L13", "L14", "L15", "L16", "L17"],
-//   Designer: ["L5", "L6", "L7", "L8", "L9", "L10", "L11", "L12", "L13", "L14", "L15"],
-// };
-
-// const DISCIPLINE_ROLE_MAP = {
-//   "Piping Engineering": "Engineer",
-//   "Project Management": "Engineer",
-// "Instrumentation": "Designer",
-// };
-
-// const DEFAULT_DISCIPLINES = [
-//   "Project Management",
-//   "Process",
-//   "Mechanical",
-//   "CSA",
-//   "Piping Design",
-//   "Piping Engineering",
-//   "Instrumentation",
-//   "Electrical",
-// ];
-
-// const API_BASE =
-//   process.env.REACT_APP_API_BASE ||
-//   "https://skill-matrix-api-aye4fhfqddhtb0bp.northcentralus-01.azurewebsites.net";
-
-// const API_SKILL = `${API_BASE}/api/skill-matrix`;
-
-// const norm = (v) => String(v ?? "").trim().replace(/\s+/g, " ");
-// const keyOfText = (v) => norm(v).toLowerCase();
-
-// function transformApiToMatrix(rows, roleLevels) {
-//   const groups = {};
-
-//   (rows || []).forEach((r) => {
-//     const categoryRaw = r.Skill || r.category;
-//     const subskillRaw = r.Subskill || r.skill_name;
-
-//     const category = norm(categoryRaw);
-//     const subskill = norm(subskillRaw);
-//     const level = norm(r.LevelKey || r.level);
-//     const value = r.Value ?? r.proficiency ?? "NA";
-
-//     if (!category || !subskill || !level) return;
-
-//     const catKey = keyOfText(category);
-//     if (!groups[catKey]) groups[catKey] = { category, skills: [] };
-
-//     let rowObj = groups[catKey].skills.find(
-//       (s) => keyOfText(s.name) === keyOfText(subskill)
-//     );
-
-//     if (!rowObj) {
-//       rowObj = { name: subskill, levels: {} };
-//       groups[catKey].skills.push(rowObj);
-//     }
-
-//     rowObj.levels[level] = value;
-//   });
-
-//   Object.values(groups).forEach((g) => {
-//     g.skills.forEach((s) => {
-//       roleLevels.forEach((lvl) => {
-//         if (
-//           s.levels[lvl] === undefined ||
-//           s.levels[lvl] === null ||
-//           s.levels[lvl] === ""
-//         ) {
-//           s.levels[lvl] = "NA";
-//         }
-//       });
-//     });
-//   });
-
-//   const out = Object.values(groups).sort((a, b) =>
-//     a.category.localeCompare(b.category)
-//   );
-
-//   out.forEach((g) =>
-//     g.skills.sort((a, b) => a.name.localeCompare(b.name))
-//   );
-
-//   return out;
-// }
-
-// async function safeJson(res) {
-//   try {
-//     return await res.json();
-//   } catch {
-//     return null;
-//   }
-// }
-
-// async function safeText(res) {
-//   try {
-//     return await res.text();
-//   } catch {
-//     return "";
-//   }
-// }
-
-// function buildExportRows(matrixData, role, selectedLevel) {
-//   const levelsAll = ROLE_LEVELS[role] || [];
-//   const levels = selectedLevel ? [selectedLevel] : levelsAll;
-//   const rows = [];
-
-//   matrixData.forEach((group) => {
-//     group.skills.forEach((skill) => {
-//       const row = { Skill: group.category, Subskill: skill.name };
-//       levels.forEach((lvl) => {
-//         row[lvl] = skill.levels?.[lvl] ?? "NA";
-//       });
-//       rows.push(row);
-//     });
-//   });
-
-//   return rows;
-// }
-
-// export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" }) {
-//   const [filters, setFilters] = useState({
-//     discipline: "",
-//     role: "",
-//     level: "",
-//   });
-
-//   const [refreshKey, setRefreshKey] = useState(0);
-//   const [matrixData, setMatrixData] = useState([]);
-//   const [loading, setLoading] = useState(false);
-//   const [isEditMode, setIsEditMode] = useState(false);
-//   const [editedValues, setEditedValues] = useState({});
-//   const [showAddRow, setShowAddRow] = useState(false);
-//   const [meta, setMeta] = useState({
-//     disciplines: [],
-//     roles: ["Engineer", "Designer"],
-//   });
-//   const [metaError, setMetaError] = useState(false);
-//   const [form, setForm] = useState({
-//     discipline: "",
-//     role: "",
-//     skill: "",
-//     subskill: "",
-//     isNewSkill: false,
-//     isNewSubskill: false,
-//   });
-//   const [modalMatrix, setModalMatrix] = useState([]);
-//   const [modalLoading, setModalLoading] = useState(false);
-//   const [actionBusy, setActionBusy] = useState(false);
-
-//   useEffect(() => {
-//     let cancelled = false;
-
-//     async function loadMeta() {
-//       try {
-//         const res = await fetch(`${API_SKILL}/meta`, {
-//           method: "GET",
-//           credentials: "include",
-//           headers: { Accept: "application/json" },
-//         });
-
-//         if (!res.ok) {
-//           console.error("META API FAILED:", res.status);
-
-//           if (!cancelled) {
-//             setMeta({
-//               disciplines: DEFAULT_DISCIPLINES,
-//               roles: ["Engineer", "Designer"],
-//             });
-//             setMetaError(true);
-//           }
-//           return;
-//         }
-
-//         const data = await safeJson(res);
-//         if (cancelled) return;
-
-//         const disciplines =
-//           Array.isArray(data?.disciplines) && data.disciplines.length
-//             ? data.disciplines
-//             : DEFAULT_DISCIPLINES;
-
-//         const roles =
-//           Array.isArray(data?.roles) && data.roles.length
-//             ? data.roles
-//             : ["Engineer", "Designer"];
-
-//         setMeta({ disciplines, roles });
-//         setMetaError(false);
-//       } catch (err) {
-//         console.error("META LOAD FAILED:", err);
-
-//         if (!cancelled) {
-//           setMeta({
-//             disciplines: DEFAULT_DISCIPLINES,
-//             roles: ["Engineer", "Designer"],
-//           });
-//           setMetaError(true);
-//         }
-//       }
-//     }
-
-//     loadMeta();
-
-//     return () => {
-//       cancelled = true;
-//     };
-//   }, []);
-
-//   useEffect(() => {
-//     if (!filters.discipline) {
-//       setFilters((prev) => {
-//         if (!prev.role && !prev.level) return prev;
-//         return { ...prev, role: "", level: "" };
-//       });
-//       setMatrixData([]);
-//       return;
-//     }
-
-//     const autoRole = DISCIPLINE_ROLE_MAP[filters.discipline] || "";
-
-//     setFilters((prev) => {
-//       if (prev.role === autoRole) return prev;
-//       return { ...prev, role: autoRole, level: "" };
-//     });
-//   }, [filters.discipline]);
-
-//   useEffect(() => {
-//     const onlyDiscipline = allowedDisciplines[0];
-
-//     if (
-//       allowedDisciplines.length === 1 &&
-//       onlyDiscipline &&
-//       keyOfText(onlyDiscipline) !== "all" &&
-//       !filters.discipline
-//     ) {
-//       setFilters((prev) => ({
-//         ...prev,
-//         discipline: onlyDiscipline,
-//       }));
-//     }
-//   }, [allowedDisciplines, filters.discipline]);
-
-//   const fetchMatrix = useCallback(async () => {
-//     if (!filters.discipline || !filters.role) {
-//       setMatrixData([]);
-//       return;
-//     }
-
-//     setLoading(true);
-
-//     try {
-//       const res = await fetch(
-//         `${API_SKILL}?discipline=${encodeURIComponent(
-//           filters.discipline
-//         )}&role=${encodeURIComponent(filters.role)}`,
-//         {
-//           credentials: "include",
-//           headers: { Accept: "application/json" },
-//         }
-//       );
-
-//       if (!res.ok) {
-//         console.error("MATRIX API FAILED:", res.status);
-//         setMatrixData([]);
-//         return;
-//       }
-
-//       const data = await safeJson(res);
-//       setMatrixData(
-//         transformApiToMatrix(data || [], ROLE_LEVELS[filters.role] || [])
-//       );
-//     } catch (err) {
-//       console.error("FETCH MATRIX FAILED:", err);
-//       setMatrixData([]);
-//     } finally {
-//       setLoading(false);
-//     }
-//   }, [filters.discipline, filters.role]);
-
-//   useEffect(() => {
-//     fetchMatrix();
-//   }, [fetchMatrix, refreshKey]);
-
-//   useEffect(() => {
-//     if (!showAddRow) return;
-
-//     const d = form.discipline || filters.discipline;
-//     const r = form.role || filters.role;
-
-//     if (!d || !r) return;
-
-//     let alive = true;
-
-//     async function loadModalMatrix() {
-//       setModalLoading(true);
-
-//       try {
-//         const res = await fetch(
-//           `${API_SKILL}?discipline=${encodeURIComponent(
-//             d
-//           )}&role=${encodeURIComponent(r)}`,
-//           {
-//             credentials: "include",
-//             headers: { Accept: "application/json" },
-//           }
-//         );
-
-//         if (!res.ok) {
-//           if (alive) setModalMatrix([]);
-//           return;
-//         }
-
-//         const data = await safeJson(res);
-
-//         if (alive) {
-//           setModalMatrix(
-//             transformApiToMatrix(data || [], ROLE_LEVELS[r] || [])
-//           );
-//         }
-//       } catch (err) {
-//         console.error("MODAL MATRIX LOAD FAILED:", err);
-//         if (alive) setModalMatrix([]);
-//       } finally {
-//         if (alive) setModalLoading(false);
-//       }
-//     }
-
-//     loadModalMatrix();
-
-//     return () => {
-//       alive = false;
-//     };
-//   }, [showAddRow, form.discipline, form.role, filters.discipline, filters.role]);
-
-//   const disciplineOptions = useMemo(() => {
-//     const hasAllAccess = allowedDisciplines.some(
-//       (item) => keyOfText(item) === "all"
-//     );
-
-//     if (hasAllAccess) {
-//       return meta.disciplines?.length
-//         ? meta.disciplines
-//         : DEFAULT_DISCIPLINES;
-//     }
-
-//     if (allowedDisciplines.length > 0) {
-//       return allowedDisciplines;
-//     }
-
-//     return meta.disciplines?.length
-//       ? meta.disciplines
-//       : DEFAULT_DISCIPLINES;
-//   }, [meta.disciplines, allowedDisciplines]);
-
-//   const roleOptions = useMemo(
-//     () =>
-//       meta.roles?.length ? meta.roles : ["Engineer", "Designer"],
-//     [meta.roles]
-//   );
-
-//   const modalSkillOptions = useMemo(
-//     () => (modalMatrix || []).map((g) => g.category).filter(Boolean),
-//     [modalMatrix]
-//   );
-
-//   const modalSubskillOptions = useMemo(() => {
-//     if (!form.skill) return [];
-
-//     const grp = (modalMatrix || []).find(
-//       (g) => keyOfText(g.category) === keyOfText(form.skill)
-//     );
-
-//     return (grp?.skills || []).map((s) => s.name).filter(Boolean);
-//   }, [modalMatrix, form.skill]);
-
-//   function startEditMode() {
-//     setIsEditMode(true);
-//   }
-
-//   function cancelEdit() {
-//     setEditedValues({});
-//     setIsEditMode(false);
-//     setShowAddRow(false);
-//   }
-
-//   async function saveChanges() {
-//     const keys = Object.keys(editedValues || {});
-
-//     if (!keys.length) {
-//       alert("No changes to save");
-//       setIsEditMode(false);
-//       return;
-//     }
-
-//     const ok = window.confirm("Do you want to save the changes?");
-//     if (!ok) return;
-
-//     setActionBusy(true);
-
-//     try {
-//       const payload = Object.entries(editedValues).map(([key, value]) => {
-//         const [Skill, Subskill, LevelKey] = key.split("|");
-
-//         return {
-//           Discipline: norm(filters.discipline),
-//           Role: norm(filters.role),
-//           Skill: norm(Skill),
-//           Subskill: norm(Subskill),
-//           LevelKey: norm(LevelKey),
-//           Value: String(value ?? "NA"),
-//         };
-//       });
-
-//       const res = await fetch(`${API_SKILL}/save`, {
-//         method: "POST",
-//         headers: { "Content-Type": "application/json" },
-//         credentials: "include",
-//         body: JSON.stringify(payload),
-//       });
-
-//       if (!res.ok) {
-//         alert((await safeText(res)) || "Save failed");
-//         return;
-//       }
-
-//       setEditedValues({});
-//       setIsEditMode(false);
-//       setRefreshKey((k) => k + 1);
-//     } catch (err) {
-//       console.error("SAVE FAILED:", err);
-//       alert("Save failed");
-//     } finally {
-//       setActionBusy(false);
-//     }
-//   }
-
-//   function openAddModal() {
-//     if (!isEditMode) startEditMode();
-
-//     setForm({
-//       discipline: filters.discipline || "",
-//       role: filters.role || "",
-//       skill: "",
-//       subskill: "",
-//       isNewSkill: false,
-//       isNewSubskill: false,
-//     });
-
-//     setShowAddRow(true);
-//   }
-
-//   async function handleAddRow() {
-//     const d = norm(form.discipline || filters.discipline);
-//     const r = norm(form.role || filters.role);
-//     let cat = norm(form.skill);
-//     let ss = norm(form.subskill);
-
-//     if (!d || !r || !cat || !ss) {
-//       alert("Please fill Discipline, Role, Skill (Category) and Subskill.");
-//       return;
-//     }
-
-//     const catExisting = (modalMatrix || []).find(
-//       (g) => keyOfText(g.category) === keyOfText(cat)
-//     );
-
-//     if (catExisting) cat = catExisting.category;
-
-//     const subExists = !!catExisting?.skills?.some(
-//       (s) => keyOfText(s.name) === keyOfText(ss)
-//     );
-
-//     if (subExists) {
-//       alert("Skill + Subskill already exists. Not allowed.");
-//       return;
-//     }
-
-//     const levels = ROLE_LEVELS[r] || [];
-
-//     if (!levels.length) {
-//       alert("Invalid role levels");
-//       return;
-//     }
-
-//     const payload = [
-//       {
-//         Discipline: d,
-//         Role: r,
-//         Skill: cat,
-//         Subskill: ss,
-//         LevelKey: levels[0],
-//         Value: "NA",
-//       },
-//     ];
-
-//     setActionBusy(true);
-
-//     try {
-//       const res = await fetch(`${API_SKILL}/save`, {
-//         method: "POST",
-//         headers: { "Content-Type": "application/json" },
-//         credentials: "include",
-//         body: JSON.stringify(payload),
-//       });
-
-//       if (!res.ok) {
-//         alert((await safeText(res)) || "Add failed");
-//         return;
-//       }
-
-//       alert("Added");
-//       setShowAddRow(false);
-//       setRefreshKey((k) => k + 1);
-//     } catch (err) {
-//       console.error("ADD FAILED:", err);
-//       alert("Add failed");
-//     } finally {
-//       setActionBusy(false);
-//     }
-//   }
-
-//   async function handleDeleteRow(category, subskillName) {
-//     const ok = window.confirm(
-//       `Delete "${subskillName}" from "${category}"?`
-//     );
-
-//     if (!ok) return;
-
-//     const payload = {
-//       Discipline: norm(filters.discipline),
-//       Role: norm(filters.role),
-//       Skill: norm(category),
-//       Subskill: norm(subskillName),
-//     };
-
-//     setActionBusy(true);
-
-//     try {
-//       const res = await fetch(`${API_SKILL}/row/delete`, {
-//         method: "POST",
-//         headers: { "Content-Type": "application/json" },
-//         credentials: "include",
-//         body: JSON.stringify(payload),
-//       });
-
-//       if (!res.ok) {
-//         alert((await safeText(res)) || "Delete failed");
-//         return;
-//       }
-
-//       alert("Deleted");
-//       setRefreshKey((k) => k + 1);
-//     } catch (err) {
-//       console.error("DELETE FAILED:", err);
-//       alert("Delete failed");
-//     } finally {
-//       setActionBusy(false);
-//     }
-//   }
-
-//   function exportToExcel() {
-//     if (!matrixData.length) {
-//       alert("No data to export");
-//       return;
-//     }
-
-//     const levelPart = filters.level
-//       ? `_${filters.level}`
-//       : "_ALLLEVELS";
-
-//     const rows = buildExportRows(
-//       matrixData,
-//       filters.role,
-//       filters.level
-//     );
-
-//     const headerRows = [
-//       ["Project Meridian Export"],
-//       [],
-//       ["Discipline", filters.discipline || "-"],
-//       ["Role", filters.role || "-"],
-//       ["Level", filters.level || "All levels"],
-//       [],
-//       ["Proficiency", "Meaning"],
-//       ["NA", "Not Applicable"],
-//       ["1", "Familiar"],
-//       ["2", "Working Level"],
-//       ["3", "Extensive"],
-//       ["4", "Authoritative"],
-//       [],
-//     ];
-
-//     const tableHeader = Object.keys(
-//       rows[0] || { Skill: "", Subskill: "" }
-//     );
-
-//     const tableData = rows.map((r) =>
-//       tableHeader.map((h) => r[h])
-//     );
-
-//     const sheetAOA = [...headerRows, tableHeader, ...tableData];
-//     const ws = XLSX.utils.aoa_to_sheet(sheetAOA);
-
-//     ws["!cols"] = [
-//       { wch: 22 },
-//       { wch: 28 },
-//       ...tableHeader.slice(2).map(() => ({ wch: 10 })),
-//     ];
-
-//     const wb = XLSX.utils.book_new();
-//     XLSX.utils.book_append_sheet(wb, ws, "Project Meridian");
-
-//     const buffer = XLSX.write(wb, {
-//       bookType: "xlsx",
-//       type: "array",
-//     });
-
-//     saveAs(
-//       new Blob([buffer], { type: "application/octet-stream" }),
-//       `Skill_Matrix_${filters.discipline}_${filters.role}${levelPart}.xlsx`
-//     );
-//   }
-
-//   function exportToPDF() {
-//     if (!matrixData.length) {
-//       alert("No data to export");
-//       return;
-//     }
-
-//     const levelPart = filters.level
-//       ? `_${filters.level}`
-//       : "_ALLLEVELS";
-
-//     const doc = new jsPDF("landscape");
-
-//     doc.setFontSize(16);
-//     doc.text("Project Meridian", 14, 12);
-//     doc.setFontSize(10);
-//     doc.text(`Discipline: ${filters.discipline || "-"}`, 14, 18);
-//     doc.text(`Role: ${filters.role || "-"}`, 14, 23);
-//     doc.text(`Level: ${filters.level || "All levels"}`, 14, 28);
-
-//     autoTable(doc, {
-//       startY: 32,
-//       head: [["Proficiency", "Meaning"]],
-//       body: [
-//         ["NA", "Not Applicable"],
-//         ["1", "Familiar"],
-//         ["2", "Working Level"],
-//         ["3", "Extensive"],
-//         ["4", "Authoritative"],
-//       ],
-//       styles: { fontSize: 9 },
-//       headStyles: { fillColor: [40, 40, 40] },
-//       theme: "grid",
-//       tableWidth: "wrap",
-//     });
-
-//     const rows = buildExportRows(
-//       matrixData,
-//       filters.role,
-//       filters.level
-//     );
-
-//     const columns = Object.keys(rows[0]).map((k) => ({
-//       header: k,
-//       dataKey: k,
-//     }));
-
-//     autoTable(doc, {
-//       startY: doc.lastAutoTable.finalY + 6,
-//       columns,
-//       body: rows,
-//       headStyles: { fillColor: [40, 40, 40] },
-//       styles: { fontSize: 8 },
-//       theme: "grid",
-//       didDrawPage: () => {
-//         doc.setFontSize(8);
-//         doc.text(
-//           `Page ${doc.internal.getNumberOfPages()}`,
-//           285,
-//           200
-//         );
-//       },
-//     });
-
-//     doc.save(
-//       `Skill_Matrix_${filters.discipline}_${filters.role}${levelPart}.pdf`
-//     );
-//   }
-
-//   return (
-//     <div className="page-container">
-//       {metaError && (
-//         <div
-//           style={{
-//             background: "#fef3c7",
-//             color: "#92400e",
-//             padding: "8px 14px",
-//             fontSize: "12.5px",
-//             borderRadius: "10px",
-//             marginBottom: "10px",
-//             border: "1px solid #fde68a",
-//           }}
-//         >
-//           Could not load the discipline list from the API. Showing the default list.
-//         </div>
-//       )}
-
-//       <Filters
-//         filters={filters}
-//         setFilters={setFilters}
-//         onExportExcel={exportToExcel}
-//         onExportPDF={exportToPDF}
-//         canExport={matrixData.length > 0 && !loading}
-//         disciplineOptions={disciplineOptions}
-//       />
-
-//       <div
-//         style={{
-//           display: "flex",
-//           justifyContent: "flex-end",
-//           margin: "10px 0 12px 0",
-//         }}
-//       >
-//         <div
-//           style={{
-//             display: "flex",
-//             flexDirection: "column",
-//             alignItems: "flex-end",
-//             gap: "8px",
-//           }}
-//         >
-//           <div style={{ display: "flex", gap: "8px" }}>
-//             <button
-//               className="btn-edit"
-//               onClick={() => {
-//                 if (!isEditMode) startEditMode();
-//               }}
-//               disabled={loading || actionBusy}
-//             >
-//               ✏ Edit
-//             </button>
-
-//             <button
-//               className="btn-edit"
-//               onClick={openAddModal}
-//               disabled={loading || actionBusy}
-//             >
-//               ➕ Add Row
-//             </button>
-
-//             {isEditMode && (
-//               <>
-//                 <button
-//                   className="btn-save"
-//                   onClick={saveChanges}
-//                   disabled={loading || actionBusy}
-//                 >
-//                   💾 Save
-//                 </button>
-
-//                 <button
-//                   className="btn-edit"
-//                   onClick={cancelEdit}
-//                   disabled={loading || actionBusy}
-//                 >
-//                   ✖ Cancel
-//                 </button>
-//               </>
-//             )}
-//           </div>
-//         </div>
-//       </div>
-
-//       <div className="table-hover-wrapper">
-//         <div className="table-responsive">
-//           {loading ? (
-//             <div>Loading...</div>
-//           ) : (
-//             <SkillTable
-//               data={matrixData}
-//               role={filters.role}
-//               selectedLevel={filters.level}
-//               editable={isEditMode}
-//               editedValues={editedValues}
-//               onEdit={(key, value) =>
-//                 setEditedValues((prev) => ({
-//                   ...prev,
-//                   [key]: value,
-//                 }))
-//               }
-//               onDeleteRow={handleDeleteRow}
-//             />
-//           )}
-//         </div>
-
-//         <div className="hover-legend">
-//           <span className="legend-title">Proficiency Scale</span>
-//           <span className="legend-pill l1">NA - Not Applicable</span>
-//           <span className="legend-pill l2">1 - Familiar</span>
-//           <span className="legend-pill l3">2 - Working Level</span>
-//           <span className="legend-pill l4">3 - Extensive</span>
-//           <span className="legend-pill l5">4 - Authoritative</span>
-//         </div>
-//       </div>
-
-//       {showAddRow && (
-//         <div className="modal-overlay">
-//           <div className="modal">
-//             <h3 style={{ marginTop: 0 }}>Add Skill</h3>
-
-//             <label>Discipline</label>
-//             <select
-//               value={form.discipline}
-//               onChange={(e) => {
-//                 const selectedDiscipline = e.target.value;
-//                 const selectedRole =
-//                   DISCIPLINE_ROLE_MAP[selectedDiscipline] || "";
-
-//                 setForm((p) => ({
-//                   ...p,
-//                   discipline: selectedDiscipline,
-//                   role: selectedRole,
-//                   skill: "",
-//                   subskill: "",
-//                 }));
-//               }}
-//               disabled={actionBusy}
-//             >
-//               <option value="">Select Discipline</option>
-//               {disciplineOptions.map((d) => (
-//                 <option key={d} value={d}>
-//                   {d}
-//                 </option>
-//               ))}
-//             </select>
-
-//             <label>Role</label>
-//             <select
-//               value={form.role}
-//               onChange={(e) =>
-//                 setForm((p) => ({
-//                   ...p,
-//                   role: e.target.value,
-//                   skill: "",
-//                   subskill: "",
-//                 }))
-//               }
-//               disabled={actionBusy}
-//             >
-//               <option value="">Select Role</option>
-//               {roleOptions.map((r) => (
-//                 <option key={r} value={r}>
-//                   {r}
-//                 </option>
-//               ))}
-//             </select>
-
-//             <label>Skill (Category)</label>
-//             {!form.isNewSkill ? (
-//               <select
-//                 value={form.skill}
-//                 disabled={modalLoading || actionBusy}
-//                 onChange={(e) => {
-//                   const v = e.target.value;
-
-//                   if (v === "__new__") {
-//                     setForm((p) => ({
-//                       ...p,
-//                       isNewSkill: true,
-//                       skill: "",
-//                       subskill: "",
-//                       isNewSubskill: false,
-//                     }));
-//                     return;
-//                   }
-
-//                   setForm((p) => ({
-//                     ...p,
-//                     skill: v,
-//                     subskill: "",
-//                     isNewSubskill: false,
-//                   }));
-//                 }}
-//               >
-//                 <option value="">
-//                   {modalLoading
-//                     ? "Loading categories..."
-//                     : "Select Category"}
-//                 </option>
-
-//                 {modalSkillOptions.map((cat) => (
-//                   <option key={cat} value={cat}>
-//                     {cat}
-//                   </option>
-//                 ))}
-
-//                 <option value="__new__">+ Create new category</option>
-//               </select>
-//             ) : (
-//               <>
-//                 <input
-//                   placeholder="Enter new category"
-//                   value={form.skill}
-//                   onChange={(e) =>
-//                     setForm((p) => ({
-//                       ...p,
-//                       skill: e.target.value,
-//                     }))
-//                   }
-//                   disabled={actionBusy}
-//                 />
-
-//                 <button
-//                   type="button"
-//                   className="link-btn"
-//                   onClick={() =>
-//                     setForm((p) => ({
-//                       ...p,
-//                       isNewSkill: false,
-//                       skill: "",
-//                       subskill: "",
-//                     }))
-//                   }
-//                   disabled={actionBusy}
-//                 >
-//                   Use existing category list
-//                 </button>
-//               </>
-//             )}
-
-//             <label>Subskill</label>
-//             {form.isNewSkill ? (
-//               <input
-//                 placeholder="Enter new subskill"
-//                 value={form.subskill}
-//                 onChange={(e) =>
-//                   setForm((p) => ({
-//                     ...p,
-//                     subskill: e.target.value,
-//                   }))
-//                 }
-//                 disabled={actionBusy}
-//               />
-//             ) : !form.isNewSubskill ? (
-//               <select
-//                 value={form.subskill}
-//                 disabled={modalLoading || !form.skill || actionBusy}
-//                 onChange={(e) => {
-//                   const v = e.target.value;
-
-//                   if (v === "__new__") {
-//                     setForm((p) => ({
-//                       ...p,
-//                       isNewSubskill: true,
-//                       subskill: "",
-//                     }));
-//                     return;
-//                   }
-
-//                   setForm((p) => ({
-//                     ...p,
-//                     subskill: v,
-//                   }));
-//                 }}
-//               >
-//                 <option value="">
-//                   {modalLoading
-//                     ? "Loading subskills..."
-//                     : "Select Subskill"}
-//                 </option>
-
-//                 {modalSubskillOptions.map((ss) => (
-//                   <option key={ss} value={ss}>
-//                     {ss}
-//                   </option>
-//                 ))}
-
-//                 <option value="__new__">+ Create new subskill</option>
-//               </select>
-//             ) : (
-//               <>
-//                 <input
-//                   placeholder="Enter new subskill"
-//                   value={form.subskill}
-//                   onChange={(e) =>
-//                     setForm((p) => ({
-//                       ...p,
-//                       subskill: e.target.value,
-//                     }))
-//                   }
-//                   disabled={actionBusy}
-//                 />
-
-//                 <button
-//                   type="button"
-//                   className="link-btn"
-//                   onClick={() =>
-//                     setForm((p) => ({
-//                       ...p,
-//                       isNewSubskill: false,
-//                       subskill: "",
-//                     }))
-//                   }
-//                   disabled={actionBusy}
-//                 >
-//                   Use existing subskill list
-//                 </button>
-//               </>
-//             )}
-
-//             <div
-//               style={{
-//                 marginTop: 12,
-//                 display: "flex",
-//                 gap: 8,
-//                 justifyContent: "flex-end",
-//               }}
-//             >
-//               <button
-//                 onClick={() => setShowAddRow(false)}
-//                 disabled={actionBusy}
-//               >
-//                 Cancel
-//               </button>
-
-//               <button
-//                 onClick={handleAddRow}
-//                 disabled={actionBusy}
-//               >
-//                 Add
-//               </button>
-//             </div>
-//           </div>
-//         </div>
-//       )}
-//     </div>
-//   );
-// }
