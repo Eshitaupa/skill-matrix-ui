@@ -5120,6 +5120,8 @@ export default function SkillMatrix({
 
           padding-top: 6px;
           padding-bottom: 6px;
+
+          box-shadow: 0 2px 6px rgba(15, 23, 42, 0.06);
         }
 
 
@@ -5762,7 +5764,6 @@ export default function SkillMatrix({
             skillOptions
           }
         />
-      </div>
 
       {/* TOOLBAR */}
 
@@ -5896,6 +5897,7 @@ export default function SkillMatrix({
 
         </div>
       </div>
+      </div>
 
       {/* MATRIX */}
 
@@ -5941,7 +5943,7 @@ export default function SkillMatrix({
                 toggleSelectedRow
               }
 
-              onToggleCategory={
+              onToggleGroup={
                 toggleCategoryRows
               }
 

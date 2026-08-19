@@ -445,7 +445,13 @@ function SkillTable({
                 <Fragment key={group.category || i}>
                   <tr
                     className="smx-category-row"
-                    onClick={() => editable && onToggleGroup?.(group.category)}
+                    onClick={() =>
+                      editable &&
+                      onToggleGroup?.(
+                        group.category,
+                        (group.skills || []).map((skill) => skill.name)
+                      )
+                    }
                     title={
                       editable
                         ? "Click category to select or unselect all subskills"
@@ -459,7 +465,12 @@ function SkillTable({
                           className="smx-group-check"
                           checked={groupSelected}
                           onClick={(event) => event.stopPropagation()}
-                          onChange={() => onToggleGroup?.(group.category)}
+                          onChange={() =>
+                            onToggleGroup?.(
+                              group.category,
+                              (group.skills || []).map((skill) => skill.name)
+                            )
+                          }
                           title="Select all subskills under this category"
                         />
                       </td>
