@@ -463,6 +463,7 @@ ORDER BY
         ELSE 99
     END,
     Skill,
+    SortOrder,
     Subskill,
     Role,
     CAST(REPLACE(LevelKey, 'L', '') AS INT);
