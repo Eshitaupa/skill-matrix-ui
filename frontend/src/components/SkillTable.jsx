@@ -130,6 +130,7 @@ function SkillTable({
   editedValues = {},
   selectedRows = [],
   onToggleRow,
+  onToggleCategory, // NEW: (category, subskillNames[]) => void
   onEdit,
   onDeleteRow,
   levelLabels = DEFAULT_LEVEL_LABELS,
@@ -142,7 +143,6 @@ function SkillTable({
   if (!role) return null;
 
   const levels = ROLE_LEVELS[role] || [];
-
   const visibleCols = selectedLevel
     ? levels.includes(selectedLevel)
       ? [selectedLevel]
@@ -160,6 +160,16 @@ function SkillTable({
 
   const isRowSelected = (category, subskillName) =>
     selectedRows.includes(rowKey(category, subskillName));
+
+  // NEW: category checkbox state helpers
+  const getCategoryCheckState = (group) => {
+    const subNames = (group?.skills || []).map((s) => s.name);
+    if (!subNames.length) return "none";
+    const selectedCount = subNames.filter((n) => isRowSelected(group.category, n)).length;
+    if (selectedCount === 0) return "none";
+    if (selectedCount === subNames.length) return "all";
+    return "some";
+  };
 
   return (
     <Fragment>
@@ -215,53 +225,18 @@ function SkillTable({
           color: #6b7280;
         }
 
-        .smx-tint-0 {
-          background: #fef6e0;
-        }
-
-        .smx-tint-0 .smx-code {
-          color: #b45309;
-        }
-
-        .smx-tint-1 {
-          background: #e3f8ee;
-        }
-
-        .smx-tint-1 .smx-code {
-          color: #047857;
-        }
-
-        .smx-tint-2 {
-          background: #e6f0ff;
-        }
-
-        .smx-tint-2 .smx-code {
-          color: #1d4ed8;
-        }
-
-        .smx-tint-3 {
-          background: #f1ebfe;
-        }
-
-        .smx-tint-3 .smx-code {
-          color: #6d28d9;
-        }
-
-        .smx-tint-4 {
-          background: #fef3e2;
-        }
-
-        .smx-tint-4 .smx-code {
-          color: #b45309;
-        }
-
-        .smx-tint-5 {
-          background: #fde8e8;
-        }
-
-        .smx-tint-5 .smx-code {
-          color: #b91c1c;
-        }
+        .smx-tint-0 { background: #fef6e0; }
+        .smx-tint-0 .smx-code { color: #b45309; }
+        .smx-tint-1 { background: #e3f8ee; }
+        .smx-tint-1 .smx-code { color: #047857; }
+        .smx-tint-2 { background: #e6f0ff; }
+        .smx-tint-2 .smx-code { color: #1d4ed8; }
+        .smx-tint-3 { background: #f1ebfe; }
+        .smx-tint-3 .smx-code { color: #6d28d9; }
+        .smx-tint-4 { background: #fef3e2; }
+        .smx-tint-4 .smx-code { color: #b45309; }
+        .smx-tint-5 { background: #fde8e8; }
+        .smx-tint-5 .smx-code { color: #b91c1c; }
 
         .smx-category-row td {
           background: #eef4ff;
@@ -272,6 +247,19 @@ function SkillTable({
           padding: 10px 14px;
           border-left: 4px solid #3b82f6;
           color: #1e3a8a;
+        }
+
+        .smx-category-row-inner {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+
+        .smx-category-check {
+          width: 16px;
+          height: 16px;
+          cursor: pointer;
+          accent-color: #3b82f6;
         }
 
         .smx-table tbody tr.smx-row {
@@ -317,30 +305,11 @@ function SkillTable({
           font-size: 13px;
         }
 
-        .smx-level-1 {
-          background: #d1fae5;
-          color: #065f46;
-        }
-
-        .smx-level-2 {
-          background: #bfdbfe;
-          color: #1e40af;
-        }
-
-        .smx-level-3 {
-          background: #ddd6fe;
-          color: #5b21b6;
-        }
-
-        .smx-level-4 {
-          background: #fde68a;
-          color: #92400e;
-        }
-
-        .smx-na-badge {
-          background: #e5e7eb;
-          color: #374151;
-        }
+        .smx-level-1 { background: #d1fae5; color: #065f46; }
+        .smx-level-2 { background: #bfdbfe; color: #1e40af; }
+        .smx-level-3 { background: #ddd6fe; color: #5b21b6; }
+        .smx-level-4 { background: #fde68a; color: #92400e; }
+        .smx-na-badge { background: #e5e7eb; color: #374151; }
 
         .smx-table select {
           padding: 5px 6px;
@@ -350,19 +319,10 @@ function SkillTable({
           font-size: 13px;
         }
 
-        .smx-changed {
-          background: #fff3cd;
-          border-radius: 6px;
-        }
+        .smx-changed { background: #fff3cd; border-radius: 6px; }
+        .smx-changed select { background: #fff3cd; }
 
-        .smx-changed select {
-          background: #fff3cd;
-        }
-
-        .smx-select-cell {
-          min-width: 90px;
-          white-space: nowrap;
-        }
+        .smx-select-cell { min-width: 90px; white-space: nowrap; }
 
         .smx-action-wrap {
           display: inline-flex;
@@ -389,16 +349,9 @@ function SkillTable({
           border-radius: 6px;
         }
 
-        .smx-delete:hover {
-          background: #fee2e2;
-          transform: scale(1.08);
-        }
+        .smx-delete:hover { background: #fee2e2; transform: scale(1.08); }
 
-        .smx-tip {
-          position: relative;
-          cursor: help;
-        }
-
+        .smx-tip { position: relative; cursor: help; }
         .smx-tip:hover::after {
           content: attr(data-tip);
           position: absolute;
@@ -415,7 +368,6 @@ function SkillTable({
           z-index: 9999;
           box-shadow: 0 6px 16px rgba(0,0,0,0.18);
         }
-
         .smx-tip:hover::before {
           content: "";
           position: absolute;
@@ -435,21 +387,14 @@ function SkillTable({
             <tr>
               <th className="smx-skill-head">Skill</th>
 
-              {editable && (
-                <th style={{ width: 95 }}>
-                  Select
-                </th>
-              )}
+              {editable && <th style={{ width: 95 }}>Select</th>}
 
               {visibleCols.map((l, idx) => (
                 <th key={l} className={`smx-tint-${idx % TINT_COUNT}`}>
                   <div className="smx-head">
                     <span className="smx-code">{l}</span>
-
                     {levelLabels[l] && (
-                      <span className="smx-role">
-                        {levelLabels[l]}
-                      </span>
+                      <span className="smx-role">{levelLabels[l]}</span>
                     )}
                   </div>
                 </th>
@@ -458,97 +403,116 @@ function SkillTable({
           </thead>
 
           <tbody>
-            {(data || []).map((group, i) => (
-              <Fragment key={group.category || i}>
-                <tr className="smx-category-row">
-                  <td colSpan={visibleCols.length + 1 + (editable ? 1 : 0)}>
-                    {group?.category}
-                  </td>
-                </tr>
+            {(data || []).map((group, i) => {
+              const catState = editable ? getCategoryCheckState(group) : "none";
+              const subNames = (group?.skills || []).map((s) => s.name);
 
-                {(group?.skills || []).map((skill, j) => {
-                  const selected = isRowSelected(group.category, skill.name);
+              return (
+                <Fragment key={group.category || i}>
+                  <tr className="smx-category-row">
+                    <td colSpan={visibleCols.length + 1 + (editable ? 1 : 0)}>
+                      <div className="smx-category-row-inner">
+                        {editable && (
+                          <input
+                            type="checkbox"
+                            className="smx-category-check"
+                            checked={catState === "all"}
+                            ref={(el) => {
+                              if (el) el.indeterminate = catState === "some";
+                            }}
+                            onChange={() =>
+                              onToggleCategory?.(group.category, subNames)
+                            }
+                            title="Select/deselect all subskills in this category"
+                          />
+                        )}
+                        <span>{group?.category}</span>
+                      </div>
+                    </td>
+                  </tr>
 
-                  return (
-                    <tr
-                      key={`${skill?.name}-${j}`}
-                      className={`smx-row ${selected ? "smx-row-selected" : ""}`}
-                    >
-                      <td className="smx-skill-cell">
-                        {skill?.name}
-                      </td>
+                  {(group?.skills || []).map((skill, j) => {
+                    const selected = isRowSelected(group.category, skill.name);
 
-                      {editable && (
-                        <td className="smx-select-cell">
-                          <div className="smx-action-wrap">
-                            <input
-                              type="checkbox"
-                              className="smx-row-check"
-                              checked={selected}
-                              onChange={() =>
-                                onToggleRow?.(group.category, skill.name)
-                              }
-                              title="Select for bulk delete"
-                            />
+                    return (
+                      <tr
+                        key={`${skill?.name}-${j}`}
+                        className={`smx-row ${selected ? "smx-row-selected" : ""}`}
+                      >
+                        <td className="smx-skill-cell">{skill?.name}</td>
 
-                            <button
-                              className="smx-delete"
-                              type="button"
-                              onClick={() =>
-                                onDeleteRow?.(group.category, skill.name)
-                              }
-                              title="Delete this row"
-                            >
-                              🗑
-                            </button>
-                          </div>
-                        </td>
-                      )}
+                        {editable && (
+                          <td className="smx-select-cell">
+                            <div className="smx-action-wrap">
+                              <input
+                                type="checkbox"
+                                className="smx-row-check"
+                                checked={selected}
+                                onChange={() =>
+                                  onToggleRow?.(group.category, skill.name)
+                                }
+                                title="Select for bulk delete"
+                              />
 
-                      {visibleCols.map((l) => {
-                        const k = keyOf(group.category, skill.name, l);
-                        const changed = isChanged(group, skill, l);
-                        const value = getValue(group, skill, l);
-
-                        return (
-                          <td key={k} className={changed ? "smx-changed" : ""}>
-                            {editable ? (
-                              <select
-                                value={value}
-                                title={getProficiencyText(value)}
-                                onChange={(e) => onEdit?.(k, e.target.value)}
+                              <button
+                                className="smx-delete"
+                                type="button"
+                                onClick={() =>
+                                  onDeleteRow?.(group.category, skill.name)
+                                }
+                                title="Delete this row"
                               >
-                                <option value="NA">NA</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                              </select>
-                            ) : String(value) === "NA" ? (
-                              <span
-                                className="smx-badge smx-na-badge smx-tip"
-                                title="NA - Not Applicable"
-                                data-tip="NA - Not Applicable"
-                              >
-                                NA
-                              </span>
-                            ) : (
-                              <span
-                                className={`smx-badge smx-level-${value} smx-tip`}
-                                title={getProficiencyText(value)}
-                                data-tip={getProficiencyText(value)}
-                              >
-                                {value}
-                              </span>
-                            )}
+                                🗑
+                              </button>
+                            </div>
                           </td>
-                        );
-                      })}
-                    </tr>
-                  );
-                })}
-              </Fragment>
-            ))}
+                        )}
+
+                        {visibleCols.map((l) => {
+                          const k = keyOf(group.category, skill.name, l);
+                          const changed = isChanged(group, skill, l);
+                          const value = getValue(group, skill, l);
+
+                          return (
+                            <td key={k} className={changed ? "smx-changed" : ""}>
+                              {editable ? (
+                                <select
+                                  value={value}
+                                  title={getProficiencyText(value)}
+                                  onChange={(e) => onEdit?.(k, e.target.value)}
+                                >
+                                  <option value="NA">NA</option>
+                                  <option value="1">1</option>
+                                  <option value="2">2</option>
+                                  <option value="3">3</option>
+                                  <option value="4">4</option>
+                                </select>
+                              ) : String(value) === "NA" ? (
+                                <span
+                                  className="smx-badge smx-na-badge smx-tip"
+                                  title="NA - Not Applicable"
+                                  data-tip="NA - Not Applicable"
+                                >
+                                  NA
+                                </span>
+                              ) : (
+                                <span
+                                  className={`smx-badge smx-level-${value} smx-tip`}
+                                  title={getProficiencyText(value)}
+                                  data-tip={getProficiencyText(value)}
+                                >
+                                  {value}
+                                </span>
+                              )}
+                            </td>
+                          );
+                        })}
+                      </tr>
+                    );
+                  })}
+                </Fragment>
+              );
+            })}
           </tbody>
         </table>
       </div>

@@ -3587,6 +3587,23 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
     });
   }
 
+  // NEW: select/deselect every subskill under a category in one state update.
+  // If all subskills in the category are already selected, this deselects them;
+  // otherwise it selects all of them.
+  function toggleCategoryRows(category, subskillNames) {
+    setSelectedRows((prev) => {
+      const keys = (subskillNames || []).map((name) => rowKey(category, name));
+      const allSelected = keys.length > 0 && keys.every((k) => prev.includes(k));
+
+      if (allSelected) {
+        const removeSet = new Set(keys);
+        return prev.filter((k) => !removeSet.has(k));
+      }
+
+      return Array.from(new Set([...prev, ...keys]));
+    });
+  }
+
   function clearSelectedRows() {
     setSelectedRows([]);
   }
@@ -3655,6 +3672,8 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
 
     const previousSnapshot = matrixData;
 
+    // Optimistic local removal so the UI updates instantly, before the
+    // network calls even resolve.
     setMatrixData((prev) => removeRowsLocally(prev, rowsToDelete));
 
     setSelectedRows((prev) => {
@@ -3666,25 +3685,31 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
     });
 
     try {
-      for (const row of rowsToDelete) {
-        const res = await fetch(`${API_SKILL}/row/delete`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-          body: JSON.stringify({
-            Discipline: norm(filters.discipline),
-            Role: norm(filters.role),
-            Skill: norm(row.category),
-            Subskill: norm(row.subskillName),
-          }),
-        });
+      // Fire all delete requests in parallel instead of one-at-a-time.
+      // This is the main fix for "deleting multiple rows feels slow".
+      const responses = await Promise.all(
+        rowsToDelete.map((row) =>
+          fetch(`${API_SKILL}/row/delete`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include",
+            body: JSON.stringify({
+              Discipline: norm(filters.discipline),
+              Role: norm(filters.role),
+              Skill: norm(row.category),
+              Subskill: norm(row.subskillName),
+            }),
+          })
+        )
+      );
 
-        if (!res.ok) {
-          const msg = (await safeText(res)) || "Delete failed";
-          throw new Error(msg);
-        }
+      const failedResponse = responses.find((res) => !res.ok);
+
+      if (failedResponse) {
+        const msg = (await safeText(failedResponse)) || "Delete failed";
+        throw new Error(msg);
       }
 
       showToast(
@@ -4206,10 +4231,11 @@ export default function SkillMatrix({ allowedDisciplines = [], userEmail = "" })
               editedValues={editedValues}
               selectedRows={selectedRows}
               onToggleRow={toggleSelectedRow}
+              onToggleCategory={toggleCategoryRows}
               onEdit={(key, value) =>
                 setEditedValues((prev) => ({
                   ...prev,
-                  value,
+                  [key]: value,
                 }))
               }
               onDeleteRow={requestDeleteRow}
