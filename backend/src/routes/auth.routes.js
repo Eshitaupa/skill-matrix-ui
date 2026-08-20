@@ -200,6 +200,49 @@ router.post("/session", async (req, res) => {
    GET /api/auth/me
    ========================================================= */
 
+// router.get("/me", async (req, res) => {
+//   try {
+//     const token = req.cookies.session_token;
+//     const email = req.cookies.user_email;
+
+//     if (!token || !email) {
+//       return res.status(401).json({ authenticated: false });
+//     }
+
+//     const decoded = decodeJwt(token);
+//     const validation = validateToken(decoded);
+
+//     if (!validation.valid) {
+//       res.clearCookie("session_token", clearCookieOptions);
+//       res.clearCookie("user_email", clearCookieOptions);
+
+//       return res.status(401).json({
+//         authenticated: false,
+//         message: validation.reason,
+//       });
+//     }
+
+//     const normalizedEmail = String(email).trim().toLowerCase();
+//     const allowedDisciplines = await getAllowedDisciplines(normalizedEmail);
+
+//     return res.status(200).json({
+//       authenticated: true,
+//       email: normalizedEmail,
+//       allowedDisciplines,
+//     });
+//   } catch (err) {
+//     console.error("ME ERROR:", err);
+
+//     return res.status(500).json({
+//       authenticated: false,
+//       message: "Failed to load session",
+//     });
+//   }
+// });
+
+/* =========================================================
+   GET /api/auth/me
+   ========================================================= */
 router.get("/me", async (req, res) => {
   try {
     const token = req.cookies.session_token;
@@ -223,12 +266,31 @@ router.get("/me", async (req, res) => {
     }
 
     const normalizedEmail = String(email).trim().toLowerCase();
-    const allowedDisciplines = await getAllowedDisciplines(normalizedEmail);
+
+    /*
+     * CHANGED: don't let a Databricks hiccup (cold-start warehouse,
+     * transient network blip) fail the whole session check with a
+     * 500 that the frontend can't recover from. The user IS
+     * authenticated — we just couldn't confirm their discipline
+     * access right now. Degrade to "no disciplines visible yet"
+     * instead of kicking them out, and surface the real reason.
+     */
+    let allowedDisciplines;
+    let disciplineLookupFailed = false;
+
+    try {
+      allowedDisciplines = await getAllowedDisciplines(normalizedEmail);
+    } catch (dbErr) {
+      console.error("ME: DISCIPLINE LOOKUP FAILED:", dbErr.message);
+      allowedDisciplines = [];
+      disciplineLookupFailed = true;
+    }
 
     return res.status(200).json({
       authenticated: true,
       email: normalizedEmail,
       allowedDisciplines,
+      disciplineLookupFailed, // frontend can show a soft warning instead of the hard "server unreachable" banner
     });
   } catch (err) {
     console.error("ME ERROR:", err);
@@ -239,7 +301,6 @@ router.get("/me", async (req, res) => {
     });
   }
 });
-
 /* =========================================================
    POST /api/auth/logout
    ========================================================= */
