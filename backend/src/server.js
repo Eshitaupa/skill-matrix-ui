@@ -14,25 +14,38 @@ const app = express();
 const allowedOrigins = [
   "http://localhost:3000",
   "http://localhost:5173",
+
   "https://skill-matrix-fhadc3d4c3g8dhcg.northcentralus-01.azurewebsites.net",
 
-  //uat link
   "https://skill-matrix-uat-g5dba9ate9eyhhhc.northcentralus-01.azurewebsites.net",
 ];
-
 app.use(
   cors({
     origin(origin, callback) {
+      console.log("REQUEST ORIGIN:", JSON.stringify(origin));
+      console.log("ALLOWED ORIGINS:", allowedOrigins);
+
       if (!origin || allowedOrigins.includes(origin)) {
         return callback(null, true);
       }
 
-      console.error("CORS blocked origin:", origin);
+      console.error(
+        "CORS BLOCKED:",
+        JSON.stringify(origin)
+      );
+
       return callback(new Error(`CORS blocked origin: ${origin}`));
     },
+
     credentials: true,
+
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Accept", "Authorization"],
+
+    allowedHeaders: [
+      "Content-Type",
+      "Accept",
+      "Authorization",
+    ],
   })
 );
 
