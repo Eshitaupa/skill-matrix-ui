@@ -166,7 +166,11 @@ router.post("/session", async (req, res) => {
     }
 
     const email = extractEmail(decoded);
-    console.log("SESSION EMAIL USED FOR ACCESS:", email);
+
+    console.log(
+      "SESSION EMAIL USED FOR ACCESS:",
+      email
+    );
 
     if (!email) {
       return res.status(401).json({
@@ -175,26 +179,64 @@ router.post("/session", async (req, res) => {
       });
     }
 
-    const allowedDisciplines = await getAllowedDisciplines(email);
+    /*
+     * Authentication has already succeeded.
+     * A Databricks access lookup failure must not prevent
+     * creation of the authenticated browser session.
+     */
+    let allowedDisciplines;
+    let disciplineLookupFailed = false;
 
-    res.cookie("session_token", id_token, cookieOptions);
-    res.cookie("user_email", email, cookieOptions);
+    try {
+      allowedDisciplines =
+        await getAllowedDisciplines(email);
+    } catch (dbErr) {
+      console.error(
+        "SESSION: DISCIPLINE LOOKUP FAILED:",
+        dbErr.response?.data ||
+          dbErr.message
+      );
 
-    return res.json({
+      allowedDisciplines = [];
+      disciplineLookupFailed = true;
+    }
+
+    res.cookie(
+      "session_token",
+      id_token,
+      cookieOptions
+    );
+
+    res.cookie(
+      "user_email",
+      email,
+      cookieOptions
+    );
+
+    return res.status(200).json({
       ok: true,
       authenticated: true,
       email,
       allowedDisciplines,
+      disciplineLookupFailed,
     });
   } catch (err) {
-    console.error("SESSION ERROR:", err);
+    console.error(
+      "SESSION ERROR:",
+      err.response?.data ||
+        err.message ||
+        err
+    );
 
     return res.status(500).json({
       ok: false,
-      message: "Failed to create session",
+      message:
+        err.message ||
+        "Failed to create session",
     });
   }
 });
+
 
 /* =========================================================
    GET /api/auth/me
