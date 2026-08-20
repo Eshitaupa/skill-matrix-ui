@@ -58,7 +58,7 @@ const DISCIPLINE_ROLE_MAP = {
 
 const API_BASE =
   process.env.REACT_APP_API_BASE ||
-  "https://skill-matrix-api-aye4fhfqddhtb0bp.northcentralus-01.azurewebsites.net";
+  "https://skill-matrix-api-uat-c8ajcqhhaxevbvam.northcentralus-01.azurewebsites.net";
 
 const API_SKILL = `${API_BASE}/api/skill-matrix`;
 
