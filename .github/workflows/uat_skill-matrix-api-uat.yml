@@ -1,4 +1,4 @@
-name: Build and deploy Node.js app to Azure Web App - skill-matrix-uat
+name: Build and deploy Node.js app to Azure Web App - skill-matrix-api-uat
 
 on:
   push:
@@ -21,7 +21,7 @@ jobs:
           node-version: '22.x'
 
       - name: npm install, build, and test
-        working-directory: frontend
+        working-directory: backend
         run: |
           npm install
           npm run build --if-present
@@ -31,7 +31,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: node-app
-          path: frontend/build
+          path: backend
 
   deploy:
     runs-on: ubuntu-latest
@@ -47,7 +47,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'skill-matrix-uat'
+          app-name: 'skill-matrix-api-uat'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_00A7023AF3A8406F81F7817E692A22AB }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2AEEDE1217DE4C65A714A1FAC5717A8D }}
