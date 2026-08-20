@@ -97,21 +97,9 @@ dotenv.config();
 
 const app = express();
 
-/* =========================================================
-   ENVIRONMENT
-   ========================================================= */
 
 const PORT = process.env.PORT || 3001;
 
-/*
- * FRONTEND_ORIGIN can contain one or more origins separated by commas.
- *
- * Example:
- * FRONTEND_ORIGIN=https://skill-matrix-uat-g5dba9ate9eyhhhc.northcentralus-01.azurewebsites.net
- *
- * Multiple:
- * FRONTEND_ORIGIN=https://site1.com,https://site2.com
- */
 
 const configuredFrontendOrigins = String(
   process.env.FRONTEND_ORIGIN || ""
