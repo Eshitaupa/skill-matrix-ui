@@ -60,7 +60,11 @@ const DISCIPLINE_ROLE_MAP = {
  "Instrumentation":"Engineer",
  "Process":"Engineer"
 };
-
+const FROZEN_ROLE_DISCIPLINES = [
+  "Project Management",
+  "Piping Engineering",
+  "Mechanical",
+];
 
 const API_BASE =
   process.env.REACT_APP_API_BASE ||
@@ -3280,12 +3284,10 @@ export default function SkillMatrix({
                   })
                 )
               }
-              disabled={
+                            disabled={
                 actionBusy ||
-                Boolean(
-                  DISCIPLINE_ROLE_MAP[
-                    form.discipline
-                  ]
+                FROZEN_ROLE_DISCIPLINES.includes(
+                  form.discipline
                 )
               }
             >
