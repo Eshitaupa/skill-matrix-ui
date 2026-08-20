@@ -108,7 +108,7 @@ MAIN CONTENT
 .main-content {
 flex: 1;
 padding: 20px;
-overflow-x: hidden;
+/* overflow-x: hidden; */
 }
 
 .page-container {
@@ -366,7 +366,14 @@ border-radius: 999px;
 font-size: 12px;
 font-weight: 600;
 }
-
+.sticky-filters {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: #f8fafc; 
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
 .l1 { background:#e5e7eb; color:#374151; }
 .l2 { background:#d1fae5; color:#065f46; }
 .l3 { background:#bfdbfe; color:#1e40af; }
