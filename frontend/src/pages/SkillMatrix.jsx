@@ -54,7 +54,13 @@ const DISCIPLINE_ROLE_MAP = {
   "Project Management": "Engineer",
   "Piping Engineering": "Engineer",
   Mechanical: "Engineer",
+  CSA:"Engineer",
+  "Piping Design":"Engineer",
+  "Electrical":"Engineer",
+ "Instrumentation":"Engineer",
+ "Process":"Engineer"
 };
+
 
 const API_BASE =
   process.env.REACT_APP_API_BASE ||
@@ -3245,7 +3251,7 @@ export default function SkillMatrix({
               Role
             </label>
 
-            <select
+                    <select
               value={
                 form.role
               }
@@ -3275,7 +3281,12 @@ export default function SkillMatrix({
                 )
               }
               disabled={
-                actionBusy
+                actionBusy ||
+                Boolean(
+                  DISCIPLINE_ROLE_MAP[
+                    form.discipline
+                  ]
+                )
               }
             >
               <option value="">
