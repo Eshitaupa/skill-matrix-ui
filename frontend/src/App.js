@@ -438,6 +438,7 @@ const CLIENT_ID =
 const REDIRECT_URI = `${window.location.origin}/auth/callback`;
 
 function AuthCallbackHandler() {
+  
   const [status, setStatus] = useState("loading");
   const [errorMsg, setErrorMsg] = useState("");
   const hasRun = useRef(false);
@@ -580,6 +581,7 @@ function ProtectedRoute({ authed, onLogout, children }) {
 }
 
 function App() {
+  const [disciplineErrorDetail, setDisciplineErrorDetail] = useState("");
   const [authed, setAuthed] = useState(null);
   const [allowedDisciplines, setAllowedDisciplines] = useState([]);
   const [userEmail, setUserEmail] = useState("");
@@ -628,6 +630,7 @@ function App() {
       // Surface the soft warning from the backend instead of
       // treating a discipline-lookup hiccup as a hard connectivity failure.
       setDisciplineWarning(Boolean(data.disciplineLookupFailed));
+      setDisciplineErrorDetail(data.disciplineErrorDetail || "");
 
       sessionStorage.setItem("userEmail", data.email || "");
       sessionStorage.setItem(

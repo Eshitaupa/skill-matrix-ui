@@ -299,14 +299,33 @@ router.get("/me", async (req, res) => {
      */
     let allowedDisciplines;
     let disciplineLookupFailed = false;
+    let disciplineErrorDetail = null;
 
     try {
       allowedDisciplines = await getAllowedDisciplines(normalizedEmail);
     } catch (dbErr) {
-      console.error("ME: DISCIPLINE LOOKUP FAILED:", dbErr.message);
+      const detail =
+        dbErr.response?.data?.message ||
+        dbErr.response?.data ||
+        dbErr.message ||
+        "Unknown error";
+
+      console.error("ME: DISCIPLINE LOOKUP FAILED:", detail);
+
       allowedDisciplines = [];
       disciplineLookupFailed = true;
+      // CHANGED: surface the real reason to the client so it's visible
+      // in the Network tab response body, without needing Azure log access.
+      disciplineErrorDetail = String(detail).slice(0, 500);
     }
+
+    return res.status(200).json({
+      authenticated: true,
+      email: normalizedEmail,
+      allowedDisciplines,
+      disciplineLookupFailed,
+      disciplineErrorDetail,
+    });
 
     return res.status(200).json({
       authenticated: true,
