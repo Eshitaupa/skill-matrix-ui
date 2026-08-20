@@ -7,6 +7,34 @@ const ACCESS_TABLE =
   "ogc_techdept_test.skill_matrix.user_discipline_access";
 
 /* =========================================================
+   DISCIPLINE CACHE
+   Avoids hitting Databricks on every /me call (and on the
+   /session + /me pair that both used to fire on login).
+   ========================================================= */
+
+const DISCIPLINE_CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutes
+const disciplineCache = new Map();
+
+function getCachedDisciplines(key) {
+  const entry = disciplineCache.get(key);
+  if (!entry) return null;
+
+  if (Date.now() > entry.expiresAt) {
+    disciplineCache.delete(key);
+    return null;
+  }
+
+  return entry.disciplines;
+}
+
+function setCachedDisciplines(key, disciplines) {
+  disciplineCache.set(key, {
+    disciplines,
+    expiresAt: Date.now() + DISCIPLINE_CACHE_TTL_MS,
+  });
+}
+
+/* =========================================================
    HELPERS
    ========================================================= */
 
@@ -44,6 +72,14 @@ async function getAllowedDisciplines(email) {
   const candidates = getEmailCandidates(email);
   if (candidates.length === 0) return ["All"];
 
+  const cacheKey = candidates[0];
+  const cached = getCachedDisciplines(cacheKey);
+
+  if (cached) {
+    console.log("DISCIPLINE CACHE HIT:", cacheKey);
+    return cached;
+  }
+
   const inClause = candidates
     .map((e) => `'${escSql(e)}'`)
     .join(", ");
@@ -69,8 +105,12 @@ async function getAllowedDisciplines(email) {
   console.log("FINAL DISCIPLINES:", disciplines);
 
   // No row in DB = user has full access to all disciplines
-  if (disciplines.length === 0) return ["All"];
+  if (disciplines.length === 0) {
+    setCachedDisciplines(cacheKey, ["All"]);
+    return ["All"];
+  }
 
+  setCachedDisciplines(cacheKey, disciplines);
   return disciplines;
 }
 
@@ -180,27 +220,13 @@ router.post("/session", async (req, res) => {
     }
 
     /*
-     * Authentication has already succeeded.
-     * A Databricks access lookup failure must not prevent
-     * creation of the authenticated browser session.
+     * CHANGED: no Databricks call here anymore. The frontend calls
+     * GET /api/auth/me immediately after redirecting to /home, and
+     * that endpoint is the single source of truth for
+     * allowedDisciplines. Looking it up here too was a redundant
+     * Databricks round trip on every login — it doubled the wait
+     * whenever the SQL warehouse was cold.
      */
-    let allowedDisciplines;
-    let disciplineLookupFailed = false;
-
-    try {
-      allowedDisciplines =
-        await getAllowedDisciplines(email);
-    } catch (dbErr) {
-      console.error(
-        "SESSION: DISCIPLINE LOOKUP FAILED:",
-        dbErr.response?.data ||
-          dbErr.message
-      );
-
-      allowedDisciplines = [];
-      disciplineLookupFailed = true;
-    }
-
     res.cookie(
       "session_token",
       id_token,
@@ -217,8 +243,6 @@ router.post("/session", async (req, res) => {
       ok: true,
       authenticated: true,
       email,
-      allowedDisciplines,
-      disciplineLookupFailed,
     });
   } catch (err) {
     console.error(
@@ -237,54 +261,10 @@ router.post("/session", async (req, res) => {
   }
 });
 
-
 /* =========================================================
    GET /api/auth/me
    ========================================================= */
 
-// router.get("/me", async (req, res) => {
-//   try {
-//     const token = req.cookies.session_token;
-//     const email = req.cookies.user_email;
-
-//     if (!token || !email) {
-//       return res.status(401).json({ authenticated: false });
-//     }
-
-//     const decoded = decodeJwt(token);
-//     const validation = validateToken(decoded);
-
-//     if (!validation.valid) {
-//       res.clearCookie("session_token", clearCookieOptions);
-//       res.clearCookie("user_email", clearCookieOptions);
-
-//       return res.status(401).json({
-//         authenticated: false,
-//         message: validation.reason,
-//       });
-//     }
-
-//     const normalizedEmail = String(email).trim().toLowerCase();
-//     const allowedDisciplines = await getAllowedDisciplines(normalizedEmail);
-
-//     return res.status(200).json({
-//       authenticated: true,
-//       email: normalizedEmail,
-//       allowedDisciplines,
-//     });
-//   } catch (err) {
-//     console.error("ME ERROR:", err);
-
-//     return res.status(500).json({
-//       authenticated: false,
-//       message: "Failed to load session",
-//     });
-//   }
-// });
-
-/* =========================================================
-   GET /api/auth/me
-   ========================================================= */
 router.get("/me", async (req, res) => {
   try {
     const token = req.cookies.session_token;
@@ -310,7 +290,7 @@ router.get("/me", async (req, res) => {
     const normalizedEmail = String(email).trim().toLowerCase();
 
     /*
-     * CHANGED: don't let a Databricks hiccup (cold-start warehouse,
+     * Don't let a Databricks hiccup (cold-start warehouse,
      * transient network blip) fail the whole session check with a
      * 500 that the frontend can't recover from. The user IS
      * authenticated — we just couldn't confirm their discipline
@@ -343,6 +323,7 @@ router.get("/me", async (req, res) => {
     });
   }
 });
+
 /* =========================================================
    POST /api/auth/logout
    ========================================================= */
@@ -355,7 +336,6 @@ router.post("/logout", (req, res) => {
 });
 
 export default router;
-
 
 // import express from "express";
 // import axios from "axios";
