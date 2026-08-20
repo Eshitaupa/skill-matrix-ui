@@ -1,15 +1,20 @@
 {
-  "name": "backend",
+  "name": "skill-matrix-api",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Project Meridian Skill Matrix backend API",
+  "private": true,
+  "type": "module",
+  "main": "src/server.js",
   "scripts": {
-    "start": "node src/server.js"
+    "start": "node src/server.js",
+    "test": "echo \"No backend tests configured\""
+  },
+  "engines": {
+    "node": "22.x"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "module",
   "dependencies": {
     "axios": "^1.16.0",
     "cookie-parser": "^1.4.7",

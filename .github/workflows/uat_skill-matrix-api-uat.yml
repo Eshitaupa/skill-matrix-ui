@@ -1,4 +1,4 @@
-name: Build and deploy Node.js app to Azure Web App - skill-matrix-api-uat
+name: Build and deploy UAT API
 
 on:
   push:
@@ -9,45 +9,81 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     permissions:
       contents: read
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout UAT branch
+        uses: actions/checkout@v4
 
-      - name: Set up Node.js version
-        uses: actions/setup-node@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: '22.x'
+          node-version: "22.x"
+          cache: "npm"
+          cache-dependency-path: backend/package-lock.json
 
-      - name: npm install, build, and test
+      - name: Install backend dependencies
+        working-directory: backend
+        run: npm ci
+
+      - name: Build backend
+        working-directory: backend
+        run: npm run build --if-present
+
+      - name: Test backend
+        working-directory: backend
+        run: npm test --if-present
+
+      - name: Verify backend artifact
         working-directory: backend
         run: |
-          npm install
-          npm run build --if-present
-          npm run test --if-present
+          echo "Current location:"
+          pwd
 
-      - name: Upload artifact for deployment job
+          echo "Backend files:"
+          ls -la
+
+          echo "Server file:"
+          test -f src/server.js
+
+          echo "Package file:"
+          test -f package.json
+
+          echo "Start script:"
+          node -e "const p=require('./package.json'); console.log(p.scripts); if(!p.scripts?.start) process.exit(1)"
+
+      - name: Upload backend artifact
         uses: actions/upload-artifact@v4
         with:
-          name: node-app
+          name: uat-api
           path: backend
+          include-hidden-files: true
 
   deploy:
     runs-on: ubuntu-latest
     needs: build
 
     steps:
-      - name: Download artifact from build job
+      - name: Download backend artifact
         uses: actions/download-artifact@v4
         with:
-          name: node-app
+          name: uat-api
+          path: backend-package
 
-      - name: 'Deploy to Azure Web App'
-        id: deploy-to-webapp
+      - name: Verify downloaded artifact
+        run: |
+          echo "Downloaded artifact:"
+          ls -la backend-package
+
+          test -f backend-package/package.json
+          test -f backend-package/src/server.js
+
+      - name: Deploy UAT API
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'skill-matrix-api-uat'
-          slot-name: 'Production'
-          package: .
+          app-name: "skill-matrix-api-uat"
+          slot-name: "Production"
+          package: backend-package
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2AEEDE1217DE4C65A714A1FAC5717A8D }}
