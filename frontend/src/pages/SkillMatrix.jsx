@@ -3566,8 +3566,17 @@ const DISCIPLINE_ROLE_MAP = {
   "Project Management": "Engineer",
   "Piping Engineering": "Engineer",
   Mechanical: "Engineer",
+  CSA: "Engineer",
+  "Piping Design": "Engineer",
+  Electrical: "Engineer",
+  Instrumentation: "Engineer",
+  Process: "Engineer",
 };
-
+const FROZEN_ROLE_DISCIPLINES = [
+  "Project Management",
+  "Piping Engineering",
+  "Mechanical",
+];
 const API_BASE =
   process.env.REACT_APP_API_BASE ||
   "https://skill-matrix-api-aye4fhfqddhtb0bp.northcentralus-01.azurewebsites.net";
@@ -6786,8 +6795,11 @@ export default function SkillMatrix({
                   })
                 )
               }
-              disabled={
-                actionBusy
+                            disabled={
+                actionBusy ||
+                FROZEN_ROLE_DISCIPLINES.includes(
+                  form.discipline
+                )
               }
             >
               <option value="">
