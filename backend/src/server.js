@@ -17,7 +17,7 @@ const allowedOrigins = [
   "https://skill-matrix-fhadc3d4c3g8dhcg.northcentralus-01.azurewebsites.net",
 
   //uat link
-  "https://skill-matrix-uat-g5dba9ate9eyhhhc.northcentralus-01.azurewebsites.net/",
+  "https://skill-matrix-uat-g5dba9ate9eyhhhc.northcentralus-01.azurewebsites.net",
 ];
 
 app.use(
