@@ -97,129 +97,59 @@ dotenv.config();
 
 const app = express();
 
-
 const PORT = process.env.PORT || 3001;
 
-
-const configuredFrontendOrigins = String(
-  process.env.FRONTEND_ORIGIN || ""
-)
+const configuredFrontendOrigins = String(process.env.FRONTEND_ORIGIN || "")
   .split(",")
   .map((origin) => origin.trim())
   .filter(Boolean);
 
-/*
- * Known application origins.
- *
- * The UAT frontend URL is included explicitly so that the application
- * continues to work even if FRONTEND_ORIGIN has not yet been configured
- * in Azure App Settings.
- */
 const allowedOrigins = [
   "http://localhost:3000",
   "http://localhost:5173",
-
-  // Production frontend
   "https://skill-matrix-fhadc3d4c3g8dhcg.northcentralus-01.azurewebsites.net",
-
-  // UAT frontend
   "https://skill-matrix-uat-g5dba9ate9eyhhhc.northcentralus-01.azurewebsites.net",
-
   ...configuredFrontendOrigins,
-].filter(
-  (origin, index, array) =>
-    origin && array.indexOf(origin) === index
-);
-
-/* =========================================================
-   STARTUP LOGGING
-   ========================================================= */
+].filter((origin, index, array) => origin && array.indexOf(origin) === index);
 
 console.log("=================================================");
 console.log("Project Meridian API");
+console.log("BUILD MARKER: cors-fix-v2");
 console.log("=================================================");
 console.log("NODE_ENV:", process.env.NODE_ENV || "not set");
 console.log("PORT:", PORT);
 console.log("CORS ALLOWED ORIGINS:");
-allowedOrigins.forEach((origin) => {
-  console.log("  -", origin);
-});
+allowedOrigins.forEach((origin) => console.log("  -", origin));
 console.log("=================================================");
 
-/* =========================================================
-   TRUST PROXY
-   Required/recommended when running behind Azure App Service
-   ========================================================= */
-
 app.set("trust proxy", 1);
-
-/* =========================================================
-   CORS
-   ========================================================= */
 
 app.use(
   cors({
     origin(origin, callback) {
-      console.log("CORS REQUEST ORIGIN:", JSON.stringify(origin));
+      if (!origin) return callback(null, true);
 
-      /*
-       * Requests without an Origin header can occur from:
-       * - Azure health checks
-       * - curl
-       * - server-to-server requests
-       * - direct browser navigation
-       */
-      if (!origin) {
-        console.log("CORS ALLOWED: no origin");
-        return callback(null, true);
-      }
+      const normalizedOrigin = origin.replace(/\/+$/, "");
+      const isAllowed = allowedOrigins.some(
+        (allowed) => allowed.replace(/\/+$/, "") === normalizedOrigin
+      );
 
-      if (allowedOrigins.includes(origin)) {
-        console.log("CORS ALLOWED:", origin);
+      if (isAllowed) {
         return callback(null, true);
       }
 
       console.error("CORS BLOCKED:", origin);
       console.error("CORS ALLOWED ORIGINS:", allowedOrigins);
-
-      return callback(
-        new Error(`CORS blocked origin: ${origin}`)
-      );
+      return callback(new Error(`CORS blocked origin: ${origin}`));
     },
-
     credentials: true,
-
-    methods: [
-      "GET",
-      "POST",
-      "PUT",
-      "DELETE",
-      "OPTIONS",
-    ],
-
-    allowedHeaders: [
-      "Content-Type",
-      "Accept",
-      "Authorization",
-    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Accept", "Authorization"],
   })
 );
-
-/* =========================================================
-   MIDDLEWARE
-   ========================================================= */
 
 app.use(cookieParser());
-
-app.use(
-  express.json({
-    limit: "10mb",
-  })
-);
-
-/* =========================================================
-   HEALTH CHECK
-   ========================================================= */
+app.use(express.json({ limit: "10mb" }));
 
 app.get("/", (req, res) => {
   return res.status(200).json({
@@ -230,54 +160,21 @@ app.get("/", (req, res) => {
 });
 
 app.get("/health", (req, res) => {
-  return res.status(200).json({
-    ok: true,
-    status: "healthy",
-  });
+  return res.status(200).json({ ok: true, status: "healthy" });
 });
 
-/* =========================================================
-   API ROUTES
-   ========================================================= */
-
 app.use("/api/auth", authRoutes);
-
-app.use(
-  "/api/skill-matrix",
-  skillMatrixRoutes
-);
-
-/* =========================================================
-   404 HANDLER
-   ========================================================= */
+app.use("/api/skill-matrix", skillMatrixRoutes);
 
 app.use((req, res) => {
-  console.warn(
-    "404 ROUTE NOT FOUND:",
-    req.method,
-    req.originalUrl
-  );
-
   return res.status(404).json({
     ok: false,
     message: `Route not found: ${req.method} ${req.originalUrl}`,
   });
 });
 
-/* =========================================================
-   GLOBAL ERROR HANDLER
-   ========================================================= */
-
 app.use((err, req, res, next) => {
-  console.error("=================================================");
-  console.error("SERVER ERROR");
-  console.error("=================================================");
-  console.error(err);
-  console.error("=================================================");
-
-  /*
-   * Don't expose stack traces to the browser in production.
-   */
+  console.error("SERVER ERROR:", err);
   return res.status(500).json({
     ok: false,
     message:
@@ -287,13 +184,8 @@ app.use((err, req, res, next) => {
   });
 });
 
-/* =========================================================
-   START SERVER
-   ========================================================= */
-
 app.listen(PORT, "0.0.0.0", () => {
-  console.log("=================================================");
   console.log(`API running on port ${PORT}`);
-  console.log("Listening on 0.0.0.0");
-  console.log("=================================================");
 });
+
+export default app;
