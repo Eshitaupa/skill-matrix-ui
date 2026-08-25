@@ -407,6 +407,18 @@ ORDER BY
                 WHEN LOWER(Discipline) = 'piping design'
              AND LOWER(Skill) = 'softwares' THEN 5
 
+                     -- CSA
+        WHEN LOWER(Discipline) = 'csa'
+             AND LOWER(Skill) = 'drawings' THEN 1
+        WHEN LOWER(Discipline) = 'csa'
+             AND LOWER(Skill) = 'design' THEN 2
+        WHEN LOWER(Discipline) = 'csa'
+             AND LOWER(Skill) = 'modelling' THEN 3
+        WHEN LOWER(Discipline) = 'csa'
+             AND LOWER(Skill) = 'softwares' THEN 4
+        WHEN LOWER(Discipline) = 'csa'
+             AND LOWER(Skill) = 'leadership / project management skills (from qcc)' THEN 5
+
 
                       WHEN LOWER(Discipline) = 'piping engineering'
              AND LOWER(Skill) = 'analysis' THEN 1
@@ -421,15 +433,15 @@ ORDER BY
                             WHEN LOWER(Discipline) = 'piping engineering'
              AND LOWER(Skill) = 'softwares' THEN 6
              
-                    WHEN LOWER(Discipline) = 'electrical'
+        WHEN LOWER(Discipline) = 'electrical'
              AND LOWER(Skill) = 'engineering' THEN 1
-                               WHEN LOWER(Discipline) = 'electrical'
-             AND LOWER(Skill) = 'drafting 2D layouts' THEN 2
-                               WHEN LOWER(Discipline) = 'electrical'
-             AND LOWER(Skill) = '3D modelling' THEN 3
-                               WHEN LOWER(Discipline) = 'electrical'
-             AND LOWER(Skill) = 'software capabilities' THEN 4
-                                          WHEN LOWER(Discipline) = 'electrical'
+        WHEN LOWER(Discipline) = 'electrical'
+             AND LOWER(Skill) = 'software capabilities' THEN 2
+        WHEN LOWER(Discipline) = 'electrical'
+             AND LOWER(Skill) = '3d modelling' THEN 3
+        WHEN LOWER(Discipline) = 'electrical'
+             AND LOWER(Skill) = 'drafting 2d layouts' THEN 4
+        WHEN LOWER(Discipline) = 'electrical'
              AND LOWER(Skill) = 'leadership / project management skills (from qcc)' THEN 5
 
        WHEN LOWER(Discipline) = 'instrumentation'
