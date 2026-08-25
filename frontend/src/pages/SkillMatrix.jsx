@@ -771,6 +771,7 @@ useEffect(() => {
   setEditedValues({});
   setConfirmDelete(null);
 }, [
+  filters.discipline, filters.role
 ]);
 
   /* ---------------------------------------------------------
@@ -906,17 +907,19 @@ useEffect(() => {
           "error"
         );
       } finally {
-        if (
-          fetchAbortRef.current ===
-          controller
-        ) {
+        const isStale =
+          fetchAbortRef.current !==
+          controller;
+
+        if (!isStale) {
           fetchAbortRef.current =
             null;
         }
 
         if (
           firstLoad &&
-          !silent
+          !silent &&
+          !isStale
         ) {
           setInitialLoading(
             false
@@ -2283,7 +2286,7 @@ useEffect(() => {
         .sticky-filters {
           position: sticky;
           top: 0;
-          z-index: 30;
+          z-index: 60;
 
           background: #f8fafc;
 
