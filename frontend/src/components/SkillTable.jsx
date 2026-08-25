@@ -174,17 +174,16 @@ function SkillTable({
     <Fragment>
       <style>{`
 .smx-wrap {
-  position: relative;
   max-height: 70vh;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: auto;
   border-radius: 12px;
   background: #ffffff;
   border: 1px solid #e5e7eb;
 }
 
 .smx-table {
-  width: max-content;
-  min-width: 100%;
+  width: 100%;
   border-collapse: separate;
   border-spacing: 0;
   font-family: "Segoe UI", system-ui, sans-serif;
@@ -201,6 +200,105 @@ function SkillTable({
   border-bottom: 2px solid #e5e7eb;
   white-space: nowrap;
   color: #374151;
+}
+
+.smx-select-head {
+  width: 70px;
+  min-width: 70px;
+  text-align: center;
+}
+
+.smx-skill-head {
+  text-align: center;
+  min-width: 240px;
+  font-weight: 700;
+  color: #374151;
+}
+
+.smx-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.smx-code {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.smx-role {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+
+.smx-category-row td {
+  background: #eef4ff;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  padding: 10px 14px;
+  border-left: 4px solid #3b82f6;
+  color: #1e3a8a;
+  cursor: pointer;
+  user-select: none;
+}
+
+.smx-category-row:hover td {
+  background: #dfeaff;
+}
+
+.smx-category-select-cell {
+  width: 70px;
+  min-width: 70px;
+  text-align: center !important;
+  border-left: 4px solid #3b82f6;
+}
+
+.smx-category-name-cell {
+  text-align: center !important;
+}
+
+.smx-table tbody tr.smx-row {
+  background: #ffffff;
+  transition: background 0.15s ease;
+}
+
+.smx-table tbody tr.smx-row:hover {
+  background: #f9fafb;
+}
+
+.smx-table tbody tr.smx-row-selected {
+  background: #fff7ed;
+}
+
+.smx-table tbody tr.smx-row-selected:hover {
+  background: #ffedd5;
+}
+
+.smx-table td {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #f1f3f5;
+  vertical-align: middle;
+}
+
+.smx-select-cell {
+  width: 70px;
+  min-width: 70px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.smx-skill-cell {
+  text-align: center;
+  font-weight: 700;
+  color: #111827;
+  min-width: 240px;
 }
 
 .smx-select-head {
@@ -490,11 +588,11 @@ function SkillTable({
                     )}
 
                     <td
-                      className="smx-category-name-cell"
-                      colSpan={visibleCols.length + 1}
-                    >
-                      {group?.category}
-                    </td>
+  className="smx-category-name-cell"
+  colSpan={visibleCols.length + 1}
+>
+  {group?.category}
+</td>
                   </tr>
 
                   {(group?.skills || []).map((skill, j) => {
