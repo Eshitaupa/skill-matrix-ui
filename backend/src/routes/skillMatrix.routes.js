@@ -430,6 +430,40 @@ ORDER BY
                                WHEN LOWER(Discipline) = 'electrical'
              AND LOWER(Skill) = 'software capabilities' THEN 4
 
+       WHEN LOWER(Discipline) = 'instrumentation'
+             AND LOWER(Skill) = 'general' THEN 1
+
+       WHEN LOWER(Discipline) = 'instrumentation'
+                    AND LOWER(Skill) = 'lists' THEN 2
+
+       WHEN LOWER(Discipline) = 'instrumentation'
+                    AND LOWER(Skill) = 'valves' THEN 3
+
+       WHEN LOWER(Discipline) = 'instrumentation'
+                    AND LOWER(Skill) = 'pressure' THEN 4
+
+       WHEN LOWER(Discipline) = 'instrumentation'
+                    AND LOWER(Skill) = 'temperature' THEN 5
+
+       WHEN LOWER(Discipline) = 'instrumentation'
+                    AND LOWER(Skill) = 'level' THEN 6
+
+       WHEN LOWER(Discipline) = 'instrumentation'
+                    AND LOWER(Skill) = 'flow' THEN 7
+               WHEN LOWER(Discipline) = 'instrumentation'
+                    AND LOWER(Skill) = 'analyzers' THEN 8
+               WHEN LOWER(Discipline) = 'instrumentation'
+                    AND LOWER(Skill) = 'control & automation' THEN 9
+         WHEN LOWER(Discipline) = 'instrumentation'
+                    AND LOWER(Skill) = 'modelling' THEN 10
+             WHEN LOWER(Discipline) = 'instrumentation'
+                    AND LOWER(Skill) = 'wiring & loops' THEN 11
+             WHEN LOWER(Discipline) = 'instrumentation'
+                    AND LOWER(Skill) = 'miscellaneous' THEN 12
+         WHEN LOWER(Discipline) = 'instrumentation'
+                    AND LOWER(Skill) = 'leadership/project management skills' THEN 8
+
+
                     WHEN LOWER(Discipline) = 'project management'
              AND LOWER(Skill) = 'personal effectiveness & leadership' THEN 1
                                WHEN LOWER(Discipline) = 'project management'
