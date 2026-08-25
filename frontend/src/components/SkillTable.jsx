@@ -173,107 +173,120 @@ function SkillTable({
   return (
     <Fragment>
       <style>{`
-        .smx-wrap {
-          border-radius: 12px;
-          overflow: auto;
-          background: #ffffff;
-          border: 1px solid #e5e7eb;
-        }
+.smx-wrap {
+  position: relative;
+  max-height: 70vh;
+  overflow: auto;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+}
 
-        .smx-table {
-          width: 100%;
-          border-collapse: separate;
-          border-spacing: 0;
-          font-family: "Segoe UI", system-ui, sans-serif;
-        }
+.smx-table {
+  width: max-content;
+  min-width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
 
-        .smx-table thead th {
-          position: sticky;
-          top: 0;
-          z-index: 5;
-          padding: 12px 10px;
-          font-weight: 700;
-          text-align: center;
-          background: #f8fafc;
-          border-bottom: 2px solid #e5e7eb;
-          white-space: nowrap;
-          color: #374151;
-        }
+.smx-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  padding: 12px 10px;
+  font-weight: 700;
+  text-align: center;
+  background: #f8fafc;
+  border-bottom: 2px solid #e5e7eb;
+  white-space: nowrap;
+  color: #374151;
+}
 
-        .smx-select-head {
-          width: 70px;
-          min-width: 70px;
-          text-align: center;
-        }
+.smx-select-head {
+  position: sticky !important;
+  top: 0;
+  left: 0;
+  z-index: 30 !important;
+  width: 70px;
+  min-width: 70px;
+  background: #f8fafc !important;
+  text-align: center;
+}
 
-        .smx-skill-head {
-          text-align: center;
-          min-width: 240px;
-        }
+.smx-skill-head {
+  position: sticky !important;
+  top: 0;
+  left: 70px;
+  z-index: 30 !important;
+  width: 300px;
+  min-width: 300px;
+  max-width: 300px;
+  background: #f8fafc !important;
+  text-align: center;
+  box-shadow: 3px 0 5px rgba(0, 0, 0, 0.08);
+}
 
-        .smx-head {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 2px;
-        }
+.smx-select-cell {
+  position: sticky;
+  left: 0;
+  z-index: 12;
+  width: 70px;
+  min-width: 70px;
+  background: inherit;
+  text-align: center;
+  white-space: nowrap;
+}
 
-        .smx-code {
-          font-size: 15px;
-          font-weight: 700;
-        }
+.smx-skill-cell {
+  position: sticky;
+  left: 70px;
+  z-index: 11;
+  width: 300px;
+  min-width: 300px;
+  max-width: 300px;
+  background: inherit;
+  text-align: center;
+  font-weight: 600;
+  color: #111827;
+  box-shadow: 3px 0 5px rgba(0, 0, 0, 0.08);
+}
 
-        .smx-role {
-          font-size: 10px;
-          font-weight: 700;
-          letter-spacing: 0.04em;
-          text-transform: uppercase;
-          color: #6b7280;
-        }
+.smx-category-select-cell {
+  position: sticky;
+  left: 0;
+  z-index: 15;
+  width: 70px;
+  min-width: 70px;
+  background: #eef4ff !important;
+  text-align: center !important;
+  border-left: 4px solid #3b82f6;
+}
 
-        .smx-category-row td {
-          background: #eef4ff;
-          font-weight: 800;
-          text-transform: uppercase;
-          font-size: 12px;
-          letter-spacing: 0.04em;
-          padding: 10px 14px;
-          border-left: 4px solid #3b82f6;
-          color: #1e3a8a;
-          cursor: pointer;
-          user-select: none;
-        }
+.smx-category-name-cell {
+  position: sticky;
+  left: 70px;
+  z-index: 14;
+  background: #eef4ff !important;
+  text-align: center !important;
+}
 
-        .smx-category-row:hover td {
-          background: #dfeaff;
-        }
+.smx-table tbody tr.smx-row {
+  background: #ffffff;
+  transition: background 0.15s ease;
+}
 
-        .smx-category-select-cell {
-          text-align: center !important;
-          width: 70px;
-          border-left: 4px solid #3b82f6;
-        }
+.smx-table tbody tr.smx-row:hover {
+  background: #f9fafb;
+}
 
-        .smx-category-name-cell {
-          text-align: center !important;
-        }
+.smx-table tbody tr.smx-row-selected {
+  background: #fff7ed;
+}
 
-        .smx-table tbody tr.smx-row {
-          background: #ffffff;
-          transition: background 0.15s ease;
-        }
-
-        .smx-table tbody tr.smx-row:hover {
-          background: #f9fafb;
-        }
-
-        .smx-table tbody tr.smx-row-selected {
-          background: #fff7ed;
-        }
-
-        .smx-table tbody tr.smx-row-selected:hover {
-          background: #ffedd5;
-        }
+.smx-table tbody tr.smx-row-selected:hover {
+  background: #ffedd5;
+}
 
         .smx-table td {
           padding: 10px;
@@ -422,7 +435,7 @@ function SkillTable({
             <tr>
               {editable && <th className="smx-select-head">Select</th>}
 
-              <th className="smx-skill-head">Skill</th>
+              <th className="smx-skill-head" style={{ left: editable ? "70px" : "0px" }}>Skill</th>
 
               {visibleCols.map((l) => (
                 <th key={l}>
@@ -478,6 +491,7 @@ function SkillTable({
 
                     <td
                       className="smx-category-name-cell"
+                      style={{ left: editable ? "70px" : "0px" }}
                       colSpan={visibleCols.length + 1}
                     >
                       {group?.category}
@@ -519,7 +533,7 @@ function SkillTable({
                           </td>
                         )}
 
-                        <td className="smx-skill-cell">{skill?.name}</td>
+                        <td className="smx-skill-cell" style={{ left: editable ? "70px" : "0px" }}>{skill?.name}</td>
 
                         {visibleCols.map((l) => {
                           const k = cellKey(group.category, skill.name, l);
