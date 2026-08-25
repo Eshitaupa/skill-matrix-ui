@@ -435,7 +435,7 @@ function SkillTable({
             <tr>
               {editable && <th className="smx-select-head">Select</th>}
 
-              <th className="smx-skill-head" style={{ left: editable ? "70px" : "0px" }}>Skill</th>
+              <th className="smx-skill-head">Skill</th>
 
               {visibleCols.map((l) => (
                 <th key={l}>
@@ -491,7 +491,6 @@ function SkillTable({
 
                     <td
                       className="smx-category-name-cell"
-                      style={{ left: editable ? "70px" : "0px" }}
                       colSpan={visibleCols.length + 1}
                     >
                       {group?.category}
@@ -533,7 +532,7 @@ function SkillTable({
                           </td>
                         )}
 
-                        <td className="smx-skill-cell" style={{ left: editable ? "70px" : "0px" }}>{skill?.name}</td>
+                        <td className="smx-skill-cell">{skill?.name}</td>
 
                         {visibleCols.map((l) => {
                           const k = cellKey(group.category, skill.name, l);
