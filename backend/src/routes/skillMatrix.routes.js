@@ -429,6 +429,8 @@ ORDER BY
              AND LOWER(Skill) = '3D modelling' THEN 3
                                WHEN LOWER(Discipline) = 'electrical'
              AND LOWER(Skill) = 'software capabilities' THEN 4
+                                          WHEN LOWER(Discipline) = 'electrical'
+             AND LOWER(Skill) = 'leadership/project management skills' THEN 5
 
        WHEN LOWER(Discipline) = 'instrumentation'
              AND LOWER(Skill) = 'general' THEN 1
