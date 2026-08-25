@@ -433,14 +433,16 @@ ORDER BY
                             WHEN LOWER(Discipline) = 'piping engineering'
              AND LOWER(Skill) = 'softwares' THEN 6
              
-           WHEN LOWER(Discipline) = 'electrical'
+        WHEN LOWER(Discipline) = 'electrical'
              AND LOWER(Skill) = 'engineering' THEN 1
         WHEN LOWER(Discipline) = 'electrical'
-             AND LOWER(Skill) = 'software capabilities' THEN 2
+             AND LOWER(Skill) = '3d modelling' THEN 2
         WHEN LOWER(Discipline) = 'electrical'
-             AND LOWER(Skill) = '3d modelling' THEN 3
+             AND LOWER(Skill) = 'drafting 2d layouts' THEN 3
         WHEN LOWER(Discipline) = 'electrical'
-             AND LOWER(Skill) = 'drafting 2d layouts' THEN 4
+             AND LOWER(Skill) = 'software capabilities' THEN 4
+        WHEN LOWER(Discipline) = 'electrical'
+             AND LOWER(Skill) = 'software capablities' THEN 4
         WHEN LOWER(Discipline) = 'electrical'
              AND LOWER(Skill) = 'leadership / project management skills (from qcc)' THEN 5
         WHEN LOWER(Discipline) = 'electrical'
