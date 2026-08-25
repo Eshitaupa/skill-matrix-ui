@@ -175,8 +175,7 @@ function SkillTable({
       <style>{`
 .smx-wrap {
   max-height: 70vh;
-  overflow-y: auto;
-  overflow-x: auto;
+  overflow: auto;
   border-radius: 12px;
   background: #ffffff;
   border: 1px solid #e5e7eb;
@@ -192,7 +191,7 @@ function SkillTable({
 .smx-table thead th {
   position: sticky;
   top: 0;
-  z-index: 20;
+  z-index: 50;
   padding: 12px 10px;
   font-weight: 700;
   text-align: center;
@@ -210,9 +209,10 @@ function SkillTable({
 
 .smx-skill-head {
   text-align: center;
-  min-width: 240px;
   font-weight: 700;
   color: #374151;
+  min-width: 500px;
+  width: 500px;
 }
 
 .smx-head {
@@ -298,233 +298,128 @@ function SkillTable({
   text-align: center;
   font-weight: 700;
   color: #111827;
-  min-width: 240px;
+  min-width: 500px;
+  width: 500px;
 }
 
-.smx-select-head {
-  position: sticky !important;
-  top: 0;
-  left: 0;
-  z-index: 30 !important;
-  width: 70px;
-  min-width: 70px;
-  background: #f8fafc !important;
-  text-align: center;
+.smx-action-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
-.smx-skill-head {
-  position: sticky !important;
-  top: 0;
-  left: 70px;
-  z-index: 30 !important;
-  width: 300px;
-  min-width: 300px;
-  max-width: 300px;
-  background: #f8fafc !important;
-  text-align: center;
-  box-shadow: 3px 0 5px rgba(0, 0, 0, 0.08);
+.smx-row-check,
+.smx-group-check {
+  width: 17px;
+  height: 17px;
+  cursor: pointer;
+  accent-color: #2563eb;
 }
 
-.smx-select-cell {
-  position: sticky;
-  left: 0;
-  z-index: 12;
-  width: 70px;
-  min-width: 70px;
-  background: inherit;
-  text-align: center;
-  white-space: nowrap;
+.smx-delete {
+  border: none;
+  background: transparent;
+  color: #dc2626;
+  font-size: 15px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 3px;
+  border-radius: 6px;
 }
 
-.smx-skill-cell {
-  position: sticky;
-  left: 70px;
-  z-index: 11;
-  width: 300px;
-  min-width: 300px;
-  max-width: 300px;
-  background: inherit;
-  text-align: center;
-  font-weight: 600;
-  color: #111827;
-  box-shadow: 3px 0 5px rgba(0, 0, 0, 0.08);
+.smx-delete:hover {
+  background: #fee2e2;
+  transform: scale(1.08);
 }
 
-.smx-category-select-cell {
-  position: sticky;
-  left: 0;
-  z-index: 15;
-  width: 70px;
-  min-width: 70px;
-  background: #eef4ff !important;
-  text-align: center !important;
-  border-left: 4px solid #3b82f6;
+.smx-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 30px;
+  height: 28px;
+  padding: 0 6px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 13px;
 }
 
-.smx-category-name-cell {
-  position: sticky;
-  left: 70px;
-  z-index: 14;
-  background: #eef4ff !important;
-  text-align: center !important;
+.smx-level-1 {
+  background: #d1fae5;
+  color: #065f46;
 }
 
-.smx-table tbody tr.smx-row {
+.smx-level-2 {
+  background: #bfdbfe;
+  color: #1e40af;
+}
+
+.smx-level-3 {
+  background: #ddd6fe;
+  color: #5b21b6;
+}
+
+.smx-level-4 {
+  background: #fde68a;
+  color: #92400e;
+}
+
+.smx-na-badge {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.smx-table select {
+  padding: 5px 6px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
   background: #ffffff;
-  transition: background 0.15s ease;
+  font-size: 13px;
 }
 
-.smx-table tbody tr.smx-row:hover {
-  background: #f9fafb;
+.smx-changed {
+  background: #fff3cd;
+  border-radius: 6px;
 }
 
-.smx-table tbody tr.smx-row-selected {
-  background: #fff7ed;
+.smx-changed select {
+  background: #fff3cd;
 }
 
-.smx-table tbody tr.smx-row-selected:hover {
-  background: #ffedd5;
+.smx-tip {
+  position: relative;
+  cursor: help;
 }
 
-        .smx-table td {
-          padding: 10px;
-          text-align: center;
-          border-bottom: 1px solid #f1f3f5;
-          vertical-align: middle;
-        }
+.smx-tip:hover::after {
+  content: attr(data-tip);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 8px);
+  transform: translateX(-50%);
+  background: #111827;
+  color: #ffffff;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  z-index: 9999;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+}
 
-        .smx-select-cell {
-          width: 70px;
-          min-width: 70px;
-          text-align: center;
-          white-space: nowrap;
-        }
-
-        .smx-skill-cell {
-          text-align: center;
-          font-weight: 600;
-          color: #111827;
-          min-width: 240px;
-        }
-
-        .smx-action-wrap {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          gap: 8px;
-        }
-
-        .smx-row-check,
-        .smx-group-check {
-          width: 17px;
-          height: 17px;
-          cursor: pointer;
-          accent-color: #2563eb;
-        }
-
-        .smx-delete {
-          border: none;
-          background: transparent;
-          color: #dc2626;
-          font-size: 15px;
-          cursor: pointer;
-          line-height: 1;
-          padding: 3px;
-          border-radius: 6px;
-        }
-
-        .smx-delete:hover {
-          background: #fee2e2;
-          transform: scale(1.08);
-        }
-
-        .smx-badge {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          min-width: 30px;
-          height: 28px;
-          padding: 0 6px;
-          border-radius: 8px;
-          font-weight: 700;
-          font-size: 13px;
-        }
-
-        .smx-level-1 {
-          background: #d1fae5;
-          color: #065f46;
-        }
-
-        .smx-level-2 {
-          background: #bfdbfe;
-          color: #1e40af;
-        }
-
-        .smx-level-3 {
-          background: #ddd6fe;
-          color: #5b21b6;
-        }
-
-        .smx-level-4 {
-          background: #fde68a;
-          color: #92400e;
-        }
-
-        .smx-na-badge {
-          background: #e5e7eb;
-          color: #374151;
-        }
-
-        .smx-table select {
-          padding: 5px 6px;
-          border-radius: 6px;
-          border: 1px solid #d1d5db;
-          background: #ffffff;
-          font-size: 13px;
-        }
-
-        .smx-changed {
-          background: #fff3cd;
-          border-radius: 6px;
-        }
-
-        .smx-changed select {
-          background: #fff3cd;
-        }
-
-        .smx-tip {
-          position: relative;
-          cursor: help;
-        }
-
-        .smx-tip:hover::after {
-          content: attr(data-tip);
-          position: absolute;
-          left: 50%;
-          bottom: calc(100% + 8px);
-          transform: translateX(-50%);
-          background: #111827;
-          color: #ffffff;
-          padding: 6px 10px;
-          border-radius: 8px;
-          font-size: 12px;
-          font-weight: 700;
-          white-space: nowrap;
-          z-index: 9999;
-          box-shadow: 0 6px 16px rgba(0,0,0,0.18);
-        }
-
-        .smx-tip:hover::before {
-          content: "";
-          position: absolute;
-          left: 50%;
-          bottom: calc(100% + 2px);
-          transform: translateX(-50%);
-          border-width: 6px 6px 0 6px;
-          border-style: solid;
-          border-color: #111827 transparent transparent transparent;
-          z-index: 9999;
-        }
+.smx-tip:hover::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 2px);
+  transform: translateX(-50%);
+  border-width: 6px 6px 0 6px;
+  border-style: solid;
+  border-color: #111827 transparent transparent transparent;
+  z-index: 9999;
+}
       `}</style>
 
       <div className="smx-wrap">
