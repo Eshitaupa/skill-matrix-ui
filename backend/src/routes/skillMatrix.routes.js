@@ -430,7 +430,7 @@ ORDER BY
                                WHEN LOWER(Discipline) = 'electrical'
              AND LOWER(Skill) = 'software capabilities' THEN 4
                                           WHEN LOWER(Discipline) = 'electrical'
-             AND LOWER(Skill) = 'leadership/project management skills' THEN 5
+             AND LOWER(Skill) = 'leadership / project management skills (from qcc)' THEN 5
 
        WHEN LOWER(Discipline) = 'instrumentation'
              AND LOWER(Skill) = 'general' THEN 1
