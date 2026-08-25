@@ -457,7 +457,7 @@ ORDER BY
          WHEN LOWER(Discipline) = 'instrumentation'
                     AND LOWER(Skill) = 'modelling' THEN 10
              WHEN LOWER(Discipline) = 'instrumentation'
-                    AND LOWER(Skill) = 'wiring & loops' THEN 11
+                    AND LOWER(Skill) = 'wiring / loops' THEN 11
              WHEN LOWER(Discipline) = 'instrumentation'
                     AND LOWER(Skill) = 'miscellaneous' THEN 12
          WHEN LOWER(Discipline) = 'instrumentation'
