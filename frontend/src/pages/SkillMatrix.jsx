@@ -728,54 +728,50 @@ export default function SkillMatrix({
      DISCIPLINE CHANGE
   --------------------------------------------------------- */
 
-  useEffect(() => {
-    if (!filters.discipline) {
-      setMatrixData([]);
-      setSelectedRows([]);
-      setEditedValues({});
+  // // useEffect(() => {
+  // //   if (!filters.discipline) {
+  // //     setMatrixData([]);
+  // //     setSelectedRows([]);
+  // //     setEditedValues({});
 
-      return;
-    }
+  // //     return;
+  // //   }
 
-    const fixedRole =
-      DISCIPLINE_ROLE_MAP[
-        filters.discipline
-      ] || "";
+  //   const fixedRole =
+  //     DISCIPLINE_ROLE_MAP[
+  //       filters.discipline
+  //     ] || "";
 
-    setFilters((previous) => {
-      if (
-        previous.role === fixedRole &&
-        previous.level === "" &&
-        previous.skillSearch === ""
-      ) {
-        return previous;
-      }
+  //   setFilters((previous) => {
+  //     if (
+  //       previous.role === fixedRole &&
+  //       previous.level === "" &&
+  //       previous.skillSearch === ""
+  //     ) {
+  //       return previous;
+  //     }
 
-      return {
-        ...previous,
-        role: fixedRole,
-        level: "",
-        skillSearch: "",
-      };
-    });
-  }, [filters.discipline]);
+  //     return {
+  //       ...previous,
+  //       role: fixedRole,
+  //       level: "",
+  //       skillSearch: "",
+  //     };
+  //   });
+  // }, [filters.discipline]);
 
   /* ---------------------------------------------------------
      RESET LOCAL MATRIX GUARDS
   --------------------------------------------------------- */
 
-  useEffect(() => {
-    deletedRowKeysRef.current.clear();
-
-    matrixLoadedRef.current = false;
-
-    setSelectedRows([]);
-    setEditedValues({});
-    setConfirmDelete(null);
-  }, [
-    filters.discipline,
-    filters.role,
-  ]);
+useEffect(() => {
+  deletedRowKeysRef.current.clear();
+  matrixLoadedRef.current = false;
+  setSelectedRows([]);
+  setEditedValues({});
+  setConfirmDelete(null);
+}, [
+]);
 
   /* ---------------------------------------------------------
      FETCH MATRIX
