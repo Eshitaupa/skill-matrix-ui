@@ -109,6 +109,7 @@ const allowedOrigins = [
   "http://localhost:5173",
   "https://skill-matrix-fhadc3d4c3g8dhcg.northcentralus-01.azurewebsites.net",
   "https://skill-matrix-uat-g5dba9ate9eyhhhc.northcentralus-01.azurewebsites.net",
+  "https://skill-matrix-uat-g5dba9ate9eyhhhc.northcentralus-01.azurewebsites.net",
   ...configuredFrontendOrigins,
 ].filter((origin, index, array) => origin && array.indexOf(origin) === index);
 
